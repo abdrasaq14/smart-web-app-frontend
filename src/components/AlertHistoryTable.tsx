@@ -57,7 +57,7 @@ export const AlertHistoryTable = () => {
             <TableBody>
                 {rows.map((row) => (
                     <TableRow
-                        key={row.time}
+                        key={row.site}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                         <TableCell component="th" scope="row">

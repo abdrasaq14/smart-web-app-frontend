@@ -2,19 +2,24 @@ import { Box, InputLabel, MenuItem, Select } from '@mui/material';
 import FormControl from '@mui/material/FormControl';
 import React, { useState } from 'react';
 
-export const Dropdown = ({ options }: { options: Array<string> }) => {
+interface DropdownProps {
+    options: Array<string>,
+    label?: string,
+    autoSelectFirst?: boolean
+}
 
-    const [selectedOption, setSelectedOption] = useState<string | undefined>(undefined);
+export const Dropdown = ({ options, label, autoSelectFirst }: DropdownProps) => {
+
+    const [selectedOption, setSelectedOption] = useState<string | undefined>(autoSelectFirst ? options[0] : undefined);
 
     return (<Box sx={{ minWidth: 90 }}>
         <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Site(s)</InputLabel>
+            {label ? <InputLabel id="Label">{label}</InputLabel> : undefined}
             <Select
                 sx={{ background: '#F9F9F9', borderColor: '#E5E5E5' }}
-                labelId="Site"
-                id="site-selection"
+                labelId={label ? 'Label' : undefined}
+                id="selection"
                 value={selectedOption}
-                label="Site(s)"
                 onChange={(value) => {
                     setSelectedOption(value.target.value);
                 }}
