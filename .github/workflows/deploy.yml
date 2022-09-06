@@ -9,6 +9,7 @@ on:
 jobs:
   build-spa:
     name: build-spa
+    runs-on: ubuntu-20.04
     container:
       image: node:18-bullseye-slim
     steps:
