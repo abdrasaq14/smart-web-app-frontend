@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Install pip and awscli
-        uses: apt-get update && apt-get install -y python3-pip && pip3 install awscli
+        run: apt-get update && apt-get install -y python3-pip && pip3 install awscli
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
