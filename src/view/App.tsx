@@ -10,18 +10,18 @@ import { MyAccount as OperationsMyAccount } from './operations/MyAccount';
 import { ActivityLog as OperationsActivitylog } from './operations/ActivityLog';
 import { Site as OperationSite } from './operations/Site';
 import { Transactions as FinanceTransaction } from './finance/Transactions';
-import { Auth0Provider } from '@auth0/auth0-react';
+// import { Auth0Provider } from '@auth0/auth0-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 export const App = () => {
 	const queryClient = new QueryClient();
 	return (
 		<QueryClientProvider client={queryClient}>
-			<Auth0Provider
-				domain="dev-u0pz-ez1.eu.auth0.com"
-				clientId="dZdIDvmc3hKd5gPJJJsiSKSwkXJdomPg"
-				redirectUri={window.location.origin}
-			>
+			{/*<Auth0Provider*/}
+			{/*	domain="dev-u0pz-ez1.eu.auth0.com"*/}
+			{/*	clientId="dZdIDvmc3hKd5gPJJJsiSKSwkXJdomPg"*/}
+			{/*	redirectUri={window.location.origin}*/}
+			{/*>*/}
 				<BrowserRouter>
 					<Routes>
 						<Route path="/operations" element={<Operations />}>
@@ -43,7 +43,7 @@ export const App = () => {
 						<Route path="*" element={<Navigate to="/login" replace />} />
 					</Routes>
 				</BrowserRouter>
-			</Auth0Provider>
+			{/*</Auth0Provider>*/}
 		</QueryClientProvider>
 	);
 };
