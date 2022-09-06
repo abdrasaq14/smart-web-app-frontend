@@ -1,0 +1,1 @@
+export const MOCK_RESPONSE_SLEEP_TIME = 2000;

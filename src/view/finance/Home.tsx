@@ -5,14 +5,14 @@ import { Dropdown } from '../../components/Dropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
-import { AlertHistoryTable } from '../../components/AlertHistoryTable';
+import { TransactionHistoryTable } from '../../components/TransactionHistoryTable';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getAlertHistory } from '../../api/alertHistory';
 import PieChart from '../../components/PieChart';
 import PerformanceChart from '../../components/PerformanceChart';
+import { getTransactionHistory } from '../../api/transactionHistory';
 
 const styles = {
 	screenContent: {
@@ -31,7 +31,7 @@ const styles = {
 
 export const Home = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['operationsHome'], getAlertHistory);
+	const { data, isLoading, isError } = useQuery(['financeHome'], getTransactionHistory);
 
 	const renderCell = () => {
 		if (isError) {
@@ -39,7 +39,7 @@ export const Home = () => {
 		} else if (isLoading) {
 			return <div>Loading...</div>;
 		} else if (data && data.length > 0) {
-			return <AlertHistoryTable data={data} />;
+			return <TransactionHistoryTable data={data} />;
 		} else {
 			return <div>Empty data</div>;
 		}
@@ -65,16 +65,16 @@ export const Home = () => {
 				</Box>
 			</Box>
 			<Box sx={styles.cardRow}>
-				<ValueCard value="32,727,658" label="Total Consumtion (kWh)" />
-				<ValueCard value="2,727,121" label="Current Load (kW)" />
-				<ValueCard value="20hrs" label="Avg. Availability" />
-				<ValueCard value="5" label="Power Cut" />
+				<ValueCard value="32,727,658" label="Total Revenue (N)" />
+				<ValueCard value="23" label="ATC&C Losses (%)" />
+				<ValueCard value="1,019,591" label="Downtime Losses (N)" />
+				<ValueCard value="29,019,591" label="Tarrif Losses (N)" />
 			</Box>
 			<Box sx={styles.chartsRow}>
-				<PieChart cardTitle="Site monitored" pieTitle="12k Locations" />
-				<PerformanceChart title="Load Profile (KW)" />
+				<PieChart cardTitle="Customer Breakdown" pieTitle="720k Customers" />
+				<PerformanceChart title="Financial Performance" />
 			</Box>
-			<GraphCard title="Alert History">{renderCell()}</GraphCard>
+			<GraphCard title="Transaction History">{renderCell()}</GraphCard>
 		</Box>
 	);
 };

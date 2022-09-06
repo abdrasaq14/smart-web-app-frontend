@@ -88,6 +88,8 @@
     "core-js": "3.22.8",
     "css-loader": "6.7.1",
     "date-fns": "^2.29.1",
+    "echarts": "^5.3.3",
+    "echarts-for-react": "^3.0.2",
     "express": "4.18.1",
     "jest-environment-jsdom": "^28.1.1",
     "node-sass": "7.0.1",
@@ -95,6 +97,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-intl": "6.0.4",
+    "react-query": "^3.39.2",
     "react-redux": "8.0.2",
     "react-router": "6.3.0",
     "react-router-dom": "6.3.0",
@@ -103,6 +106,7 @@
     "redux-thunk": "2.4.1",
     "typescript": "4.7.3",
     "url-polyfill": "1.1.12",
-    "whatwg-fetch": "3.6.2"
+    "whatwg-fetch": "3.6.2",
+    "zod": "^3.18.0"
   }
 }

@@ -5,9 +5,9 @@ import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-materi
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { SiteTable } from '../../components/SiteTable';
 import { useQuery } from 'react-query';
-import { getAssets } from '../../api/assets';
+import { TransactionHistoryTable } from '../../components/TransactionHistoryTable';
+import { getTransactionHistory } from '../../api/transactionHistory';
 
 const styles = {
 	screenContent: {
@@ -22,9 +22,9 @@ const styles = {
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 };
 
-export const Site = () => {
+export const Transactions = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['assets'], getAssets);
+	const { data, isLoading, isError } = useQuery(['assets'], getTransactionHistory);
 
 	const renderCell = () => {
 		if (isError) {
@@ -32,7 +32,7 @@ export const Site = () => {
 		} else if (isLoading) {
 			return <div>Loading...</div>;
 		} else if (data && data.length > 0) {
-			return <SiteTable data={data} />;
+			return <TransactionHistoryTable data={data} />;
 		} else {
 			return <div>Empty data</div>;
 		}

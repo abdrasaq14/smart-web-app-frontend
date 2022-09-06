@@ -8,19 +8,26 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { ApiAlertHistory } from '../api/alertHistory/types';
+import { useQuery } from 'react-query';
+import { getEventLogs } from '../api/eventLogs';
 
-type Props = {
-	data: ApiAlertHistory;
-};
+export const EventLogsTable = () => {
+	const { data, isLoading, isError } = useQuery(['eventLogs'], getEventLogs);
 
-export const AlertHistoryTable = ({ data }: Props) => {
+	if (isError) {
+		return <div>There was an error...</div>;
+	} else if (isLoading) {
+		return <div>Loading...</div>;
+	} else if (!data || data.length === 0) {
+		return <div>Empty data</div>;
+	}
+
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label="simple table">
 				<TableHead>
 					<TableRow>
-						<TableCell>Date/Time</TableCell>
+						<TableCell>Time/Date</TableCell>
 						<TableCell align="right">Alert ID</TableCell>
 						<TableCell align="right">Site</TableCell>
 						<TableCell align="right">Zone</TableCell>
@@ -35,7 +42,7 @@ export const AlertHistoryTable = ({ data }: Props) => {
 							<TableCell component="th" scope="row">
 								{row.time}
 							</TableCell>
-							<TableCell align="right">{row.id}</TableCell>
+							<TableCell align="right">{row.alertId}</TableCell>
 							<TableCell align="right">{row.site}</TableCell>
 							<TableCell align="right">{row.zone}</TableCell>
 							<TableCell align="right">{row.district}</TableCell>
