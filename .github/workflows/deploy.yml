@@ -11,7 +11,7 @@ jobs:
     name: build-spa
     runs-on: ubuntu-20.04
     container:
-      image: node:18-bullseye-slim
+      image: node:18-bullseye
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
