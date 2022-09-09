@@ -24,12 +24,18 @@ const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
 	);
 };
 
+type DataRow = {
+	value: number;
+	name: string
+}
+
 type Props = {
 	cardTitle: string;
 	pieTitle: string;
+	data: DataRow[]
 };
 
-const Page = ({ cardTitle, pieTitle }: Props) => {
+const Page = ({ cardTitle, pieTitle, data }: Props) => {
 	const options = {
 		title: {
 			text: pieTitle,
@@ -39,16 +45,7 @@ const Page = ({ cardTitle, pieTitle }: Props) => {
 		series: [
 			{
 				type: 'pie',
-				data: [
-					{
-						value: 0.6,
-						name: 'Active',
-					},
-					{
-						value: 0.4,
-						name: 'Offline',
-					},
-				],
+				data: data,
 				radius: ['40%', '70%'],
 			},
 		],

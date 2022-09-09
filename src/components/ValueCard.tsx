@@ -15,7 +15,7 @@ const styles = {
     label: { paddingTop: '20px', fontSize: '14px', color: '#6E7883', lineHeight: '48px' }
 };
 
-export const ValueCard = ({ value, label }: { value: string, label: string }) => {
+export const ValueCard = ({ value, label }: { value: string | number, label: string }) => {
     return (<Card
         sx={styles.container}
         variant="outlined">

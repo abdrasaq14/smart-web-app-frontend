@@ -26,7 +26,7 @@ const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
 
 type Props = { title: string };
 
-const PerformanceChart = ({ title }: Props) => {
+const BarChart = ({ title }: Props) => {
 	const options = {
 		xAxis: {
 			data: ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
@@ -48,4 +48,4 @@ const PerformanceChart = ({ title }: Props) => {
 	);
 };
 
-export default PerformanceChart;
+export default BarChart;

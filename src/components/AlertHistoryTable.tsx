@@ -8,7 +8,7 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { ApiAlertHistory } from '../api/alertHistory/types';
+import { ApiAlertHistory } from '../api/operationsHome/types';
 
 type Props = {
 	data: ApiAlertHistory;
