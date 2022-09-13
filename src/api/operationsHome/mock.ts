@@ -1,4 +1,4 @@
-import {ApiAlertHistory, ApiOperationsHome} from './types';
+import {ApiAlertHistory, ApiOperationsHome} from "./types";
 
 const mockResponseForTableData: ApiAlertHistory = [
 	{

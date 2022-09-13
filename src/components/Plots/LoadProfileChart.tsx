@@ -2,7 +2,7 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box, Card } from '@mui/material';
-import {ApiLoadProfileChart} from "@src/api/operationsHome/types";
+import {ApiLoadProfileChart} from "../../api/operationsHome/types";
 
 const styles = {
     container: {
