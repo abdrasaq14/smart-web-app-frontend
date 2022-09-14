@@ -1,20 +1,21 @@
 import React from 'react';
-import {Box} from '@mui/material';
-import {DatePickerDropdown} from '../../components/DatePickerDropdown';
-import {Dropdown} from '../../components/Dropdown';
-import {Logout, NotificationsOutlined, PersonOutlined} from '@mui/icons-material';
-import {ValueCard} from '../../components/ValueCard';
-import {GraphCard} from '../../components/GraphCard';
-import {AlertHistoryTable} from '../../components/AlertHistoryTable';
-import {RegularButton} from '../../components/Button';
-import {IconButton} from '../../components/IconButton';
-import {useNavigate} from 'react-router-dom';
-import {useQuery} from 'react-query';
-import {getDataForOperationsHome} from '../../api/operationsHome';
-import {ApiOperationsHome} from "../../api/operationsHome/types";
-import SitesMonitored from "../../components/Plots/SitesMonitoredChart";
-import LoadProfileChart from "../../components/Plots/LoadProfileChart";
-import {Spinner} from "../../componentes/Spinner";
+import { Box } from '@mui/material';
+import { DatePickerDropdown } from '../../components/DatePickerDropdown';
+import { Dropdown } from '../../components/Dropdown';
+import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
+import { ValueCard } from '../../components/ValueCard';
+import { GraphCard } from '../../components/GraphCard';
+import { AlertHistoryTable } from '../../components/AlertHistoryTable';
+import { RegularButton } from '../../components/Button';
+import { IconButton } from '../../components/IconButton';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from 'react-query';
+import { getDataForOperationsHome } from '../../api/operationsHome';
+import { ApiOperationsHome } from '../../api/operationsHome/types';
+import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
+import LoadProfileChart from '../../components/Charts/LoadProfileChart';
+import { Spinner } from '../../componentes/Spinner';
+import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 
 const styles = {
 	screenContent: {
@@ -35,29 +36,34 @@ export const Home = () => {
 	const navigate = useNavigate();
 	const { data, isLoading, isError } = useQuery(['operationsHome'], getDataForOperationsHome);
 
-	const SuccessCell = ({data}: {data: ApiOperationsHome}) => {return (
-		<Box>
-			<Box sx={styles.cardRow}>
-				<ValueCard value={data.cardsData.totalConsumption} label="Total Consumtion (kWh)" />
-				<ValueCard value={data.cardsData.currentLoad} label="Current Load (kW)" />
-				<ValueCard value={`${data.cardsData.avgAvailability} hrs`} label="Avg. Availability" />
-				<ValueCard value={data.cardsData.powerCuts} label="Power Cut" />
+	const SuccessCell = ({ data }: { data: ApiOperationsHome }) => {
+		return (
+			<Box>
+				<Box sx={styles.cardRow}>
+					<ValueCard value={data.cardsData.totalConsumption} label="Total Consumtion (kWh)" />
+					<ValueCard value={data.cardsData.currentLoad} label="Current Load (kW)" />
+					<ValueCard value={`${data.cardsData.avgAvailability} hrs`} label="Avg. Availability" />
+					<ValueCard value={data.cardsData.powerCuts} label="Power Cut" />
+				</Box>
+				<Box sx={styles.chartsRow}>
+					<SitesMonitored data={data.chartsData.sitesMonitored} />
+					<LoadProfileChart title="Load Profile (KW)" data={data.chartsData.loadProfile} />
+					<PowerConsumptionChart data={data.chartsData.powerConsumption.data} />
+				</Box>
+				<GraphCard title="Alert History">
+					<AlertHistoryTable data={data.tableData} />
+				</GraphCard>
 			</Box>
-			<Box sx={styles.chartsRow}>
-				<SitesMonitored data={data.chartsData.sitesMonitored} />
-				<LoadProfileChart title="Load Profile (KW)" data={data.chartsData.loadProfile} />
-			</Box>
-			<GraphCard title="Alert History"><AlertHistoryTable data={data.tableData} /></GraphCard>
-		</Box>)
-		}
+		);
+	};
 
 	const renderCell = () => {
 		if (isError) {
 			return <div>There was an error...</div>;
 		} else if (isLoading) {
-			return <Spinner/>;
+			return <Spinner />;
 		} else if (data != null) {
-			return <SuccessCell data={data}/>;
+			return <SuccessCell data={data} />;
 		} else {
 			return <div>Empty data</div>;
 		}

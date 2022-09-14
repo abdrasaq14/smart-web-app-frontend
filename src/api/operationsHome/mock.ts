@@ -1,4 +1,4 @@
-import {ApiAlertHistory, ApiOperationsHome} from "./types";
+import { ApiAlertHistory, ApiOperationsHome } from './types';
 
 const mockResponseForTableData: ApiAlertHistory = [
 	{
@@ -46,23 +46,33 @@ export const mockResponse: ApiOperationsHome = {
 		avgAvailability: 20,
 		powerCuts: 5,
 		overloadedDTs: 10,
-		sitesUnderMaintenance: 2
+		sitesUnderMaintenance: 2,
 	},
 	tableData: mockResponseForTableData,
 	chartsData: {
 		sitesMonitored: {
 			total: 12000,
 			data: [
-				{key: 'active', value: 40},
-				{key: 'offline', value: 60}
-			]
+				{ key: 'active', value: 40 },
+				{ key: 'offline', value: 60 },
+			],
 		},
 		loadProfile: {
 			xAxis: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
 			yAxis: [
 				[15, 12, 13, 14, 16, 14, 20, 19, 18, 17, 22, 24, 25, 26],
-				[13, 12, 11, 12, 13, 10, 12, 9, 10, 11, 10, 13, 14, 15]
-			]
-		}
-	}
-}
+				[13, 12, 11, 12, 13, 10, 12, 9, 10, 11, 10, 13, 14, 15],
+			],
+		},
+		powerConsumption: {
+			data: [
+				['district', 'consumption'],
+				['District E', 850],
+				['District D', 200],
+				['District C', 300],
+				['District B', 500],
+				['District A', 800],
+			],
+		},
+	},
+};
