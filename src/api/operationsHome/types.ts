@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+const stringOrNumberSchema = z.union([z.string(), z.number()]);
+const ChartDatasetDataSchema = z.array(z.array(stringOrNumberSchema));
+
 const AlertHistoryRowSchema = z.object({
 	id: z.string(),
 	site: z.string(),
@@ -22,16 +25,13 @@ const SitesMonitoredSchema = z.object({
 });
 export type ApiSitesMonitored = z.infer<typeof SitesMonitoredSchema>;
 
-const xAxisSchema = z.array(z.number());
-const yAxisSchemaRow = z.array(z.number());
 const LoadProfileChartSchema = z.object({
-	xAxis: xAxisSchema,
-	yAxis: z.array(yAxisSchemaRow),
+	data: ChartDatasetDataSchema,
 });
 export type ApiLoadProfileChart = z.infer<typeof LoadProfileChartSchema>;
 
 const PowerConsumptionSchema = z.object({
-	data: z.array(z.array(z.union([z.string(), z.number()]))),
+	data: ChartDatasetDataSchema,
 });
 export type ApiPowerConsumptionChart = z.infer<typeof PowerConsumptionSchema>;
 
