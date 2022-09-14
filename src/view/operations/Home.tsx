@@ -51,7 +51,7 @@ export const Home = () => {
 					<PowerConsumptionChart data={data.chartsData.powerConsumption.data} />
 				</Box>
 				<GraphCard title="Alert History">
-					<AlertHistoryTable data={data.tableData} />
+					<AlertHistoryTable />
 				</GraphCard>
 			</Box>
 		);
