@@ -11,7 +11,7 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		marginTop: '32px',
-		width: '700px',
+		maxWidth: '240px',
 	},
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };

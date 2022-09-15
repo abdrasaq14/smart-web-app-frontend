@@ -10,7 +10,7 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 		marginTop: '32px',
-		width: '380px',
+		width: '240px',
 	},
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };
@@ -26,13 +26,13 @@ const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
 
 type DataRow = {
 	value: number;
-	name: string
-}
+	name: string;
+};
 
 type Props = {
 	cardTitle: string;
 	pieTitle: string;
-	data: DataRow[]
+	data: DataRow[];
 };
 
 const Page = ({ cardTitle, pieTitle, data }: Props) => {

@@ -29,7 +29,10 @@ const styles = {
 	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	chartsRow: { display: 'flex', justifyContent: 'space-around' },
+	chartsRow: { display: 'flex', justifyContent: 'space-between' },
+	lastRow: { display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '32px' },
+	alertHistoryTable: { width: '784px' },
+	lastRowCards: { display: 'flex', flexDirection: 'column' },
 };
 
 export const Home = () => {
@@ -50,9 +53,20 @@ export const Home = () => {
 					<LoadProfileChart title="Load Profile (KW)" data={data.chartsData.loadProfile.data} />
 					<PowerConsumptionChart data={data.chartsData.powerConsumption.data} />
 				</Box>
-				<GraphCard title="Alert History">
-					<AlertHistoryTable />
-				</GraphCard>
+				<Box sx={styles.lastRow}>
+					<Box sx={styles.alertHistoryTable}>
+						<GraphCard title="Alert History">
+							<AlertHistoryTable />
+						</GraphCard>
+					</Box>
+					<Box sx={styles.lastRowCards}>
+						<ValueCard value={data.cardsData.overloadedDTs} label="Overloaded DTs" />
+						<ValueCard
+							value={data.cardsData.sitesUnderMaintenance}
+							label="Sites under maintenance"
+						/>
+					</Box>
+				</Box>
 			</Box>
 		);
 	};
