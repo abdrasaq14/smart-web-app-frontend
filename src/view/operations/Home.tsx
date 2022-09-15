@@ -28,9 +28,20 @@ const styles = {
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 	chartsRow: { display: 'flex', justifyContent: 'space-between' },
-	lastRow: { display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '32px' },
-	alertHistoryTable: { width: '784px' },
-	lastRowCards: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
+	lastRow: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		width: '100%',
+		marginTop: '32px',
+		height: '360px',
+	},
+	alertHistoryTable: { width: '784px', height: '100%' },
+	lastRowCards: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		height: '100%',
+	},
 };
 
 export const Home = () => {

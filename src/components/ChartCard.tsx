@@ -9,6 +9,7 @@ const styles = {
 		flexDirection: 'column',
 		marginTop: '32px',
 		width: '220px',
+		height: '306px',
 	},
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };

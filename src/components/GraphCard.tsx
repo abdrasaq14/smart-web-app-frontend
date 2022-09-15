@@ -7,6 +7,7 @@ const styles = {
 		padding: '16px',
 		display: 'flex',
 		flexDirection: 'column',
+		height: '100%',
 	},
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };
