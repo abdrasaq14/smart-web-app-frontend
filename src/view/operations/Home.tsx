@@ -75,13 +75,13 @@ export const Home = () => {
 			<Box>
 				<Box sx={styles.cardRow}>
 					<ValueCard
-						value={cardsData?.totalConsumption}
+						value={cardsData?.totalConsumption.toLocaleString('en-US')}
 						label="Total Consumtion (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={cardsData?.currentLoad}
+						value={cardsData?.currentLoad.toLocaleString('en-US')}
 						label="Current Load (kW)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}

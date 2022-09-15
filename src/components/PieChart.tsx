@@ -18,11 +18,30 @@ const Page = ({ pieTitle, data }: Props) => {
 			left: 'center',
 			top: 'center',
 		},
+		legend: {
+			top: '5%',
+			left: 'center',
+		},
 		series: [
 			{
 				type: 'pie',
 				data: data,
 				radius: ['40%', '70%'],
+				avoidLabelOverlap: false,
+				label: {
+					show: false,
+					position: 'center',
+				},
+				emphasis: {
+					label: {
+						show: true,
+						fontSize: '40',
+						fontWeight: 'bold',
+					},
+				},
+				labelLine: {
+					show: false,
+				},
 			},
 		],
 	};

@@ -24,13 +24,17 @@ const Page = () => {
 			};
 		}) ?? [];
 
+	const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+
 	const renderBody = () => {
 		if (isLoading) {
 			return <Spinner />;
 		} else if (isError) {
 			return <Box>Error fetching data...</Box>;
 		} else {
-			return <PieChart pieTitle={`${data?.total} Locations`} data={dataset} />;
+			return (
+				<PieChart pieTitle={`${formatter.format(data?.total ?? 0)} Locations`} data={dataset} />
+			);
 		}
 	};
 
