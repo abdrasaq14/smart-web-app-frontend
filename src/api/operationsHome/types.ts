@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ChartDatasetDataSchema } from '../apiUtils';
 
 const SitesMonitoredSchema = z.object({
 	total: z.number(),
@@ -12,15 +11,9 @@ const SitesMonitoredSchema = z.object({
 });
 export type ApiSitesMonitored = z.infer<typeof SitesMonitoredSchema>;
 
-const LoadProfileChartSchema = z.object({
-	data: ChartDatasetDataSchema,
-});
-export type ApiLoadProfileChart = z.infer<typeof LoadProfileChartSchema>;
-
 export const OperationsHomeSchema = z.object({
 	chartsData: z.object({
 		sitesMonitored: SitesMonitoredSchema,
-		loadProfile: LoadProfileChartSchema,
 	}),
 	cardsData: z.object({
 		totalConsumption: z.number(),

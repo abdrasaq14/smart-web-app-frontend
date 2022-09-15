@@ -2,7 +2,9 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box, Card } from '@mui/material';
-import { ApiLoadProfileChart } from '../../api/operationsHome/types';
+import { useQuery } from 'react-query';
+import { Spinner } from '../../componentes/Spinner';
+import { getLoadProfileChartData } from '../../api/operationsHome/loadProfileChart';
 
 const styles = {
 	container: {
@@ -25,12 +27,24 @@ const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
 	);
 };
 
-type Props = { title: string; data: ApiLoadProfileChart['data'] };
+type Props = {};
 
-const Chart = ({ title, data }: Props) => {
+const Chart = ({}: Props) => {
+	const { data, isLoading, isError } = useQuery(['loadProfileChart'], getLoadProfileChartData);
+
+	const renderBody = () => {
+		if (isLoading) {
+			return <Spinner />;
+		} else if (isError) {
+			return <Box>Error fetching data...</Box>;
+		} else {
+			return <ReactECharts option={options} />;
+		}
+	};
+
 	const options = {
 		dataset: {
-			source: data,
+			source: data?.dataset,
 		},
 		xAxis: {},
 		yAxis: {},
@@ -54,11 +68,7 @@ const Chart = ({ title, data }: Props) => {
 		],
 	};
 
-	return (
-		<ChartGraphCard title={title}>
-			<ReactECharts option={options} />
-		</ChartGraphCard>
-	);
+	return <ChartGraphCard title="Load Profile (KW)">{renderBody()}</ChartGraphCard>;
 };
 
 export default Chart;
