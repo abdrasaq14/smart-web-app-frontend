@@ -7,9 +7,12 @@ import { ValueCard } from '../../components/ValueCard';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import PieChart from '../../components/PieChart';
 import BarChart from '../../components/BarChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useQuery } from 'react-query';
+import { getCardsDataForOperationsDashboard } from '../../api/operationsDashboard/cardsData';
+import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
+import { formatToUSlocale } from '../../utils/formatters';
 
 const styles = {
 	screenContent: {
@@ -29,6 +32,11 @@ const styles = {
 
 export const Dashboard = () => {
 	const navigate = useNavigate();
+	const {
+		data: cardsData,
+		isLoading: isCardsDataLoading,
+		isError: isCardsDataError,
+	} = useQuery(['operationsDashboard'], getCardsDataForOperationsDashboard);
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -62,13 +70,33 @@ export const Dashboard = () => {
 			</Box>
 
 			<Box sx={styles.cardRow}>
-				<ValueCard value="32,727,658" label="Grid Hours" />
-				<ValueCard value="23" label="Tarif Plan" />
-				<ValueCard value="1,019,591" label="No. of Outages" />
-				<ValueCard value="29,019,591" label="Downtime" />
+				<ValueCard
+					value={formatToUSlocale(cardsData?.gridHours)}
+					label="Grid Hours"
+					isLoading={isCardsDataLoading}
+					isError={isCardsDataError}
+				/>
+				<ValueCard
+					value={cardsData?.tariffPlan}
+					label="Tarif Plan"
+					isLoading={isCardsDataLoading}
+					isError={isCardsDataError}
+				/>
+				<ValueCard
+					value={formatToUSlocale(cardsData?.noOfOutages)}
+					label="No. of Outages"
+					isLoading={isCardsDataLoading}
+					isError={isCardsDataError}
+				/>
+				<ValueCard
+					value={formatToUSlocale(cardsData?.downtime)}
+					label="Downtime"
+					isLoading={isCardsDataLoading}
+					isError={isCardsDataError}
+				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
-				<PieChart cardTitle="Site monitored" pieTitle="12k Locations" />
+				<RevenueLossBreakdown />
 				<BarChart title="ENERGY" />
 			</Box>
 		</Box>

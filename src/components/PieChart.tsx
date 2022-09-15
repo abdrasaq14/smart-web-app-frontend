@@ -16,17 +16,17 @@ const Page = ({ pieTitle, data }: Props) => {
 		title: {
 			text: pieTitle,
 			left: 'center',
-			top: 'center',
+			top: '30%',
 		},
 		legend: {
-			top: '5%',
-			left: 'center',
+			top: 'bottom',
 		},
 		series: [
 			{
 				type: 'pie',
 				data: data,
 				radius: ['40%', '70%'],
+				center: ['50%', '35%'],
 				avoidLabelOverlap: false,
 				label: {
 					show: false,
@@ -35,7 +35,7 @@ const Page = ({ pieTitle, data }: Props) => {
 				emphasis: {
 					label: {
 						show: true,
-						fontSize: '40',
+						fontSize: '20',
 						fontWeight: 'bold',
 					},
 				},

@@ -14,6 +14,7 @@ import { getCardsDataForOperationsHome } from '../../api/operationsHome/cardsDat
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
+import { formatToUSlocale } from '../../utils/formatters';
 
 const styles = {
 	screenContent: {
@@ -75,13 +76,13 @@ export const Home = () => {
 			<Box>
 				<Box sx={styles.cardRow}>
 					<ValueCard
-						value={cardsData?.totalConsumption.toLocaleString('en-US')}
+						value={formatToUSlocale(cardsData?.totalConsumption)}
 						label="Total Consumtion (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={cardsData?.currentLoad.toLocaleString('en-US')}
+						value={formatToUSlocale(cardsData?.currentLoad)}
 						label="Current Load (kW)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}

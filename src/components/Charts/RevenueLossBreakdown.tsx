@@ -3,19 +3,20 @@ import PieChart from '../PieChart';
 import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
 import { Box } from '@mui/material';
-import { getSitesMonitoredChartData } from '../../api/operationsHome/sitesMonitored';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
+import { getRevenueLossBreakdownChartData } from '../../api/operationsDashboard/revenueLossBreakdownChart';
 
 const keyLabelMapping: any = {
-	active: 'Active',
-	offline: 'Offline',
+	billing: 'Billing 40(KWh)',
+	collection: 'Collection 40(KWh)',
+	downtime: 'Downtime 60(KWh)',
 };
 
-const Page = () => {
+const Chart = () => {
 	const { data, isLoading, isError } = useQuery(
-		['sitesMonitoredChart'],
-		getSitesMonitoredChartData
+		['revenueLossBreakdownChart'],
+		getRevenueLossBreakdownChartData
 	);
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
@@ -35,7 +36,7 @@ const Page = () => {
 		}
 	};
 
-	return <ChartCard title="Sites monitored">{renderBody()}</ChartCard>;
+	return <ChartCard title="Revenue Loss Breakdown">{renderBody()}</ChartCard>;
 };
 
-export default Page;
+export default Chart;
