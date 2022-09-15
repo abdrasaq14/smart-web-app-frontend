@@ -49,7 +49,7 @@ export const Home = () => {
 					<ValueCard value={data.cardsData.powerCuts} label="Power Cut" />
 				</Box>
 				<Box sx={styles.chartsRow}>
-					<SitesMonitored data={data.chartsData.sitesMonitored} />
+					<SitesMonitored />
 					<LoadProfileChart />
 					<PowerConsumptionChart />
 				</Box>

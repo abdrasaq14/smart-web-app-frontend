@@ -9,13 +9,4 @@ export const mockResponse: ApiOperationsHome = {
 		overloadedDTs: 10,
 		sitesUnderMaintenance: 2,
 	},
-	chartsData: {
-		sitesMonitored: {
-			total: 12000,
-			data: [
-				{ key: 'active', value: 40 },
-				{ key: 'offline', value: 60 },
-			],
-		},
-	},
 };
