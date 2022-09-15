@@ -1,4 +1,5 @@
 import {
+	Box,
 	Paper,
 	Table,
 	TableBody,
@@ -8,13 +9,21 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { ApiAlertHistory } from '../api/alertHistory/types';
+import { useQuery } from 'react-query';
+import { getAlertHistory } from '../api/operationsHome/alertHistory';
+import { Spinner } from '../componentes/Spinner';
 
-type Props = {
-	data: ApiAlertHistory;
-};
+type Props = {};
 
-export const AlertHistoryTable = ({ data }: Props) => {
+export const AlertHistoryTable = ({}: Props) => {
+	const { data, isLoading, isError } = useQuery(['alertHistory'], getAlertHistory);
+
+	if (isLoading) {
+		return <Spinner />;
+	} else if (isError) {
+		return <Box>Error fetching data...</Box>;
+	}
+
 	return (
 		<TableContainer component={Paper}>
 			<Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -30,7 +39,7 @@ export const AlertHistoryTable = ({ data }: Props) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data.map((row) => (
+					{data?.map((row) => (
 						<TableRow key={row.site} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 							<TableCell component="th" scope="row">
 								{row.time}

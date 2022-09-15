@@ -10,6 +10,5 @@ const AlertHistoryRowSchema = z.object({
 	time: z.string(),
 });
 export const AlertHistoryResponseSchema = z.array(AlertHistoryRowSchema);
-
 export type ApiAlertHistoryRow = z.infer<typeof AlertHistoryRowSchema>;
 export type ApiAlertHistory = z.infer<typeof AlertHistoryResponseSchema>;

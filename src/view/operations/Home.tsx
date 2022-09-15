@@ -10,9 +10,10 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getAlertHistory } from '../../api/alertHistory';
-import PieChart from '../../components/PieChart';
-import PerformanceChart from '../../components/PerformanceChart';
+import { getCardsDataForOperationsHome } from '../../api/operationsHome/cardsData';
+import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
+import LoadProfileChart from '../../components/Charts/LoadProfileChart';
+import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 
 const styles = {
 	screenContent: {
@@ -26,24 +27,30 @@ const styles = {
 	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	chartsRow: { display: 'flex', justifyContent: 'space-around' },
+	chartsRow: { display: 'flex', justifyContent: 'space-between' },
+	lastRow: {
+		display: 'flex',
+		justifyContent: 'space-between',
+		width: '100%',
+		marginTop: '32px',
+		height: '360px',
+	},
+	alertHistoryTable: { width: '784px', height: '100%' },
+	lastRowCards: {
+		display: 'flex',
+		flexDirection: 'column',
+		justifyContent: 'space-between',
+		height: '100%',
+	},
 };
 
 export const Home = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['operationsHome'], getAlertHistory);
-
-	const renderCell = () => {
-		if (isError) {
-			return <div>There was an error...</div>;
-		} else if (isLoading) {
-			return <div>Loading...</div>;
-		} else if (data && data.length > 0) {
-			return <AlertHistoryTable data={data} />;
-		} else {
-			return <div>Empty data</div>;
-		}
-	};
+	const {
+		data: cardsData,
+		isLoading: isCardsDataLoading,
+		isError: isCardsDataError,
+	} = useQuery(['operationsHomeCardsData'], getCardsDataForOperationsHome);
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -64,17 +71,61 @@ export const Home = () => {
 					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
 				</Box>
 			</Box>
-			<Box sx={styles.cardRow}>
-				<ValueCard value="32,727,658" label="Total Consumtion (kWh)" />
-				<ValueCard value="2,727,121" label="Current Load (kW)" />
-				<ValueCard value="20hrs" label="Avg. Availability" />
-				<ValueCard value="5" label="Power Cut" />
+
+			<Box>
+				<Box sx={styles.cardRow}>
+					<ValueCard
+						value={cardsData?.totalConsumption.toLocaleString('en-US')}
+						label="Total Consumtion (kWh)"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={cardsData?.currentLoad.toLocaleString('en-US')}
+						label="Current Load (kW)"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={`${cardsData?.avgAvailability} hrs`}
+						label="Avg. Availability"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={cardsData?.powerCuts}
+						label="Power Cut"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+				</Box>
+				<Box sx={styles.chartsRow}>
+					<SitesMonitored />
+					<LoadProfileChart />
+					<PowerConsumptionChart />
+				</Box>
+				<Box sx={styles.lastRow}>
+					<Box sx={styles.alertHistoryTable}>
+						<GraphCard title="Alert History">
+							<AlertHistoryTable />
+						</GraphCard>
+					</Box>
+					<Box sx={styles.lastRowCards}>
+						<ValueCard
+							value={cardsData?.overloadedDTs}
+							label="Overloaded DTs"
+							isLoading={isCardsDataLoading}
+							isError={isCardsDataError}
+						/>
+						<ValueCard
+							value={cardsData?.sitesUnderMaintenance}
+							label="Sites under maintenance"
+							isLoading={isCardsDataLoading}
+							isError={isCardsDataError}
+						/>
+					</Box>
+				</Box>
 			</Box>
-			<Box sx={styles.chartsRow}>
-				<PieChart cardTitle="Site monitored" pieTitle="12k Locations" />
-				<PerformanceChart title="Load Profile (KW)" />
-			</Box>
-			<GraphCard title="Alert History">{renderCell()}</GraphCard>
 		</Box>
 	);
 };
