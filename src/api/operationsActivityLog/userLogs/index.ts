@@ -1,5 +1,5 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../utils/constants';
-import { sleep } from '../../utils/utils';
+import { MOCK_RESPONSE_SLEEP_TIME } from '../../../utils/constants';
+import { sleep } from '../../../utils/utils';
 import { ApiUserLogs, UserLogsResponseSchema } from './types';
 import { mockResponse } from './mock';
 

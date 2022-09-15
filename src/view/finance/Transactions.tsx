@@ -7,7 +7,7 @@ import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { TransactionHistoryTable } from '../../components/TransactionHistoryTable';
-import { getTransactionHistory } from '../../api/transactionHistory';
+import { getTransactionHistory } from '../../api/operationsActivityLog/transactionHistory';
 
 const styles = {
 	screenContent: {
@@ -24,7 +24,7 @@ const styles = {
 
 export const Transactions = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['assets'], getTransactionHistory);
+	const { data, isLoading, isError } = useQuery(['operationsSites'], getTransactionHistory);
 
 	const renderCell = () => {
 		if (isError) {

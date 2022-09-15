@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { useQuery } from 'react-query';
-import { getEventLogs } from '../api/eventLogs';
+import { getEventLogs } from '../api/operationsActivityLog/eventLogs';
 
 export const EventLogsTable = () => {
 	const { data, isLoading, isError } = useQuery(['eventLogs'], getEventLogs);

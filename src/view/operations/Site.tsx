@@ -7,7 +7,7 @@ import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { SiteTable } from '../../components/SiteTable';
 import { useQuery } from 'react-query';
-import { getAssets } from '../../api/assets';
+import { getAssets } from '../../api/operationsSites';
 
 const styles = {
 	screenContent: {
@@ -24,7 +24,7 @@ const styles = {
 
 export const Site = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['assets'], getAssets);
+	const { data, isLoading, isError } = useQuery(['operationsSites'], getAssets);
 
 	const renderCell = () => {
 		if (isError) {
