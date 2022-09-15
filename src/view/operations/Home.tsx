@@ -10,11 +10,9 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getDataForOperationsHome } from '../../api/operationsHome';
-import { ApiOperationsHome } from '../../api/operationsHome/types';
+import { getCardsDataForOperationsHome } from '../../api/operationsHome/cardsData';
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
-import { Spinner } from '../../componentes/Spinner';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 
 const styles = {
@@ -32,56 +30,16 @@ const styles = {
 	chartsRow: { display: 'flex', justifyContent: 'space-between' },
 	lastRow: { display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '32px' },
 	alertHistoryTable: { width: '784px' },
-	lastRowCards: { display: 'flex', flexDirection: 'column' },
+	lastRowCards: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
 };
 
 export const Home = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useQuery(['operationsHome'], getDataForOperationsHome);
-
-	const SuccessCell = ({ data }: { data: ApiOperationsHome }) => {
-		return (
-			<Box>
-				<Box sx={styles.cardRow}>
-					<ValueCard value={data.cardsData.totalConsumption} label="Total Consumtion (kWh)" />
-					<ValueCard value={data.cardsData.currentLoad} label="Current Load (kW)" />
-					<ValueCard value={`${data.cardsData.avgAvailability} hrs`} label="Avg. Availability" />
-					<ValueCard value={data.cardsData.powerCuts} label="Power Cut" />
-				</Box>
-				<Box sx={styles.chartsRow}>
-					<SitesMonitored />
-					<LoadProfileChart />
-					<PowerConsumptionChart />
-				</Box>
-				<Box sx={styles.lastRow}>
-					<Box sx={styles.alertHistoryTable}>
-						<GraphCard title="Alert History">
-							<AlertHistoryTable />
-						</GraphCard>
-					</Box>
-					<Box sx={styles.lastRowCards}>
-						<ValueCard value={data.cardsData.overloadedDTs} label="Overloaded DTs" />
-						<ValueCard
-							value={data.cardsData.sitesUnderMaintenance}
-							label="Sites under maintenance"
-						/>
-					</Box>
-				</Box>
-			</Box>
-		);
-	};
-
-	const renderCell = () => {
-		if (isError) {
-			return <div>There was an error...</div>;
-		} else if (isLoading) {
-			return <Spinner />;
-		} else if (data != null) {
-			return <SuccessCell data={data} />;
-		} else {
-			return <div>Empty data</div>;
-		}
-	};
+	const {
+		data: cardsData,
+		isLoading: isCardsDataLoading,
+		isError: isCardsDataError,
+	} = useQuery(['operationsHomeCardsData'], getCardsDataForOperationsHome);
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -103,7 +61,60 @@ export const Home = () => {
 				</Box>
 			</Box>
 
-			{renderCell()}
+			<Box>
+				<Box sx={styles.cardRow}>
+					<ValueCard
+						value={cardsData?.totalConsumption}
+						label="Total Consumtion (kWh)"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={cardsData?.currentLoad}
+						label="Current Load (kW)"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={`${cardsData?.avgAvailability} hrs`}
+						label="Avg. Availability"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={cardsData?.powerCuts}
+						label="Power Cut"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+				</Box>
+				<Box sx={styles.chartsRow}>
+					<SitesMonitored />
+					<LoadProfileChart />
+					<PowerConsumptionChart />
+				</Box>
+				<Box sx={styles.lastRow}>
+					<Box sx={styles.alertHistoryTable}>
+						<GraphCard title="Alert History">
+							<AlertHistoryTable />
+						</GraphCard>
+					</Box>
+					<Box sx={styles.lastRowCards}>
+						<ValueCard
+							value={cardsData?.overloadedDTs}
+							label="Overloaded DTs"
+							isLoading={isCardsDataLoading}
+							isError={isCardsDataError}
+						/>
+						<ValueCard
+							value={cardsData?.sitesUnderMaintenance}
+							label="Sites under maintenance"
+							isLoading={isCardsDataLoading}
+							isError={isCardsDataError}
+						/>
+					</Box>
+				</Box>
+			</Box>
 		</Box>
 	);
 };

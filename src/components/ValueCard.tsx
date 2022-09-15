@@ -1,5 +1,6 @@
 import { Box, Card } from '@mui/material';
 import React from 'react';
+import { Spinner } from '../componentes/Spinner';
 
 const styles = {
 	container: {
@@ -15,10 +16,30 @@ const styles = {
 	label: { paddingTop: '20px', fontSize: '14px', color: '#6E7883', lineHeight: '48px' },
 };
 
-export const ValueCard = ({ value, label }: { value: string | number; label: string }) => {
+export const ValueCard = ({
+	value,
+	label,
+	isLoading,
+	isError,
+}: {
+	value?: string | number;
+	label: string;
+	isLoading: boolean;
+	isError: boolean;
+}) => {
+	const renderValue = () => {
+		if (isError) {
+			return <Box>Error fetching data...</Box>;
+		} else if (isLoading) {
+			return <Spinner />;
+		} else {
+			return <Box sx={styles.value}>{value}</Box>;
+		}
+	};
+
 	return (
 		<Card sx={styles.container} variant="outlined">
-			<Box sx={styles.value}>{value}</Box>
+			{renderValue()}
 			<Box sx={styles.label}>{label}</Box>
 		</Card>
 	);
