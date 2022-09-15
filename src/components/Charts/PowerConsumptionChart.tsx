@@ -2,7 +2,9 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box, Card } from '@mui/material';
-import { ApiPowerConsumptionChart } from '../../api/operationsHome/types';
+import { getPowerConsumptionChartData } from '../../api/operationsHome/powerConsumptionChart';
+import { useQuery } from 'react-query';
+import { Spinner } from '../../componentes/Spinner';
 
 const styles = {
 	container: {
@@ -25,12 +27,27 @@ const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
 	);
 };
 
-type Props = { data: ApiPowerConsumptionChart['data'] };
+type Props = {};
 
-const Chart = ({ data }: Props) => {
+const Chart = ({}: Props) => {
+	const { data, isLoading, isError } = useQuery(
+		['powerConsumptionChart'],
+		getPowerConsumptionChartData
+	);
+
+	const renderBody = () => {
+		if (isLoading) {
+			return <Spinner />;
+		} else if (isError) {
+			return <Box>Error fetching data...</Box>;
+		} else {
+			return <ReactECharts option={options} />;
+		}
+	};
+
 	const options = {
 		dataset: {
-			source: data,
+			source: data?.dataset,
 		},
 		xAxis: {},
 		yAxis: {
@@ -56,11 +73,7 @@ const Chart = ({ data }: Props) => {
 		color: ['#ffbe00'],
 	};
 
-	return (
-		<ChartGraphCard title="Power consumption by District">
-			<ReactECharts option={options} />
-		</ChartGraphCard>
-	);
+	return <ChartGraphCard title="Power consumption by District">{renderBody()}</ChartGraphCard>;
 };
 
 export default Chart;

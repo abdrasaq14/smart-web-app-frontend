@@ -35,15 +35,5 @@ export const mockResponse: ApiOperationsHome = {
 				[24, 24, 13],
 			],
 		},
-		powerConsumption: {
-			data: [
-				['district', 'consumption'],
-				['District E', 850],
-				['District D', 200],
-				['District C', 300],
-				['District B', 500],
-				['District A', 800],
-			],
-		},
 	},
 };

@@ -51,7 +51,7 @@ export const Home = () => {
 				<Box sx={styles.chartsRow}>
 					<SitesMonitored data={data.chartsData.sitesMonitored} />
 					<LoadProfileChart title="Load Profile (KW)" data={data.chartsData.loadProfile.data} />
-					<PowerConsumptionChart data={data.chartsData.powerConsumption.data} />
+					<PowerConsumptionChart />
 				</Box>
 				<Box sx={styles.lastRow}>
 					<Box sx={styles.alertHistoryTable}>
