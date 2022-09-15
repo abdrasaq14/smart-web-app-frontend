@@ -1,35 +1,13 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-import { Box, Card } from '@mui/material';
+import { Box } from '@mui/material';
 import { getPowerConsumptionChartData } from '../../api/operationsHome/powerConsumptionChart';
 import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
+import ChartCard from '../ChartCard';
 
-const styles = {
-	container: {
-		borderRadius: '16px',
-		padding: '16px',
-		display: 'flex',
-		flexDirection: 'column',
-		marginTop: '32px',
-		maxWidth: '240px',
-	},
-	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
-};
-
-const ChartGraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
-	return (
-		<Card sx={styles.container} variant="outlined">
-			<Box sx={styles.content}>{props.title}</Box>
-			{props.children}
-		</Card>
-	);
-};
-
-type Props = {};
-
-const Chart = ({}: Props) => {
+const Chart = () => {
 	const { data, isLoading, isError } = useQuery(
 		['powerConsumptionChart'],
 		getPowerConsumptionChartData
@@ -73,7 +51,7 @@ const Chart = ({}: Props) => {
 		color: ['#ffbe00'],
 	};
 
-	return <ChartGraphCard title="Power consumption by District">{renderBody()}</ChartGraphCard>;
+	return <ChartCard title="Power consumption by District">{renderBody()}</ChartCard>;
 };
 
 export default Chart;
