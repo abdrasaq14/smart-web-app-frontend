@@ -27,7 +27,7 @@ const styles = {
 	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	chartsRow: { display: 'flex', justifyContent: 'space-around' },
+	chartsRow: { display: 'flex', justifyContent: 'space-between' },
 	backButtonContainer: { display: 'flex', marginTop: '10px' },
 };
 
@@ -100,6 +100,29 @@ export const Dashboard = () => {
 				<RevenueLossBreakdown />
 				<EnergyChart />
 				<DTstatusChart />
+			</Box>
+			<Box sx={{ ...styles.chartsRow, height: '380px' }}>
+				<Box
+					sx={{
+						marginTop: '10px',
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'space-between',
+					}}
+				>
+					<ValueCard
+						value={`N${formatToUSlocale(cardsData?.revenuePerHour)}`}
+						label="Revenue/Hour"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+					<ValueCard
+						value={`N${formatToUSlocale(cardsData?.untappedRevenue)}`}
+						label="Untapped Revenue"
+						isLoading={isCardsDataLoading}
+						isError={isCardsDataError}
+					/>
+				</Box>
 			</Box>
 		</Box>
 	);
