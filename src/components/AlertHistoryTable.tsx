@@ -39,12 +39,12 @@ export const AlertHistoryTable = ({}: Props) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data?.map((row) => (
+					{data?.results.map((row) => (
 						<TableRow key={row.site} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 							<TableCell component="th" scope="row">
 								{row.time}
 							</TableCell>
-							<TableCell align="right">{row.id}</TableCell>
+							<TableCell align="right">{row.alert_id}</TableCell>
 							<TableCell align="right">{row.site}</TableCell>
 							<TableCell align="right">{row.zone}</TableCell>
 							<TableCell align="right">{row.district}</TableCell>
