@@ -15,6 +15,7 @@ import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';
 import AverageDailyVoltage from '../../components/Charts/AverageDailyVoltage';
+import { KeyInsightsCard } from '../../components/Charts/KeyInsightChart';
 
 const styles = {
 	screenContent: {
@@ -125,6 +126,7 @@ export const Dashboard = () => {
 					/>
 				</Box>
 				<AverageDailyVoltage />
+				<KeyInsightsCard />
 			</Box>
 		</Box>
 	);

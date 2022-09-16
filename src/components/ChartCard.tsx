@@ -14,13 +14,16 @@ const styles = {
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };
 
-const ChartCard = (props: React.PropsWithChildren<{ title: string; width?: string }>) => {
+const ChartCard = (
+	props: React.PropsWithChildren<{ title: string; width?: string; height?: string }>
+) => {
 	return (
 		<Card
 			sx={{
 				...styles.container,
 				width: props.width ?? styles.container.width,
 				maxWidth: props.width ?? styles.container.width,
+				height: props.height ?? styles.container.height,
 			}}
 			variant="outlined"
 		>
