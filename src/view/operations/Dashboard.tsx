@@ -14,6 +14,7 @@ import { getCardsDataForOperationsDashboard } from '../../api/operationsDashboar
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';
+import AverageDailyVoltage from '../../components/Charts/AverageDailyVoltage';
 
 const styles = {
 	screenContent: {
@@ -123,6 +124,7 @@ export const Dashboard = () => {
 						isError={isCardsDataError}
 					/>
 				</Box>
+				<AverageDailyVoltage />
 			</Box>
 		</Box>
 	);
