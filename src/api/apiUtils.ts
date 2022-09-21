@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+const BASE_URL = 'http://127.0.0.1:8000/api/';
+
 const stringOrNumberSchema = z.union([z.string(), z.number()]);
 export const ChartDatasetDataSchema = z.array(z.array(stringOrNumberSchema));
 
@@ -31,5 +33,5 @@ export function get(url: string) {
 	const requestOptions = {
 		method: 'GET',
 	};
-	return fetch(url, requestOptions).then(handleResponse);
+	return fetch(`${BASE_URL}${url}/`, requestOptions).then(handleResponse);
 }

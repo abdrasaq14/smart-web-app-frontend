@@ -1,9 +1,8 @@
 import React from 'react';
 import PieChart from '../PieChart';
-import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
 import { Box } from '@mui/material';
-import { getSitesMonitoredChartData } from '../../api/operationsHome/sitesMonitored';
+import { useGetSitesMonitoredChartData } from '../../api/operationsHome/sitesMonitored';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
 
@@ -13,10 +12,7 @@ const keyLabelMapping: any = {
 };
 
 const Page = () => {
-	const { data, isLoading, isError } = useQuery(
-		['sitesMonitoredChart'],
-		getSitesMonitoredChartData
-	);
+	const { data, isLoading, isError } = useGetSitesMonitoredChartData();
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
 			return {

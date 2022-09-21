@@ -3,12 +3,11 @@ import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
-import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
-import { getEnergyChartData } from '../../api/operationsDashboard/energyChart';
+import { useGetEnergyChartData } from '../../api/operationsDashboard/energyChart';
 
 const EnergyChart = () => {
-	const { data, isLoading, isError } = useQuery(['energyChart'], getEnergyChartData);
+	const { data, isLoading, isError } = useGetEnergyChartData();
 
 	const renderBody = () => {
 		if (isLoading) {

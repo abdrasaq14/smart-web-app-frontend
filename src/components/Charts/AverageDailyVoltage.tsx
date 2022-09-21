@@ -2,16 +2,12 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
-import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
 import ChartCard from '../ChartCard';
-import { getAverageDailyVoltageChartData } from '../../api/operationsDashboard/averageDailyVoltgeChart';
+import { useGetAverageDailyVoltageChartData } from '../../api/operationsDashboard/averageDailyVoltgeChart';
 
 const Chart = () => {
-	const { data, isLoading, isError } = useQuery(
-		['getAverageDailyVoltageChartData'],
-		getAverageDailyVoltageChartData
-	);
+	const { data, isLoading, isError } = useGetAverageDailyVoltageChartData();
 
 	const renderBody = () => {
 		if (isLoading) {

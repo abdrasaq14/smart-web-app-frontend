@@ -3,12 +3,12 @@ import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
-import { useQuery } from 'react-query';
 import { Spinner } from '../../componentes/Spinner';
-import { getDTstatusChartData } from '../../api/operationsDashboard/DTstatusChart';
+import { useGetDTstatusChartData } from '../../api/operationsDashboard/DTstatusChart';
 
 const DTstatusChart = () => {
-	const { data, isLoading, isError } = useQuery(['DTstatusChartData'], getDTstatusChartData);
+	const { data, isLoading, isError } = useGetDTstatusChartData();
+	console.log('data: ', data);
 
 	const renderBody = () => {
 		if (isLoading) {

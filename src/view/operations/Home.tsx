@@ -5,12 +5,11 @@ import { Dropdown } from '../../components/Dropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
-import { AlertHistoryTable } from '../../components/AlertHistoryTable';
+import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getCardsDataForOperationsHome } from '../../api/operationsHome/cardsData';
+import { useGetOperationsHomeCardsData } from '../../api/operationsHome/cardsData';
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
@@ -51,7 +50,7 @@ export const Home = () => {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useQuery(['operationsHomeCardsData'], getCardsDataForOperationsHome);
+	} = useGetOperationsHomeCardsData();
 
 	return (
 		<Box sx={styles.screenContent}>

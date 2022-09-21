@@ -10,14 +10,13 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { useQuery } from 'react-query';
-import { getAlertHistory } from '../api/operationsHome/alertHistory';
-import { Spinner } from '../componentes/Spinner';
+import { Spinner } from '../../componentes/Spinner';
+import { useGetAlertHistory } from '../../api/operationsHome/alertHistory';
 
 type Props = {};
 
 export const AlertHistoryTable = ({}: Props) => {
-	const { data, isLoading, isError } = useQuery(['alertHistory'], getAlertHistory);
+	const { data, isLoading, isError } = useGetAlertHistory();
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const dataToDisplay =
