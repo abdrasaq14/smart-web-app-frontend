@@ -35,3 +35,7 @@ export function get(url: string) {
 	};
 	return fetch(`${BASE_URL}${url}/`, requestOptions).then(handleResponse);
 }
+
+export function globalUseRealData() {
+	return true;
+}
