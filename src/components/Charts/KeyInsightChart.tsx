@@ -1,6 +1,6 @@
 import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 import { useGetKeyInsightsChartData } from '../../api/operationsDashboard/keyInsightsChart';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';

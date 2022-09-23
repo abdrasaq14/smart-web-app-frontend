@@ -10,7 +10,7 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operationsHome/alertHistory';
 
 type Props = {};

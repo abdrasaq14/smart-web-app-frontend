@@ -1,6 +1,6 @@
-import { ApiAverageDailyVoltageChart } from './types';
+import { ApiChart } from '../../../apiUtils';
 
-export const mockResponse: ApiAverageDailyVoltageChart = {
+export const mockResponse: ApiChart = {
 	dataset: [
 		['date', 'red_phase', 'yellow_phase', 'blue_phase'],
 		[0, 17, 14, 30],

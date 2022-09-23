@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import { useGetDTstatusChartData } from '../../api/operationsDashboard/DTstatusChart';
 
 const DTstatusChart = () => {

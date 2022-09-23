@@ -2,7 +2,7 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import { useGetLoadProfileChartData } from '../../api/operationsHome/loadProfileChart';
 import ChartCard from '../ChartCard';
 

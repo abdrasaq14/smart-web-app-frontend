@@ -1,6 +1,6 @@
 import React from 'react';
 import PieChart from '../PieChart';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import { Box } from '@mui/material';
 import { useGetSitesMonitoredChartData } from '../../api/operationsHome/sitesMonitored';
 import ChartCard from '../ChartCard';

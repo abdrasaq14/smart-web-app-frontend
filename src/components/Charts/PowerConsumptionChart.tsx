@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
 import { useGetPowerConsumptionChartData } from '../../api/operationsHome/powerConsumptionChart';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 
 const Chart = () => {

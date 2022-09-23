@@ -4,6 +4,10 @@ const BASE_URL = 'http://127.0.0.1:8000/api/';
 
 const stringOrNumberSchema = z.union([z.string(), z.number()]);
 export const ChartDatasetDataSchema = z.array(z.array(stringOrNumberSchema));
+export const ChartSchema = z.object({
+	dataset: ChartDatasetDataSchema,
+});
+export type ApiChart = z.infer<typeof ChartSchema>;
 
 export const PieChartSchema = z.object({
 	total: z.number(),
@@ -37,5 +41,5 @@ export function get(url: string) {
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
 }
