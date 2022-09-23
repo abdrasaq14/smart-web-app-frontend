@@ -13,7 +13,9 @@ export async function getDTstatusChartData(): Promise<ApiDTstatusChart> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(DTstatusChartDataApiRoute) : mockResponse;
 	const validatedResponse = DTstatusChartSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 1.1);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

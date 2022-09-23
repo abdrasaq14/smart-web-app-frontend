@@ -13,7 +13,9 @@ export async function getAssets(): Promise<ApiAssets> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(apiRoute) : mockResponse;
 	const validatedResponse = AssetsResponseSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

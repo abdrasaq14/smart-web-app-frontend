@@ -13,7 +13,9 @@ export async function getPowerConsumptionChartData(): Promise<ApiPowerConsumptio
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(operationsPowerConsumptionChartApiRoute) : mockResponse;
 	const validatedResponse = PowerConsumptionSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 1.5);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

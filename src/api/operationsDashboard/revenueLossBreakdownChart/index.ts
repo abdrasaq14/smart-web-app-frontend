@@ -13,7 +13,9 @@ export async function getRevenueLossBreakdownChartData(): Promise<ApiRevenueLoss
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(revenueLossBreakdownChartDataApiRoute) : mockResponse;
 	const validatedResponse = RevenueLossBreakDownSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2.7);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

@@ -13,7 +13,9 @@ export async function getAlertHistory(): Promise<ApiAlertHistory> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(alertHistoryApiRoute) : mockResponse;
 	const validatedResponse = AlertHistoryResponseSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

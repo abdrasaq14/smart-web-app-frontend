@@ -13,7 +13,9 @@ export async function getSitesMonitoredChartData(): Promise<ApiSitesMonitored> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(operationsSitesMonitoredChartApiRoute) : mockResponse;
 	const validatedResponse = SitesMonitoredSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2.7);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

@@ -13,7 +13,9 @@ export async function getKeyInsightsChart(): Promise<ApiKeyInsightsChart> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(keyInsightsChartDataApiRoute) : mockResponse;
 	const validatedResponse = KeyInsightsChartSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 1.1);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

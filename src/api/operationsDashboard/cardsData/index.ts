@@ -13,7 +13,9 @@ export async function getCardsDataForOperationsDashboard(): Promise<ApiCardsData
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(operationsDashboardCardsDataApiRoute) : mockResponse;
 	const validatedResponse = CardsDataForOperationsDashboardSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 1.1);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

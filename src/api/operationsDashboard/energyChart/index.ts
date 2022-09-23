@@ -13,7 +13,9 @@ export async function getEnergyChartData(): Promise<ApiEnergyChart> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(energyChartDataApiRoute) : mockResponse;
 	const validatedResponse = EnergyChartSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 1.5);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 

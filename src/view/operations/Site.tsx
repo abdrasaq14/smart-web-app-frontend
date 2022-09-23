@@ -30,7 +30,7 @@ export const Site = () => {
 			return <div>There was an error...</div>;
 		} else if (isLoading) {
 			return <div>Loading...</div>;
-		} else if (data && data.length > 0) {
+		} else if (data && data.results.length > 0) {
 			return <SiteTable data={data} />;
 		} else {
 			return <div>Empty data</div>;

@@ -11,6 +11,8 @@ export async function getAverageDailyVoltageChartData(): Promise<ApiChart> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(averageDailyVoltageChartApiRoute) : mockResponse;
 	const validatedResponse = ChartSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2.3);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }

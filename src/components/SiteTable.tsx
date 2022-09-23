@@ -23,7 +23,7 @@ export const SiteTable = ({ data }: Props) => {
 	const navigate = useNavigate();
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
-	const dataToDisplay = data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+	const dataToDisplay = data.results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -50,14 +50,14 @@ export const SiteTable = ({ data }: Props) => {
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
-							<TableRow key={row.site} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+							<TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell align="right" component="th" scope="row">
-									{row.assetName}
+									{row.asset_name}
 								</TableCell>
-								<TableCell align="right">{row.site}</TableCell>
-								<TableCell align="right">{row.assetType}</TableCell>
-								<TableCell align="right">{row.assetCoordinate}</TableCell>
-								<TableCell align="right">{row.assetCapacity}</TableCell>
+								<TableCell align="right">{row.name}</TableCell>
+								<TableCell align="right">{row.asset_type}</TableCell>
+								<TableCell align="right">{row.asset_co_ordinate}</TableCell>
+								<TableCell align="right">{row.asset_capacity}</TableCell>
 								<TableCell align="right">{row.time}</TableCell>
 								<TableCell align="right">
 									<IconButton
@@ -74,7 +74,7 @@ export const SiteTable = ({ data }: Props) => {
 			<TablePagination
 				rowsPerPageOptions={[5, 10, 25]}
 				component="div"
-				count={data.length}
+				count={data?.count ?? 0}
 				rowsPerPage={rowsPerPage}
 				page={page}
 				onPageChange={handleChangePage}

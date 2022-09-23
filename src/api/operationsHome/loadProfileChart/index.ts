@@ -13,7 +13,9 @@ export async function getLoadProfileChartData(): Promise<ApiLoadProfileChart> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(operationsProfileChartApiRoute) : mockResponse;
 	const validatedResponse = LoadProfileChartSchema.parse(response);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME * 2.3);
+	if (!useRealData) {
+		await sleep(MOCK_RESPONSE_SLEEP_TIME);
+	}
 	return validatedResponse;
 }
 
