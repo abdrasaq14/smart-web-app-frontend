@@ -9,7 +9,7 @@ const USE_REAL_DATA = true;
 
 const apiRoute = 'sites';
 
-export async function getAssets(): Promise<ApiAssets> {
+export async function getSites(): Promise<ApiAssets> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData ? await get(apiRoute) : mockResponse;
 	const validatedResponse = AssetsResponseSchema.parse(response);
@@ -19,4 +19,4 @@ export async function getAssets(): Promise<ApiAssets> {
 	return validatedResponse;
 }
 
-export const useGetAlertHistory = () => useQuery([apiRoute], getAssets);
+export const useGetSites = () => useQuery([apiRoute], getSites);

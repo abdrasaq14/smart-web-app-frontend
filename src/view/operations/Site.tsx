@@ -6,7 +6,7 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { SiteTable } from '../../components/SiteTable';
-import { useGetAlertHistory } from '../../api/operationsSites';
+import { useGetSites } from '../../api/operationsSites';
 
 const styles = {
 	screenContent: {
@@ -23,7 +23,7 @@ const styles = {
 
 export const Site = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useGetAlertHistory();
+	const { data, isLoading, isError } = useGetSites();
 
 	const renderCell = () => {
 		if (isError) {

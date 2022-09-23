@@ -14,6 +14,7 @@ import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
+import { useGetAlertHistory, useGetSites } from '../../api/operationsSites';
 
 const styles = {
 	screenContent: {
@@ -51,12 +52,13 @@ export const Home = () => {
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
 	} = useGetOperationsHomeCardsData();
+	const { data: sitesData, isLoading: isSitesLoading, isError: isSitesError } = useGetSites();
 
 	return (
 		<Box sx={styles.screenContent}>
 			<Box sx={styles.header}>
 				<Box sx={styles.filters}>
-					<Dropdown label="Site(s)" options={['site 1', 'site 2', 'site 3']} />
+					<Dropdown label="Site(s)" options={sitesData?.results.map((site) => site.name) ?? []} />
 					<DatePickerDropdown label="Start Date" />
 					<DatePickerDropdown label="End Date" />
 					<RegularButton label="Download" onClick={() => {}} />
