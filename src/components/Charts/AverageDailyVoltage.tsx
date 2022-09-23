@@ -1,17 +1,17 @@
 import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
-import { Box } from '@mui/material';
-import { useQuery } from 'react-query';
-import { Spinner } from '../../componentes/Spinner';
+import { Box, MenuItem, SelectChangeEvent, Select } from '@mui/material';
+import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
-import { getAverageDailyVoltageChartData } from '../../api/operationsDashboard/averageDailyVoltgeChart';
+import { useGetAverageDailyChartData } from '../../api/operationsDashboard/AverageCharts';
+
+const DEFAULT_CHART = 'voltage';
 
 const Chart = () => {
-	const { data, isLoading, isError } = useQuery(
-		['getAverageDailyVoltageChartData'],
-		getAverageDailyVoltageChartData
-	);
+	const [chartType, setChartType] = React.useState(DEFAULT_CHART);
+	const { data, isLoading, isError } = useGetAverageDailyChartData(chartType);
+	console.log({ data, isLoading, isError });
 
 	const renderBody = () => {
 		if (isLoading) {
@@ -66,8 +66,31 @@ const Chart = () => {
 		],
 	};
 
+	const chartTypeMap = {
+		voltage: 'Average Daily Voltage',
+		load: 'Average Daily Load',
+		pf: 'Average Daily PF',
+		frequency: 'Average Daily Frequency',
+	};
+
+	const handleChange = (event: SelectChangeEvent) => {
+		setChartType(event.target.value as string);
+	};
+
 	return (
-		<ChartCard title="Average Daily Voltage" width="480px">
+		<ChartCard title={chartTypeMap[chartType]} width="480px">
+			<Select
+				labelId="demo-simple-select-label"
+				id="demo-simple-select"
+				value={chartType}
+				label="Age"
+				onChange={handleChange}
+			>
+				<MenuItem value="voltage">Average Daily Voltage</MenuItem>
+				<MenuItem value="load">Average Daily Load</MenuItem>
+				<MenuItem value="pf">Average Daily PF</MenuItem>
+				<MenuItem value="frequency">Average Daily Frequency</MenuItem>
+			</Select>
 			{renderBody()}
 		</ChartCard>
 	);

@@ -5,12 +5,11 @@ import { Dropdown } from '../../components/Dropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
-import { AlertHistoryTable } from '../../components/AlertHistoryTable';
+import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { getCardsDataForOperationsHome } from '../../api/operationsHome/cardsData';
+import { useGetOperationsHomeCardsData } from '../../api/operationsHome/cardsData';
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
@@ -51,7 +50,7 @@ export const Home = () => {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useQuery(['operationsHomeCardsData'], getCardsDataForOperationsHome);
+	} = useGetOperationsHomeCardsData();
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -76,25 +75,25 @@ export const Home = () => {
 			<Box>
 				<Box sx={styles.cardRow}>
 					<ValueCard
-						value={formatToUSlocale(cardsData?.totalConsumption)}
+						value={formatToUSlocale(cardsData?.total_consumption)}
 						label="Total Consumtion (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={formatToUSlocale(cardsData?.currentLoad)}
+						value={formatToUSlocale(cardsData?.current_load)}
 						label="Current Load (kW)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={`${cardsData?.avgAvailability} hrs`}
+						value={`${cardsData?.avg_availability} hrs`}
 						label="Avg. Availability"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={cardsData?.powerCuts}
+						value={cardsData?.power_cuts}
 						label="Power Cut"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
@@ -113,13 +112,13 @@ export const Home = () => {
 					</Box>
 					<Box sx={styles.lastRowCards}>
 						<ValueCard
-							value={cardsData?.overloadedDTs}
+							value={cardsData?.overloaded_dts}
 							label="Overloaded DTs"
 							isLoading={isCardsDataLoading}
 							isError={isCardsDataError}
 						/>
 						<ValueCard
-							value={cardsData?.sitesUnderMaintenance}
+							value={cardsData?.sites_under_maintenance}
 							label="Sites under maintenance"
 							isLoading={isCardsDataLoading}
 							isError={isCardsDataError}

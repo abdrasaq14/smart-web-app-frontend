@@ -1,6 +1,6 @@
 import { Box, Card } from '@mui/material';
 import React from 'react';
-import { Spinner } from '../componentes/Spinner';
+import { Spinner } from './Spinner';
 
 const styles = {
 	container: {

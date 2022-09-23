@@ -1,9 +1,8 @@
 import { Box, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import React from 'react';
-import { Spinner } from '../../componentes/Spinner';
-import { useQuery } from 'react-query';
+import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
-import { getKeyInsightsChart } from '../../api/operationsDashboard/keyInsightsChart';
+import { useGetKeyInsightsChartData } from '../../api/operationsDashboard/keyInsightsChart';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 
 const styles = {
@@ -20,7 +19,7 @@ const styles = {
 };
 
 export const KeyInsightsCard = () => {
-	const { data, isLoading, isError } = useQuery(['getKeyInsightsChart'], getKeyInsightsChart);
+	const { data, isLoading, isError } = useGetKeyInsightsChartData();
 
 	const renderBody = () => {
 		if (isError) {

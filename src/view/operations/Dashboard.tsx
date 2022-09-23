@@ -9,8 +9,7 @@ import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import EnergyChart from '../../components/Charts/EnergyChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useQuery } from 'react-query';
-import { getCardsDataForOperationsDashboard } from '../../api/operationsDashboard/cardsData';
+import { useGetOperationsDashboardCardsData } from '../../api/operationsDashboard/cardsData';
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';
@@ -39,7 +38,7 @@ export const Dashboard = () => {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useQuery(['operationsDashboard'], getCardsDataForOperationsDashboard);
+	} = useGetOperationsDashboardCardsData();
 
 	return (
 		<Box sx={styles.screenContent}>

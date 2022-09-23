@@ -22,7 +22,7 @@
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "eslint:fix": "yarn eslint -- --fix",
     "lint": "yarn eslint",
-    "start": " webpack serve --progress --color --env mode=dev",
+    "start": "webpack serve --progress --color --env mode=dev",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "type-check": "tsc --noEmit",

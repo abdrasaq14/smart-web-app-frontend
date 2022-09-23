@@ -2,16 +2,12 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
-import { getPowerConsumptionChartData } from '../../api/operationsHome/powerConsumptionChart';
-import { useQuery } from 'react-query';
-import { Spinner } from '../../componentes/Spinner';
+import { useGetPowerConsumptionChartData } from '../../api/operationsHome/powerConsumptionChart';
+import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 
 const Chart = () => {
-	const { data, isLoading, isError } = useQuery(
-		['powerConsumptionChart'],
-		getPowerConsumptionChartData
-	);
+	const { data, isLoading, isError } = useGetPowerConsumptionChartData();
 
 	const renderBody = () => {
 		if (isLoading) {

@@ -2,13 +2,12 @@ import React from 'react';
 import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
-import { useQuery } from 'react-query';
-import { Spinner } from '../../componentes/Spinner';
-import { getLoadProfileChartData } from '../../api/operationsHome/loadProfileChart';
+import { Spinner } from '../Spinner';
+import { useGetLoadProfileChartData } from '../../api/operationsHome/loadProfileChart';
 import ChartCard from '../ChartCard';
 
 const Chart = () => {
-	const { data, isLoading, isError } = useQuery(['loadProfileChart'], getLoadProfileChartData);
+	const { data, isLoading, isError } = useGetLoadProfileChartData();
 
 	const renderBody = () => {
 		if (isLoading) {

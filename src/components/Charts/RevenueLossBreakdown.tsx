@@ -1,11 +1,10 @@
 import React from 'react';
 import PieChart from '../PieChart';
-import { useQuery } from 'react-query';
-import { Spinner } from '../../componentes/Spinner';
+import { Spinner } from '../Spinner';
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
-import { getRevenueLossBreakdownChartData } from '../../api/operationsDashboard/revenueLossBreakdownChart';
+import { useGetRevenueLossBreakdownChartData } from '../../api/operationsDashboard/revenueLossBreakdownChart';
 
 const keyLabelMapping: any = {
 	billing: 'Billing 40(KWh)',
@@ -14,10 +13,7 @@ const keyLabelMapping: any = {
 };
 
 const Chart = () => {
-	const { data, isLoading, isError } = useQuery(
-		['revenueLossBreakdownChart'],
-		getRevenueLossBreakdownChartData
-	);
+	const { data, isLoading, isError } = useGetRevenueLossBreakdownChartData();
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
 			return {
