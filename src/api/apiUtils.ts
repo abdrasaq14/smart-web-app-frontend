@@ -41,5 +41,5 @@ export function get(url: string) {
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
 }
