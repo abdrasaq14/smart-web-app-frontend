@@ -45,5 +45,5 @@ export function get(relativeUrl: string, options?: any) {
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
 }
