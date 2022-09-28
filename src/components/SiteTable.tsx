@@ -10,7 +10,7 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { ApiAssets } from '../api/operationsSites/types';
+import { ApiAssets } from '../api/operations/operationsSites/types';
 import { Dashboard } from '@mui/icons-material';
 import { IconButton } from '../components/IconButton';
 import { useNavigate } from 'react-router-dom';

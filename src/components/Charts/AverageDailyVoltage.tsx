@@ -4,7 +4,7 @@ import ReactECharts from 'echarts-for-react';
 import { Box, MenuItem, SelectChangeEvent, Select } from '@mui/material';
 import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
-import { useGetAverageDailyChartData } from '../../api/operationsDashboard/AverageCharts';
+import { useGetAverageDailyChartData } from '../../api/operations/operationsDashboard/AverageCharts';
 
 const DEFAULT_CHART = 'voltage';
 

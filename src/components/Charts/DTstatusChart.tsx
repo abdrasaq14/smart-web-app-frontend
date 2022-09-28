@@ -4,7 +4,7 @@ import ReactECharts from 'echarts-for-react';
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { Spinner } from '../Spinner';
-import { useGetDTstatusChartData } from '../../api/operationsDashboard/DTstatusChart';
+import { useGetDTstatusChartData } from '../../api/operations/operationsDashboard/DTstatusChart';
 
 const DTstatusChart = () => {
 	const { data, isLoading, isError } = useGetDTstatusChartData();

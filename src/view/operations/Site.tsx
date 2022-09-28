@@ -6,7 +6,7 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { SiteTable } from '../../components/SiteTable';
-import { useGetSites } from '../../api/operationsSites';
+import { useGetSites } from '../../api/operations/operationsSites';
 
 const styles = {
 	screenContent: {

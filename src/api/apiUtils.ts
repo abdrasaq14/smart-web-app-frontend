@@ -33,7 +33,7 @@ function handleResponse(response: any) {
 	});
 }
 
-export function get(relativeUrl: string, options: any) {
+export function get(relativeUrl: string, options?: any) {
 	const requestOptions = {
 		method: 'GET',
 	};
@@ -45,5 +45,5 @@ export function get(relativeUrl: string, options: any) {
 }
 
 export function globalUseRealData() {
-	return false;
+	return true;
 }

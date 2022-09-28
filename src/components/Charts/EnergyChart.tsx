@@ -4,7 +4,7 @@ import ReactECharts from 'echarts-for-react';
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { Spinner } from '../Spinner';
-import { useGetEnergyChartData } from '../../api/operationsDashboard/energyChart';
+import { useGetEnergyChartData } from '../../api/operations/operationsDashboard/energyChart';
 
 const EnergyChart = () => {
 	const { data, isLoading, isError } = useGetEnergyChartData();

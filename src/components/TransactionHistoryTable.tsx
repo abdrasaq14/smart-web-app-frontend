@@ -8,7 +8,7 @@ import {
 	TableRow,
 } from '@mui/material';
 import React from 'react';
-import { ApiTransactionHistory } from '../api/operationsActivityLog/transactionHistory/types';
+import { ApiTransactionHistory } from '../api/operations/operationsActivityLog/transactionHistory/types';
 
 type Props = {
 	data: ApiTransactionHistory;

@@ -4,7 +4,7 @@ import { Spinner } from '../Spinner';
 import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
-import { useGetRevenueLossBreakdownChartData } from '../../api/operationsDashboard/revenueLossBreakdownChart';
+import { useGetRevenueLossBreakdownChartData } from '../../api/operations/operationsDashboard/revenueLossBreakdownChart';
 
 const keyLabelMapping: any = {
 	billing: 'Billing 40(KWh)',

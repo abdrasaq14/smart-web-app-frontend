@@ -3,7 +3,7 @@ import ReactECharts from 'echarts-for-react';
 
 import { Box } from '@mui/material';
 import { Spinner } from '../Spinner';
-import { useGetLoadProfileChartData } from '../../api/operationsHome/loadProfileChart';
+import { useGetLoadProfileChartData } from '../../api/operations/operationsHome/loadProfileChart';
 import ChartCard from '../ChartCard';
 
 const Chart = () => {

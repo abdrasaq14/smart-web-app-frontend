@@ -9,12 +9,12 @@ import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { useGetOperationsHomeCardsData } from '../../api/operationsHome/cardsData';
+import { useGetOperationsHomeCardsData } from '../../api/operations/operationsHome/cardsData';
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
-import { useGetSites } from '../../api/operationsSites';
+import { useGetSites } from '../../api/operations/operationsSites';
 
 const styles = {
 	screenContent: {

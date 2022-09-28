@@ -9,7 +9,7 @@ import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import EnergyChart from '../../components/Charts/EnergyChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useGetOperationsDashboardCardsData } from '../../api/operationsDashboard/cardsData';
+import { useGetOperationsDashboardCardsData } from '../../api/operations/operationsDashboard/cardsData';
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';

@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 import { Spinner } from '../Spinner';
-import { useGetAlertHistory } from '../../api/operationsHome/alertHistory';
+import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
 import { formatDate } from '../../utils/formatters';
 
 type Props = {};

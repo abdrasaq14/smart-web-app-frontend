@@ -7,7 +7,7 @@ import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { TransactionHistoryTable } from '../../components/TransactionHistoryTable';
-import { getTransactionHistory } from '../../api/operationsActivityLog/transactionHistory';
+import { getTransactionHistory } from '../../api/operations/operationsActivityLog/transactionHistory';
 
 const styles = {
 	screenContent: {

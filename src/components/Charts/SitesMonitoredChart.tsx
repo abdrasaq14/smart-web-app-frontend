@@ -2,7 +2,7 @@ import React from 'react';
 import PieChart from '../PieChart';
 import { Spinner } from '../Spinner';
 import { Box } from '@mui/material';
-import { useGetSitesMonitoredChartData } from '../../api/operationsHome/sitesMonitored';
+import { useGetSitesMonitoredChartData } from '../../api/operations/operationsHome/sitesMonitored';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
 

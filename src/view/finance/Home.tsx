@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import PieChart from '../../components/PieChart';
 import PerformanceChart from '../../components/PerformanceChart';
-import { getTransactionHistory } from '../../api/operationsActivityLog/transactionHistory';
+import { getTransactionHistory } from '../../api/operations/operationsActivityLog/transactionHistory';
 
 const styles = {
 	screenContent: {
