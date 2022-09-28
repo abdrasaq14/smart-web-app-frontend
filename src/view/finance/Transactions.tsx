@@ -6,8 +6,8 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { TransactionHistoryTable } from '../../components/TransactionHistoryTable';
-import { getTransactionHistory } from '../../api/operations/operationsActivityLog/transactionHistory';
+import { TransactionHistoryTable } from '../../components/Tables/TransactionHistoryTable';
+import { getTransactionHistory } from '../../api/finance/Home/transactionHistory';
 
 const styles = {
 	screenContent: {

@@ -7,12 +7,12 @@ import { useQuery } from 'react-query';
 
 const USE_REAL_DATA = true;
 
-const alertHistoryApiRoute = 'alerts';
+const apiRoute = 'alerts';
 
 export async function getAlertHistory(page: number, rowsPerPage: number): Promise<ApiAlertHistory> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const response = useRealData
-		? await get(alertHistoryApiRoute, { queryParams: { page: page + 1, page_size: rowsPerPage } })
+		? await get(apiRoute, { queryParams: { page: page + 1, page_size: rowsPerPage } })
 		: mockResponse;
 	const validatedResponse = AlertHistoryResponseSchema.parse(response);
 	if (!useRealData) {
@@ -22,7 +22,5 @@ export async function getAlertHistory(page: number, rowsPerPage: number): Promis
 }
 
 export const useGetAlertHistory = (page: number, rowsPerPage: number) => {
-	return useQuery([alertHistoryApiRoute, page, rowsPerPage], () =>
-		getAlertHistory(page, rowsPerPage)
-	);
+	return useQuery([apiRoute, page, rowsPerPage], () => getAlertHistory(page, rowsPerPage));
 };

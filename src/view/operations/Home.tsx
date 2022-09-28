@@ -36,7 +36,7 @@ const styles = {
 		marginTop: '32px',
 		height: '380px',
 	},
-	alertHistoryTable: { width: '784px', height: '100%' },
+	table: { width: '784px', height: '100%' },
 	lastRowCards: {
 		display: 'flex',
 		flexDirection: 'column',
@@ -107,7 +107,7 @@ export const Home = () => {
 					<PowerConsumptionChart />
 				</Box>
 				<Box sx={styles.lastRow}>
-					<Box sx={styles.alertHistoryTable}>
+					<Box sx={styles.table}>
 						<GraphCard title="Alert History">
 							<AlertHistoryTable />
 						</GraphCard>
