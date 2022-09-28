@@ -12,15 +12,16 @@ import {
 import React from 'react';
 import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operationsHome/alertHistory';
+import { formatDate } from '../../utils/formatters';
 
 type Props = {};
 
 export const AlertHistoryTable = ({}: Props) => {
-	const { data, isLoading, isError } = useGetAlertHistory();
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
-	const dataToDisplay =
-		data?.results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) ?? [];
+
+	const { data, isLoading, isError } = useGetAlertHistory(page, rowsPerPage);
+	const dataToDisplay = data?.results ?? [];
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -56,7 +57,7 @@ export const AlertHistoryTable = ({}: Props) => {
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.site} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell component="th" scope="row">
-									{row.time}
+									{formatDate(row.time)}
 								</TableCell>
 								<TableCell align="right">{row.alert_id}</TableCell>
 								<TableCell align="right">{row.site}</TableCell>
@@ -70,7 +71,7 @@ export const AlertHistoryTable = ({}: Props) => {
 				</Table>
 			</TableContainer>
 			<TablePagination
-				rowsPerPageOptions={[4]}
+				rowsPerPageOptions={[5]}
 				component="div"
 				count={data?.count ?? 0}
 				rowsPerPage={rowsPerPage}

@@ -14,7 +14,7 @@ import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
-import { useGetAlertHistory, useGetSites } from '../../api/operationsSites';
+import { useGetSites } from '../../api/operationsSites';
 
 const styles = {
 	screenContent: {
@@ -34,7 +34,7 @@ const styles = {
 		justifyContent: 'space-between',
 		width: '100%',
 		marginTop: '32px',
-		height: '360px',
+		height: '380px',
 	},
 	alertHistoryTable: { width: '784px', height: '100%' },
 	lastRowCards: {
@@ -52,7 +52,7 @@ export const Home = () => {
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
 	} = useGetOperationsHomeCardsData();
-	const { data: sitesData, isLoading: isSitesLoading, isError: isSitesError } = useGetSites();
+	const { data: sitesData } = useGetSites();
 
 	return (
 		<Box sx={styles.screenContent}>

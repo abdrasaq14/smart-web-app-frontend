@@ -33,11 +33,15 @@ function handleResponse(response: any) {
 	});
 }
 
-export function get(url: string) {
+export function get(relativeUrl: string, options: any) {
 	const requestOptions = {
 		method: 'GET',
 	};
-	return fetch(`${BASE_URL}${url}/`, requestOptions).then(handleResponse);
+	const url = new URL(`${BASE_URL}${relativeUrl}/`);
+	if (options?.queryParams) {
+		url.search = new URLSearchParams(options?.queryParams).toString();
+	}
+	return fetch(url, requestOptions).then(handleResponse);
 }
 
 export function globalUseRealData() {
