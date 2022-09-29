@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { DatePickerDropdown } from '../../components/DatePickerDropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
@@ -15,6 +14,7 @@ import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart
 import { formatToUSlocale } from '../../utils/formatters';
 import { useGetSites } from '../../api/operations/operationsSites';
 import { ControlledDropdown } from '../../components/ControlledDropdown';
+import ControlledDatePicker from '../../components/ControlledDatePicker';
 
 const styles = {
 	screenContent: {
@@ -47,12 +47,16 @@ const styles = {
 
 export const Home = () => {
 	const [sites, setSites] = useState([]);
+	const [startDate, setStartDate] = useState(null);
+	const [endDate, setEndDate] = useState(null);
 	const navigate = useNavigate();
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetOperationsHomeCardsData({ filters: { sites } });
+	} = useGetOperationsHomeCardsData({
+		filters: { sites, start_date: startDate, end_date: endDate },
+	});
 	const { data: sitesData } = useGetSites();
 
 	return (
@@ -66,8 +70,8 @@ export const Home = () => {
 						value={sites}
 						setValue={setSites}
 					/>
-					<DatePickerDropdown label="Start Date" />
-					<DatePickerDropdown label="End Date" />
+					<ControlledDatePicker label="Start Date" value={startDate} setValue={setStartDate} />
+					<ControlledDatePicker label="End Date" value={endDate} setValue={setEndDate} />
 					<RegularButton label="Download" onClick={() => {}} />
 				</Box>
 				<Box sx={styles.headerIcons}>

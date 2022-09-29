@@ -1,5 +1,7 @@
 export type DashboardFiltersProps = {
-	sites: number[];
+	sites?: number[];
+	start_date?: Date | null;
+	end_date?: Date | null;
 };
 
 export type DashboardPaginationProps = {

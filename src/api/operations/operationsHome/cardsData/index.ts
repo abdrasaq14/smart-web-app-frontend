@@ -5,6 +5,7 @@ import { mockResponse } from './mock';
 import { get, globalUseRealData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
 import { DashboardQueryProps } from '../../../../types';
+import { formatDateForFilter } from '../../../../utils/formatters';
 
 const USE_REAL_DATA = true;
 
@@ -14,12 +15,25 @@ export async function getCardsDataForOperationsHome(
 	options?: DashboardQueryProps
 ): Promise<ApiCardsDataForOperationsHome> {
 	const filters = options?.filters;
+	console.log('new filters: ', filters);
 	let queryParams = {};
 	if (filters) {
-		if (filters.sites?.length > 0) {
+		if (filters.sites && filters.sites?.length > 0) {
 			queryParams = {
 				...queryParams,
 				sites: filters.sites.join(','),
+			};
+		}
+		if (filters.start_date != null) {
+			queryParams = {
+				...queryParams,
+				start_date: formatDateForFilter(filters.start_date),
+			};
+		}
+		if (filters.end_date != null) {
+			queryParams = {
+				...queryParams,
+				end_date: formatDateForFilter(filters.end_date),
 			};
 		}
 	}

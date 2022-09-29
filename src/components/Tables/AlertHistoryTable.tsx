@@ -12,7 +12,7 @@ import {
 import React from 'react';
 import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
-import { formatDate } from '../../utils/formatters';
+import { formatDateForDisplay } from '../../utils/formatters';
 
 type Props = {};
 
@@ -59,7 +59,7 @@ export const AlertHistoryTable = ({}: Props) => {
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell component="th" scope="row">
-									{formatDate(row.time)}
+									{formatDateForDisplay(row.time)}
 								</TableCell>
 								<TableCell align="right">{row.alert_id}</TableCell>
 								<TableCell align="right">{row.site}</TableCell>

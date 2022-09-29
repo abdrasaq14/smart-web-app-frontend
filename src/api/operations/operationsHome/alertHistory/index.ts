@@ -21,7 +21,6 @@ export async function getAlertHistory(options?: DashboardQueryProps): Promise<Ap
 			page_size: pagination.page_size,
 		};
 	}
-	console.log('new options: ', options);
 	const response = useRealData ? await get(apiRoute, { queryParams }) : mockResponse;
 	const validatedResponse = AlertHistoryResponseSchema.parse(response);
 	if (!useRealData) {
