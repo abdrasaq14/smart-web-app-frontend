@@ -8,7 +8,6 @@ import { useGetDTstatusChartData } from '../../api/operations/operationsDashboar
 
 const DTstatusChart = () => {
 	const { data, isLoading, isError } = useGetDTstatusChartData();
-	console.log('data: ', data);
 
 	const renderBody = () => {
 		if (isLoading) {
@@ -16,7 +15,15 @@ const DTstatusChart = () => {
 		} else if (isError) {
 			return <Box>Error fetching data...</Box>;
 		} else {
-			return <ReactECharts option={options} />;
+			return (
+				<Box>
+					<Box sx={{ height: '200px' }}>
+						<ReactECharts option={options} />
+					</Box>
+					<Box>Humidity: {data?.dataset.humidity}</Box>
+					<Box>Temperature: {data?.dataset.temperature}</Box>
+				</Box>
+			);
 		}
 	};
 
