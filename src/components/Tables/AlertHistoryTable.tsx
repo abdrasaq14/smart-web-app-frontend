@@ -20,7 +20,9 @@ export const AlertHistoryTable = ({}: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 
-	const { data, isLoading, isError } = useGetAlertHistory(page, rowsPerPage);
+	const { data, isLoading, isError } = useGetAlertHistory({
+		pagination: { page, page_size: rowsPerPage },
+	});
 	const dataToDisplay = data?.results ?? [];
 
 	const handleChangePage = (event: unknown, newPage: number) => {
@@ -55,7 +57,7 @@ export const AlertHistoryTable = ({}: Props) => {
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
-							<TableRow key={row.site} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell component="th" scope="row">
 									{formatDate(row.time)}
 								</TableCell>

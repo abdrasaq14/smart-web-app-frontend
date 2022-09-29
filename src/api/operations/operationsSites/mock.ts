@@ -6,6 +6,7 @@ export const mockResponse: ApiAssets = {
 	previous: null,
 	results: [
 		{
+			id: 1,
 			asset_name: 'David ABU-235LK',
 			name: 'Smarterise',
 			asset_type: 'Transformer',
@@ -14,6 +15,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 2,
 			asset_name: 'Daniel ABU-235LK',
 			name: 'EKGB',
 			asset_type: 'Generator',
@@ -22,6 +24,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 3,
 			asset_name: 'Emma ABU-235LK',
 			name: 'Vercase',
 			asset_type: 'Solar PV',
@@ -30,6 +33,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 4,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd',
 			asset_type: 'Battery',
@@ -38,6 +42,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 5,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd1',
 			asset_type: 'Battery',
@@ -46,6 +51,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 6,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd2',
 			asset_type: 'Battery',
@@ -54,6 +60,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 7,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd3',
 			asset_type: 'Battery',
@@ -62,6 +69,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 8,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd4',
 			asset_type: 'Battery',
@@ -70,6 +78,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 9,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd5',
 			asset_type: 'Battery',
@@ -78,6 +87,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 10,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd6',
 			asset_type: 'Battery',
@@ -86,6 +96,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 11,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd7',
 			asset_type: 'Battery',
@@ -94,6 +105,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 12,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd8',
 			asset_type: 'Battery',
@@ -102,6 +114,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 13,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd9',
 			asset_type: 'Battery',
@@ -110,6 +123,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 14,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd10',
 			asset_type: 'Battery',
@@ -118,6 +132,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 15,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd12',
 			asset_type: 'Battery',
@@ -126,6 +141,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 16,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd13',
 			asset_type: 'Battery',
@@ -134,6 +150,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 17,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd14',
 			asset_type: 'Battery',
@@ -142,6 +159,7 @@ export const mockResponse: ApiAssets = {
 			time: '04:25 AM Sun - 14 April, 2022',
 		},
 		{
+			id: 18,
 			asset_name: 'Jerry ABU-235LK',
 			name: 'Jim Ltd15',
 			asset_type: 'Battery',

@@ -4,14 +4,29 @@ import { ApiCardsDataForOperationsHome, CardsDataForOperationsHomeSchema } from 
 import { mockResponse } from './mock';
 import { get, globalUseRealData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
+import { DashboardQueryProps } from '../../../../types';
 
 const USE_REAL_DATA = true;
 
 const operationsCardsDataApiRoute = 'operations/cards-data';
 
-export async function getCardsDataForOperationsHome(): Promise<ApiCardsDataForOperationsHome> {
+export async function getCardsDataForOperationsHome(
+	options?: DashboardQueryProps
+): Promise<ApiCardsDataForOperationsHome> {
+	const filters = options?.filters;
+	let queryParams = {};
+	if (filters) {
+		if (filters.sites?.length > 0) {
+			queryParams = {
+				...queryParams,
+				sites: filters.sites.join(','),
+			};
+		}
+	}
 	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData ? await get(operationsCardsDataApiRoute) : mockResponse;
+	const response = useRealData
+		? await get(operationsCardsDataApiRoute, { queryParams })
+		: mockResponse;
 	const validatedResponse = CardsDataForOperationsHomeSchema.parse(response);
 	if (!useRealData) {
 		await sleep(MOCK_RESPONSE_SLEEP_TIME);
@@ -19,5 +34,5 @@ export async function getCardsDataForOperationsHome(): Promise<ApiCardsDataForOp
 	return validatedResponse;
 }
 
-export const useGetOperationsHomeCardsData = () =>
-	useQuery([operationsCardsDataApiRoute], getCardsDataForOperationsHome);
+export const useGetOperationsHomeCardsData = (options?: DashboardQueryProps) =>
+	useQuery([operationsCardsDataApiRoute, options], () => getCardsDataForOperationsHome(options));

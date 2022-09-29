@@ -4,16 +4,25 @@ import { AlertHistoryResponseSchema, ApiAlertHistory } from './types';
 import { get, globalUseRealData } from '../../../apiUtils';
 import { mockResponse } from './mock';
 import { useQuery } from 'react-query';
+import { DashboardQueryProps } from '../../../../types';
 
 const USE_REAL_DATA = true;
 
 const apiRoute = 'alerts';
 
-export async function getAlertHistory(page: number, rowsPerPage: number): Promise<ApiAlertHistory> {
+export async function getAlertHistory(options?: DashboardQueryProps): Promise<ApiAlertHistory> {
+	const pagination = options?.pagination;
 	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData
-		? await get(apiRoute, { queryParams: { page: page + 1, page_size: rowsPerPage } })
-		: mockResponse;
+	let queryParams = {};
+	if (pagination) {
+		queryParams = {
+			...queryParams,
+			page: pagination.page + 1,
+			page_size: pagination.page_size,
+		};
+	}
+	console.log('new options: ', options);
+	const response = useRealData ? await get(apiRoute, { queryParams }) : mockResponse;
 	const validatedResponse = AlertHistoryResponseSchema.parse(response);
 	if (!useRealData) {
 		await sleep(MOCK_RESPONSE_SLEEP_TIME);
@@ -21,6 +30,6 @@ export async function getAlertHistory(page: number, rowsPerPage: number): Promis
 	return validatedResponse;
 }
 
-export const useGetAlertHistory = (page: number, rowsPerPage: number) => {
-	return useQuery([apiRoute, page, rowsPerPage], () => getAlertHistory(page, rowsPerPage));
+export const useGetAlertHistory = (options?: DashboardQueryProps) => {
+	return useQuery([apiRoute, options], () => getAlertHistory(options));
 };

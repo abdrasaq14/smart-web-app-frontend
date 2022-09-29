@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { DatePickerDropdown } from '../../components/DatePickerDropdown';
-import { Dropdown } from '../../components/Dropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
@@ -15,6 +14,7 @@ import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
 import { useGetSites } from '../../api/operations/operationsSites';
+import { ControlledDropdown } from '../../components/ControlledDropdown';
 
 const styles = {
 	screenContent: {
@@ -46,19 +46,26 @@ const styles = {
 };
 
 export const Home = () => {
+	const [sites, setSites] = useState([]);
 	const navigate = useNavigate();
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetOperationsHomeCardsData();
+	} = useGetOperationsHomeCardsData({ filters: { sites } });
 	const { data: sitesData } = useGetSites();
 
 	return (
 		<Box sx={styles.screenContent}>
 			<Box sx={styles.header}>
 				<Box sx={styles.filters}>
-					<Dropdown label="Site(s)" options={sitesData?.results.map((site) => site.name) ?? []} />
+					<ControlledDropdown
+						multiselect={true}
+						label="Site(s)"
+						options={sitesData?.results.map((site) => ({ label: site.name, value: site.id })) ?? []}
+						value={sites}
+						setValue={setSites}
+					/>
 					<DatePickerDropdown label="Start Date" />
 					<DatePickerDropdown label="End Date" />
 					<RegularButton label="Download" onClick={() => {}} />

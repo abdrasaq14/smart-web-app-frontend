@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 const AssetSchema = z.object({
+	id: z.number(),
 	asset_name: z.string(),
 	name: z.string(),
 	asset_type: z.string(),
