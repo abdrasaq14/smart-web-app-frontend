@@ -16,7 +16,7 @@ const Page = ({ pieTitle, data }: Props) => {
 		title: {
 			text: pieTitle,
 			left: 'center',
-			bottom: '20%',
+			bottom: '25%',
 		},
 		legend: {
 			top: 'bottom',
