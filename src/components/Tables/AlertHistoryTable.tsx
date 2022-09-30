@@ -13,15 +13,17 @@ import React from 'react';
 import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
 import { formatDateForDisplay } from '../../utils/formatters';
+import { DashboardFiltersProps } from '../../types';
 
-type Props = {};
+type Props = { filters: DashboardFiltersProps };
 
-export const AlertHistoryTable = ({}: Props) => {
+export const AlertHistoryTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 
 	const { data, isLoading, isError } = useGetAlertHistory({
 		pagination: { page, page_size: rowsPerPage },
+		filters,
 	});
 	const dataToDisplay = data?.results ?? [];
 

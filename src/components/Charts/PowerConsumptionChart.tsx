@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 import { useGetPowerConsumptionChartData } from '../../api/operations/operationsHome/powerConsumptionChart';
 import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
+import { DashboardFiltersProps } from '../../types';
 
-const Chart = () => {
-	const { data, isLoading, isError } = useGetPowerConsumptionChartData();
+const Chart = ({ filters }: { filters: DashboardFiltersProps }) => {
+	const { data, isLoading, isError } = useGetPowerConsumptionChartData({ filters });
 
 	const renderBody = () => {
 		if (isLoading) {

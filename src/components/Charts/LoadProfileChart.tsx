@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 import { Spinner } from '../Spinner';
 import { useGetLoadProfileChartData } from '../../api/operations/operationsHome/loadProfileChart';
 import ChartCard from '../ChartCard';
+import { DashboardFiltersProps } from '../../types';
 
-const Chart = () => {
-	const { data, isLoading, isError } = useGetLoadProfileChartData();
+const Chart = ({ filters }: { filters: DashboardFiltersProps }) => {
+	const { data, isLoading, isError } = useGetLoadProfileChartData({ filters });
 
 	const renderBody = () => {
 		if (isLoading) {

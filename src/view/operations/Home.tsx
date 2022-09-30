@@ -50,12 +50,13 @@ export const Home = () => {
 	const [startDate, setStartDate] = useState(null);
 	const [endDate, setEndDate] = useState(null);
 	const navigate = useNavigate();
+	const filters = { sites, start_date: startDate, end_date: endDate };
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
 	} = useGetOperationsHomeCardsData({
-		filters: { sites, start_date: startDate, end_date: endDate },
+		filters,
 	});
 	const { data: sitesData } = useGetSites();
 
@@ -113,14 +114,14 @@ export const Home = () => {
 					/>
 				</Box>
 				<Box sx={styles.chartsRow}>
-					<SitesMonitored />
-					<LoadProfileChart />
-					<PowerConsumptionChart />
+					<SitesMonitored filters={filters} />
+					<LoadProfileChart filters={filters} />
+					<PowerConsumptionChart filters={filters} />
 				</Box>
 				<Box sx={styles.lastRow}>
 					<Box sx={styles.table}>
 						<GraphCard title="Alert History">
-							<AlertHistoryTable />
+							<AlertHistoryTable filters={filters} />
 						</GraphCard>
 					</Box>
 					<Box sx={styles.lastRowCards}>

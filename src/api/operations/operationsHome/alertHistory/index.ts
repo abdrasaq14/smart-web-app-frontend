@@ -1,7 +1,7 @@
 import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
 import { sleep } from '../../../../utils/utils';
 import { AlertHistoryResponseSchema, ApiAlertHistory } from './types';
-import { get, globalUseRealData } from '../../../apiUtils';
+import { get, getFiltersQueryParams, globalUseRealData } from '../../../apiUtils';
 import { mockResponse } from './mock';
 import { useQuery } from 'react-query';
 import { DashboardQueryProps } from '../../../../types';
@@ -13,7 +13,8 @@ const apiRoute = 'alerts';
 export async function getAlertHistory(options?: DashboardQueryProps): Promise<ApiAlertHistory> {
 	const pagination = options?.pagination;
 	const useRealData = USE_REAL_DATA && globalUseRealData();
-	let queryParams = {};
+	const filtersQueryParams = getFiltersQueryParams(options);
+	let queryParams = { ...filtersQueryParams };
 	if (pagination) {
 		queryParams = {
 			...queryParams,

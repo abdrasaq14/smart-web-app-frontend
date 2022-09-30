@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { formatDateForFilter } from '../utils/formatters';
+import { DashboardQueryProps } from '../types';
 
 const BASE_URL = 'http://127.0.0.1:8000/api/';
 
@@ -46,4 +48,30 @@ export function get(relativeUrl: string, options?: any) {
 
 export function globalUseRealData() {
 	return true;
+}
+
+export function getFiltersQueryParams(options?: DashboardQueryProps) {
+	const filters = options?.filters;
+	let queryParams = {};
+	if (filters) {
+		if (filters.sites && filters.sites?.length > 0) {
+			queryParams = {
+				...queryParams,
+				sites: filters.sites.join(','),
+			};
+		}
+		if (filters.start_date != null) {
+			queryParams = {
+				...queryParams,
+				start_date: formatDateForFilter(filters.start_date),
+			};
+		}
+		if (filters.end_date != null) {
+			queryParams = {
+				...queryParams,
+				end_date: formatDateForFilter(filters.end_date),
+			};
+		}
+	}
+	return queryParams;
 }
