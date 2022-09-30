@@ -1,12 +1,12 @@
 import { Button, Drawer } from '@mui/material';
-import { PersonOutlined } from '@mui/icons-material';
+import { PersonOutlined, SaveOutlined, SettingsOutlined } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface AppMenuButton {
 	id: number;
 	label: string;
-	icon?: JSX.Element;
+	icon: JSX.Element;
 	path: string;
 }
 
@@ -45,28 +45,37 @@ const styles = {
 const buttonDefinitions: Array<AppMenuButton> = [
 	{
 		id: 1,
-		label: 'Operations',
-		path: '/operations/home',
+		label: 'Home',
+		icon: <SaveOutlined />,
+		path: '/senior-manager-account/home',
 	},
 	{
 		id: 2,
-		label: 'Finance',
-		path: '/finance/home',
-	},
-	{
-		id: 3,
-		label: 'Senior Manager',
+		label: 'Operations',
+		icon: <SettingsOutlined />,
 		path: '/senior-manager-account/operations',
 	},
 	{
-		id: 4,
-		label: 'Smarterise Account UI',
+		id: 3,
+		label: 'Finance',
 		icon: <PersonOutlined />,
-		path: '/account/home',
+		path: '/senior-manager-account/finance',
+	},
+	{
+		id: 4,
+		label: 'Activity Log',
+		icon: <PersonOutlined />,
+		path: '/senior-manager-account/activity-log',
+	},
+	{
+		id: 5,
+		label: 'Account',
+		icon: <PersonOutlined />,
+		path: '/operations/myAccount',
 	},
 ];
 
-const AppMenu = () => {
+export const AppMenu = () => {
 	const navigate = useNavigate();
 	const [selectedItem, setSelectedItem] = useState<number>(-1);
 
@@ -78,6 +87,7 @@ const AppMenu = () => {
 					key={buttonDefinition.id}
 					variant="text"
 					sx={[styles.button.base, buttonDefinition.id === selectedItem && styles.button.selected]}
+					startIcon={buttonDefinition.icon}
 					onClick={() => {
 						setSelectedItem(buttonDefinition.id);
 						navigate(buttonDefinition.path);
@@ -89,5 +99,3 @@ const AppMenu = () => {
 		</Drawer>
 	);
 };
-
-export default AppMenu;
