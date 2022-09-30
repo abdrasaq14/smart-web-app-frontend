@@ -6,7 +6,6 @@ import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { TransactionHistoryTable } from '../../components/Tables/TransactionHistoryTable';
-import { useGetTransactionsHistory } from '../../api/finance/Home/transactionHistory';
 
 const styles = {
 	screenContent: {
@@ -23,19 +22,6 @@ const styles = {
 
 export const Transactions = () => {
 	const navigate = useNavigate();
-	const { data, isLoading, isError } = useGetTransactionsHistory();
-
-	const renderCell = () => {
-		if (isError) {
-			return <div>There was an error...</div>;
-		} else if (isLoading) {
-			return <div>Loading...</div>;
-		} else if (data && data.length > 0) {
-			return <TransactionHistoryTable data={data} />;
-		} else {
-			return <div>Empty data</div>;
-		}
-	};
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -63,7 +49,9 @@ export const Transactions = () => {
 					<RegularButton label="Download" onClick={() => {}} />
 				</Box>
 			</Box>
-			<Box>{renderCell()}</Box>
+			<Box>
+				<TransactionHistoryTable />
+			</Box>
 		</Box>
 	);
 };

@@ -12,6 +12,7 @@ import { Site as OperationSite } from './operations/Site';
 import { Transactions as FinanceTransaction } from './finance/Transactions';
 // import { Auth0Provider } from '@auth0/auth0-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import UserTypeSwitcher from './UserTypeSwitcher';
 
 export const App = () => {
 	const queryClient = new QueryClient();
@@ -22,27 +23,28 @@ export const App = () => {
 			{/*	clientId="dZdIDvmc3hKd5gPJJJsiSKSwkXJdomPg"*/}
 			{/*	redirectUri={window.location.origin}*/}
 			{/*>*/}
-				<BrowserRouter>
-					<Routes>
-						<Route path="/operations" element={<Operations />}>
-							<Route index element={<OperationsHome />} />
-							<Route path="home" element={<OperationsHome />} />
-							<Route path="site" element={<OperationSite />} />
-							<Route path="activityLog" element={<OperationsActivitylog />} />
-							<Route path="myAccount" element={<OperationsMyAccount />} />
-							<Route path="dashboard" element={<OperationsDashboard />} />
-						</Route>
-						<Route path="/finance" element={<Finances />}>
-							<Route index element={<FinanceHome />} />
-							<Route path="home" element={<FinanceHome />} />
-							<Route path="transaction" element={<FinanceTransaction />} />
-							<Route path="activityLog" element={<OperationsActivitylog />} />
-							<Route path="myAccount" element={<OperationsMyAccount />} />
-						</Route>
-						<Route path="/login" element={<Login />} />
-						<Route path="*" element={<Navigate to="/login" replace />} />
-					</Routes>
-				</BrowserRouter>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/operations" element={<Operations />}>
+						<Route index element={<OperationsHome />} />
+						<Route path="home" element={<OperationsHome />} />
+						<Route path="site" element={<OperationSite />} />
+						<Route path="activityLog" element={<OperationsActivitylog />} />
+						<Route path="myAccount" element={<OperationsMyAccount />} />
+						<Route path="dashboard" element={<OperationsDashboard />} />
+					</Route>
+					<Route path="/finance" element={<Finances />}>
+						<Route index element={<FinanceHome />} />
+						<Route path="home" element={<FinanceHome />} />
+						<Route path="transaction" element={<FinanceTransaction />} />
+						<Route path="activityLog" element={<OperationsActivitylog />} />
+						<Route path="myAccount" element={<OperationsMyAccount />} />
+					</Route>
+					<Route path="/login" element={<Login />} />
+					<Route path="/" element={<UserTypeSwitcher />} />
+					<Route path="*" element={<Navigate to="/login" replace />} />
+				</Routes>
+			</BrowserRouter>
 			{/*</Auth0Provider>*/}
 		</QueryClientProvider>
 	);
