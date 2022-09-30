@@ -46,10 +46,6 @@ export function get(relativeUrl: string, options?: any) {
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
-export function globalUseRealData() {
-	return true;
-}
-
 export function getFiltersQueryParams(options?: DashboardQueryProps) {
 	const filters = options?.filters;
 	let queryParams = {};
@@ -74,4 +70,8 @@ export function getFiltersQueryParams(options?: DashboardQueryProps) {
 		}
 	}
 	return queryParams;
+}
+
+export function globalUseRealData() {
+	return false;
 }
