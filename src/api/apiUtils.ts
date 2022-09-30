@@ -43,7 +43,6 @@ export function get(relativeUrl: string, options?: any) {
 	if (options?.queryParams) {
 		url.search = new URLSearchParams(options?.queryParams).toString();
 	}
-	console.log('url: ', url);
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
@@ -90,5 +89,5 @@ export function getQueryParams(options?: DashboardQueryProps) {
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
 }

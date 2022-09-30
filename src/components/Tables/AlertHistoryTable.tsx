@@ -9,7 +9,7 @@ import {
 	TablePagination,
 	TableRow,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
 import { formatDateForDisplay } from '../../utils/formatters';
@@ -20,11 +20,11 @@ type Props = { filters: DashboardFiltersProps };
 export const AlertHistoryTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
-	console.log('page: ', page);
+	const [internalFilters, setInternalFilters] = useState(filters);
 
 	const { data, isLoading, isError } = useGetAlertHistory({
 		pagination: { page, page_size: rowsPerPage },
-		filters,
+		filters: internalFilters,
 	});
 	const dataToDisplay = data?.results ?? [];
 
@@ -40,6 +40,7 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 	useEffect(() => {
 		//TODO: when filters are changed, we want to reset the pagination. find a better way to do this
 		setPage(0);
+		setInternalFilters(filters);
 	}, [filters]);
 
 	if (isLoading) {
