@@ -43,6 +43,7 @@ export function get(relativeUrl: string, options?: any) {
 	if (options?.queryParams) {
 		url.search = new URLSearchParams(options?.queryParams).toString();
 	}
+	console.log('url: ', url);
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
@@ -72,6 +73,22 @@ export function getFiltersQueryParams(options?: DashboardQueryProps) {
 	return queryParams;
 }
 
+export function getPaginationQueryParams(options?: DashboardQueryProps) {
+	let queryParams = {};
+	if (options?.pagination) {
+		queryParams = {
+			...queryParams,
+			page: options?.pagination.page + 1,
+			page_size: options?.pagination.page_size,
+		};
+	}
+	return queryParams;
+}
+
+export function getQueryParams(options?: DashboardQueryProps) {
+	return { ...getPaginationQueryParams(options), ...getFiltersQueryParams(options) };
+}
+
 export function globalUseRealData() {
-	return false;
+	return true;
 }
