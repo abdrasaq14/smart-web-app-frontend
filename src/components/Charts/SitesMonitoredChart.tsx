@@ -5,14 +5,14 @@ import { Box } from '@mui/material';
 import { useGetSitesMonitoredChartData } from '../../api/operations/operationsHome/sitesMonitored';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
-import { DashboardFiltersProps } from '../../types';
+import { SitesDashboardFilters } from '../../types';
 
 const keyLabelMapping: any = {
 	active: 'Active',
 	offline: 'Offline',
 };
 
-const Page = ({ filters }: { filters: DashboardFiltersProps }) => {
+const Page = ({ filters }: { filters: SitesDashboardFilters }) => {
 	const { data, isLoading, isError } = useGetSitesMonitoredChartData({ filters });
 	const dataset =
 		data?.dataset.map((apiDataRow) => {

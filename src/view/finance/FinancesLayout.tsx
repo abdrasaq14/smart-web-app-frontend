@@ -10,35 +10,23 @@ const buttonDefinitions: Array<AppMenuButton> = [
 		id: 1,
 		label: 'Home',
 		icon: <SaveOutlined />,
-		path: '/senior-manager-account/home',
+		path: '/finance/home',
 	},
 	{
 		id: 2,
-		label: 'Operations',
+		label: 'Transaction',
 		icon: <SettingsOutlined />,
-		path: '/senior-manager-account/operations',
-	},
-	{
-		id: 3,
-		label: 'Finance',
-		icon: <PersonOutlined />,
-		path: '/senior-manager-account/finance',
+		path: '/finance/transaction',
 	},
 	{
 		id: 4,
-		label: 'Activity Log',
-		icon: <PersonOutlined />,
-		path: '/senior-manager-account/activity-log',
-	},
-	{
-		id: 5,
-		label: 'Account',
+		label: 'My Account',
 		icon: <PersonOutlined />,
 		path: '/operations/myAccount',
 	},
 ];
 
-export const SeniorManagerAccountLayout = () => (
+export const FinancesLayout = () => (
 	<Box sx={{ display: 'flex' }}>
 		<Sidebar buttonDefinitions={buttonDefinitions} />
 		<Outlet />

@@ -1,4 +1,4 @@
-export type DashboardFiltersProps = {
+export type SitesDashboardFilters = {
 	sites?: number[];
 	start_date?: Date | null;
 	end_date?: Date | null;
@@ -11,6 +11,13 @@ export type DashboardPaginationProps = {
 
 export type DashboardQueryProps = {
 	pagination?: DashboardPaginationProps;
-	filters?: DashboardFiltersProps;
+	filters?: SitesDashboardFilters;
 };
 export type OperationsSiteDashboardChartType = 'voltage' | 'load' | 'pf' | 'frequency';
+
+export interface AppMenuButton {
+	id: number;
+	label: string;
+	icon?: JSX.Element;
+	path: string;
+}

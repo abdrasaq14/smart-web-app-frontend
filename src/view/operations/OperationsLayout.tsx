@@ -2,7 +2,7 @@ import React from 'react';
 import { Sidebar } from '../../layouts/Sidebar';
 import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
-import { PersonOutlined, SaveOutlined, SettingsOutlined } from '@mui/icons-material';
+import { PersonOutlined, SaveOutlined, SettingsOutlined, TopicOutlined } from '@mui/icons-material';
 import { AppMenuButton } from '../../types';
 
 const buttonDefinitions: Array<AppMenuButton> = [
@@ -10,35 +10,29 @@ const buttonDefinitions: Array<AppMenuButton> = [
 		id: 1,
 		label: 'Home',
 		icon: <SaveOutlined />,
-		path: '/senior-manager-account/home',
+		path: '/operations/home',
 	},
 	{
 		id: 2,
-		label: 'Operations',
+		label: 'Site',
 		icon: <SettingsOutlined />,
-		path: '/senior-manager-account/operations',
+		path: '/operations/site',
 	},
 	{
 		id: 3,
-		label: 'Finance',
-		icon: <PersonOutlined />,
-		path: '/senior-manager-account/finance',
+		label: 'Activity Log',
+		icon: <TopicOutlined />,
+		path: '/operations/activityLog',
 	},
 	{
 		id: 4,
-		label: 'Activity Log',
-		icon: <PersonOutlined />,
-		path: '/senior-manager-account/activity-log',
-	},
-	{
-		id: 5,
-		label: 'Account',
+		label: 'My Account',
 		icon: <PersonOutlined />,
 		path: '/operations/myAccount',
 	},
 ];
 
-export const SeniorManagerAccountLayout = () => (
+export const OperationsLayout = () => (
 	<Box sx={{ display: 'flex' }}>
 		<Sidebar buttonDefinitions={buttonDefinitions} />
 		<Outlet />

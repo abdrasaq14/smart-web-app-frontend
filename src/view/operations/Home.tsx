@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
-import { RegularButton } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
-import { useNavigate } from 'react-router-dom';
 import { useGetOperationsHomeCardsData } from '../../api/operations/operationsHome/cardsData';
 import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
 import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
-import { useGetSites } from '../../api/operations/operationsSites';
-import { ControlledDropdown } from '../../components/ControlledDropdown';
-import ControlledDatePicker from '../../components/ControlledDatePicker';
+import { SitesDashboardFilters } from '../../types';
+import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
+import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 
 const styles = {
 	screenContent: {
@@ -24,9 +20,7 @@ const styles = {
 		flexDirection: 'column',
 		overflowY: 'auto',
 	},
-	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
-	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
-	headerIcons: { display: 'flex', alignItems: 'center' },
+
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 	chartsRow: { display: 'flex', justifyContent: 'space-between' },
 	lastRow: {
@@ -46,11 +40,8 @@ const styles = {
 };
 
 export const Home = () => {
-	const [sites, setSites] = useState([]);
-	const [startDate, setStartDate] = useState(null);
-	const [endDate, setEndDate] = useState(null);
-	const navigate = useNavigate();
-	const filters = { sites, start_date: startDate, end_date: endDate };
+	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
+
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
@@ -58,33 +49,10 @@ export const Home = () => {
 	} = useGetOperationsHomeCardsData({
 		filters,
 	});
-	const { data: sitesData } = useGetSites();
 
 	return (
 		<Box sx={styles.screenContent}>
-			<Box sx={styles.header}>
-				<Box sx={styles.filters}>
-					<ControlledDropdown
-						multiselect={true}
-						label="Site(s)"
-						options={sitesData?.results.map((site) => ({ label: site.name, value: site.id })) ?? []}
-						value={sites}
-						setValue={setSites}
-					/>
-					<ControlledDatePicker label="Start Date" value={startDate} setValue={setStartDate} />
-					<ControlledDatePicker label="End Date" value={endDate} setValue={setEndDate} />
-					<RegularButton label="Download" onClick={() => {}} />
-				</Box>
-				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton
-						round
-						Icon={PersonOutlined}
-						onClick={() => navigate('/operations/myAccount')}
-					/>
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
-				</Box>
-			</Box>
+			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
 
 			<Box>
 				<Box sx={styles.cardRow}>

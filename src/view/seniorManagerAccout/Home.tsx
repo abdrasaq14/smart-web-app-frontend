@@ -24,9 +24,7 @@ const styles = {
 		flexDirection: 'column',
 		overflowY: 'auto',
 	},
-	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
 	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
-	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 	chartsRow: { display: 'flex', justifyContent: 'space-between' },
 	lastRow: {

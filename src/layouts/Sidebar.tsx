@@ -1,14 +1,7 @@
 import { Button, Drawer } from '@mui/material';
-import { PersonOutlined, SaveOutlined, SettingsOutlined } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-interface AppMenuButton {
-	id: number;
-	label: string;
-	icon: JSX.Element;
-	path: string;
-}
+import { AppMenuButton } from '../types';
 
 const styles = {
 	drawerContainer: {
@@ -42,28 +35,7 @@ const styles = {
 	},
 };
 
-const buttonDefinitions: Array<AppMenuButton> = [
-	{
-		id: 1,
-		label: 'Home',
-		icon: <SaveOutlined />,
-		path: '/finance/home',
-	},
-	{
-		id: 2,
-		label: 'Transaction',
-		icon: <SettingsOutlined />,
-		path: '/finance/transaction',
-	},
-	{
-		id: 4,
-		label: 'My Account',
-		icon: <PersonOutlined />,
-		path: '/operations/myAccount',
-	},
-];
-
-export const AppMenu = () => {
+export const Sidebar = ({ buttonDefinitions }: { buttonDefinitions: Array<AppMenuButton> }) => {
 	const navigate = useNavigate();
 	const [selectedItem, setSelectedItem] = useState<number>(-1);
 

@@ -13,9 +13,9 @@ import React, { useEffect, useState } from 'react';
 import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
 import { formatDateForDisplay } from '../../utils/formatters';
-import { DashboardFiltersProps } from '../../types';
+import { SitesDashboardFilters } from '../../types';
 
-type Props = { filters: DashboardFiltersProps };
+type Props = { filters: SitesDashboardFilters };
 
 export const AlertHistoryTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);

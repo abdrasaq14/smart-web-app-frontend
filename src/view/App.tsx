@@ -4,8 +4,8 @@ import { Login } from './Login';
 import { Home as OperationsHome } from './operations/Home';
 import { Dashboard as OperationsDashboard } from './operations/Dashboard';
 import { Home as FinanceHome } from './finance/Home';
-import { Operations } from './operations/Operations';
-import { Finances } from './finance/Finances';
+import { OperationsLayout } from './operations/OperationsLayout';
+import { FinancesLayout } from './finance/FinancesLayout';
 import { MyAccount as OperationsMyAccount } from './operations/MyAccount';
 import { ActivityLog as OperationsActivitylog } from './operations/ActivityLog';
 import { Site as OperationSite } from './operations/Site';
@@ -32,7 +32,7 @@ export const App = () => {
 			{/*>*/}
 			<BrowserRouter>
 				<Routes>
-					<Route path="/operations" element={<Operations />}>
+					<Route path="/operations" element={<OperationsLayout />}>
 						<Route index element={<OperationsHome />} />
 						<Route path="home" element={<OperationsHome />} />
 						<Route path="site" element={<OperationSite />} />
@@ -40,7 +40,7 @@ export const App = () => {
 						<Route path="myAccount" element={<OperationsMyAccount />} />
 						<Route path="dashboard" element={<OperationsDashboard />} />
 					</Route>
-					<Route path="/finance" element={<Finances />}>
+					<Route path="/finance" element={<FinancesLayout />}>
 						<Route index element={<FinanceHome />} />
 						<Route path="home" element={<FinanceHome />} />
 						<Route path="transaction" element={<FinanceTransaction />} />

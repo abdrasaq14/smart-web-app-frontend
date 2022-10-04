@@ -5,9 +5,9 @@ import { Box } from '@mui/material';
 import { useGetPowerConsumptionChartData } from '../../api/operations/operationsHome/powerConsumptionChart';
 import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
-import { DashboardFiltersProps } from '../../types';
+import { SitesDashboardFilters } from '../../types';
 
-const Chart = ({ filters }: { filters: DashboardFiltersProps }) => {
+const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 	const { data, isLoading, isError } = useGetPowerConsumptionChartData({ filters });
 
 	const renderBody = () => {
