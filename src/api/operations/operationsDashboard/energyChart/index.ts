@@ -2,16 +2,21 @@ import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
 import { sleep } from '../../../../utils/utils';
 import { mockResponse } from './mock';
 import { ApiEnergyChart, EnergyChartSchema } from './types';
-import { get, globalUseRealData } from '../../../apiUtils';
+import { get, getFiltersQueryParams, globalUseRealData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
+import { DashboardQueryProps } from '../../../../types';
 
-const USE_REAL_DATA = false;
+const USE_REAL_DATA = true;
 
-const energyChartDataApiRoute = 'operations/energy-chart';
+const apiRoute = 'operations-dashboard/energy-chart';
 
-export async function getEnergyChartData(): Promise<ApiEnergyChart> {
+export async function getEnergyChartData(options?: DashboardQueryProps): Promise<ApiEnergyChart> {
+	const filtersQueryParams = getFiltersQueryParams(options);
+
 	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData ? await get(energyChartDataApiRoute) : mockResponse;
+	const response = useRealData
+		? await get(apiRoute, { queryParams: filtersQueryParams })
+		: mockResponse;
 	const validatedResponse = EnergyChartSchema.parse(response);
 	if (!useRealData) {
 		await sleep(MOCK_RESPONSE_SLEEP_TIME);
@@ -19,4 +24,5 @@ export async function getEnergyChartData(): Promise<ApiEnergyChart> {
 	return validatedResponse;
 }
 
-export const useGetEnergyChartData = () => useQuery([energyChartDataApiRoute], getEnergyChartData);
+export const useGetEnergyChartData = (options?: DashboardQueryProps) =>
+	useQuery([apiRoute, options], () => getEnergyChartData(options));

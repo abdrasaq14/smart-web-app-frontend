@@ -2,16 +2,23 @@ import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
 import { sleep } from '../../../../utils/utils';
 import { ApiKeyInsightsChart, KeyInsightsChartSchema } from './types';
 import { mockResponse } from './mock';
-import { get, globalUseRealData } from '../../../apiUtils';
+import { get, getFiltersQueryParams, globalUseRealData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
+import { DashboardQueryProps } from '../../../../types';
 
-const USE_REAL_DATA = false;
+const USE_REAL_DATA = true;
 
-const keyInsightsChartDataApiRoute = 'operations/key-insight';
+const apiRoute = 'operations-dashboard/key-insights';
 
-export async function getKeyInsightsChart(): Promise<ApiKeyInsightsChart> {
+export async function getKeyInsightsChart(
+	options?: DashboardQueryProps
+): Promise<ApiKeyInsightsChart> {
+	const filtersQueryParams = getFiltersQueryParams(options);
+
 	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData ? await get(keyInsightsChartDataApiRoute) : mockResponse;
+	const response = useRealData
+		? await get(apiRoute, { queryParams: filtersQueryParams })
+		: mockResponse;
 	const validatedResponse = KeyInsightsChartSchema.parse(response);
 	if (!useRealData) {
 		await sleep(MOCK_RESPONSE_SLEEP_TIME);
@@ -19,5 +26,5 @@ export async function getKeyInsightsChart(): Promise<ApiKeyInsightsChart> {
 	return validatedResponse;
 }
 
-export const useGetKeyInsightsChartData = () =>
-	useQuery([keyInsightsChartDataApiRoute], getKeyInsightsChart);
+export const useGetKeyInsightsChartData = (options?: DashboardQueryProps) =>
+	useQuery([apiRoute, options], () => getKeyInsightsChart(options));

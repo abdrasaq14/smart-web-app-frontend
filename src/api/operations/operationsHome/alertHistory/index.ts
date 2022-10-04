@@ -13,7 +13,6 @@ const apiRoute = 'alerts';
 export async function getAlertHistory(options?: DashboardQueryProps): Promise<ApiAlertHistory> {
 	const useRealData = USE_REAL_DATA && globalUseRealData();
 	const queryParams = getQueryParams(options);
-	console.log('queryParams: ', queryParams);
 	const response = useRealData ? await get(apiRoute, { queryParams }) : mockResponse;
 	const validatedResponse = AlertHistoryResponseSchema.parse(response);
 	if (!useRealData) {

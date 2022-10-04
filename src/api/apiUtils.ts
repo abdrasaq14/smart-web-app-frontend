@@ -89,5 +89,5 @@ export function getQueryParams(options?: DashboardQueryProps) {
 }
 
 export function globalUseRealData() {
-	return false;
+	return true;
 }

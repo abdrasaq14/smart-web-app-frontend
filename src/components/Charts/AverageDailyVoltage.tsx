@@ -5,13 +5,13 @@ import { Box, MenuItem, SelectChangeEvent, Select } from '@mui/material';
 import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 import { useGetAverageDailyChartData } from '../../api/operations/operationsDashboard/AverageCharts';
+import { OperationsSiteDashboardChartType } from '../../types';
 
 const DEFAULT_CHART = 'voltage';
 
 const Chart = () => {
-	const [chartType, setChartType] = React.useState(DEFAULT_CHART);
+	const [chartType, setChartType] = React.useState<OperationsSiteDashboardChartType>(DEFAULT_CHART);
 	const { data, isLoading, isError } = useGetAverageDailyChartData(chartType);
-	console.log({ data, isLoading, isError });
 
 	const renderBody = () => {
 		if (isLoading) {
@@ -66,7 +66,7 @@ const Chart = () => {
 		],
 	};
 
-	const chartTypeMap = {
+	const chartTypeMap: { [key in OperationsSiteDashboardChartType]: string } = {
 		voltage: 'Average Daily Voltage',
 		load: 'Average Daily Load',
 		pf: 'Average Daily PF',
@@ -74,7 +74,7 @@ const Chart = () => {
 	};
 
 	const handleChange = (event: SelectChangeEvent) => {
-		setChartType(event.target.value as string);
+		setChartType(event.target.value as OperationsSiteDashboardChartType);
 	};
 
 	return (

@@ -13,3 +13,4 @@ export type DashboardQueryProps = {
 	pagination?: DashboardPaginationProps;
 	filters?: DashboardFiltersProps;
 };
+export type OperationsSiteDashboardChartType = 'voltage' | 'load' | 'pf' | 'frequency';
