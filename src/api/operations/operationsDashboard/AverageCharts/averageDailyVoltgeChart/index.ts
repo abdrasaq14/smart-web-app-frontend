@@ -1,18 +1,11 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../../utils/constants';
-import { sleep } from '../../../../../utils/utils';
+import { ApiChart, ChartSchema, getDashboardData } from '../../../../apiUtils';
 import { mockResponse } from './mock';
-import { ApiChart, ChartSchema, get, globalUseRealData } from '../../../../apiUtils';
 
-const USE_REAL_DATA = false;
+const apiRoute = 'operations/averageDailyVoltage';
 
-const averageDailyVoltageChartApiRoute = 'operations/averageDailyVoltage';
-
-export async function getAverageDailyVoltageChartData(): Promise<ApiChart> {
-	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData ? await get(averageDailyVoltageChartApiRoute) : mockResponse;
-	const validatedResponse = ChartSchema.parse(response);
-	if (!useRealData) {
-		await sleep(MOCK_RESPONSE_SLEEP_TIME);
-	}
-	return validatedResponse;
-}
+export const getAverageDailyVoltageChartData = getDashboardData<ApiChart>({
+	localUseRealData: false,
+	apiRoute,
+	schema: ChartSchema,
+	mockResponse,
+});

@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { formatDateForFilter } from '../utils/formatters';
 import { DashboardQueryProps } from '../types';
+import { sleep } from '../utils/utils';
+import { MOCK_RESPONSE_SLEEP_TIME } from '../utils/constants';
 
 const BASE_URL = 'http://127.0.0.1:8000/api/';
 
@@ -89,5 +91,33 @@ export function getQueryParams(options?: DashboardQueryProps) {
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
+}
+
+type GetDashboardDataProps = {
+	localUseRealData: boolean;
+	apiRoute: string;
+	schema: any;
+	mockResponse: any;
+};
+
+export function getDashboardData<DataType>({
+	localUseRealData,
+	apiRoute,
+	schema,
+	mockResponse,
+}: GetDashboardDataProps) {
+	return async function (options?: DashboardQueryProps): Promise<DataType> {
+		const filtersQueryParams = getFiltersQueryParams(options);
+
+		const useRealData = localUseRealData && globalUseRealData();
+		const response = useRealData
+			? await get(apiRoute, { queryParams: filtersQueryParams })
+			: mockResponse;
+		const validatedResponse = schema.parse(response);
+		if (!useRealData) {
+			await sleep(MOCK_RESPONSE_SLEEP_TIME);
+		}
+		return validatedResponse;
+	};
 }

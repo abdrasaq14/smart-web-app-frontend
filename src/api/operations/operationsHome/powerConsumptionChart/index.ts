@@ -1,31 +1,17 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
-import { sleep } from '../../../../utils/utils';
-import { mockResponse } from './mock';
 import { ApiPowerConsumptionChart, PowerConsumptionSchema } from './types';
-import { get, getFiltersQueryParams, globalUseRealData } from '../../../apiUtils';
+import { getDashboardData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
 import { DashboardQueryProps } from '../../../../types';
+import { mockResponse } from './mock';
 
-const USE_REAL_DATA = true;
+const apiRoute = 'operations/power-consumption-chart';
 
-const operationsPowerConsumptionChartApiRoute = 'operations/power-consumption-chart';
-
-export async function getPowerConsumptionChartData(
-	options?: DashboardQueryProps
-): Promise<ApiPowerConsumptionChart> {
-	const filtersQueryParams = getFiltersQueryParams(options);
-	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData
-		? await get(operationsPowerConsumptionChartApiRoute, { queryParams: filtersQueryParams })
-		: mockResponse;
-	const validatedResponse = PowerConsumptionSchema.parse(response);
-	if (!useRealData) {
-		await sleep(MOCK_RESPONSE_SLEEP_TIME);
-	}
-	return validatedResponse;
-}
+const getPowerConsumptionChartData = getDashboardData<ApiPowerConsumptionChart>({
+	localUseRealData: true,
+	apiRoute,
+	schema: PowerConsumptionSchema,
+	mockResponse,
+});
 
 export const useGetPowerConsumptionChartData = (options?: DashboardQueryProps) =>
-	useQuery([operationsPowerConsumptionChartApiRoute, options], () =>
-		getPowerConsumptionChartData(options)
-	);
+	useQuery([apiRoute, options], () => getPowerConsumptionChartData(options));
