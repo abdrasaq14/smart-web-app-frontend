@@ -119,5 +119,5 @@ export function getDashboardData<DataType>({
 }
 
 export function globalUseRealData() {
-	return false;
+	return true;
 }
