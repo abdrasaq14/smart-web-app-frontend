@@ -1,20 +1,16 @@
-import React from 'react';
-import { Box, Button } from '@mui/material';
-import { DatePickerDropdown } from '../../components/DatePickerDropdown';
-import { Dropdown } from '../../components/Dropdown';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
+import React, { useState } from 'react';
+import { Box } from '@mui/material';
 import { ValueCard } from '../../components/ValueCard';
-import { RegularButton } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
-import { useNavigate } from 'react-router-dom';
 import EnergyChart from '../../components/Charts/EnergyChart';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useGetOperationsDashboardCardsData } from '../../api/operations/operationsDashboard/cardsData';
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';
 import AverageDailyVoltage from '../../components/Charts/AverageDailyVoltage';
 import { KeyInsightsCard } from '../../components/Charts/KeyInsightChart';
+import { SitesDashboardFilters } from '../../types';
+import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
+import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
 
 const styles = {
 	screenContent: {
@@ -33,43 +29,16 @@ const styles = {
 };
 
 export const Dashboard = () => {
-	const navigate = useNavigate();
+	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetOperationsDashboardCardsData();
+	} = useGetOperationsDashboardCardsData({ filters });
 
 	return (
 		<Box sx={styles.screenContent}>
-			<Box sx={styles.header}>
-				<Box sx={styles.filters}>
-					<Dropdown label="Site(s)" options={['site 1', 'site 2', 'site 3']} />
-					<DatePickerDropdown label="Start Date" />
-					<DatePickerDropdown label="End Date" />
-					<RegularButton label="Download" onClick={() => {}} />
-				</Box>
-				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton
-						round
-						Icon={PersonOutlined}
-						onClick={() => navigate('/operations/myAccount')}
-					/>
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
-				</Box>
-			</Box>
-			<Box sx={styles.backButtonContainer}>
-				<Button
-					variant="outlined"
-					startIcon={<ArrowBackIcon />}
-					onClick={() => {
-						navigate('/operations/site');
-					}}
-				>
-					Back
-				</Button>
-			</Box>
+			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
 
 			<Box sx={styles.cardRow}>
 				<ValueCard
@@ -98,9 +67,9 @@ export const Dashboard = () => {
 				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
-				<RevenueLossBreakdown />
-				<EnergyChart />
-				<DTstatusChart />
+				<RevenueLossBreakdown filters={filters} />
+				<EnergyChart filters={filters} />
+				<DTstatusChart filters={filters} />
 			</Box>
 			<Box sx={{ ...styles.chartsRow, height: '380px' }}>
 				<Box
@@ -124,8 +93,8 @@ export const Dashboard = () => {
 						isError={isCardsDataError}
 					/>
 				</Box>
-				<AverageDailyVoltage />
-				<KeyInsightsCard />
+				<AverageDailyVoltage filters={filters} />
+				<KeyInsightsCard filters={filters} />
 			</Box>
 		</Box>
 	);

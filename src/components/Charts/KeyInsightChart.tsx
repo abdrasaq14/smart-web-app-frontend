@@ -4,6 +4,7 @@ import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 import { useGetKeyInsightsChartData } from '../../api/operations/operationsDashboard/keyInsightsChart';
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
+import { SitesDashboardFilters } from '../../types';
 
 const styles = {
 	container: {
@@ -18,8 +19,8 @@ const styles = {
 	insights: { paddingTop: '8px', fontSize: '8px', lineHeight: '12px' },
 };
 
-export const KeyInsightsCard = () => {
-	const { data, isLoading, isError } = useGetKeyInsightsChartData();
+export const KeyInsightsCard = ({ filters }: { filters: SitesDashboardFilters }) => {
+	const { data, isLoading, isError } = useGetKeyInsightsChartData({ filters });
 
 	const renderBody = () => {
 		if (isError) {

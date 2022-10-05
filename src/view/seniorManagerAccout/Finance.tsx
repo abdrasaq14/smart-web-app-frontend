@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { DatePickerDropdown } from '../../components/DatePickerDropdown';
 import { Dropdown } from '../../components/Dropdown';
@@ -8,12 +8,14 @@ import { GraphCard } from '../../components/GraphCard';
 import { TransactionHistoryTable } from '../../components/Tables/TransactionHistoryTable';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
-import { useNavigate } from 'react-router-dom';
 import { useGetFinanceHomeCardsData } from '../../api/finance/Home/cardsData';
 import { formatToUSlocale } from '../../utils/formatters';
 import CustomerBreakdownChart from '../../components/Charts/CustomerBreakdownChart';
 import FinancialPerformance from '../../components/Charts/FinancialPerformance';
 import RevenueChart from '../../components/Charts/RevenueChart';
+import { SitesDashboardFilters } from '../../types';
+import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
+import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
 
 const styles = {
 	screenContent: {
@@ -44,32 +46,16 @@ const styles = {
 	},
 };
 export const Home = () => {
-	const navigate = useNavigate();
+	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetFinanceHomeCardsData();
+	} = useGetFinanceHomeCardsData({ filters });
 
 	return (
 		<Box sx={styles.screenContent}>
-			<Box sx={styles.header}>
-				<Box sx={styles.filters}>
-					<Dropdown label="Site(s)" options={['site 1', 'site 2', 'site 3']} />
-					<DatePickerDropdown label="Start Date" />
-					<DatePickerDropdown label="End Date" />
-					<RegularButton label="Download" onClick={() => {}} />
-				</Box>
-				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton
-						round
-						Icon={PersonOutlined}
-						onClick={() => navigate('/operations/myAccount')}
-					/>
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
-				</Box>
-			</Box>
+			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
 
 			<Box sx={styles.cardRow}>
 				<ValueCard
@@ -98,14 +84,14 @@ export const Home = () => {
 				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
-				<CustomerBreakdownChart />
-				<FinancialPerformance />
-				<RevenueChart />
+				<CustomerBreakdownChart filters={filters} />
+				<FinancialPerformance filters={filters} />
+				<RevenueChart filters={filters} />
 			</Box>
 			<Box sx={styles.lastRow}>
 				<Box sx={styles.table}>
 					<GraphCard title="Transaction History">
-						<TransactionHistoryTable />
+						<TransactionHistoryTable filters={filters} />
 					</GraphCard>
 				</Box>
 				<Box sx={styles.lastRowCards}>

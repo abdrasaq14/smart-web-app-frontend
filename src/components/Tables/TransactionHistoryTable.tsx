@@ -9,15 +9,22 @@ import {
 	TablePagination,
 	TableRow,
 } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetTransactionsHistory } from '../../api/finance/Home/transactionHistory';
 import { Spinner } from '../Spinner';
+import { SitesDashboardFilters } from '../../types';
 
-export const TransactionHistoryTable = () => {
+type Props = { filters: SitesDashboardFilters };
+
+export const TransactionHistoryTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
+	const [internalFilters, setInternalFilters] = useState(filters);
 
-	const { data, isLoading, isError } = useGetTransactionsHistory(page, rowsPerPage);
+	const { data, isLoading, isError } = useGetTransactionsHistory({
+		pagination: { page, page_size: rowsPerPage },
+		filters: internalFilters,
+	});
 
 	const dataToDisplay = data?.results ?? [];
 
@@ -29,6 +36,12 @@ export const TransactionHistoryTable = () => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
+
+	useEffect(() => {
+		//TODO: when filters are changed, we want to reset the pagination. find a better way to do this
+		setPage(0);
+		setInternalFilters(filters);
+	}, [filters]);
 
 	if (isLoading) {
 		return <Spinner />;

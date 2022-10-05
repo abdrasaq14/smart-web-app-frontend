@@ -90,10 +90,6 @@ export function getQueryParams(options?: DashboardQueryProps) {
 	return { ...getPaginationQueryParams(options), ...getFiltersQueryParams(options) };
 }
 
-export function globalUseRealData() {
-	return false;
-}
-
 type GetDashboardDataProps = {
 	localUseRealData: boolean;
 	apiRoute: string;
@@ -108,7 +104,7 @@ export function getDashboardData<DataType>({
 	mockResponse,
 }: GetDashboardDataProps) {
 	return async function (options?: DashboardQueryProps): Promise<DataType> {
-		const filtersQueryParams = getFiltersQueryParams(options);
+		const filtersQueryParams = getQueryParams(options);
 
 		const useRealData = localUseRealData && globalUseRealData();
 		const response = useRealData
@@ -120,4 +116,8 @@ export function getDashboardData<DataType>({
 		}
 		return validatedResponse;
 	};
+}
+
+export function globalUseRealData() {
+	return false;
 }

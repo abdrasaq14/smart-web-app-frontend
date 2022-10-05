@@ -5,6 +5,7 @@ import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { formatCompact } from '../../utils/formatters';
 import { useGetRevenueLossBreakdownChartData } from '../../api/operations/operationsDashboard/revenueLossBreakdownChart';
+import { SitesDashboardFilters } from '../../types';
 
 const keyLabelMapping: any = {
 	billing: 'Billing 40(KWh)',
@@ -12,8 +13,8 @@ const keyLabelMapping: any = {
 	downtime: 'Downtime 60(KWh)',
 };
 
-const Chart = () => {
-	const { data, isLoading, isError } = useGetRevenueLossBreakdownChartData();
+const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
+	const { data, isLoading, isError } = useGetRevenueLossBreakdownChartData({ filters });
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
 			return {

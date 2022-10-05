@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 import { Spinner } from '../Spinner';
 import ChartCard from '../ChartCard';
 import { useGetRevenueChartData } from '../../api/finance/Home/revenueChart';
+import { SitesDashboardFilters } from '../../types';
 
-const Chart = () => {
-	const { data, isLoading, isError } = useGetRevenueChartData();
+const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
+	const { data, isLoading, isError } = useGetRevenueChartData({ filters });
 
 	const renderBody = () => {
 		if (isLoading) {

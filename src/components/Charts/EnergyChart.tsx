@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { Spinner } from '../Spinner';
 import { useGetEnergyChartData } from '../../api/operations/operationsDashboard/energyChart';
+import { SitesDashboardFilters } from '../../types';
 
-const EnergyChart = () => {
-	const { data, isLoading, isError } = useGetEnergyChartData();
+const EnergyChart = ({ filters }: { filters: SitesDashboardFilters }) => {
+	const { data, isLoading, isError } = useGetEnergyChartData({ filters });
 
 	const renderBody = () => {
 		if (isLoading) {

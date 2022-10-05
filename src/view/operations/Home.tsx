@@ -46,9 +46,7 @@ export const Home = () => {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetOperationsHomeCardsData({
-		filters,
-	});
+	} = useGetOperationsHomeCardsData({ filters });
 
 	return (
 		<Box sx={styles.screenContent}>

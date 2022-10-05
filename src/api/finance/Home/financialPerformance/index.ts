@@ -1,23 +1,17 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
-import { sleep } from '../../../../utils/utils';
 import { mockResponse } from './mock';
 import { ApiFinancialPerformanceChart, FinancialPerformanceChartSchema } from './types';
-import { get, globalUseRealData } from '../../../apiUtils';
+import { getDashboardData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
-
-const USE_REAL_DATA = false;
+import { DashboardQueryProps } from '../../../../types';
 
 const apiRoute = 'finance/financial-performance';
 
-export async function getFinancialPerformanceChartData(): Promise<ApiFinancialPerformanceChart> {
-	const useRealData = USE_REAL_DATA && globalUseRealData();
-	const response = useRealData ? await get(apiRoute) : mockResponse;
-	const validatedResponse = FinancialPerformanceChartSchema.parse(response);
-	if (!useRealData) {
-		await sleep(MOCK_RESPONSE_SLEEP_TIME);
-	}
-	return validatedResponse;
-}
+const getFinancialPerformanceChartData = getDashboardData<ApiFinancialPerformanceChart>({
+	localUseRealData: false,
+	apiRoute,
+	schema: FinancialPerformanceChartSchema,
+	mockResponse,
+});
 
-export const useGetFinancialPerformanceChartData = () =>
-	useQuery([apiRoute], getFinancialPerformanceChartData);
+export const useGetFinancialPerformanceChartData = (options?: DashboardQueryProps) =>
+	useQuery([apiRoute, options], () => getFinancialPerformanceChartData(options));

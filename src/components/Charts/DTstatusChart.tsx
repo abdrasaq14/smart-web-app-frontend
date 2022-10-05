@@ -5,9 +5,10 @@ import { Box } from '@mui/material';
 import ChartCard from '../ChartCard';
 import { Spinner } from '../Spinner';
 import { useGetDTstatusChartData } from '../../api/operations/operationsDashboard/DTstatusChart';
+import { SitesDashboardFilters } from '../../types';
 
-const DTstatusChart = () => {
-	const { data, isLoading, isError } = useGetDTstatusChartData();
+const DTstatusChart = ({ filters }: { filters: SitesDashboardFilters }) => {
+	const { data, isLoading, isError } = useGetDTstatusChartData({ filters });
 
 	const renderBody = () => {
 		if (isLoading) {
