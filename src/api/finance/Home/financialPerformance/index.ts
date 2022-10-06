@@ -4,10 +4,10 @@ import { getDashboardData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
 import { DashboardQueryProps } from '../../../../types';
 
-const apiRoute = 'finance/financial-performance';
+const apiRoute = 'finance/performance';
 
 const getFinancialPerformanceChartData = getDashboardData<ApiFinancialPerformanceChart>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: FinancialPerformanceChartSchema,
 	mockResponse,

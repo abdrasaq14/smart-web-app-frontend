@@ -4,10 +4,10 @@ import { useQuery } from 'react-query';
 import { getDashboardData } from '../../../apiUtils';
 import { DashboardQueryProps } from '../../../../types';
 
-const apiRoute = 'transactions';
+const apiRoute = 'transaction-history';
 
 const getTransactionHistory = getDashboardData<ApiTransactionHistory>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: TransactionHistoryResponseSchema,
 	mockResponse,

@@ -7,7 +7,7 @@ import { DashboardQueryProps } from '../../../../types';
 const apiRoute = 'finance/cards-data';
 
 const getCardsDataForFinanceHome = getDashboardData<ApiCardsDataForFinanceHome>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: CardsDataForFinanceHomeSchema,
 	mockResponse,

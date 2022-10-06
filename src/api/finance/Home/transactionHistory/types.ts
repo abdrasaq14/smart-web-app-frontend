@@ -2,11 +2,12 @@ import { z } from 'zod';
 
 const TransactionHistoryRowSchema = z.object({
 	id: z.number(),
-	site: z.string(),
+	// site: z.string(),
+	site: z.number(),
 	subscription: z.string(),
-	amountBilled: z.string(),
-	amountBought: z.string(),
-	duration: z.string(),
+	amount_billed: z.number(),
+	amount_bought: z.number(),
+	days: z.number(),
 	time: z.string(),
 });
 export const TransactionHistoryResponseSchema = z.object({

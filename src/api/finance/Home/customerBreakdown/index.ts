@@ -6,7 +6,7 @@ import { DashboardQueryProps } from '../../../../types';
 const apiRoute = 'finance/customer-breakdown';
 
 const getCustomerBreakdownChartData = getDashboardData<ApiPieChart>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: PieChartSchema,
 	mockResponse,

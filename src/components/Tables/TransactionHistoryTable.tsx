@@ -13,6 +13,7 @@ import React, { useEffect, useState } from 'react';
 import { useGetTransactionsHistory } from '../../api/finance/Home/transactionHistory';
 import { Spinner } from '../Spinner';
 import { SitesDashboardFilters } from '../../types';
+import { formatDateForDisplay, formatToUSlocale } from '../../utils/formatters';
 
 type Props = { filters: SitesDashboardFilters };
 
@@ -70,10 +71,10 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 									{row.site}
 								</TableCell>
 								<TableCell align="right">{row.subscription}</TableCell>
-								<TableCell align="right">{row.time}</TableCell>
-								<TableCell align="right">{row.amountBilled}</TableCell>
-								<TableCell align="right">{row.amountBought}</TableCell>
-								<TableCell align="right">{row.duration}</TableCell>
+								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
+								<TableCell align="right">{formatToUSlocale(row.amount_billed)}</TableCell>
+								<TableCell align="right">{formatToUSlocale(row.amount_bought)}</TableCell>
+								<TableCell align="right">{`${row.days} days`}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>

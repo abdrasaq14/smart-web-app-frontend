@@ -41,7 +41,7 @@ export function get(relativeUrl: string, options?: any) {
 	const requestOptions = {
 		method: 'GET',
 	};
-	const url = new URL(`${BASE_URL}${relativeUrl}/`);
+	const url = new URL(`${BASE_URL}${relativeUrl}`);
 	if (options?.queryParams) {
 		url.search = new URLSearchParams(options?.queryParams).toString();
 	}
@@ -119,5 +119,5 @@ export function getDashboardData<DataType>({
 }
 
 export function globalUseRealData() {
-	return true;
+	return false;
 }
