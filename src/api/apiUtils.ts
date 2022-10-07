@@ -4,7 +4,11 @@ import { DashboardQueryProps } from '../types';
 import { sleep } from '../utils/utils';
 import { MOCK_RESPONSE_SLEEP_TIME } from '../utils/constants';
 
-const BASE_URL = 'http://127.0.0.1:8000/api/';
+// const BASE_URL = 'http://127.0.0.1:8000/api/';
+const BASE_URL = 'https://api.demo.powersmarter.net/api/';
+export function globalUseRealData() {
+	return true;
+}
 
 const stringOrNumberSchema = z.union([z.string(), z.number()]);
 export const ChartDatasetDataSchema = z.array(z.array(stringOrNumberSchema));
@@ -122,8 +126,4 @@ export function getDashboardData<DataType>({
 		}
 		return validatedResponse;
 	};
-}
-
-export function globalUseRealData() {
-	return true;
 }
