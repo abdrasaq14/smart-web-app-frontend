@@ -1,10 +1,17 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
-import { sleep } from '../../../../utils/utils';
 import { ApiUserLogs, UserLogsResponseSchema } from './types';
 import { mockResponse } from './mock';
+import { getDashboardData } from '../../../apiUtils';
+import { DashboardQueryProps } from '../../../../types';
+import { useQuery } from 'react-query';
 
-export async function getUserLogs(): Promise<ApiUserLogs> {
-	const response = UserLogsResponseSchema.parse(mockResponse);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME);
-	return response;
-}
+const apiRoute = 'user-logs';
+
+const getUserLogs = getDashboardData<ApiUserLogs>({
+	localUseRealData: true,
+	apiRoute,
+	schema: UserLogsResponseSchema,
+	mockResponse,
+});
+
+export const useGetUserLogs = (options?: DashboardQueryProps) =>
+	useQuery([apiRoute, options], () => getUserLogs(options));

@@ -10,25 +10,21 @@ import {
 	TableRow,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Dashboard } from '@mui/icons-material';
-import { IconButton } from '../IconButton';
-import { useNavigate } from 'react-router-dom';
+import { useGetUserLogs } from '../../api/operations/operationsActivityLog/userLogs';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
-import { useGetSites } from '../../api/operations/operationsSites';
 import { formatDateForDisplay } from '../../utils/formatters';
 
 type Props = {
 	filters: SitesDashboardFilters;
 };
 
-export const SitesTable = ({ filters }: Props) => {
-	const navigate = useNavigate();
+export const UserLogsTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
 
-	const { data, isLoading, isError } = useGetSites({
+	const { data, isLoading, isError } = useGetUserLogs({
 		pagination: { page, page_size: rowsPerPage },
 		filters: internalFilters,
 	});
@@ -61,33 +57,23 @@ export const SitesTable = ({ filters }: Props) => {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Asset name</TableCell>
-							<TableCell align="right">Site</TableCell>
-							<TableCell align="right">Asset Type</TableCell>
-							<TableCell align="right">Asset co-ordinate</TableCell>
-							<TableCell align="right">Asset capacity</TableCell>
+							<TableCell>Alert ID</TableCell>
 							<TableCell align="right">Time/Date</TableCell>
-							<TableCell align="right"></TableCell>
+							<TableCell align="right">Modified by</TableCell>
+							<TableCell align="right">Employee ID</TableCell>
+							<TableCell align="right">Email address</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell align="right" component="th" scope="row">
-									{row.asset_name}
+								<TableCell component="th" scope="row">
+									{row.alert_id}
 								</TableCell>
-								<TableCell align="right">{row.name}</TableCell>
-								<TableCell align="right">{row.asset_type}</TableCell>
-								<TableCell align="right">{row.asset_co_ordinate}</TableCell>
-								<TableCell align="right">{row.asset_capacity}</TableCell>
 								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="right">
-									<IconButton
-										round
-										Icon={Dashboard}
-										onClick={() => navigate('/operations/dashboard')}
-									/>
-								</TableCell>
+								<TableCell align="right">{row.modified_by}</TableCell>
+								<TableCell align="right">{row.employee_id}</TableCell>
+								<TableCell align="right">{row.email_address}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Checkbox, FormControlLabel, Tab, Tabs, TextField, Typography } from '@mui/material';
 import { DatePickerDropdown } from '../../components/DatePickerDropdown';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { EventLogsTable } from '../../components/EventLogsTable';
-import { UserLogTable } from '../../components/UserLogTable';
+import { EventLogsTable } from '../../components/Tables/EventLogsTable';
+import { UserLogsTable } from '../../components/Tables/UserLogsTable';
 import { GraphCard } from '../../components/GraphCard';
+import { SitesDashboardFilters } from '../../types';
+import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
+import ControlledDatePicker from '../../components/ControlledDatePicker';
+import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 
 const styles = {
 	screenContent: {
@@ -57,10 +61,20 @@ function a11yProps(index: number) {
 
 export const ActivityLog = () => {
 	const navigate = useNavigate();
-	const [value, setValue] = React.useState(0);
+	const [tabValue, setTabValue] = React.useState(0);
+	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
 
-	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
+	const handleTabValueChange = (event: React.SyntheticEvent, newValue: number) => {
+		setTabValue(newValue);
+	};
+
+	const updateFilters = (key: keyof SitesDashboardFilters) => (value: any) => {
+		setFilters((prevFilters) => ({ ...prevFilters, [key]: value }));
+	};
+
+	const handleChangeInSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const value = event.target.value;
+		setFilters((prevFilters) => ({ ...prevFilters, search: value }));
 	};
 
 	return (
@@ -71,6 +85,8 @@ export const ActivityLog = () => {
 					id="site_search"
 					type="text"
 					placeholder="Search for asset name, site and more"
+					value={filters.search}
+					onChange={handleChangeInSearch}
 				/>
 				<Box sx={styles.headerIcons}>
 					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
@@ -84,7 +100,7 @@ export const ActivityLog = () => {
 			</Box>
 			<Box sx={styles.filters}>
 				<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-					<Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+					<Tabs value={tabValue} onChange={handleTabValueChange} aria-label="basic tabs example">
 						<Tab label="Event Logs" {...a11yProps(0)} />
 						<Tab label="Alerts" {...a11yProps(1)} />
 						<Tab label="User Logs" {...a11yProps(2)} />
@@ -92,22 +108,30 @@ export const ActivityLog = () => {
 					</Tabs>
 				</Box>
 				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '600px' }}>
-					<DatePickerDropdown label="Start Date" />
-					<DatePickerDropdown label="End Date" />
+					<ControlledDatePicker
+						label="Start Date"
+						value={filters.start_date ?? null}
+						setValue={updateFilters('start_date')}
+					/>
+					<ControlledDatePicker
+						label="End Date"
+						value={filters.end_date ?? null}
+						setValue={updateFilters('end_date')}
+					/>
 					<RegularButton label="Download" onClick={() => {}} />
 				</Box>
 			</Box>
 			<Box>
-				<TabPanel value={value} index={0}>
-					<EventLogsTable />
+				<TabPanel value={tabValue} index={0}>
+					<EventLogsTable filters={filters} />
 				</TabPanel>
-				<TabPanel value={value} index={1}>
-					<EventLogsTable />
+				<TabPanel value={tabValue} index={1}>
+					<AlertHistoryTable filters={filters} />
 				</TabPanel>
-				<TabPanel value={value} index={2}>
-					<UserLogTable />
+				<TabPanel value={tabValue} index={2}>
+					<UserLogsTable filters={filters} />
 				</TabPanel>
-				<TabPanel value={value} index={3}>
+				<TabPanel value={tabValue} index={3}>
 					<GraphCard title="Choose Details">
 						<DatePickerDropdown label="Start Date" />
 						<DatePickerDropdown label="End Date" />

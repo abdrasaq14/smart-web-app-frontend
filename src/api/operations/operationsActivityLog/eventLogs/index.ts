@@ -1,10 +1,17 @@
-import { MOCK_RESPONSE_SLEEP_TIME } from '../../../../utils/constants';
-import { sleep } from '../../../../utils/utils';
 import { ApiEventLogs, EventLogsResponseSchema } from './types';
 import { mockResponse } from './mock';
+import { getDashboardData } from '../../../apiUtils';
+import { DashboardQueryProps } from '../../../../types';
+import { useQuery } from 'react-query';
 
-export async function getEventLogs(): Promise<ApiEventLogs> {
-	const response = EventLogsResponseSchema.parse(mockResponse);
-	await sleep(MOCK_RESPONSE_SLEEP_TIME);
-	return response;
-}
+const apiRoute = 'event-logs';
+
+const getEventLogs = getDashboardData<ApiEventLogs>({
+	localUseRealData: true,
+	apiRoute,
+	schema: EventLogsResponseSchema,
+	mockResponse,
+});
+
+export const useGetEventLogs = (options?: DashboardQueryProps) =>
+	useQuery([apiRoute, options], () => getEventLogs(options));

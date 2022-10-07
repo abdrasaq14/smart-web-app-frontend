@@ -1,13 +1,18 @@
 import { z } from 'zod';
 
-const UserLogSchema = z.object({
-	alertId: z.string(),
-	modifiedBy: z.string(),
-	employeeId: z.string(),
-	emailAddress: z.string(),
+const UserLogRowSchema = z.object({
+	id: z.number(),
+	alert_id: z.string(),
+	modified_by: z.string(),
+	employee_id: z.string(),
+	email_address: z.string(),
 	time: z.string(),
 });
-export const UserLogsResponseSchema = z.array(UserLogSchema);
+export const UserLogsResponseSchema = z.object({
+	count: z.number(),
+	next: z.nullable(z.string()),
+	previous: z.nullable(z.string()),
+	results: z.array(UserLogRowSchema),
+});
 
-export type ApiUserLog = z.infer<typeof UserLogSchema>;
 export type ApiUserLogs = z.infer<typeof UserLogsResponseSchema>;

@@ -5,8 +5,8 @@ import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-materi
 import { RegularButton } from '../../components/Button';
 import { IconButton } from '../../components/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { EventLogsTable } from '../../components/EventLogsTable';
-import { UserLogTable } from '../../components/UserLogTable';
+import { EventLogsTable } from '../../components/Tables/EventLogsTable';
+import { UserLogsTable } from '../../components/Tables/UserLogsTable';
 import { GraphCard } from '../../components/GraphCard';
 
 const styles = {
@@ -105,7 +105,7 @@ export const ActivityLog = () => {
 					<EventLogsTable />
 				</TabPanel>
 				<TabPanel value={value} index={2}>
-					<UserLogTable />
+					<UserLogsTable />
 				</TabPanel>
 				<TabPanel value={value} index={3}>
 					<GraphCard title="Choose Details">

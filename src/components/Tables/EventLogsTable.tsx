@@ -10,25 +10,21 @@ import {
 	TableRow,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { Dashboard } from '@mui/icons-material';
-import { IconButton } from '../IconButton';
-import { useNavigate } from 'react-router-dom';
+import { useGetEventLogs } from '../../api/operations/operationsActivityLog/eventLogs';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
-import { useGetSites } from '../../api/operations/operationsSites';
 import { formatDateForDisplay } from '../../utils/formatters';
 
 type Props = {
 	filters: SitesDashboardFilters;
 };
 
-export const SitesTable = ({ filters }: Props) => {
-	const navigate = useNavigate();
+export const EventLogsTable = ({ filters }: Props) => {
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
 
-	const { data, isLoading, isError } = useGetSites({
+	const { data, isLoading, isError } = useGetEventLogs({
 		pagination: { page, page_size: rowsPerPage },
 		filters: internalFilters,
 	});
@@ -61,33 +57,27 @@ export const SitesTable = ({ filters }: Props) => {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Asset name</TableCell>
+							<TableCell>Time/Date</TableCell>
+							<TableCell align="right">Alert ID</TableCell>
 							<TableCell align="right">Site</TableCell>
-							<TableCell align="right">Asset Type</TableCell>
-							<TableCell align="right">Asset co-ordinate</TableCell>
-							<TableCell align="right">Asset capacity</TableCell>
-							<TableCell align="right">Time/Date</TableCell>
-							<TableCell align="right"></TableCell>
+							<TableCell align="right">Zone</TableCell>
+							<TableCell align="right">District</TableCell>
+							<TableCell align="right">Activity</TableCell>
+							<TableCell align="right">Status</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell align="right" component="th" scope="row">
-									{row.asset_name}
+								<TableCell component="th" scope="row">
+									{formatDateForDisplay(row.time)}
 								</TableCell>
-								<TableCell align="right">{row.name}</TableCell>
-								<TableCell align="right">{row.asset_type}</TableCell>
-								<TableCell align="right">{row.asset_co_ordinate}</TableCell>
-								<TableCell align="right">{row.asset_capacity}</TableCell>
-								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="right">
-									<IconButton
-										round
-										Icon={Dashboard}
-										onClick={() => navigate('/operations/dashboard')}
-									/>
-								</TableCell>
+								<TableCell align="right">{row.alert_id}</TableCell>
+								<TableCell align="right">{row.site}</TableCell>
+								<TableCell align="right">{row.zone}</TableCell>
+								<TableCell align="right">{row.district}</TableCell>
+								<TableCell align="right">{row.activity}</TableCell>
+								<TableCell align="right">{row.status}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
