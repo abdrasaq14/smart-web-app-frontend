@@ -12,7 +12,6 @@ const styles = {
 		display: 'flex',
 		flexDirection: 'column',
 	},
-	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 };
 
 export const Sites = () => {

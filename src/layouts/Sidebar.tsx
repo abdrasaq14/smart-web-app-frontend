@@ -14,6 +14,7 @@ const styles = {
 			alignItems: 'center',
 		},
 	},
+	logo: { cursor: 'pointer' },
 	button: {
 		base: {
 			width: '223px',
@@ -41,7 +42,14 @@ export const Sidebar = ({ buttonDefinitions }: { buttonDefinitions: Array<AppMen
 
 	return (
 		<Drawer sx={styles.drawerContainer} variant="permanent" anchor="left">
-			<img src="logo.png" alt="Smarterise" />
+			<img
+				src="logo.png"
+				alt="Smarterise"
+				style={styles.logo}
+				onClick={() => {
+					navigate('/');
+				}}
+			/>
 			{buttonDefinitions.map((buttonDefinition: AppMenuButton) => (
 				<Button
 					key={buttonDefinition.id}
