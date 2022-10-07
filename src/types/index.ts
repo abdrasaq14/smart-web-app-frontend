@@ -1,4 +1,5 @@
 export type SitesDashboardFilters = {
+	search?: string | null;
 	sites?: number[];
 	start_date?: Date | null;
 	end_date?: Date | null;

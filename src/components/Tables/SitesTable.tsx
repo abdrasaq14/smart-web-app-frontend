@@ -9,21 +9,29 @@ import {
 	TablePagination,
 	TableRow,
 } from '@mui/material';
-import React from 'react';
-import { ApiAssets } from '../api/operations/operationsSites/types';
+import React, { useEffect, useState } from 'react';
 import { Dashboard } from '@mui/icons-material';
-import { IconButton } from '../components/IconButton';
+import { IconButton } from '../IconButton';
 import { useNavigate } from 'react-router-dom';
+import { SitesDashboardFilters } from '../../types';
+import { Spinner } from '../Spinner';
+import { useGetSites } from '../../api/operations/operationsSites';
 
 type Props = {
-	data: ApiAssets;
+	filters: SitesDashboardFilters;
 };
 
-export const SiteTable = ({ data }: Props) => {
+export const SitesTable = ({ filters }: Props) => {
 	const navigate = useNavigate();
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
-	const dataToDisplay = data.results.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+	const [internalFilters, setInternalFilters] = useState(filters);
+
+	const { data, isLoading, isError } = useGetSites({
+		pagination: { page, page_size: rowsPerPage },
+		filters: internalFilters,
+	});
+	const dataToDisplay = data?.results ?? [];
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -33,6 +41,19 @@ export const SiteTable = ({ data }: Props) => {
 		setRowsPerPage(parseInt(event.target.value, 10));
 		setPage(0);
 	};
+
+	useEffect(() => {
+		//TODO: when filters are changed, we want to reset the pagination. find a better way to do this
+		setPage(0);
+		setInternalFilters(filters);
+	}, [filters]);
+
+	if (isLoading) {
+		return <Spinner />;
+	} else if (isError) {
+		return <Box>Error fetching data...</Box>;
+	}
+
 	return (
 		<Box>
 			<TableContainer component={Paper}>
@@ -50,7 +71,7 @@ export const SiteTable = ({ data }: Props) => {
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
-							<TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell align="right" component="th" scope="row">
 									{row.asset_name}
 								</TableCell>
@@ -72,7 +93,7 @@ export const SiteTable = ({ data }: Props) => {
 				</Table>
 			</TableContainer>
 			<TablePagination
-				rowsPerPageOptions={[5, 10, 25]}
+				rowsPerPageOptions={[15]}
 				component="div"
 				count={data?.count ?? 0}
 				rowsPerPage={rowsPerPage}

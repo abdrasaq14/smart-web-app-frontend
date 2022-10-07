@@ -8,7 +8,7 @@ import { OperationsLayout } from './operations/OperationsLayout';
 import { FinancesLayout } from './finance/FinancesLayout';
 import { MyAccount as OperationsMyAccount } from './operations/MyAccount';
 import { ActivityLog as OperationsActivitylog } from './operations/ActivityLog';
-import { Site as OperationSite } from './operations/Site';
+import { Sites as OperationSite } from './operations/Sites';
 import { Transactions as FinanceTransaction } from './finance/Transactions';
 
 import { Home as SeniorManagerAccountHome } from './seniorManagerAccout/Home';

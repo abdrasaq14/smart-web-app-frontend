@@ -52,6 +52,12 @@ export function getFiltersQueryParams(options?: DashboardQueryProps) {
 	const filters = options?.filters;
 	let queryParams = {};
 	if (filters) {
+		if (filters.search && filters.search != '') {
+			queryParams = {
+				...queryParams,
+				search: filters.search,
+			};
+		}
 		if (filters.sites && filters.sites?.length > 0) {
 			queryParams = {
 				...queryParams,
@@ -119,5 +125,5 @@ export function getDashboardData<DataType>({
 }
 
 export function globalUseRealData() {
-	return false;
+	return true;
 }
