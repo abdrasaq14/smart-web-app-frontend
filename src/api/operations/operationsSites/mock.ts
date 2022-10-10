@@ -12,7 +12,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Transformer',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 2,
@@ -21,7 +21,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Generator',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 3,
@@ -30,7 +30,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Solar PV',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 4,
@@ -39,7 +39,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 5,
@@ -48,7 +48,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 6,
@@ -57,7 +57,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 7,
@@ -66,7 +66,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 8,
@@ -75,7 +75,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 9,
@@ -84,7 +84,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 10,
@@ -93,7 +93,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 11,
@@ -102,7 +102,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 12,
@@ -111,7 +111,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 13,
@@ -120,7 +120,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 14,
@@ -129,7 +129,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 15,
@@ -138,7 +138,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 16,
@@ -147,7 +147,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 17,
@@ -156,7 +156,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
 			id: 18,
@@ -165,7 +165,7 @@ export const mockResponse: ApiAssets = {
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
 			asset_capacity: '300kVA',
-			time: '04:25 AM Sun - 14 April, 2022',
+			time: 'Sun · 14 April, 04:25 AM',
 		},
 	],
 };
