@@ -29,3 +29,6 @@ jobs:
         run: yarn build
       - name: Deploy to s3
         run: cd dist && aws s3 sync . s3://smarterise-web-app-dev
+
+      - name: Invalidate CloudFront Cache
+        run: aws cloudfront create-invalidation --distribution-id E2YZQA3O7T4E4H --paths '/*'
