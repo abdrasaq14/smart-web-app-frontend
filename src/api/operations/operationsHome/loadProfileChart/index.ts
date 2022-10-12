@@ -7,7 +7,7 @@ import { mockResponse } from './mock';
 const apiRoute = 'operations/profile-chart';
 
 const getLoadProfileChartData = getDashboardData<ApiLoadProfileChart>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: LoadProfileChartSchema,
 	mockResponse,
