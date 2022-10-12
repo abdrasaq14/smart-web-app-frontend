@@ -7,10 +7,13 @@ import { mockResponse } from './mock';
 const apiRoute = 'operations/profile-chart';
 
 const getLoadProfileChartData = getDashboardData<ApiLoadProfileChart>({
-	localUseRealData: true,
+	localUseRealData: false,
 	apiRoute,
 	schema: LoadProfileChartSchema,
 	mockResponse,
+	// transformFunction: (responseData) => {
+	// 	return { dataset: [['time', 'profile'], ...responseData.dataset] };
+	// },
 });
 
 export const useGetLoadProfileChartData = (options?: DashboardQueryProps) =>

@@ -105,6 +105,7 @@ type GetDashboardDataProps = {
 	apiRoute: string;
 	schema: any;
 	mockResponse: any;
+	transformFunction?: (x: any) => any;
 };
 
 export function getDashboardData<DataType>({
@@ -112,6 +113,7 @@ export function getDashboardData<DataType>({
 	apiRoute,
 	schema,
 	mockResponse,
+	transformFunction,
 }: GetDashboardDataProps) {
 	return async function (options?: DashboardQueryProps): Promise<DataType> {
 		const filtersQueryParams = getQueryParams(options);
@@ -124,6 +126,11 @@ export function getDashboardData<DataType>({
 		if (!useRealData) {
 			await sleep(MOCK_RESPONSE_SLEEP_TIME);
 		}
-		return validatedResponse;
+
+		if (transformFunction) {
+			return transformFunction(validatedResponse);
+		} else {
+			return validatedResponse;
+		}
 	};
 }

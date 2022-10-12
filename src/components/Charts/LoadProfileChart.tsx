@@ -20,9 +20,11 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		}
 	};
 
+	const dataset = [['time', 'profile'], ...(data?.dataset ?? [])];
+
 	const options = {
 		dataset: {
-			source: data?.dataset,
+			source: dataset,
 		},
 		xAxis: {},
 		yAxis: {},
@@ -30,16 +32,8 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 			{
 				type: 'line',
 				encode: {
-					x: 'day',
-					y: 'profile1',
-				},
-				areaStyle: {},
-			},
-			{
-				type: 'line',
-				encode: {
-					x: 'day',
-					y: 'profile2',
+					x: 'time',
+					y: 'profile',
 				},
 				areaStyle: {},
 			},
