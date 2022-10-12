@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
-import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
-import { useGetOperationsHomeCardsData } from '../../api/operations/operationsHome/cardsData';
-import SitesMonitored from '../../components/Charts/SitesMonitoredChart';
-import LoadProfileChart from '../../components/Charts/LoadProfileChart';
 import PowerConsumptionChart from '../../components/Charts/PowerConsumptionChart';
 import { formatToUSlocale } from '../../utils/formatters';
 import { SitesDashboardFilters } from '../../types';
-import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
+import { useGetManagerHomeCardsData } from '../../api/seniorManager/cardsData';
+import RevenueChart from '../../components/Charts/RevenueChart';
+import DateFiltersHeader from '../../layouts/DateFiltersHeader';
 
 const styles = {
 	screenContent: {
@@ -22,21 +20,12 @@ const styles = {
 	},
 
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	chartsRow: { display: 'flex', justifyContent: 'space-between' },
-	lastRow: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		width: '100%',
-		marginTop: '32px',
-		height: '380px',
-	},
-	table: { width: '784px', height: '100%' },
-	lastRowCards: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		height: '100%',
-	},
+	mapCardsAndChartsRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
+	mapAndCardsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
+	mapRow: { width: '775px', height: '500px' },
+	mapImage: {},
+	cardsBottomRow: { display: 'flex', justifyContent: 'space-between' },
+	chartsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
 };
 
 export const Home = () => {
@@ -46,63 +35,70 @@ export const Home = () => {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
 		isError: isCardsDataError,
-	} = useGetOperationsHomeCardsData({ filters });
+	} = useGetManagerHomeCardsData({ filters });
 
 	return (
 		<Box sx={styles.screenContent}>
-			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
+			<DateFiltersHeader filters={filters} setFilters={setFilters} />
 
 			<Box>
 				<Box sx={styles.cardRow}>
 					<ValueCard
-						value={formatToUSlocale(cardsData?.total_consumption)}
+						value={formatToUSlocale(cardsData?.total_revenue)}
 						label="Total Consumtion (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={formatToUSlocale(cardsData?.current_load)}
+						value={formatToUSlocale(cardsData?.atc_losses)}
 						label="Current Load (kW)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={`${cardsData?.avg_availability} hrs`}
+						value={formatToUSlocale(cardsData?.total_consumption)}
 						label="Avg. Availability"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={cardsData?.power_cuts}
+						value={formatToUSlocale(cardsData?.current_load)}
 						label="Power Cut"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 				</Box>
-				<Box sx={styles.chartsRow}>
-					<SitesMonitored filters={filters} />
-					<LoadProfileChart filters={filters} />
-					<PowerConsumptionChart filters={filters} />
-				</Box>
-				<Box sx={styles.lastRow}>
-					<Box sx={styles.table}>
-						<GraphCard title="Alert History">
-							<AlertHistoryTable filters={filters} />
-						</GraphCard>
+				<Box sx={styles.mapCardsAndChartsRow}>
+					<Box sx={styles.mapAndCardsColumn}>
+						<Box sx={styles.mapRow}>
+							<GraphCard title="Map">
+								<img src="map.png" alt="Smarterise" style={styles.mapImage} />
+							</GraphCard>
+						</Box>
+						<Box sx={styles.cardsBottomRow}>
+							<ValueCard
+								value={cardsData?.number_of_sites}
+								label="Power Cut"
+								isLoading={isCardsDataLoading}
+								isError={isCardsDataError}
+							/>
+							<ValueCard
+								value={cardsData?.number_of_users}
+								label="Power Cut"
+								isLoading={isCardsDataLoading}
+								isError={isCardsDataError}
+							/>
+							<ValueCard
+								value={cardsData?.pending_alerts}
+								label="Power Cut"
+								isLoading={isCardsDataLoading}
+								isError={isCardsDataError}
+							/>
+						</Box>
 					</Box>
-					<Box sx={styles.lastRowCards}>
-						<ValueCard
-							value={cardsData?.overloaded_dts}
-							label="Overloaded DTs"
-							isLoading={isCardsDataLoading}
-							isError={isCardsDataError}
-						/>
-						<ValueCard
-							value={cardsData?.sites_under_maintenance}
-							label="Sites under maintenance"
-							isLoading={isCardsDataLoading}
-							isError={isCardsDataError}
-						/>
+					<Box sx={styles.chartsColumn}>
+						<PowerConsumptionChart filters={filters} />
+						<RevenueChart filters={filters} />
 					</Box>
 				</Box>
 			</Box>
