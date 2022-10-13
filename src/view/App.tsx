@@ -19,6 +19,7 @@ import { ActivityLog as SeniorManagerAccountActivityLog } from './seniorManagerA
 import { Home as AccountUiHome } from './accountUI/Home';
 import { Companies as AccountUiCompanies } from './accountUI/Companies';
 import { Users as AccountUiUsers } from './accountUI/Users';
+import { Devices as AccountUiDevices } from './accountUI/Devices';
 
 // import { Auth0Provider } from '@auth0/auth0-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -65,6 +66,7 @@ export const App = () => {
 						<Route path="home" element={<AccountUiHome />} />
 						<Route path="companies" element={<AccountUiCompanies />} />
 						<Route path="users" element={<AccountUiUsers />} />
+						<Route path="devices" element={<AccountUiDevices />} />
 					</Route>
 					<Route path="/login" element={<Login />} />
 					<Route path="/" element={<UserTypeSwitcher />} />
