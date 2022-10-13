@@ -1,6 +1,6 @@
-import { getDashboardData } from '../../apiUtils';
+import { getDashboardData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
-import { DashboardQueryProps } from '../../../types';
+import { DashboardQueryProps } from '../../../../types';
 import { mockResponse } from './mock';
 import { ApiCardsDataForManagerHome, CardsDataForManagerHomeSchema } from './types';
 

@@ -1,4 +1,3 @@
-import { PersonOutlined } from '@mui/icons-material';
 import React from 'react';
 import { Sidebar } from '../layouts/Sidebar';
 import { AppMenuButton } from '../types';
@@ -22,8 +21,7 @@ const buttonDefinitions: Array<AppMenuButton> = [
 	{
 		id: 4,
 		label: 'Smarterise Account UI',
-		icon: <PersonOutlined />,
-		path: '/account/home',
+		path: '/account-ui/home',
 	},
 ];
 

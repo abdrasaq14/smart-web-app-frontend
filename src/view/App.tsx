@@ -16,10 +16,13 @@ import { Home as SeniorManagerAccountOperations } from './seniorManagerAccout/Op
 import { Home as SeniorManagerAccountFinance } from './seniorManagerAccout/Finance';
 import { ActivityLog as SeniorManagerAccountActivityLog } from './seniorManagerAccout/ActivityLog';
 
+import { Home as AccountUiHome } from './accountUI/Home';
+
 // import { Auth0Provider } from '@auth0/auth0-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import UserTypeSwitcher from './UserTypeSwitcher';
 import { SeniorManagerAccountLayout } from './seniorManagerAccout/SeniorManagerAccountLayout';
+import { AccountUiLayout } from './accountUI/AccountUiLayout';
 
 export const App = () => {
 	const queryClient = new QueryClient();
@@ -54,6 +57,10 @@ export const App = () => {
 						<Route path="finance" element={<SeniorManagerAccountFinance />} />
 						<Route path="activity-log" element={<SeniorManagerAccountActivityLog />} />
 						<Route path="myAccount" element={<OperationsMyAccount />} />
+					</Route>
+					<Route path="/account-ui" element={<AccountUiLayout />}>
+						<Route index element={<AccountUiHome />} />
+						<Route path="home" element={<AccountUiHome />} />
 					</Route>
 					<Route path="/login" element={<Login />} />
 					<Route path="/" element={<UserTypeSwitcher />} />
