@@ -16,7 +16,7 @@ const buttonDefinitions: Array<AppMenuButton> = [
 	{
 		id: 3,
 		label: 'Senior Manager',
-		path: '/senior-manager-account/operations',
+		path: '/senior-manager-account/home',
 	},
 	{
 		id: 4,
