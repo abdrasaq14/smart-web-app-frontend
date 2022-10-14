@@ -23,3 +23,5 @@ export interface AppMenuButton {
 	icon?: JSX.Element;
 	path: string;
 }
+
+export type KeyValueMapping = { [key in string]: (value: number, total?: number) => string };

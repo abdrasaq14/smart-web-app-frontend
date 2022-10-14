@@ -1,12 +1,12 @@
 import React from 'react';
 import { formatCompact } from '../../utils/formatters';
 import { useGetCustomerBreakdownChartData } from '../../api/finance/Home/customerBreakdown';
-import { SitesDashboardFilters } from '../../types';
+import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
-const keyLabelMapping: any = {
-	paying: 'Paying',
-	defaulting: 'Defaulting',
+const keyLabelMapping: KeyValueMapping = {
+	paying: (value, total = 1) => `Paying ${formatCompact((value * 100) / total)}%`,
+	defaulting: (value, total = 1) => `Defaulting ${formatCompact((value * 100) / total)}%`,
 };
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {

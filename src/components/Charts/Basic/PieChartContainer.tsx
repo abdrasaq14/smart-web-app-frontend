@@ -3,10 +3,10 @@ import { Box } from '@mui/material';
 import PieChart from './PieChart';
 import ChartCard from '../../ChartCard';
 import React from 'react';
-import { formatToUSlocale } from '../../../utils/formatters';
+import { KeyValueMapping } from '../../../types';
 
 interface PieChartContainerProps {
-	keyLabelMapping: { [key in string]: string };
+	keyLabelMapping: KeyValueMapping;
 	pieTitle: string;
 	cardTitle: string;
 	data?: { dataset: any[]; total: number };
@@ -25,7 +25,7 @@ export function PieChartContainer({
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
 			return {
-				name: `${keyLabelMapping[apiDataRow.key]} ${formatToUSlocale(apiDataRow.value)}` ?? '',
+				name: keyLabelMapping[apiDataRow.key](apiDataRow.value, data?.total),
 				value: apiDataRow.value,
 			};
 		}) ?? [];

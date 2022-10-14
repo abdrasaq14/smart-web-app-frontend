@@ -1,13 +1,13 @@
 import React from 'react';
 import { formatCompact } from '../../utils/formatters';
 import { useGetRevenueLossBreakdownChartData } from '../../api/operations/operationsDashboard/revenueLossBreakdownChart';
-import { SitesDashboardFilters } from '../../types';
+import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
-const keyLabelMapping: { [key in string]: string } = {
-	billing: 'Billing',
-	collection: 'Collection',
-	downtime: 'Downtime',
+const keyLabelMapping: KeyValueMapping = {
+	billing: (value) => `Billing ${formatCompact(value)} (KWh)`,
+	collection: (value) => `Collection ${formatCompact(value)} (KWh)`,
+	downtime: (value) => `Downtime ${formatCompact(value)} (KWh)`,
 };
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {

@@ -1,12 +1,12 @@
 import React from 'react';
 import { useGetSitesMonitoredChartData } from '../../api/operations/operationsHome/sitesMonitored';
 import { formatCompact } from '../../utils/formatters';
-import { SitesDashboardFilters } from '../../types';
+import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
-const keyLabelMapping: any = {
-	active: 'Active',
-	offline: 'Offline',
+const keyLabelMapping: KeyValueMapping = {
+	active: (value, total = 1) => `Active ${formatCompact((value * 100) / total)}%`,
+	offline: (value, total = 1) => `Offline ${formatCompact((value * 100) / total)}`,
 };
 
 const Page = ({ filters }: { filters: SitesDashboardFilters }) => {
