@@ -18,6 +18,7 @@ import { ActivityLog as SeniorManagerAccountActivityLog } from './seniorManagerA
 
 import { Home as AccountUiHome } from './accountUI/Home';
 import { Companies as AccountUiCompanies } from './accountUI/Companies';
+import { Company as AccountUiCompany } from './accountUI/Company';
 import { Users as AccountUiUsers } from './accountUI/Users';
 import { Devices as AccountUiDevices } from './accountUI/Devices';
 
@@ -65,6 +66,7 @@ export const App = () => {
 						<Route index element={<AccountUiHome />} />
 						<Route path="home" element={<AccountUiHome />} />
 						<Route path="companies" element={<AccountUiCompanies />} />
+						<Route path="companies/:id" element={<AccountUiCompany />} />
 						<Route path="users" element={<AccountUiUsers />} />
 						<Route path="devices" element={<AccountUiDevices />} />
 					</Route>

@@ -10,7 +10,7 @@ export const mockResponse: ApiDevice = {
 			device_id: 'David ABU-235LK',
 			name: 'David ABU-235LK',
 			company: 'Smarterise',
-			asset_type: 'Transformer',
+			asset_type: 'Transformer', // set of options
 			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},

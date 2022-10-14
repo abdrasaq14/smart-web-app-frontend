@@ -11,7 +11,7 @@ export const mockResponse: ApiUsers = {
 			company: 'Stell & Bronze Ltd',
 			employee_id: 'SM11098',
 			email_address: 'drakefinn@smarterise.com',
-			department: 'Operation',
+			department: 'Operation', // set if options
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{

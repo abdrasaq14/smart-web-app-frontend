@@ -6,9 +6,10 @@ const UserSchema = z.object({
 	company: z.string(),
 	employee_id: z.string(),
 	email_address: z.string(),
-	department: z.string(),
+	department: z.string(), // set of options
 	time: z.string(),
 });
+
 export const UserResponseSchema = z.object({
 	count: z.number(),
 	next: z.nullable(z.string()),

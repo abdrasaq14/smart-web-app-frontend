@@ -5,7 +5,7 @@ const DeviceSchema = z.object({
 	device_id: z.string(),
 	name: z.string(),
 	company: z.string(),
-	asset_type: z.string(),
+	asset_type: z.string(), // set of options
 	asset_capacity: z.number(),
 	time: z.string(),
 });
