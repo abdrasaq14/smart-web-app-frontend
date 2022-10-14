@@ -15,7 +15,7 @@ export type DashboardQueryProps = {
 	pagination?: DashboardPaginationProps;
 	filters?: SitesDashboardFilters;
 };
-export type OperationsSiteDashboardChartType = 'voltage' | 'load' | 'pf' | 'frequency';
+export type OperationsSiteDashboardChartType = 'voltage' | 'load' | 'pf'; // | 'frequency';
 
 export interface AppMenuButton {
 	id: number;

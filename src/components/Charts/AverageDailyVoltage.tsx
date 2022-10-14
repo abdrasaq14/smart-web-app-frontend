@@ -70,7 +70,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		voltage: 'Average Daily Voltage',
 		load: 'Average Daily Load',
 		pf: 'Average Daily PF',
-		frequency: 'Average Daily Frequency',
+		// frequency: 'Average Daily Frequency',
 	};
 
 	const handleChange = (event: SelectChangeEvent) => {
@@ -89,7 +89,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 				<MenuItem value="voltage">Average Daily Voltage</MenuItem>
 				<MenuItem value="load">Average Daily Load</MenuItem>
 				<MenuItem value="pf">Average Daily PF</MenuItem>
-				<MenuItem value="frequency">Average Daily Frequency</MenuItem>
+				{/*<MenuItem value="frequency">Average Daily Frequency</MenuItem>*/}
 			</Select>
 			{renderBody()}
 		</ChartCard>

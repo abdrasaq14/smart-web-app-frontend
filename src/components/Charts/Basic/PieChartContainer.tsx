@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import PieChart from './PieChart';
 import ChartCard from '../../ChartCard';
 import React from 'react';
+import { formatToUSlocale } from '../../../utils/formatters';
 
 interface PieChartContainerProps {
 	keyLabelMapping: { [key in string]: string };
@@ -24,7 +25,7 @@ export function PieChartContainer({
 	const dataset =
 		data?.dataset.map((apiDataRow) => {
 			return {
-				name: keyLabelMapping[apiDataRow.key] ?? '',
+				name: `${keyLabelMapping[apiDataRow.key]} ${formatToUSlocale(apiDataRow.value)}` ?? '',
 				value: apiDataRow.value,
 			};
 		}) ?? [];

@@ -5,9 +5,9 @@ import { SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
 const keyLabelMapping: { [key in string]: string } = {
-	billing: 'Billing 40(KWh)',
-	collection: 'Collection 40(KWh)',
-	downtime: 'Downtime 60(KWh)',
+	billing: 'Billing',
+	collection: 'Collection',
+	downtime: 'Downtime',
 };
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
@@ -19,7 +19,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 			isLoading={isLoading}
 			isError={isError}
 			keyLabelMapping={keyLabelMapping}
-			pieTitle={`${formatCompact(data?.total)} Locations`}
+			pieTitle={`${formatCompact(data?.total)} (KWh)`}
 			cardTitle="Revenue Loss Breakdown"
 		/>
 	);

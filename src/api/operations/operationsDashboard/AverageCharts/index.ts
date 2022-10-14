@@ -1,4 +1,3 @@
-import { getAverageDailyFrequencyChartData } from './averageDailyFrequencyChart';
 import { getAverageDailyLoadChartData } from './averageDailyLoadChart';
 import { getAverageDailyVoltageChartData } from './averageDailyVoltgeChart';
 import { getAverageDailyPFChartData } from './averageDailyPFChart';
@@ -9,7 +8,7 @@ const chartTypeFetcher: { [key in OperationsSiteDashboardChartType]: any } = {
 	voltage: getAverageDailyVoltageChartData,
 	load: getAverageDailyLoadChartData,
 	pf: getAverageDailyPFChartData,
-	frequency: getAverageDailyFrequencyChartData,
+	// frequency: getAverageDailyFrequencyChartData,
 } as const;
 
 export const useGetAverageDailyChartData = (
