@@ -6,7 +6,7 @@ import { PieChartContainer } from './Basic/PieChartContainer';
 
 const keyLabelMapping: KeyValueMapping = {
 	active: (value, total = 1) => `Active ${formatCompact((value * 100) / total)}%`,
-	offline: (value, total = 1) => `Offline ${formatCompact((value * 100) / total)}`,
+	offline: (value, total = 1) => `Offline ${formatCompact((value * 100) / total)}%`,
 };
 
 const Page = ({ filters }: { filters: SitesDashboardFilters }) => {
