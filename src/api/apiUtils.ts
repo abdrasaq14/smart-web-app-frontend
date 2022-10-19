@@ -71,7 +71,7 @@ export function getFiltersQueryParams(options?: DashboardQueryProps) {
 		if (filters.companies && filters.companies?.length > 0) {
 			queryParams = {
 				...queryParams,
-				sites: filters.companies.join(','),
+				companies: filters.companies.join(','),
 			};
 		}
 		if (filters.start_date != null) {

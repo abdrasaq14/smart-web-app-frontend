@@ -12,6 +12,7 @@ import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import ControlledDatePicker from '../../components/ControlledDatePicker';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
+import { a11yProps, TabPanel } from '../../components/TabPanel';
 
 const styles = {
 	screenContent: {
@@ -25,39 +26,6 @@ const styles = {
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 };
-
-interface TabPanelProps {
-	children?: React.ReactNode;
-	index: number;
-	value: number;
-}
-
-function TabPanel(props: TabPanelProps) {
-	const { children, value, index, ...other } = props;
-
-	return (
-		<div
-			role="tabpanel"
-			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
-			{...other}
-		>
-			{value === index && (
-				<Box sx={{ p: 3 }}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
-		</div>
-	);
-}
-
-function a11yProps(index: number) {
-	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
-	};
-}
 
 export const ActivityLog = () => {
 	const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import DateFiltersHeader from '../../layouts/DateFiltersHeader';
-import { CompanyOverview } from '../../components/CompanyOverview';
+import { ManagerOverview } from '../../components/ManagerOverview';
 
 const styles = {
 	screenContent: {
@@ -21,7 +21,7 @@ export const Home = () => {
 	return (
 		<Box sx={styles.screenContent}>
 			<DateFiltersHeader filters={filters} setFilters={setFilters} />
-			<CompanyOverview filters={filters} />
+			<ManagerOverview filters={filters} />
 		</Box>
 	);
 };

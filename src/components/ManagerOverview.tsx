@@ -9,15 +9,15 @@ import RevenueChart from './Charts/RevenueChart';
 import React from 'react';
 
 export const styles = {
-	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	mapCardsAndChartsRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
+	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '18px' },
+	mapCardsAndChartsRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '18px' },
 	mapAndCardsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
 	mapRow: { width: '775px', height: '500px' },
 	mapImage: {},
 	cardsBottomRow: { display: 'flex', justifyContent: 'space-between' },
 	chartsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
 };
-export const CompanyOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
+export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,
