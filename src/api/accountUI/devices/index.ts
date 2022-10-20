@@ -7,7 +7,7 @@ import { DashboardQueryProps } from '../../../types';
 const apiRoute = 'devices';
 
 const getDevices = getDashboardData<ApiDevice>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: DeviceResponseSchema,
 	mockResponse,

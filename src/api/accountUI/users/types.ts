@@ -5,7 +5,7 @@ const UserSchema = z.object({
 	name: z.string(),
 	company: z.string(),
 	employee_id: z.string(),
-	email_address: z.string(),
+	email: z.string(),
 	department: z.string(), // set of options
 	time: z.string(),
 });

@@ -74,13 +74,13 @@ export const DevicesTable = ({ filters }: Props) => {
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell align="right" component="th" scope="row">
-									{row.device_id}
+									{row.id}
 								</TableCell>
 								<TableCell align="right">{row.name}</TableCell>
-								<TableCell align="right">{row.company}</TableCell>
+								<TableCell align="right">{row.company.name}</TableCell>
 								<TableCell align="right">{row.asset_type}</TableCell>
 								<TableCell align="right">{row.asset_capacity}</TableCell>
-								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
+								<TableCell align="right">{formatDateForDisplay(row.linked_at)}</TableCell>
 								<TableCell align="right">
 									<IconButton round Icon={MoreVert} onClick={() => navigate(`/device/${row.id}`)} />
 								</TableCell>

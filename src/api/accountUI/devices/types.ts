@@ -1,13 +1,13 @@
 import { z } from 'zod';
+import { GetCompanySchema } from '../company/types';
 
 const DeviceSchema = z.object({
-	id: z.number(),
-	device_id: z.string(),
+	id: z.string(),
 	name: z.string(),
-	company: z.string(),
+	company: GetCompanySchema,
 	asset_type: z.string(), // set of options
 	asset_capacity: z.number(),
-	time: z.string(),
+	linked_at: z.string(),
 });
 export const DeviceResponseSchema = z.object({
 	count: z.number(),

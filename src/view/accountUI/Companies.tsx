@@ -35,7 +35,7 @@ export const Companies = () => {
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
 				<Box>
-					{companies?.results?.map((company) => (
+					{companies?.map((company) => (
 						<Box sx={{ padding: '32px' }}>
 							<Box sx={{ padding: '32px' }}>
 								<Link to={company.id.toString()}>{company.name}</Link>

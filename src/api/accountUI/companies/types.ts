@@ -17,7 +17,7 @@ const CompanyReducedSchema = z.object({
 	name: z.string(),
 });
 
-const CompanyUserSchema = z.object({
+export const CompanyUserSchema = z.object({
 	id: z.number(),
 	name: z.string(),
 	date: z.string(),
@@ -25,8 +25,6 @@ const CompanyUserSchema = z.object({
 
 const CompanyWithUsersSchema = CompanyReducedSchema.extend({ users: z.array(CompanyUserSchema) });
 
-export const GetCompaniesSchema = z.object({
-	results: z.array(CompanyWithUsersSchema),
-});
+export const GetCompaniesSchema = z.array(CompanyWithUsersSchema);
 
 export type ApiGetCompanies = z.infer<typeof GetCompaniesSchema>;
