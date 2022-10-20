@@ -3,8 +3,8 @@ import { z } from 'zod';
 const EventLogRowSchema = z.object({
 	id: z.number(),
 	alert_id: z.string(),
-	// site: z.string(),
-	site: z.number(),
+	site: z.string(),
+	// site: z.number(),
 	zone: z.string(),
 	district: z.string(),
 	activity: z.string(),

@@ -8,8 +8,8 @@ export const mockResponse: ApiEventLogs = {
 		{
 			id: 1,
 			alert_id: 'ABU-235LK',
-			// site: 'Oshodi',
-			site: 1,
+			site: 'Oshodi',
+			// site: 1,
 			zone: 'Oshodi',
 			district: 'District A',
 			activity: 'Overloading',
@@ -19,8 +19,8 @@ export const mockResponse: ApiEventLogs = {
 		{
 			id: 2,
 			alert_id: 'ABU-235LK',
-			// site: 'Agure',
-			site: 2,
+			site: 'Agure',
+			// site: 2,
 			zone: 'Agure',
 			district: 'District B',
 			activity: 'Downtime',
@@ -30,8 +30,8 @@ export const mockResponse: ApiEventLogs = {
 		{
 			id: 3,
 			alert_id: 'ABU-235LK',
-			// site: 'Terise',
-			site: 3,
+			site: 'Terise',
+			// site: 3,
 			zone: 'Terise',
 			district: 'District C',
 			activity: 'Surge',
@@ -41,8 +41,8 @@ export const mockResponse: ApiEventLogs = {
 		{
 			id: 4,
 			alert_id: 'ABU-235LK',
-			// site: 'Valley',
-			site: 4,
+			site: 'Valley',
+			// site: 4,
 			zone: 'Valley',
 			district: 'District D',
 			activity: 'High temperature',
