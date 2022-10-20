@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { GetCompanySchema } from '../company/types';
 
 // used for Create Company
 // const CompanyFullSchema = z.object({
@@ -12,19 +13,11 @@ import { z } from 'zod';
 // 	type_of_service: z.string(), // set of options
 // });
 
-const CompanyReducedSchema = z.object({
-	id: z.number(),
-	name: z.string(),
+export const GetCompaniesSchema = z.object({
+	count: z.number(),
+	next: z.nullable(z.string()),
+	previous: z.nullable(z.string()),
+	results: z.array(GetCompanySchema),
 });
-
-export const CompanyUserSchema = z.object({
-	id: z.number(),
-	name: z.string(),
-	date: z.string(),
-});
-
-const CompanyWithUsersSchema = CompanyReducedSchema.extend({ users: z.array(CompanyUserSchema) });
-
-export const GetCompaniesSchema = z.array(CompanyWithUsersSchema);
 
 export type ApiGetCompanies = z.infer<typeof GetCompaniesSchema>;

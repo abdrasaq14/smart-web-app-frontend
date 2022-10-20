@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+export const accessLevelsOptions = ['operations', 'finance', 'manager', 'superuser'] as const;
+
 const UserSchema = z.object({
 	id: z.number(),
 	first_name: z.string(),
@@ -7,7 +9,7 @@ const UserSchema = z.object({
 	companies: z.array(z.number()),
 	employee_id: z.string(),
 	email: z.string(),
-	access_level: z.enum(['operations', 'finance', 'manager', 'superuser']),
+	access_level: z.enum(accessLevelsOptions),
 	time: z.string(),
 });
 
