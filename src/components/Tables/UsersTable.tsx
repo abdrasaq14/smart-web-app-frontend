@@ -74,12 +74,12 @@ export const UsersTable = ({ filters }: Props) => {
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell align="right" component="th" scope="row">
-									{row.name}
+									{`${row.first_name} ${row.last_name}`}
 								</TableCell>
-								<TableCell align="right">{row.company}</TableCell>
+								<TableCell align="right">{row.companies.join(',')}</TableCell>
 								<TableCell align="right">{row.employee_id}</TableCell>
-								<TableCell align="right">{row.email_address}</TableCell>
-								<TableCell align="right">{row.department}</TableCell>
+								<TableCell align="right">{row.email}</TableCell>
+								<TableCell align="right">{row.access_level}</TableCell>
 								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
 								<TableCell align="right">
 									<IconButton

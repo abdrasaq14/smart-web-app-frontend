@@ -128,6 +128,10 @@ export function getDashboardData<DataType>({
 		const response = useRealData
 			? await get(apiRoute, { queryParams: filtersQueryParams })
 			: mockResponse;
+		//TODO: hack! remove this
+		if (apiRoute === 'users') {
+			response.results = response.results.filter((user: any) => user.employee_id != null);
+		}
 		const validatedResponse = schema.parse(response);
 		if (!useRealData) {
 			await sleep(MOCK_RESPONSE_SLEEP_TIME);

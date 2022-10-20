@@ -7,7 +7,7 @@ import { DashboardQueryProps } from '../../../types';
 const apiRoute = 'users';
 
 const getUsers = getDashboardData<ApiUsers>({
-	localUseRealData: true,
+	localUseRealData: false,
 	apiRoute,
 	schema: UserResponseSchema,
 	mockResponse,

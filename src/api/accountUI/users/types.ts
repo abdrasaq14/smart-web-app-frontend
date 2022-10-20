@@ -2,11 +2,12 @@ import { z } from 'zod';
 
 const UserSchema = z.object({
 	id: z.number(),
-	name: z.string(),
-	company: z.string(),
+	first_name: z.string(),
+	last_name: z.string(),
+	companies: z.array(z.number()),
 	employee_id: z.string(),
 	email: z.string(),
-	department: z.string(), // set of options
+	access_level: z.enum(['operations', 'finance', 'manager', 'superuser']),
 	time: z.string(),
 });
 
