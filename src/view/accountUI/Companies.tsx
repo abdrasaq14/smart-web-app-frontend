@@ -6,6 +6,7 @@ import { SearchHeader } from '../../layouts/SearchHeader';
 import { useGetCompanies } from '../../api/accountUI/companies';
 import { Spinner } from '../../components/Spinner';
 import { Link } from 'react-router-dom';
+import AddCompanyForm from '../../components/Forms/AddCompanyForm';
 
 const styles = {
 	screenContent: {
@@ -48,7 +49,9 @@ export const Companies = () => {
 						</Box>
 					))}
 				</Box>
-				<Box sx={{ width: '320px' }}>Create company form</Box>
+				<Box sx={{ width: '320px' }}>
+					<AddCompanyForm />
+				</Box>
 			</Box>
 		</Box>
 	);

@@ -52,6 +52,21 @@ export function get(relativeUrl: string, options?: any) {
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
+export function post(relativeUrl: string, data: any, options?: any) {
+	const requestOptions = {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+	};
+	const url = new URL(`${BASE_URL}${relativeUrl}`);
+	if (options?.queryParams) {
+		url.search = new URLSearchParams(options?.queryParams).toString();
+	}
+	return fetch(url, requestOptions).then(handleResponse);
+}
+
 export function getFiltersQueryParams(options?: DashboardQueryProps) {
 	const filters = options?.filters;
 	let queryParams = {};

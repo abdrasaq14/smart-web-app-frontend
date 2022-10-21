@@ -1,11 +1,16 @@
 import { z } from 'zod';
 
 export const companyTypeOptions = ['car_energy'] as const;
+const companyTypeEnum = z.enum(companyTypeOptions);
+export type CompanyTypeEnum = z.infer<typeof companyTypeEnum>;
+
 export const companyServiceTypeOptions = ['energy_monitoring'] as const;
+const companyServiceTypeEnum = z.enum(companyServiceTypeOptions);
+export type CompanyServiceTypeEnum = z.infer<typeof companyServiceTypeEnum>;
 
 const CreateCompanySchema = z.object({
 	name: z.string(),
-	company_type: z.enum(companyTypeOptions),
+	company_type: companyTypeEnum,
 	phone_number: z.string(),
 	email: z.string(),
 	address: z.string(),
@@ -25,3 +30,4 @@ export const GetCompanySchema = CreateCompanySchema.extend({
 });
 
 export type ApiGetCompany = z.infer<typeof GetCompanySchema>;
+export type ApiCreateCompany = z.infer<typeof CreateCompanySchema>;
