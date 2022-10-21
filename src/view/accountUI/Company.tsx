@@ -76,7 +76,12 @@ export const Company = () => {
 									navigate(`/account-ui/companies/${companyId}/add-device`);
 								}}
 							/>
-							<RegularButton label="Add employee" onClick={() => {}} />
+							<RegularButton
+								label="Add employee"
+								onClick={() => {
+									navigate(`/account-ui/companies/${companyId}/add-employee`);
+								}}
+							/>
 						</Box>
 					</Box>
 					<Box>

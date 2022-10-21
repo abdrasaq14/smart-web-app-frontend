@@ -3,10 +3,9 @@ import { Box } from '@mui/material';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import { SearchHeader } from '../../layouts/SearchHeader';
-import { Spinner } from '../../components/Spinner';
-import { Link, useParams } from 'react-router-dom';
-import { useGetDevices } from '../../api/accountUI/devices';
-import AddDeviceForm from '../../components/Forms/AddDeviceForm';
+import { useParams } from 'react-router-dom';
+import AddEmployeeForm from '../../components/Forms/AddEmployeeForm';
+import { UsersTable } from '../../components/Tables/UsersTable';
 
 const styles = {
 	screenContent: {
@@ -17,7 +16,7 @@ const styles = {
 	},
 };
 
-export const AddDevice = () => {
+export const AddEmployee = () => {
 	const { id: companyId } = useParams();
 
 	const companyDefaultFilters = companyId
@@ -27,13 +26,6 @@ export const AddDevice = () => {
 		  }
 		: DEFAULT_DASHBOARD_FILTERS;
 	const [filters, setFilters] = useState<SitesDashboardFilters>(companyDefaultFilters);
-	const { data: devices, isLoading, isError } = useGetDevices({ filters });
-
-	if (isLoading) {
-		return <Spinner />;
-	} else if (isError) {
-		return <Box>Error fetching data...</Box>;
-	}
 
 	return (
 		<Box sx={styles.screenContent}>
@@ -44,16 +36,10 @@ export const AddDevice = () => {
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
 				<Box>
-					{devices?.results?.map((device) => (
-						<Box key={device.id} sx={{ padding: '32px' }}>
-							<Box sx={{ padding: '32px' }}>
-								<Link to={device.id.toString()}>{device.name}</Link>
-							</Box>
-						</Box>
-					))}
+					<UsersTable filters={filters} />
 				</Box>
 				<Box sx={{ width: '320px' }}>
-					<AddDeviceForm filters={filters} />
+					<AddEmployeeForm filters={filters} />
 				</Box>
 			</Box>
 		</Box>

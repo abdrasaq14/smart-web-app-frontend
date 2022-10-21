@@ -19,6 +19,7 @@ const CreateDeviceSchema = z.object({
 const GetDeviceSchema = CreateDeviceSchema.merge(
 	z.object({
 		company: GetCompanySchema,
+		// company: GetCompanySchemaWithUsersIds,
 		tariff: DeviceTariffSchema,
 	})
 );

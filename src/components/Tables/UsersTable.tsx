@@ -16,7 +16,7 @@ import { useNavigate } from 'react-router-dom';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
 import { formatDateForDisplay } from '../../utils/formatters';
-import { useGetUsers } from '../../api/accountUI/users';
+import { getUserName, useGetUsers } from '../../api/accountUI/users';
 
 type Props = {
 	filters: SitesDashboardFilters;
@@ -74,9 +74,9 @@ export const UsersTable = ({ filters }: Props) => {
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell align="right" component="th" scope="row">
-									{`${row.first_name} ${row.last_name}`}
+									{getUserName(row)}
 								</TableCell>
-								<TableCell align="right">{row.companies.join(',')}</TableCell>
+								<TableCell align="right">{row.companies[0]?.name ?? ''}</TableCell>
 								<TableCell align="right">{row.employee_id}</TableCell>
 								<TableCell align="right">{row.email}</TableCell>
 								<TableCell align="right">{row.access_level}</TableCell>

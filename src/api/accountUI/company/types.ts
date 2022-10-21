@@ -1,14 +1,15 @@
 import { z } from 'zod';
+import { accessLevelsOptions } from '../users/types';
 
 export const companyTypeOptions = ['car_energy'] as const;
-const companyTypeEnum = z.enum(companyTypeOptions);
+export const companyTypeEnum = z.enum(companyTypeOptions);
 export type CompanyTypeEnum = z.infer<typeof companyTypeEnum>;
 
 export const companyServiceTypeOptions = ['energy_monitoring'] as const;
-const companyServiceTypeEnum = z.enum(companyServiceTypeOptions);
+export const companyServiceTypeEnum = z.enum(companyServiceTypeOptions);
 export type CompanyServiceTypeEnum = z.infer<typeof companyServiceTypeEnum>;
 
-const CreateCompanySchema = z.object({
+export const CreateCompanySchema = z.object({
 	name: z.string(),
 	company_type: companyTypeEnum,
 	phone_number: z.string(),
@@ -18,15 +19,20 @@ const CreateCompanySchema = z.object({
 	service_type: z.enum(companyServiceTypeOptions),
 });
 
-const CompanyUserSchema = z.object({
+const UserInCompaniesSchema = z.object({
 	id: z.number(),
-	name: z.string(),
-	date: z.string(),
+	first_name: z.string(),
+	last_name: z.string(),
+	employee_id: z.string(),
+	email: z.string(),
+	phone_number: z.string(),
+	access_level: z.enum(accessLevelsOptions),
+	time: z.string(),
 });
 
 export const GetCompanySchema = CreateCompanySchema.extend({
 	id: z.number(),
-	users: z.array(CompanyUserSchema),
+	users: z.array(UserInCompaniesSchema),
 });
 
 export type ApiGetCompany = z.infer<typeof GetCompanySchema>;
