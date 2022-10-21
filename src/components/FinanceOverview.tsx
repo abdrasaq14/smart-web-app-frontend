@@ -80,13 +80,13 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 				</Box>
 				<Box sx={styles.lastRowCards}>
 					<ValueCard
-						value={cardsData?.highest_losses}
+						value={formatToUSlocale(cardsData?.highest_losses)}
 						label="Highest losses"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
 					<ValueCard
-						value={cardsData?.highest_revenue}
+						value={formatToUSlocale(cardsData?.highest_revenue)}
 						label="Highest revenue"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
