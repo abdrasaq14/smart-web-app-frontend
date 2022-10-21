@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Tab, Tabs } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
@@ -11,6 +11,7 @@ import { a11yProps, TabPanel } from '../../components/TabPanel';
 import { OperationsOverview } from '../../components/OperationsOverview';
 import { FinanceOverview } from '../../components/FinanceOverview';
 import { UserLogsTable } from '../../components/Tables/UserLogsTable';
+import { RegularButton } from '../../components/Button';
 
 export const styles = {
 	screenContent: {
@@ -24,7 +25,8 @@ export const styles = {
 };
 
 export const Company = () => {
-	let { id: companyId } = useParams();
+	const { id: companyId } = useParams();
+	const navigate = useNavigate();
 
 	const companyDefaultFilters = companyId
 		? {
@@ -53,13 +55,29 @@ export const Company = () => {
 			) : (
 				<Box>
 					<Box sx={styles.companyBreadcrumb}>Company {company?.name ?? ''}</Box>
-					<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<Box
+						sx={{
+							borderBottom: 1,
+							borderColor: 'divider',
+							display: 'flex',
+							justifyContent: 'space-between',
+						}}
+					>
 						<Tabs value={tabValue} onChange={handleTabValueChange} aria-label="basic tabs example">
 							<Tab label="Overview" {...a11yProps(0)} />
 							<Tab label="Operation" {...a11yProps(1)} />
 							<Tab label="Finance" {...a11yProps(2)} />
 							<Tab label="Log Book" {...a11yProps(3)} />
 						</Tabs>
+						<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+							<RegularButton
+								label="Add device"
+								onClick={() => {
+									navigate(`/account-ui/companies/${companyId}/add-device`);
+								}}
+							/>
+							<RegularButton label="Add employee" onClick={() => {}} />
+						</Box>
 					</Box>
 					<Box>
 						<TabPanel value={tabValue} index={0}>
