@@ -8,7 +8,7 @@ const apiRoute = 'company';
 
 const getCompany = (companyId: string) =>
 	getDashboardData<ApiGetCompany>({
-		localUseRealData: false,
+		localUseRealData: true,
 		apiRoute: `${apiRoute}/${companyId}`,
 		schema: GetCompanySchema,
 		mockResponse,

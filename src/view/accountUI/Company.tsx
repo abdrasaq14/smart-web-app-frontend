@@ -36,9 +36,7 @@ export const Company = () => {
 		: DEFAULT_DASHBOARD_FILTERS;
 
 	const [filters, setFilters] = useState<SitesDashboardFilters>(companyDefaultFilters);
-	const { data: company, isLoading: isLoadingCompany } = useGetCompany(companyId ?? '0', {
-		filters,
-	});
+	const { data: company, isLoading: isLoadingCompany } = useGetCompany(companyId ?? '0');
 
 	const [tabValue, setTabValue] = React.useState(0);
 

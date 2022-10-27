@@ -7,7 +7,7 @@ import { ApiCardsDataForManagerHome, CardsDataForManagerHomeSchema } from './typ
 const apiRoute = 'manager/cards-data';
 
 const getCardsDataForManagerHome = getDashboardData<ApiCardsDataForManagerHome>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: CardsDataForManagerHomeSchema,
 	mockResponse,

@@ -4,10 +4,10 @@ import { DashboardQueryProps } from '../../../../types';
 import { mockResponse } from './mock';
 import { ApiCardsDataForAccountUiHome, CardsDataForAccountUiHomeSchema } from './types';
 
-const apiRoute = 'manager/cards-data';
+const apiRoute = 'account-home/cards-data';
 
 const getCardsDataForAccountUiHome = getDashboardData<ApiCardsDataForAccountUiHome>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: CardsDataForAccountUiHomeSchema,
 	mockResponse,

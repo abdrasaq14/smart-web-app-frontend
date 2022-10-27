@@ -4,10 +4,10 @@ import { getDashboardData } from '../../../apiUtils';
 import { useQuery } from 'react-query';
 import { DashboardQueryProps } from '../../../../types';
 
-const apiRoute = 'account-ui/top-revenues';
+const apiRoute = 'account-home/top-revenues';
 
 const getTopRevenuesChartData = getDashboardData<ApiTopRevenuesChart>({
-	localUseRealData: false,
+	localUseRealData: true,
 	apiRoute,
 	schema: TopRevenuesSchema,
 	mockResponse,
