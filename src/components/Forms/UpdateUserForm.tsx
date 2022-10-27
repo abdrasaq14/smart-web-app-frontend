@@ -11,10 +11,10 @@ import {
 } from '../../api/accountUI/users/types';
 
 export default function UpdateUserForm({
-	user: currentUser,
+	entity: currentUser,
 	afterSubmit,
 }: {
-	user: User;
+	entity: User;
 	afterSubmit: () => void;
 }) {
 	const queryClient = useQueryClient();

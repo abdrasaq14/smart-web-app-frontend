@@ -20,6 +20,7 @@ import UpdateUserForm from '../Forms/UpdateUserForm';
 import { User } from '../../api/accountUI/users/types';
 import { useMutation, useQueryClient } from 'react-query';
 import { del } from '../../api/apiUtils';
+import { getEntityById } from '../../utils/utils';
 
 type Props = {
 	filters: SitesDashboardFilters;
@@ -136,7 +137,7 @@ export const UsersTable = ({ filters }: Props) => {
 			<FormDialog open={openUpdateDialog} setOpen={setOpenUpdateDialog} title="Update account">
 				{selectedEntity != null ? (
 					<UpdateUserForm
-						user={selectedEntity}
+						entity={selectedEntity}
 						afterSubmit={() => {
 							setOpenUpdateDialog(false);
 						}}
@@ -148,10 +149,3 @@ export const UsersTable = ({ filters }: Props) => {
 		</Box>
 	);
 };
-
-function getEntityById<T>(entityList: (T & { id: number })[], id: number | null) {
-	if (id == null) {
-		return undefined;
-	}
-	return entityList.find((entity) => entity.id === id);
-}

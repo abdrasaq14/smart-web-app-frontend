@@ -82,7 +82,7 @@ export function patch(relativeUrl: string, data: any, options?: any) {
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
-export function del(relativeUrl: string, id: number, options?: any) {
+export function del(relativeUrl: string, id: number | string, options?: any) {
 	const requestOptions = {
 		method: 'DELETE',
 		headers: {

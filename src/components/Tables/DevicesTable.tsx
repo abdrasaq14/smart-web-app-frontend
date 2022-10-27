@@ -10,20 +10,26 @@ import {
 	TableRow,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { MoreVert } from '@mui/icons-material';
-import { IconButton } from '../IconButton';
-import { useNavigate } from 'react-router-dom';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
 import { formatDateForDisplay } from '../../utils/formatters';
 import { useGetDevices } from '../../api/accountUI/devices';
+import { getEntityById } from '../../utils/utils';
+import { useMutation, useQueryClient } from 'react-query';
+import { del } from '../../api/apiUtils';
+import TableMenu from '../TableMenu';
+import { GetApiDevice } from '../../api/accountUI/devices/types';
+import FormDialog from '../Forms/FormDialog';
+import UpdateDeviceForm from '../Forms/UpdateDeviceForm';
 
 type Props = {
 	filters: SitesDashboardFilters;
 };
 
 export const DevicesTable = ({ filters }: Props) => {
-	const navigate = useNavigate();
+	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
+	const [selectedEntityId, setSelectedEntityId] = React.useState<null | string>(null);
+
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
@@ -33,6 +39,7 @@ export const DevicesTable = ({ filters }: Props) => {
 		filters: internalFilters,
 	});
 	const dataToDisplay = data?.results ?? [];
+	const selectedEntity = getEntityById<GetApiDevice>(dataToDisplay, selectedEntityId);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -48,6 +55,18 @@ export const DevicesTable = ({ filters }: Props) => {
 		setPage(0);
 		setInternalFilters(filters);
 	}, [filters]);
+
+	const queryClient = useQueryClient();
+	const mutation = useMutation(
+		(id: string): Promise<any> => {
+			return del('devices', id);
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('devices');
+			},
+		}
+	);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -82,7 +101,24 @@ export const DevicesTable = ({ filters }: Props) => {
 								<TableCell align="right">{row.asset_capacity}</TableCell>
 								<TableCell align="right">{formatDateForDisplay(row.linked_at)}</TableCell>
 								<TableCell align="right">
-									<IconButton round Icon={MoreVert} onClick={() => navigate(`/device/${row.id}`)} />
+									<TableMenu
+										menuActions={[
+											{
+												label: 'Update',
+												action: () => {
+													setSelectedEntityId(row.id);
+													setOpenUpdateDialog(true);
+												},
+											},
+											{
+												label: 'Delete',
+												action: () => {
+													console.log('delete ', row.id);
+													mutation.mutate(row.id);
+												},
+											},
+										]}
+									/>
 								</TableCell>
 							</TableRow>
 						))}
@@ -98,6 +134,19 @@ export const DevicesTable = ({ filters }: Props) => {
 				onPageChange={handleChangePage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
+			<FormDialog open={openUpdateDialog} setOpen={setOpenUpdateDialog} title="Update device">
+				{selectedEntity != null ? (
+					<UpdateDeviceForm
+						entity={selectedEntity}
+						afterSubmit={() => {
+							setOpenUpdateDialog(false);
+						}}
+						filters={filters}
+					/>
+				) : (
+					'No device selected'
+				)}
+			</FormDialog>
 		</Box>
 	);
 };

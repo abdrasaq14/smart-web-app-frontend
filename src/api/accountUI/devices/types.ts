@@ -32,4 +32,5 @@ export const DeviceResponseSchema = z.object({
 });
 
 export type ApiDevice = z.infer<typeof DeviceResponseSchema>;
+export type GetApiDevice = z.infer<typeof GetDeviceSchema>;
 export type ApiCreateDevice = z.infer<typeof CreateDeviceSchema>;
