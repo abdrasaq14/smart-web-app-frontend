@@ -38,6 +38,8 @@ const UserSchema = CreateUserSchema.extend({
 	companies: z.array(GetCompanySchemaWithoutUsers),
 });
 
+const UpdateUserSchema = CreateUserSchema.extend({ id: z.number() });
+
 export const UserResponseSchema = z.object({
 	count: z.number(),
 	next: z.nullable(z.string()),
@@ -46,5 +48,6 @@ export const UserResponseSchema = z.object({
 });
 
 export type AddUserApi = z.infer<typeof CreateUserSchema>;
+export type UpdateUserApi = z.infer<typeof UpdateUserSchema>;
 export type User = z.infer<typeof UserSchema>;
 export type ApiUsers = z.infer<typeof UserResponseSchema>;

@@ -10,20 +10,23 @@ import {
 	TableRow,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { MoreVert } from '@mui/icons-material';
-import { IconButton } from '../IconButton';
-import { useNavigate } from 'react-router-dom';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
 import { formatDateForDisplay } from '../../utils/formatters';
 import { getUserName, useGetUsers } from '../../api/accountUI/users';
+import TableMenu from '../TableMenu';
+import FormDialog from '../Forms/FormDialog';
+import UpdateUserForm from '../Forms/UpdateUserForm';
+import { User } from '../../api/accountUI/users/types';
 
 type Props = {
 	filters: SitesDashboardFilters;
 };
 
 export const UsersTable = ({ filters }: Props) => {
-	const navigate = useNavigate();
+	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
+	const [selectedEntityId, setSelectedEntityId] = React.useState<null | number>(null);
+
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
@@ -33,6 +36,7 @@ export const UsersTable = ({ filters }: Props) => {
 		filters: internalFilters,
 	});
 	const dataToDisplay = data?.results ?? [];
+	const selectedEntity = getEntityById<User>(dataToDisplay, selectedEntityId);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -82,10 +86,23 @@ export const UsersTable = ({ filters }: Props) => {
 								<TableCell align="right">{row.access_level}</TableCell>
 								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
 								<TableCell align="right">
-									<IconButton
-										round
-										Icon={MoreVert}
-										onClick={() => navigate(`/company/${row.id}`)}
+									<TableMenu
+										menuActions={[
+											{
+												label: 'Update',
+												action: () => {
+													console.log('update ', row.id);
+													setSelectedEntityId(row.id);
+													setOpenUpdateDialog(true);
+												},
+											},
+											{
+												label: 'Delete',
+												action: () => {
+													console.log('delete ', row.id);
+												},
+											},
+										]}
 									/>
 								</TableCell>
 							</TableRow>
@@ -102,6 +119,25 @@ export const UsersTable = ({ filters }: Props) => {
 				onPageChange={handleChangePage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
+			<FormDialog open={openUpdateDialog} setOpen={setOpenUpdateDialog} title="Update account">
+				{selectedEntity != null ? (
+					<UpdateUserForm
+						user={selectedEntity}
+						afterSubmit={() => {
+							setOpenUpdateDialog(false);
+						}}
+					/>
+				) : (
+					'No user selected'
+				)}
+			</FormDialog>
 		</Box>
 	);
 };
+
+function getEntityById<T>(entityList: (T & { id: number })[], id: number | null) {
+	if (id == null) {
+		return undefined;
+	}
+	return entityList.find((entity) => entity.id === id);
+}

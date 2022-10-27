@@ -2,26 +2,42 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
-import { post } from '../../api/apiUtils';
-import { accessLevelsOptions, AddUserApi } from '../../api/accountUI/users/types';
-import { useParams } from 'react-router-dom';
+import { patch } from '../../api/apiUtils';
+import {
+	accessLevelsOptions,
+	AddUserApi,
+	UpdateUserApi,
+	User,
+} from '../../api/accountUI/users/types';
 
-export default function AddEmployeeForm() {
-	const { id: companyId } = useParams();
-
+export default function UpdateUserForm({
+	user: currentUser,
+	afterSubmit,
+}: {
+	user: User;
+	afterSubmit: () => void;
+}) {
 	const queryClient = useQueryClient();
 	const mutation = useMutation(
 		(newUser: AddUserApi): Promise<any> => {
-			return post('users', { ...newUser, companies: [parseInt(companyId ?? '0')] });
+			return patch('users', { ...newUser });
 		},
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('users');
+				afterSubmit();
 			},
 		}
 	);
 
-	const { register, handleSubmit } = useForm<AddUserApi>();
+	const currentUserForUpdate = {
+		...currentUser,
+		companies: currentUser.companies.map((company) => company.id),
+	};
+
+	const { register, handleSubmit } = useForm<UpdateUserApi>({
+		defaultValues: currentUserForUpdate,
+	});
 	const onSubmit: SubmitHandler<AddUserApi> = (data) => {
 		console.log(data);
 		mutation.mutate(data);
@@ -29,8 +45,6 @@ export default function AddEmployeeForm() {
 
 	return (
 		<Box>
-			<Box>Add employee</Box>
-
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
