@@ -18,6 +18,8 @@ import TableMenu from '../TableMenu';
 import FormDialog from '../Forms/FormDialog';
 import UpdateUserForm from '../Forms/UpdateUserForm';
 import { User } from '../../api/accountUI/users/types';
+import { useMutation, useQueryClient } from 'react-query';
+import { del } from '../../api/apiUtils';
 
 type Props = {
 	filters: SitesDashboardFilters;
@@ -52,6 +54,18 @@ export const UsersTable = ({ filters }: Props) => {
 		setPage(0);
 		setInternalFilters(filters);
 	}, [filters]);
+
+	const queryClient = useQueryClient();
+	const mutation = useMutation(
+		(id: number): Promise<any> => {
+			return del('users', id);
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('users');
+			},
+		}
+	);
 
 	if (isLoading) {
 		return <Spinner />;
@@ -91,7 +105,6 @@ export const UsersTable = ({ filters }: Props) => {
 											{
 												label: 'Update',
 												action: () => {
-													console.log('update ', row.id);
 													setSelectedEntityId(row.id);
 													setOpenUpdateDialog(true);
 												},
@@ -100,6 +113,7 @@ export const UsersTable = ({ filters }: Props) => {
 												label: 'Delete',
 												action: () => {
 													console.log('delete ', row.id);
+													mutation.mutate(row.id);
 												},
 											},
 										]}
