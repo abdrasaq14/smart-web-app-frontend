@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
 import { TransactionHistoryTable } from '../../components/Tables/TransactionHistoryTable';
-import { SitesHeader } from '../../layouts/SitesHeader';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
+import { TransactionsHeaders } from '../../layouts/TransactionsHeader';
 
 const styles = {
 	screenContent: {
@@ -19,7 +19,7 @@ export const Transactions = () => {
 
 	return (
 		<Box sx={styles.screenContent}>
-			<SitesHeader filters={filters} setFilters={setFilters} />
+			<TransactionsHeaders filters={filters} setFilters={setFilters} />
 			<Box>
 				<TransactionHistoryTable filters={filters} />
 			</Box>

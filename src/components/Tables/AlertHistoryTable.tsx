@@ -77,7 +77,7 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 							<TableCell align="right">Alert ID</TableCell>
 							<TableCell align="right">Site</TableCell>
 							<TableCell align="right">Zone</TableCell>
-							<TableCell align="right">District</TableCell>zA
+							<TableCell align="right">District</TableCell>
 							<TableCell align="right">Activity</TableCell>
 							<TableCell align="right">Status</TableCell>
 							<TableCell align="right"></TableCell>
