@@ -39,7 +39,7 @@ export const AddEmployee = () => {
 					<UsersTable filters={filters} />
 				</Box>
 				<Box sx={{ width: '320px' }}>
-					<AddEmployeeForm filters={filters} />
+					<AddEmployeeForm />
 				</Box>
 			</Box>
 		</Box>

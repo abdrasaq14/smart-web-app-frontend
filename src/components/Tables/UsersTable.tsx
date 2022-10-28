@@ -21,6 +21,7 @@ import { User } from '../../api/accountUI/users/types';
 import { useMutation, useQueryClient } from 'react-query';
 import { del } from '../../api/apiUtils';
 import { getEntityById } from '../../utils/utils';
+import { Link } from 'react-router-dom';
 
 type Props = {
 	filters: SitesDashboardFilters;
@@ -95,7 +96,9 @@ export const UsersTable = ({ filters }: Props) => {
 								<TableCell align="right" component="th" scope="row">
 									{getUserName(row)}
 								</TableCell>
-								<TableCell align="right">{row.companies[0]?.name ?? ''}</TableCell>
+								<TableCell align="right">
+									<Link to={row.companies[0]?.id.toString()}>{row.companies[0]?.name ?? ''}</Link>
+								</TableCell>
 								<TableCell align="right">{row.employee_id}</TableCell>
 								<TableCell align="right">{row.email}</TableCell>
 								<TableCell align="right">{row.access_level}</TableCell>
