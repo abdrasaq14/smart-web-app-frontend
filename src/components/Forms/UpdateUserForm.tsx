@@ -1,6 +1,6 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Box } from '@mui/material';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
 import { patch } from '../../api/apiUtils';
 import {
@@ -35,7 +35,7 @@ export default function UpdateUserForm({
 		companies: currentUser.companies.map((company) => company.id),
 	};
 
-	const { register, handleSubmit } = useForm<UpdateUserApi>({
+	const { control, handleSubmit } = useForm<UpdateUserApi>({
 		defaultValues: currentUserForUpdate,
 	});
 	const onSubmit: SubmitHandler<AddUserApi> = (data) => {
@@ -44,42 +44,84 @@ export default function UpdateUserForm({
 	};
 
 	return (
-		<Box>
+		<Box
+			sx={{
+				width: '300px',
+				padding: '16px',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}
+		>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee first name</label>
-						<input {...register('first_name')} />
-					</Box>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee last name</label>
-						<input {...register('last_name')} />
-					</Box>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee id</label>
-						<input {...register('employee_id')} />
-					</Box>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee phone number</label>
-						<input {...register('phone_number')} />
-					</Box>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee email address</label>
-						<input type="email" {...register('email')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Employee first name" />}
+							name="first_name"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Employee access level</label>
-						<select {...register('access_level')}>
-							{accessLevelsOptions.map((option) => (
-								<option key={option} value={option}>
-									{option}
-								</option>
-							))}
-						</select>
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Employee last name" />}
+							name="last_name"
+							control={control}
+						/>
 					</Box>
 
-					<input type="submit" />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Employee id" />}
+							name="employee_id"
+							control={control}
+						/>
+					</Box>
+
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Employee phone number" />}
+							name="phone_number"
+							control={control}
+						/>
+					</Box>
+
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => (
+								<TextField {...field} type="email" label="Employee email address" />
+							)}
+							name="email"
+							control={control}
+						/>
+					</Box>
+
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => (
+								<FormControl>
+									<InputLabel>Employee access level</InputLabel>
+									<Select {...field} label="Employee access level">
+										{accessLevelsOptions.map((option) => (
+											<MenuItem key={option} value={option}>
+												{option}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							)}
+							name="access_level"
+							control={control}
+						/>
+					</Box>
+
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Button variant="contained" onClick={handleSubmit(onSubmit)}>
+							Submit
+						</Button>
+					</Box>
 				</Box>
 			</form>
 		</Box>

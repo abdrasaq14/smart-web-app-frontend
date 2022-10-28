@@ -1,6 +1,6 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Box } from '@mui/material';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
 import { patch } from '../../api/apiUtils';
 import { ApiCreateDevice, GetApiDevice } from '../../api/accountUI/devices/types';
@@ -39,7 +39,7 @@ export default function UpdateDeviceForm({
 		tariff: currentDevice.tariff.id,
 	};
 
-	const { register, handleSubmit } = useForm<ApiCreateDevice>({
+	const { control, handleSubmit } = useForm<ApiCreateDevice>({
 		defaultValues: currentDeviceForUpdate,
 	});
 	const onSubmit: SubmitHandler<ApiCreateDevice> = (data) => {
@@ -48,69 +48,117 @@ export default function UpdateDeviceForm({
 	};
 
 	return (
-		<Box>
-			<Box>Add device</Box>
-
+		<Box
+			sx={{
+				width: '300px',
+				padding: '16px',
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+			}}
+		>
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Device id</label>
-						<input {...register('id')} disabled />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Device id" />}
+							name="id"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Device name</label>
-						<input {...register('name')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Device name" />}
+							name="name"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Device location</label>
-						<input {...register('location')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Device location" />}
+							name="location"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Device co-ordinate</label>
-						<input {...register('co_ordinate')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Device co-ordinate" />}
+							name="co_ordinate"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Company district</label>
-						<input {...register('company_district')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} label="Company district" />}
+							name="company_district"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Asset capacity</label>
-						<input type="number" {...register('asset_capacity')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} type="number" label="Asset capacity" />}
+							name="asset_capacity"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Asset type</label>
-						<input {...register('asset_type')} />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => <TextField {...field} type="number" label="Asset type" />}
+							name="asset_type"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Site</label>
-						<select {...register('site')}>
-							{sites?.results.map((site) => (
-								<option key={site.id} value={site.id}>
-									{site.name}
-								</option>
-							))}
-						</select>
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => (
+								<FormControl>
+									<InputLabel>Company Type</InputLabel>
+									<Select {...field} label="Site">
+										{sites?.results.map((site) => (
+											<MenuItem key={site.id} value={site.id}>
+												{site.name}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							)}
+							name="site"
+							control={control}
+						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column' }}>
-						<label>Device tariff</label>
-						<select {...register('tariff')}>
-							{deviceTariffs?.map((deviceTariff) => (
-								<option key={deviceTariff.id} value={deviceTariff.id}>
-									{deviceTariff.name}
-								</option>
-							))}
-						</select>
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Controller
+							render={({ field }) => (
+								<FormControl>
+									<InputLabel>Device tariff</InputLabel>
+									<Select {...field} label="Device tariff">
+										{deviceTariffs?.map((deviceTariff) => (
+											<MenuItem key={deviceTariff.id} value={deviceTariff.id}>
+												{deviceTariff.name}
+											</MenuItem>
+										))}
+									</Select>
+								</FormControl>
+							)}
+							name="tariff"
+							control={control}
+						/>
 					</Box>
 
-					<input type="submit" />
+					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
+						<Button variant="contained" onClick={handleSubmit(onSubmit)}>
+							Submit
+						</Button>
+					</Box>
 				</Box>
 			</form>
 		</Box>
