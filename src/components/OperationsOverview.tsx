@@ -18,7 +18,7 @@ const styles = {
 		justifyContent: 'space-between',
 		width: '100%',
 		marginTop: '32px',
-		height: '380px',
+		height: '430px',
 	},
 	table: { width: '784px', height: '100%' },
 	lastRowCards: {

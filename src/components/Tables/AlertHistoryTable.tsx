@@ -14,11 +14,17 @@ import { Spinner } from '../Spinner';
 import { useGetAlertHistory } from '../../api/operations/operationsHome/alertHistory';
 import { formatDateForDisplay } from '../../utils/formatters';
 import { SitesDashboardFilters } from '../../types';
+import TableMenu from '../TableMenu';
+import { useMutation, useQueryClient } from 'react-query';
+import { patch } from '../../api/apiUtils';
+import { ApiAlertHistoryRow } from '../../api/operations/operationsHome/alertHistory/types';
 
 type Props = { filters: SitesDashboardFilters };
 
+const NUMBER_OF_ITEMS = 4;
+
 export const AlertHistoryTable = ({ filters }: Props) => {
-	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	const [rowsPerPage, setRowsPerPage] = React.useState(NUMBER_OF_ITEMS);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
 
@@ -43,6 +49,18 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 		setInternalFilters(filters);
 	}, [filters]);
 
+	const queryClient = useQueryClient();
+	const mutation = useMutation(
+		(newDevice: ApiAlertHistoryRow): Promise<any> => {
+			return patch('alerts', { ...newDevice, status: 'completed' });
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('alerts');
+			},
+		}
+	);
+
 	if (isLoading) {
 		return <Spinner />;
 	} else if (isError) {
@@ -59,9 +77,10 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 							<TableCell align="right">Alert ID</TableCell>
 							<TableCell align="right">Site</TableCell>
 							<TableCell align="right">Zone</TableCell>
-							<TableCell align="right">District</TableCell>
+							<TableCell align="right">District</TableCell>zA
 							<TableCell align="right">Activity</TableCell>
 							<TableCell align="right">Status</TableCell>
+							<TableCell align="right"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
@@ -76,13 +95,25 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 								<TableCell align="right">{row.district}</TableCell>
 								<TableCell align="right">{row.activity}</TableCell>
 								<TableCell align="right">{row.status}</TableCell>
+								<TableCell align="right">
+									<TableMenu
+										menuActions={[
+											{
+												label: 'Resolved',
+												action: () => {
+													mutation.mutate(row);
+												},
+											},
+										]}
+									/>
+								</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
 				</Table>
 			</TableContainer>
 			<TablePagination
-				rowsPerPageOptions={[5]}
+				rowsPerPageOptions={[NUMBER_OF_ITEMS]}
 				component="div"
 				count={data?.count ?? 0}
 				rowsPerPage={rowsPerPage}

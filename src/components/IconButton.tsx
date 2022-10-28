@@ -14,8 +14,8 @@ export const IconButton = ({ Icon, round, light, onClick }: IconButtonProps) => 
 		variant="contained"
 		sx={{
 			display: 'flex',
-			minWidth: '48px',
-			height: '48px',
+			minWidth: '32px',
+			height: '32px',
 			color: '#6E7883',
 			padding: 0,
 			marginRight: '25px',

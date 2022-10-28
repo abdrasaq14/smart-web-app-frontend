@@ -113,7 +113,6 @@ export const DevicesTable = ({ filters }: Props) => {
 											{
 												label: 'Delete',
 												action: () => {
-													console.log('delete ', row.id);
 													mutation.mutate(row.id);
 												},
 											},
