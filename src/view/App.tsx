@@ -29,57 +29,60 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import UserTypeSwitcher from './UserTypeSwitcher';
 import { SeniorManagerAccountLayout } from './seniorManagerAccout/SeniorManagerAccountLayout';
 import { AccountUiLayout } from './accountUI/AccountUiLayout';
+import { SnackbarProvider } from 'notistack';
 
 export const App = () => {
 	const queryClient = new QueryClient();
 	return (
 		<QueryClientProvider client={queryClient}>
-			{/*<Auth0Provider*/}
-			{/*	domain="dev-u0pz-ez1.eu.auth0.com"*/}
-			{/*	clientId="dZdIDvmc3hKd5gPJJJsiSKSwkXJdomPg"*/}
-			{/*	redirectUri={window.location.origin}*/}
-			{/*>*/}
-			<BrowserRouter>
-				<Routes>
-					<Route path="/operations" element={<OperationsLayout />}>
-						<Route index element={<OperationsHome />} />
-						<Route path="home" element={<OperationsHome />} />
-						<Route path="site" element={<OperationSite />} />
-						<Route path="activityLog" element={<OperationsActivitylog />} />
-						<Route path="myAccount" element={<OperationsMyAccount />} />
-						<Route path="dashboard" element={<OperationsDashboard />} />
-					</Route>
-					<Route path="/finance" element={<FinancesLayout />}>
-						<Route index element={<FinanceHome />} />
-						<Route path="home" element={<FinanceHome />} />
-						<Route path="transaction" element={<FinanceTransaction />} />
-						<Route path="activityLog" element={<OperationsActivitylog />} />
-						<Route path="myAccount" element={<OperationsMyAccount />} />
-					</Route>
-					<Route path="/senior-manager-account" element={<SeniorManagerAccountLayout />}>
-						<Route index element={<SeniorManagerAccountHome />} />
-						<Route path="home" element={<SeniorManagerAccountHome />} />
-						<Route path="operations" element={<SeniorManagerAccountOperations />} />
-						<Route path="finance" element={<SeniorManagerAccountFinance />} />
-						<Route path="activity-log" element={<SeniorManagerAccountActivityLog />} />
-						<Route path="myAccount" element={<OperationsMyAccount />} />
-					</Route>
-					<Route path="/account-ui" element={<AccountUiLayout />}>
-						<Route index element={<AccountUiHome />} />
-						<Route path="home" element={<AccountUiHome />} />
-						<Route path="companies" element={<AccountUiCompanies />} />
-						<Route path="companies/:id" element={<AccountUiCompany />} />
-						<Route path="companies/:id/add-device" element={<AccountUiAddDevice />} />
-						<Route path="companies/:id/add-employee" element={<AccountUiAddEmployee />} />
-						<Route path="users" element={<AccountUiUsers />} />
-						<Route path="devices" element={<AccountUiDevices />} />
-					</Route>
-					<Route path="/login" element={<Login />} />
-					<Route path="/" element={<UserTypeSwitcher />} />
-					<Route path="*" element={<Navigate to="/login" replace />} />
-				</Routes>
-			</BrowserRouter>
-			{/*</Auth0Provider>*/}
+			<SnackbarProvider maxSnack={3}>
+				{/*<Auth0Provider*/}
+				{/*	domain="dev-u0pz-ez1.eu.auth0.com"*/}
+				{/*	clientId="dZdIDvmc3hKd5gPJJJsiSKSwkXJdomPg"*/}
+				{/*	redirectUri={window.location.origin}*/}
+				{/*>*/}
+				<BrowserRouter>
+					<Routes>
+						<Route path="/operations" element={<OperationsLayout />}>
+							<Route index element={<OperationsHome />} />
+							<Route path="home" element={<OperationsHome />} />
+							<Route path="site" element={<OperationSite />} />
+							<Route path="activityLog" element={<OperationsActivitylog />} />
+							<Route path="myAccount" element={<OperationsMyAccount />} />
+							<Route path="dashboard" element={<OperationsDashboard />} />
+						</Route>
+						<Route path="/finance" element={<FinancesLayout />}>
+							<Route index element={<FinanceHome />} />
+							<Route path="home" element={<FinanceHome />} />
+							<Route path="transaction" element={<FinanceTransaction />} />
+							<Route path="activityLog" element={<OperationsActivitylog />} />
+							<Route path="myAccount" element={<OperationsMyAccount />} />
+						</Route>
+						<Route path="/senior-manager-account" element={<SeniorManagerAccountLayout />}>
+							<Route index element={<SeniorManagerAccountHome />} />
+							<Route path="home" element={<SeniorManagerAccountHome />} />
+							<Route path="operations" element={<SeniorManagerAccountOperations />} />
+							<Route path="finance" element={<SeniorManagerAccountFinance />} />
+							<Route path="activity-log" element={<SeniorManagerAccountActivityLog />} />
+							<Route path="myAccount" element={<OperationsMyAccount />} />
+						</Route>
+						<Route path="/account-ui" element={<AccountUiLayout />}>
+							<Route index element={<AccountUiHome />} />
+							<Route path="home" element={<AccountUiHome />} />
+							<Route path="companies" element={<AccountUiCompanies />} />
+							<Route path="companies/:id" element={<AccountUiCompany />} />
+							<Route path="companies/:id/add-device" element={<AccountUiAddDevice />} />
+							<Route path="companies/:id/add-employee" element={<AccountUiAddEmployee />} />
+							<Route path="users" element={<AccountUiUsers />} />
+							<Route path="devices" element={<AccountUiDevices />} />
+						</Route>
+						<Route path="/login" element={<Login />} />
+						<Route path="/" element={<UserTypeSwitcher />} />
+						<Route path="*" element={<Navigate to="/login" replace />} />
+					</Routes>
+				</BrowserRouter>
+				{/*</Auth0Provider>*/}
+			</SnackbarProvider>
 		</QueryClientProvider>
 	);
 };

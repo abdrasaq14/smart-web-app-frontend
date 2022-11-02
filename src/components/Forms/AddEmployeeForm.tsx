@@ -8,11 +8,29 @@ import { useParams } from 'react-router-dom';
 import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
 import { ControlTextField } from './FormComponents/ControlTextField';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
+import { useSnackbar } from 'notistack';
+
+const defaultValues: Partial<AddUserApi> = {
+	first_name: '',
+	last_name: '',
+	employee_id: '',
+	email: '',
+	phone_number: '',
+	// access_level: z.enum(accessLevelsValues),
+};
 
 export default function AddEmployeeForm() {
 	const { id: companyId } = useParams();
-
+	const { enqueueSnackbar } = useSnackbar();
 	const queryClient = useQueryClient();
+
+	const {
+		control,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<AddUserApi>({ defaultValues });
+
 	const mutation = useMutation(
 		(newUser: AddUserApi): Promise<any> => {
 			return post('users', { ...newUser, companies: [parseInt(companyId ?? '0')] });
@@ -20,15 +38,15 @@ export default function AddEmployeeForm() {
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('users');
+				enqueueSnackbar('Employee has been added!', { variant: 'success' });
+				reset();
+			},
+			onError: () => {
+				enqueueSnackbar('Error while trying to add employee!', { variant: 'error' });
 			},
 		}
 	);
 
-	const {
-		control,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<AddUserApi>();
 	const onSubmit: SubmitHandler<AddUserApi> = (data) => {
 		console.log(data);
 		mutation.mutate(data);

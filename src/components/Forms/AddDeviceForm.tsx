@@ -11,10 +11,34 @@ import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
 import { ControlTextField } from './FormComponents/ControlTextField';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
+import { useSnackbar } from 'notistack';
+
+const defaultValues: Partial<ApiCreateDevice> = {
+	id: '',
+	name: '',
+	location: '',
+	co_ordinate: '',
+	company_district: '',
+	asset_type: '',
+	// asset_capacity: '',
+	// site: '',
+	// tariff: '',
+};
 
 export default function AddDeviceForm({ filters }: { filters: SitesDashboardFilters }) {
 	const { id: companyId } = useParams();
+	const { enqueueSnackbar } = useSnackbar();
 	const queryClient = useQueryClient();
+	const { data: sites } = useGetSites({ filters });
+	const { data: deviceTariffs } = useGetDeviceTariffs({ filters });
+
+	const {
+		control,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<ApiCreateDevice>({ defaultValues });
+
 	const mutation = useMutation(
 		(newDevice: ApiCreateDevice): Promise<any> => {
 			return post('devices', newDevice);
@@ -22,17 +46,15 @@ export default function AddDeviceForm({ filters }: { filters: SitesDashboardFilt
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('devices');
+				enqueueSnackbar('Device has been added!', { variant: 'success' });
+				reset();
+			},
+			onError: () => {
+				enqueueSnackbar('Error while trying to add device!', { variant: 'error' });
 			},
 		}
 	);
-	const { data: sites } = useGetSites({ filters });
-	const { data: deviceTariffs } = useGetDeviceTariffs({ filters });
 
-	const {
-		control,
-		handleSubmit,
-		formState: { errors },
-	} = useForm<ApiCreateDevice>();
 	const onSubmit: SubmitHandler<ApiCreateDevice> = (data) => {
 		console.log(data);
 		mutation.mutate({ ...data, company: parseInt(companyId ?? '0') });

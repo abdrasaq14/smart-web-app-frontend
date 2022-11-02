@@ -16,3 +16,7 @@ export function formatDateForDisplay(date: string): string {
 export function formatDateForFilter(date: Date): string {
 	return format(date, 'yyyy-LL-dd');
 }
+
+export function formatDateForApi(date: string): string {
+	return format(new Date(date), 'yyyy-LL-dd');
+}

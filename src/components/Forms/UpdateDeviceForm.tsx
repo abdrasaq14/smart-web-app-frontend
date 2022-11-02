@@ -10,6 +10,7 @@ import { SitesDashboardFilters } from '../../types';
 import { ControlTextField } from './FormComponents/ControlTextField';
 import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
+import { useSnackbar } from 'notistack';
 
 export default function UpdateDeviceForm({
 	entity: currentDevice,
@@ -21,17 +22,7 @@ export default function UpdateDeviceForm({
 	filters: SitesDashboardFilters;
 }) {
 	const queryClient = useQueryClient();
-	const mutation = useMutation(
-		(newDevice: ApiCreateDevice): Promise<any> => {
-			return patch('devices', { ...newDevice });
-		},
-		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('devices');
-				afterSubmit();
-			},
-		}
-	);
+	const { enqueueSnackbar } = useSnackbar();
 
 	const { data: sites } = useGetSites({ filters });
 	const { data: deviceTariffs } = useGetDeviceTariffs({ filters });
@@ -49,6 +40,23 @@ export default function UpdateDeviceForm({
 	} = useForm<ApiCreateDevice>({
 		defaultValues: currentDeviceForUpdate,
 	});
+
+	const mutation = useMutation(
+		(newDevice: ApiCreateDevice): Promise<any> => {
+			return patch('devices', { ...newDevice });
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('devices');
+				enqueueSnackbar('Device has been updated!', { variant: 'success' });
+				afterSubmit();
+			},
+			onError: () => {
+				enqueueSnackbar('Error while trying to update device!', { variant: 'error' });
+			},
+		}
+	);
+
 	const onSubmit: SubmitHandler<ApiCreateDevice> = (data) => {
 		console.log(data);
 		mutation.mutate({ ...data });

@@ -12,29 +12,54 @@ import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
 import { ControlTextField } from './FormComponents/ControlTextField';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
 import { ControlDatePickerField } from './FormComponents/ControlDatePicker';
+import { useSnackbar } from 'notistack';
+import { formatDateForApi } from '../../utils/formatters';
+
+const defaultValues: Partial<ApiCreateCompany> = {
+	name: '',
+	// company_type: '',
+	phone_number: '',
+	email: '',
+	address: '',
+	// renewal_date: '',
+	// service_type: '',
+};
 
 export default function AddCompanyForm() {
+	const { enqueueSnackbar } = useSnackbar();
 	const queryClient = useQueryClient();
+
+	const {
+		handleSubmit,
+		control,
+		reset,
+		formState: { errors },
+	} = useForm<ApiCreateCompany>({ defaultValues });
+
 	const mutation = useMutation(
 		(newCompany: ApiCreateCompany): Promise<any> => {
-			return post('companies', newCompany);
+			return post('companies', {
+				...newCompany,
+				users: [],
+				renewal_date: formatDateForApi(newCompany.renewal_date),
+			});
 		},
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('companies');
+				enqueueSnackbar('Company has been added!', { variant: 'success' });
+				reset();
+			},
+			onError: () => {
+				enqueueSnackbar('Error while trying to add company!', { variant: 'error' });
 			},
 		}
 	);
-	const {
-		handleSubmit,
-		control,
-		formState: { errors },
-	} = useForm<ApiCreateCompany>();
+
 	const onSubmit: SubmitHandler<ApiCreateCompany> = (data) => {
 		console.log(data);
 		mutation.mutate(data);
 	};
-	console.log('errors: ', errors);
 
 	return (
 		<Box>

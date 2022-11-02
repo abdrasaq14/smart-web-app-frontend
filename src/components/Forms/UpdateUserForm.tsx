@@ -12,6 +12,7 @@ import {
 import { ControlTextField } from './FormComponents/ControlTextField';
 import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
+import { useSnackbar } from 'notistack';
 
 export default function UpdateUserForm({
 	entity: currentUser,
@@ -21,6 +22,7 @@ export default function UpdateUserForm({
 	afterSubmit: () => void;
 }) {
 	const queryClient = useQueryClient();
+	const { enqueueSnackbar } = useSnackbar();
 	const mutation = useMutation(
 		(newUser: AddUserApi): Promise<any> => {
 			return patch('users', { ...newUser });
@@ -28,7 +30,11 @@ export default function UpdateUserForm({
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('users');
+				enqueueSnackbar('User has been updated!', { variant: 'success' });
 				afterSubmit();
+			},
+			onError: () => {
+				enqueueSnackbar('Error while trying to update user!', { variant: 'error' });
 			},
 		}
 	);
