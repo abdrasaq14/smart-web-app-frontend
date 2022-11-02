@@ -1,6 +1,6 @@
 import React from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Box, Button } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
 import { patch } from '../../api/apiUtils';
 import {
@@ -9,6 +9,9 @@ import {
 	UpdateUserApi,
 	User,
 } from '../../api/accountUI/users/types';
+import { ControlTextField } from './FormComponents/ControlTextField';
+import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
+import { ControlSelectField } from './FormComponents/ControlSelectField';
 
 export default function UpdateUserForm({
 	entity: currentUser,
@@ -35,7 +38,11 @@ export default function UpdateUserForm({
 		companies: currentUser.companies.map((company) => company.id),
 	};
 
-	const { control, handleSubmit } = useForm<UpdateUserApi>({
+	const {
+		control,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<UpdateUserApi>({
 		defaultValues: currentUserForUpdate,
 	});
 	const onSubmit: SubmitHandler<AddUserApi> = (data) => {
@@ -57,63 +64,63 @@ export default function UpdateUserForm({
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => <TextField {...field} label="Employee first name" />}
+						<ControlTextField
 							name="first_name"
+							label="Employee first name"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => <TextField {...field} label="Employee last name" />}
+						<ControlTextField
 							name="last_name"
+							label="Employee last name"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => <TextField {...field} label="Employee id" />}
+						<ControlTextField
 							name="employee_id"
+							label="Employee id"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => <TextField {...field} label="Employee phone number" />}
+						<ControlTextField
 							name="phone_number"
+							label="Employee phone number"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => (
-								<TextField {...field} type="email" label="Employee email address" />
-							)}
+						<ControlTextField
 							name="email"
+							label="Employee email address"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<Controller
-							render={({ field }) => (
-								<FormControl>
-									<InputLabel>Employee access level</InputLabel>
-									<Select {...field} label="Employee access level">
-										{accessLevelsOptions.map((option) => (
-											<MenuItem key={option} value={option}>
-												{option}
-											</MenuItem>
-										))}
-									</Select>
-								</FormControl>
-							)}
+						<ControlSelectField
 							name="access_level"
+							label="Employee access level"
+							errors={errors}
 							control={control}
+							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
+							options={accessLevelsOptions}
 						/>
 					</Box>
 

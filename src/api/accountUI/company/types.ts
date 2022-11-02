@@ -1,12 +1,16 @@
 import { z } from 'zod';
-import { accessLevelsOptions } from '../users/types';
+import { accessLevelsValues } from '../users/types';
 
-export const companyTypeOptions = ['car_energy'] as const;
-export const companyTypeEnum = z.enum(companyTypeOptions);
+export const companyTypeValues = ['car_energy'] as const;
+export const companyTypeOptions = [{ key: 'car_energy', value: 'car_energy', label: 'Car energy' }];
+export const companyTypeEnum = z.enum(companyTypeValues);
 export type CompanyTypeEnum = z.infer<typeof companyTypeEnum>;
 
-export const companyServiceTypeOptions = ['energy_monitoring'] as const;
-export const companyServiceTypeEnum = z.enum(companyServiceTypeOptions);
+export const companyServiceTypeValues = ['energy_monitoring'] as const;
+export const companyServiceTypeOptions = [
+	{ key: 'energy_monitoring', value: 'energy_monitoring', label: 'Energy monitoring' },
+];
+export const companyServiceTypeEnum = z.enum(companyServiceTypeValues);
 export type CompanyServiceTypeEnum = z.infer<typeof companyServiceTypeEnum>;
 
 export const CreateCompanySchema = z.object({
@@ -16,7 +20,7 @@ export const CreateCompanySchema = z.object({
 	email: z.string(),
 	address: z.string(),
 	renewal_date: z.string(),
-	service_type: z.enum(companyServiceTypeOptions),
+	service_type: z.enum(companyServiceTypeValues),
 });
 
 const UserInCompaniesSchema = z.object({
@@ -26,7 +30,7 @@ const UserInCompaniesSchema = z.object({
 	employee_id: z.string(),
 	email: z.string(),
 	phone_number: z.string(),
-	access_level: z.enum(accessLevelsOptions),
+	access_level: z.enum(accessLevelsValues),
 	time: z.string(),
 });
 

@@ -8,3 +8,4 @@ export const DEFAULT_DASHBOARD_FILTERS: SitesDashboardFilters = {
 	start_date: null,
 	end_date: null,
 };
+export const DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE = 'This field is required';

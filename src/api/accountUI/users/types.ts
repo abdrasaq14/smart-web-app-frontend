@@ -1,7 +1,13 @@
 import { z } from 'zod';
 
-export const accessLevelsOptions = ['operation', 'finance', 'manager', 'superuser'] as const;
-const accessLevelsEnum = z.enum(accessLevelsOptions);
+export const accessLevelsValues = ['operation', 'finance', 'manager', 'superuser'] as const;
+export const accessLevelsOptions = [
+	{ key: 'operation', value: 'operation', label: 'Operation' },
+	{ key: 'finance', value: 'finance', label: 'Finance' },
+	{ key: 'manager', value: 'manager', label: 'Manager' },
+	{ key: 'superuser', value: 'superuser', label: 'Admin' },
+];
+const accessLevelsEnum = z.enum(accessLevelsValues);
 export type AccessLevelsEnum = z.infer<typeof accessLevelsEnum>;
 
 export const companyTypeOptions = ['car_energy'] as const;
@@ -17,7 +23,7 @@ export const CreateUserSchema = z.object({
 	employee_id: z.string(),
 	email: z.string(),
 	phone_number: z.string(),
-	access_level: z.enum(accessLevelsOptions),
+	access_level: z.enum(accessLevelsValues),
 	time: z.string(),
 });
 
