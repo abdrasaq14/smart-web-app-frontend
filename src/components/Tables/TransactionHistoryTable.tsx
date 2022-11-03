@@ -14,10 +14,20 @@ import { useGetTransactionsHistory } from '../../api/finance/Home/transactionHis
 import { Spinner } from '../Spinner';
 import { SitesDashboardFilters } from '../../types';
 import { formatDateForDisplay, formatToUSlocale } from '../../utils/formatters';
+import TableMenu from '../TableMenu';
+import FormDialog from '../Forms/FormDialog';
+import { getEntityById } from '../../utils/utils';
+import { ApiTransaction } from '../../api/finance/Home/transactionHistory/types';
+import { useMutation, useQueryClient } from 'react-query';
+import { del } from '../../api/apiUtils';
+import UpdateTransactionForm from '../Forms/UpdateTransactionForm';
 
 type Props = { filters: SitesDashboardFilters };
 
 export const TransactionHistoryTable = ({ filters }: Props) => {
+	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
+	const [selectedEntityId, setSelectedEntityId] = React.useState<null | number>(null);
+
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
@@ -28,6 +38,7 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 	});
 
 	const dataToDisplay = data?.results ?? [];
+	const selectedEntity = getEntityById<ApiTransaction>(dataToDisplay, selectedEntityId);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -44,6 +55,18 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 		setInternalFilters(filters);
 	}, [filters]);
 
+	const queryClient = useQueryClient();
+	const mutation = useMutation(
+		(id: number): Promise<any> => {
+			return del('transaction-history', id);
+		},
+		{
+			onSuccess: () => {
+				queryClient.invalidateQueries('transaction-history');
+			},
+		}
+	);
+
 	if (isLoading) {
 		return <Spinner />;
 	} else if (isError) {
@@ -56,25 +79,45 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Site</TableCell>
-							<TableCell align="right">Subscription</TableCell>
-							<TableCell align="right">Date/Time</TableCell>
-							<TableCell align="right">Amount Billed</TableCell>
-							<TableCell align="right">Amount Bought</TableCell>
-							<TableCell align="right">Duration</TableCell>
+							<TableCell align="center">Site</TableCell>
+							<TableCell align="center">Subscription</TableCell>
+							<TableCell align="center">Date/Time</TableCell>
+							<TableCell align="center">Amount Billed</TableCell>
+							<TableCell align="center">Amount Bought</TableCell>
+							<TableCell align="center">Duration</TableCell>
+							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay?.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell component="th" scope="row">
-									{row.site}
+								<TableCell align="center" component="th" scope="row">
+									{row.site_name}
 								</TableCell>
-								<TableCell align="right">{row.subscription}</TableCell>
-								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="right">{formatToUSlocale(row.amount_billed)}</TableCell>
-								<TableCell align="right">{formatToUSlocale(row.amount_bought)}</TableCell>
-								<TableCell align="right">{`${row.days} days`}</TableCell>
+								<TableCell align="center">{row.subscription}</TableCell>
+								<TableCell align="center">{formatDateForDisplay(row.time)}</TableCell>
+								<TableCell align="center">{formatToUSlocale(row.amount_billed)}</TableCell>
+								<TableCell align="center">{formatToUSlocale(row.amount_bought)}</TableCell>
+								<TableCell align="center">{`${row.days} days`}</TableCell>
+								<TableCell align="right">
+									<TableMenu
+										menuActions={[
+											{
+												label: 'Update',
+												action: () => {
+													setSelectedEntityId(row.id);
+													setOpenUpdateDialog(true);
+												},
+											},
+											{
+												label: 'Delete',
+												action: () => {
+													mutation.mutate(row.id);
+												},
+											},
+										]}
+									/>
+								</TableCell>
 							</TableRow>
 						))}
 					</TableBody>
@@ -89,6 +132,19 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 				onPageChange={handleChangePage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
+			<FormDialog open={openUpdateDialog} setOpen={setOpenUpdateDialog} title="Update transaction">
+				{selectedEntity != null ? (
+					<UpdateTransactionForm
+						entity={selectedEntity}
+						afterSubmit={() => {
+							setOpenUpdateDialog(false);
+						}}
+						filters={filters}
+					/>
+				) : (
+					'No transaction selected'
+				)}
+			</FormDialog>
 		</Box>
 	);
 };

@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 const TransactionHistoryRowSchema = z.object({
 	id: z.number(),
-	site: z.string(),
-	// site: z.number(),
+	site_name: z.string(),
+	site: z.number(),
 	subscription: z.string(),
 	amount_billed: z.number(),
 	amount_bought: z.number(),
@@ -17,5 +17,5 @@ export const TransactionHistoryResponseSchema = z.object({
 	results: z.array(TransactionHistoryRowSchema),
 });
 
-export type ApiAlertTransactionRow = z.infer<typeof TransactionHistoryRowSchema>;
+export type ApiTransaction = z.infer<typeof TransactionHistoryRowSchema>;
 export type ApiTransactionHistory = z.infer<typeof TransactionHistoryResponseSchema>;

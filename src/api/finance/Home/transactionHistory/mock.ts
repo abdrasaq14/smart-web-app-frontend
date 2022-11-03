@@ -8,8 +8,8 @@ export const mockResponse: ApiTransactionHistory = {
 		{
 			id: 1,
 			time: 'Sun · 14 April, 04:25 AM',
-			site: 'Eko Hotel',
-			// site: 1,
+			site_name: 'Eko Hotel',
+			site: 1,
 			subscription: 'Paid',
 			amount_billed: 100000000,
 			amount_bought: 50000000,
@@ -18,8 +18,8 @@ export const mockResponse: ApiTransactionHistory = {
 		{
 			id: 2,
 			time: 'Sun · 14 April, 04:25 AM',
-			site: 'Head Office',
-			// site: 2,
+			site_name: 'Head Office',
+			site: 2,
 			subscription: 'Paid',
 			amount_billed: 300000000,
 			amount_bought: 150000000,
@@ -28,8 +28,8 @@ export const mockResponse: ApiTransactionHistory = {
 		{
 			id: 3,
 			time: 'Sun · 14 April, 04:25 AM',
-			site: 'Apapa',
-			// site: 3,
+			site_name: 'Apapa',
+			site: 3,
 			subscription: 'Pending',
 			amount_billed: 10000000,
 			amount_bought: 5000000,
@@ -38,8 +38,8 @@ export const mockResponse: ApiTransactionHistory = {
 		{
 			id: 4,
 			time: 'Sun · 14 April, 04:25 AM',
-			site: 'Surulere',
-			// site: 4,
+			site_name: 'Surulere',
+			site: 4,
 			subscription: 'Paid',
 			amount_billed: 3000000,
 			amount_bought: 1500000,
