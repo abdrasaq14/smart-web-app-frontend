@@ -96,16 +96,18 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 								<TableCell align="right">{row.activity}</TableCell>
 								<TableCell align="right">{row.status}</TableCell>
 								<TableCell align="right">
-									<TableMenu
-										menuActions={[
-											{
-												label: 'Resolved',
-												action: () => {
-													mutation.mutate(row);
+									{row.status === 'pending' ? (
+										<TableMenu
+											menuActions={[
+												{
+													label: 'Resolved',
+													action: () => {
+														mutation.mutate(row);
+													},
 												},
-											},
-										]}
-									/>
+											]}
+										/>
+									) : null}
 								</TableCell>
 							</TableRow>
 						))}
