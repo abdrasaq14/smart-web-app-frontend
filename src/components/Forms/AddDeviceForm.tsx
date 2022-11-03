@@ -4,7 +4,6 @@ import { Box, Button } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
 import { post } from '../../api/apiUtils';
 import { ApiCreateDevice } from '../../api/accountUI/devices/types';
-import { useGetSites } from '../../api/operations/operationsSites';
 import { useParams } from 'react-router-dom';
 import { useGetDeviceTariffs } from '../../api/accountUI/device_tariffs';
 import { SitesDashboardFilters } from '../../types';
@@ -29,7 +28,7 @@ export default function AddDeviceForm({ filters }: { filters: SitesDashboardFilt
 	const { id: companyId } = useParams();
 	const { enqueueSnackbar } = useSnackbar();
 	const queryClient = useQueryClient();
-	const { data: sites } = useGetSites({ filters });
+	// const { data: sites } = useGetSites({ filters });
 	const { data: deviceTariffs } = useGetDeviceTariffs({ filters });
 
 	const {
@@ -137,22 +136,22 @@ export default function AddDeviceForm({ filters }: { filters: SitesDashboardFilt
 						/>
 					</Box>
 
-					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<ControlSelectField
-							name="site"
-							label="Site"
-							errors={errors}
-							control={control}
-							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
-							options={
-								sites?.results.map((site) => ({
-									key: site.id,
-									value: site.id,
-									label: site.name,
-								})) ?? []
-							}
-						/>
-					</Box>
+					{/*<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>*/}
+					{/*	<ControlSelectField*/}
+					{/*		name="site"*/}
+					{/*		label="Site"*/}
+					{/*		errors={errors}*/}
+					{/*		control={control}*/}
+					{/*		// rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}*/}
+					{/*		options={*/}
+					{/*			sites?.results.map((site) => ({*/}
+					{/*				key: site.id,*/}
+					{/*				value: site.id,*/}
+					{/*				label: site.name,*/}
+					{/*			})) ?? []*/}
+					{/*		}*/}
+					{/*	/>*/}
+					{/*</Box>*/}
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
 						<ControlSelectField
