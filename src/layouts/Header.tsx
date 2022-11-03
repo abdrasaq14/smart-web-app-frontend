@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const styles = {
 	header: {
@@ -16,13 +17,18 @@ const styles = {
 
 export const Header = ({ children }: any) => {
 	const navigate = useNavigate();
+	const { logout } = useAuth0();
 	return (
 		<Box sx={styles.header}>
 			{children}
 			<Box sx={styles.headerIcons}>
 				<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-				<IconButton round Icon={PersonOutlined} onClick={() => navigate('/operations/myAccount')} />
-				<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+				<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
+				<IconButton
+					round
+					Icon={Logout}
+					onClick={() => logout({ returnTo: `${window.location.origin}/login` })}
+				/>
 			</Box>
 		</Box>
 	);
