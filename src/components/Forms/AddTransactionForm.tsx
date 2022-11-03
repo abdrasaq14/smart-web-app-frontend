@@ -2,59 +2,50 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
-import { patch } from '../../api/apiUtils';
+import { post } from '../../api/apiUtils';
 import { useGetSites } from '../../api/operations/operationsSites';
 import { SitesDashboardFilters } from '../../types';
-import { ControlTextField } from './FormComponents/ControlTextField';
 import { DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE } from '../../utils/constants';
+import { ControlTextField } from './FormComponents/ControlTextField';
 import { ControlSelectField } from './FormComponents/ControlSelectField';
 import { useSnackbar } from 'notistack';
-import { ApiGetTransaction } from '../../api/finance/Home/transactionHistory/types';
+import { ApiCreateTransaction } from '../../api/finance/Home/transactionHistory/types';
 import { ControlDatePickerField } from './FormComponents/ControlDatePicker';
 
-export default function UpdateTransactionForm({
-	entity: currentTransaction,
-	afterSubmit,
+export default function AddTransactionForm({
 	filters,
+	afterSubmit,
 }: {
-	entity: ApiGetTransaction;
-	afterSubmit: () => void;
 	filters: SitesDashboardFilters;
+	afterSubmit: () => void;
 }) {
-	const queryClient = useQueryClient();
 	const { enqueueSnackbar } = useSnackbar();
-
+	const queryClient = useQueryClient();
 	const { data: sites } = useGetSites({ filters });
-
-	const currentTransactionForUpdate = {
-		...currentTransaction,
-	};
 
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
-	} = useForm<ApiGetTransaction>({
-		defaultValues: currentTransactionForUpdate,
-	});
+	} = useForm<ApiCreateTransaction>();
 
 	const mutation = useMutation(
-		(newTransaction: ApiGetTransaction): Promise<any> => {
-			return patch('transaction-history', { ...newTransaction });
+		(newTransaction: ApiCreateTransaction): Promise<any> => {
+			return post('transaction-history', newTransaction);
 		},
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('transaction-history');
-				enqueueSnackbar('Transaction has been updated!', { variant: 'success' });
+				enqueueSnackbar('Transaction has been added!', { variant: 'success' });
 				afterSubmit();
 			},
 			onError: () => {
-				enqueueSnackbar('Error while trying to update transaction!', { variant: 'error' });
+				enqueueSnackbar('Error while trying to add transaction!', { variant: 'error' });
 			},
 		}
 	);
 
-	const onSubmit: SubmitHandler<ApiGetTransaction> = (data) => {
+	const onSubmit: SubmitHandler<ApiCreateTransaction> = (data) => {
 		mutation.mutate({ ...data });
 	};
 

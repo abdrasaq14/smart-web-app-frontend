@@ -17,7 +17,7 @@ import { formatDateForDisplay, formatToUSlocale } from '../../utils/formatters';
 import TableMenu from '../TableMenu';
 import FormDialog from '../Forms/FormDialog';
 import { getEntityById } from '../../utils/utils';
-import { ApiTransaction } from '../../api/finance/Home/transactionHistory/types';
+import { ApiGetTransaction } from '../../api/finance/Home/transactionHistory/types';
 import { useMutation, useQueryClient } from 'react-query';
 import { del } from '../../api/apiUtils';
 import UpdateTransactionForm from '../Forms/UpdateTransactionForm';
@@ -26,6 +26,7 @@ type Props = { filters: SitesDashboardFilters };
 
 export const TransactionHistoryTable = ({ filters }: Props) => {
 	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
+
 	const [selectedEntityId, setSelectedEntityId] = React.useState<null | number>(null);
 
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -38,7 +39,7 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 	});
 
 	const dataToDisplay = data?.results ?? [];
-	const selectedEntity = getEntityById<ApiTransaction>(dataToDisplay, selectedEntityId);
+	const selectedEntity = getEntityById<ApiGetTransaction>(dataToDisplay, selectedEntityId);
 
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
@@ -80,10 +81,10 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 					<TableHead>
 						<TableRow>
 							<TableCell align="center">Site</TableCell>
-							<TableCell align="center">Subscription</TableCell>
+							<TableCell align="center">Name</TableCell>
 							<TableCell align="center">Date/Time</TableCell>
-							<TableCell align="center">Amount Billed</TableCell>
-							<TableCell align="center">Amount Bought</TableCell>
+							<TableCell align="center">Ammount Billed</TableCell>
+							<TableCell align="center">Ammount Collected</TableCell>
 							<TableCell align="center">Duration</TableCell>
 							<TableCell align="center"></TableCell>
 						</TableRow>

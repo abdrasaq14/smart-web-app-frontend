@@ -6,6 +6,8 @@ import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import ControlledDatePicker from '../components/ControlledDatePicker';
 import { RegularButton } from '../components/Button';
+import AddTransactionForm from '../components/Forms/AddTransactionForm';
+import FormDialog from '../components/Forms/FormDialog';
 
 const styles = {
 	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
@@ -19,6 +21,7 @@ type SiteHeaderProps = {
 };
 export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) => {
 	const navigate = useNavigate();
+	const [openAddDialog, setOpenAddDialog] = React.useState(false);
 
 	const updateFilters = (key: keyof SitesDashboardFilters) => (value: any) => {
 		setFilters((prevFilters) => ({ ...prevFilters, [key]: value }));
@@ -52,7 +55,12 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 			</Box>
 			<Box sx={styles.filters}>
 				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '800' }}>
-					<RegularButton label="Add transaction" onClick={() => {}} />
+					<RegularButton
+						label="Add transaction"
+						onClick={() => {
+							setOpenAddDialog(true);
+						}}
+					/>
 					<ControlledDatePicker
 						label="Start Date"
 						value={filters.start_date ?? null}
@@ -66,6 +74,14 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 					<RegularButton label="Download" onClick={() => {}} />
 				</Box>
 			</Box>
+			<FormDialog open={openAddDialog} setOpen={setOpenAddDialog} title="Add transaction">
+				<AddTransactionForm
+					afterSubmit={() => {
+						setOpenAddDialog(false);
+					}}
+					filters={filters}
+				/>
+			</FormDialog>
 		</Box>
 	);
 };
