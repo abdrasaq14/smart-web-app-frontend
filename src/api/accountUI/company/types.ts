@@ -39,5 +39,10 @@ export const GetCompanySchema = CreateCompanySchema.extend({
 	users: z.array(UserInCompaniesSchema),
 });
 
+export const GetCompanySchemaWithUsersIds = CreateCompanySchema.extend({
+	id: z.number(),
+	users: z.array(z.number()),
+});
+
 export type ApiGetCompany = z.infer<typeof GetCompanySchema>;
 export type ApiCreateCompany = z.infer<typeof CreateCompanySchema>;

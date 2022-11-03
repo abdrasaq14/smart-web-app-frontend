@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { GetCompanySchema } from '../company/types';
+import { GetCompanySchemaWithUsersIds } from '../company/types';
 import { DeviceTariffSchema } from '../device_tariffs/types';
 
 const CreateDeviceSchema = z.object({
@@ -18,8 +18,8 @@ const CreateDeviceSchema = z.object({
 
 const GetDeviceSchema = CreateDeviceSchema.merge(
 	z.object({
-		company: GetCompanySchema,
-		// company: GetCompanySchemaWithUsersIds,
+		// company: GetCompanySchema,
+		company: GetCompanySchemaWithUsersIds,
 		tariff: DeviceTariffSchema,
 	})
 );
