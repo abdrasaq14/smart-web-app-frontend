@@ -20,7 +20,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 			isError={isError}
 			keyLabelMapping={keyLabelMapping}
 			pieTitle={`${formatCompact(data?.total)} (KWh)`}
-			cardTitle="Revenue Loss Breakdown"
+			cardTitle="Potential consumption breakdown"
 		/>
 	);
 };

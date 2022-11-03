@@ -43,13 +43,13 @@ export const Dashboard = () => {
 			<Box sx={styles.cardRow}>
 				<ValueCard
 					value={formatToUSlocale(cardsData?.gridHours)}
-					label="Grid Hours"
+					label="Uptime"
 					isLoading={isCardsDataLoading}
 					isError={isCardsDataError}
 				/>
 				<ValueCard
 					value={cardsData?.tariffPlan}
-					label="Tarif Plan"
+					label="Energy Consumption"
 					isLoading={isCardsDataLoading}
 					isError={isCardsDataError}
 				/>
@@ -61,7 +61,7 @@ export const Dashboard = () => {
 				/>
 				<ValueCard
 					value={formatToUSlocale(cardsData?.downtime)}
-					label="Downtime"
+					label="Current Load"
 					isLoading={isCardsDataLoading}
 					isError={isCardsDataError}
 				/>
