@@ -13,8 +13,6 @@ import React, { useEffect, useState } from 'react';
 import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
 import { useGetCompanies } from '../../api/accountUI/companies';
-import { getUserName } from '../../api/accountUI/users';
-import { formatDateForDisplay } from '../../utils/formatters';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -61,29 +59,23 @@ export const CompaniesTable = ({ filters }: Props) => {
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<TableCell>Companies</TableCell>
-							<TableCell align="right">Date</TableCell>
-							<TableCell align="right">Users</TableCell>
+							<TableCell align="center">Companies</TableCell>
+							<TableCell align="center">Date</TableCell>
+							<TableCell align="center">Users</TableCell>
+							<TableCell align="center">Phone number</TableCell>
+							<TableCell align="center">Email address</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((company) => (
 							<TableRow key={company.id}>
-								{company.users.length > 0 ? (
-									company.users.map((user) => (
-										<>
-											<TableCell align="right">
-												<Link to={company.id.toString()}>{company.name}</Link>
-											</TableCell>
-											<TableCell align="right">{formatDateForDisplay(user.time)}</TableCell>
-											<TableCell align="right">{getUserName(user)}</TableCell>
-										</>
-									))
-								) : (
-									<TableCell align="right" colSpan={3}>
-										<Link to={company.id.toString()}>{company.name}</Link>
-									</TableCell>
-								)}
+								<TableCell align="center">
+									<Link to={company.id.toString()}>{company.name}</Link>
+								</TableCell>
+								<TableCell align="center">{company.renewal_date}</TableCell>
+								<TableCell align="center">{company.users.length}</TableCell>
+								<TableCell align="center">{company.phone_number}</TableCell>
+								<TableCell align="center">{company.email}</TableCell>
 							</TableRow>
 						))}
 					</TableBody>

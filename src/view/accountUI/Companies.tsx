@@ -4,7 +4,7 @@ import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import { SearchHeader } from '../../layouts/SearchHeader';
 import AddCompanyForm from '../../components/Forms/AddCompanyForm';
-import { UsersTable } from '../../components/Tables/UsersTable';
+import { CompaniesTable } from '../../components/Tables/CompaniesTable';
 
 const styles = {
 	screenContent: {
@@ -27,7 +27,7 @@ export const Companies = () => {
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
 				<Box>
-					<UsersTable filters={filters} />
+					<CompaniesTable filters={filters} />
 				</Box>
 				<Box sx={{ width: '320px' }}>
 					<AddCompanyForm />
