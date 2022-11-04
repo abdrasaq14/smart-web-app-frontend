@@ -1,6 +1,7 @@
 import { Box, Card } from '@mui/material';
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import { RegularButton } from '../components/Button';
 
 const styles = {
 	container: {
@@ -35,20 +36,10 @@ const styles = {
 const LoginButton = () => {
 	const { loginWithRedirect } = useAuth0();
 
-	return <button onClick={() => loginWithRedirect()}>Log In</button>;
+	return <RegularButton label="Login" onClick={() => loginWithRedirect()} />;
 };
 
 export const Login = () => {
-	// const [rememberMe, setRememberMe] = useState(false);
-	// const navigate = useNavigate();
-	// const { isLoading, isAuthenticated } = useAuth0();
-	//
-	// if (isLoading) {
-	// 	return <Box>Loading ...</Box>;
-	// } else if (isAuthenticated) {
-	// 	navigate('/post-login');
-	// }
-
 	return (
 		<Box sx={styles.container}>
 			<Card sx={styles.loginCard} variant="outlined">

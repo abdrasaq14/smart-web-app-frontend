@@ -59,6 +59,7 @@ const styles = {
 export const MyAccount = () => {
 	const navigate = useNavigate();
 	const { user } = useAuth0();
+	console.log('user: ', user);
 
 	return (
 		<Box sx={styles.container}>
@@ -73,10 +74,6 @@ export const MyAccount = () => {
 					<Box sx={styles.profileHeader}>
 						<CardMedia sx={styles.profilePicture} image="bear.png" />
 						<Box sx={styles.idAndRole}>
-							<Box sx={{ display: 'flex' }}>
-								ID:
-								<Box sx={styles.id}>JB005</Box>
-							</Box>
 							<Box>{`Roles: ${getUserRoles(user).join(',')}`}</Box>
 							{/*<Dropdown*/}
 							{/*	options={['Admin Officer', 'Senior Manager', 'Operation', 'Finance']}*/}

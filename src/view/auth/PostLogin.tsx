@@ -1,14 +1,32 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { hasRole, ROLE } from '../../utils/auth';
 
 const PostLogin = () => {
-	const { user, isAuthenticated, isLoading } = useAuth0();
+	const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+	const [receivedToken, setReceivedToken] = useState(false);
 	const navigate = useNavigate();
 
-	if (isLoading) {
+	useEffect(() => {
+		const getToken = async () => {
+			try {
+				console.log('in getToken');
+				const token = await getAccessTokenSilently();
+				console.log('received token: ', token);
+				setReceivedToken(true);
+				localStorage.setItem('auth0Token', token);
+			} catch (error) {
+				console.error('Error while fetching token: ', error);
+			}
+		};
+		if (isAuthenticated && !receivedToken) {
+			getToken();
+		}
+	}, [receivedToken, isAuthenticated]);
+
+	if (isLoading || !receivedToken) {
 		return <Box>Loading ...</Box>;
 	} else if (isAuthenticated) {
 		if (hasRole(user, ROLE.ADMIN)) {
