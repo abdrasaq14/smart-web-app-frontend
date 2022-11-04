@@ -83,9 +83,9 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 							<TableCell align="center">Site</TableCell>
 							<TableCell align="center">Name</TableCell>
 							<TableCell align="center">Date/Time</TableCell>
-							<TableCell align="center">Ammount Billed</TableCell>
-							<TableCell align="center">Ammount Collected</TableCell>
-							<TableCell align="center">Duration</TableCell>
+							<TableCell align="center">Amount Billed</TableCell>
+							<TableCell align="center">Amount Collected</TableCell>
+							<TableCell align="center">Energy billed</TableCell>
 							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>

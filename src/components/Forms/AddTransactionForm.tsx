@@ -63,19 +63,24 @@ export default function AddTransactionForm({
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<Box sx={{ display: 'flex', flexDirection: 'column' }}>
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
-						<ControlTextField
+						<ControlSelectField
 							name="subscription"
 							label="Transaction name"
 							errors={errors}
 							control={control}
 							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
+							options={['Collection report', 'Reconciliation Report'].map((name) => ({
+								key: name,
+								value: name,
+								label: name,
+							}))}
 						/>
 					</Box>
 
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
 						<ControlTextField
 							name="amount_billed"
-							label="Ammount billed"
+							label="Amount billed"
 							type="number"
 							errors={errors}
 							control={control}
@@ -86,7 +91,7 @@ export default function AddTransactionForm({
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
 						<ControlTextField
 							name="amount_bought"
-							label="Ammount collected"
+							label="Amount collected"
 							type="number"
 							errors={errors}
 							control={control}
@@ -97,7 +102,7 @@ export default function AddTransactionForm({
 					<Box sx={{ padding: '8px', display: 'flex', flexDirection: 'column', width: '260px' }}>
 						<ControlTextField
 							name="days"
-							label="Duration"
+							label="Energy billed"
 							type="number"
 							errors={errors}
 							control={control}
