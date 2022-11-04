@@ -34,7 +34,7 @@ const buttonDefinitions: Array<AppMenuButton> = [
 		id: 5,
 		label: 'Account',
 		icon: <PersonOutlined />,
-		path: '/operations/myAccount',
+		path: '/account',
 	},
 ];
 

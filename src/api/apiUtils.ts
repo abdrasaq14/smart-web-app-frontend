@@ -41,9 +41,17 @@ function handleResponse(response: any) {
 	});
 }
 
+function getToken() {
+	return localStorage.getItem('auth0Token');
+}
+
 export function get(relativeUrl: string, options?: any) {
 	const requestOptions = {
 		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${getToken()}`,
+		},
 	};
 	const url = new URL(`${BASE_URL}${relativeUrl}`);
 	if (options?.queryParams) {
@@ -57,6 +65,7 @@ export function post(relativeUrl: string, data: any, options?: any) {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: `Bearer ${getToken()}`,
 		},
 		body: JSON.stringify(data),
 	};
@@ -72,6 +81,7 @@ export function patch(relativeUrl: string, data: any, options?: any) {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: `Bearer ${getToken()}`,
 		},
 		body: JSON.stringify(data),
 	};
@@ -87,6 +97,7 @@ export function del(relativeUrl: string, id: number | string, options?: any) {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
+			Authorization: `Bearer ${getToken()}`,
 		},
 	};
 	const url = new URL(`${BASE_URL}${relativeUrl}/${id}`);

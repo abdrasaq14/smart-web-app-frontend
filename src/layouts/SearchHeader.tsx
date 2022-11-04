@@ -41,11 +41,7 @@ export const SearchHeader = ({
 				/>
 				<Box sx={styles.headerIcons}>
 					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton
-						round
-						Icon={PersonOutlined}
-						onClick={() => navigate('/operations/myAccount')}
-					/>
+					<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
 					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
 				</Box>
 			</Box>
