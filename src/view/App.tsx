@@ -31,6 +31,7 @@ import { SeniorManagerAccountLayout } from './seniorManagerAccout/SeniorManagerA
 import { AccountUiLayout } from './accountUI/AccountUiLayout';
 import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
+import Logout from './Logout';
 
 const Auth0ProviderWithRedirectCallback = ({ children, ...props }) => {
 	const navigate = useNavigate();
@@ -100,6 +101,7 @@ export const App = () => {
 							</Route>
 							<Route path="/account" element={<ProtectedRoute component={MyAccount} />} />
 							<Route path="/login" element={<Login />} />
+							<Route path="/logout" element={<Logout />} />
 							<Route path="/post-login" element={<PostLogin />} />
 							<Route path="/" element={<UserTypeSwitcher />} />
 							<Route path="*" element={<Navigate to="/login" replace />} />
