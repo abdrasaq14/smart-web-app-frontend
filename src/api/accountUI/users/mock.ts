@@ -46,7 +46,7 @@ export const mockResponse: ApiUsers = {
 			],
 			employee_id: 'SM23490',
 			email: 'godwinife@smarterise.com',
-			access_level: 'superuser',
+			access_level: 'admin',
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{

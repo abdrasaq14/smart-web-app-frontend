@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-export const accessLevelsValues = ['operation', 'finance', 'manager', 'superuser'] as const;
+export const accessLevelsValues = ['operation', 'finance', 'manager', 'admin'] as const;
 export const accessLevelsOptions = [
 	{ key: 'operation', value: 'operation', label: 'Operation' },
 	{ key: 'finance', value: 'finance', label: 'Finance' },
 	{ key: 'manager', value: 'manager', label: 'Manager' },
-	{ key: 'superuser', value: 'superuser', label: 'Admin' },
+	{ key: 'admin', value: 'admin', label: 'Admin' },
 ];
 const accessLevelsEnum = z.enum(accessLevelsValues);
 export type AccessLevelsEnum = z.infer<typeof accessLevelsEnum>;

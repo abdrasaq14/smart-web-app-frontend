@@ -6,9 +6,14 @@ import { hasRole, ROLE } from '../../utils/auth';
 import { get } from '../../api/apiUtils';
 
 const PostLogin = () => {
-	const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+	const { user, isAuthenticated, isLoading, getAccessTokenSilently, logout } = useAuth0();
 	const [receivedToken, setReceivedToken] = useState(false);
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!isLoading && !isAuthenticated) {
+		}
+	}, [isAuthenticated, isLoading]);
 
 	useEffect(() => {
 		const getToken = async () => {
@@ -32,18 +37,21 @@ const PostLogin = () => {
 	if (isLoading || !receivedToken) {
 		return <Box>Loading ...</Box>;
 	} else if (isAuthenticated) {
-		if (hasRole(user, ROLE.ADMIN)) {
-			navigate('/account-ui');
-		} else if (hasRole(user, ROLE.MANAGER)) {
-			navigate('/senior-manager-account');
-		} else if (hasRole(user, ROLE.FINANCE)) {
-			navigate('/finance');
-		} else if (hasRole(user, ROLE.OPERATIONS)) {
-			navigate('/operations');
-		} else {
-			return <Box>User does not have the required role to access the app</Box>;
-		}
+		navigate('/operations');
+		// if (hasRole(user, ROLE.ADMIN)) {
+		// 	navigate('/account-ui');
+		// } else if (hasRole(user, ROLE.MANAGER)) {
+		// 	navigate('/senior-manager-account');
+		// } else if (hasRole(user, ROLE.FINANCE)) {
+		// 	navigate('/finance');
+		// } else if (hasRole(user, ROLE.OPERATIONS)) {
+		// 	navigate('/operations');
+		// } else {
+		// 	// logout({ returnTo: `${window.location.origin}/login` });
+		// 	return <Box>User does not have the required role to access the app</Box>;
+		// }
 	} else {
+		// logout({ returnTo: `${window.location.origin}/login` });
 		return <Box>User is not authenticated</Box>;
 	}
 
