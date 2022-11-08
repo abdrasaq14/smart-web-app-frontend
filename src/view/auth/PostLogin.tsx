@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { hasRole, ROLE } from '../../utils/auth';
+import { get } from '../../api/apiUtils';
 
 const PostLogin = () => {
 	const { user, isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
@@ -17,6 +18,8 @@ const PostLogin = () => {
 				console.log('received token: ', token);
 				setReceivedToken(true);
 				localStorage.setItem('auth0Token', token);
+				const me = await get('users/me');
+				console.log('me: ', me);
 			} catch (error) {
 				console.error('Error while fetching token: ', error);
 			}
