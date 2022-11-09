@@ -59,8 +59,7 @@ const styles = {
 
 export const MyAccount = () => {
 	const navigate = useNavigate();
-	const { data: me, isLoading, isError } = useGetMe();
-	const currentUser = me ? me[0] : null;
+	const { data: currentUser, isLoading, isError } = useGetMe();
 
 	if (currentUser == null || isLoading) {
 		return <Spinner />;
@@ -103,7 +102,13 @@ export const MyAccount = () => {
 						label="Email Address"
 						value={currentUser?.email ?? ''}
 					/>
-					<TextField sx={styles.textfield} id="company" type="text" label="Company" />
+					<TextField
+						sx={styles.textfield}
+						id="company"
+						type="text"
+						label="Company"
+						value={currentUser?.companies.map((c) => c.name).join(', ') ?? ''}
+					/>
 				</Box>
 				<Button
 					onClick={() => {

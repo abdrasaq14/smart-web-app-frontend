@@ -39,7 +39,7 @@ const GetCompanySchemaWithoutUsers = z.object({
 	// users: z.array(z.number()),
 });
 
-const UserSchema = CreateUserSchema.extend({
+export const UserSchema = CreateUserSchema.extend({
 	id: z.number(),
 	companies: z.array(GetCompanySchemaWithoutUsers),
 });

@@ -39,7 +39,7 @@ const PostLogin = () => {
 	if (isLoading || !receivedToken || isUserInfoLoading) {
 		return <Box>Loading ...</Box>;
 	} else if (isAuthenticated && !isUserInfoLoading && me != null) {
-		const role = me[0]?.access_level;
+		const role = me?.access_level;
 
 		if (role === ROLE.ADMIN) {
 			navigate('/account-ui');

@@ -13,7 +13,7 @@ const Switcher = () => {
 	if (isUserInfoLoading) {
 		return <Box>Loading ...</Box>;
 	} else if (!isUserInfoLoading && me != null) {
-		const role = me[0]?.access_level;
+		const role = me?.access_level;
 		if (role === ROLE.ADMIN || role === ROLE.OPERATIONS) {
 			buttonDefinitions.push({
 				id: 1,
