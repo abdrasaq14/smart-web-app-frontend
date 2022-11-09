@@ -22,9 +22,7 @@ const PostLogin = () => {
 	useEffect(() => {
 		const getToken = async () => {
 			try {
-				console.log('in getToken');
 				const token = await getAccessTokenSilently();
-				console.log('received token: ', token);
 				localStorage.setItem('auth0Token', token);
 				setReceivedToken(true);
 			} catch (error) {
