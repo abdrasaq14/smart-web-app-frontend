@@ -1,18 +1,16 @@
-import { User } from '@auth0/auth0-react';
-
-const ROLES_KEY = 'smarterise-dev/roles';
+// const ROLES_KEY = 'smarterise-dev/roles';
 
 export enum ROLE {
-	ADMIN = 'Admin',
-	MANAGER = 'Manager',
-	OPERATIONS = 'Operations',
-	FINANCE = 'Finance',
+	ADMIN = 'admin',
+	MANAGER = 'manager',
+	OPERATIONS = 'operation',
+	FINANCE = 'finance',
 }
 
-export const getUserRoles = (user?: User) => {
-	return (user ?? {})[ROLES_KEY] ?? [];
-};
-export const hasRole = (user: User | undefined, role: ROLE) => {
-	const userRoles = getUserRoles(user);
-	return userRoles.includes(role);
-};
+// export const getUserRoles = (user?: User) => {
+// 	return (user ?? {})[ROLES_KEY] ?? [];
+// };
+// export const hasRole = (user: User | undefined, role: ROLE) => {
+// 	const userRoles = getUserRoles(user);
+// 	return userRoles.includes(role);
+// };

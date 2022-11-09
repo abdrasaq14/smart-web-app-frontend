@@ -2,12 +2,16 @@ import { Box } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { hasRole, ROLE } from '../../utils/auth';
-import { get } from '../../api/apiUtils';
+import { ROLE } from '../../utils/auth';
+import { useGetMe } from '../../api/me';
 
 const PostLogin = () => {
-	const { user, isAuthenticated, isLoading, getAccessTokenSilently, logout } = useAuth0();
+	const { isAuthenticated, isLoading, getAccessTokenSilently, logout } = useAuth0();
 	const [receivedToken, setReceivedToken] = useState(false);
+	const { data: me, isLoading: isUserInfoLoading } = useGetMe({
+		enabled: !!receivedToken,
+	});
+	console.log('me: ', me);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -21,10 +25,8 @@ const PostLogin = () => {
 				console.log('in getToken');
 				const token = await getAccessTokenSilently();
 				console.log('received token: ', token);
-				setReceivedToken(true);
 				localStorage.setItem('auth0Token', token);
-				const me = await get('users/me');
-				console.log('me: ', me);
+				setReceivedToken(true);
 			} catch (error) {
 				console.error('Error while fetching token: ', error);
 			}
@@ -34,24 +36,27 @@ const PostLogin = () => {
 		}
 	}, [receivedToken, isAuthenticated]);
 
-	if (isLoading || !receivedToken) {
+	if (isLoading || !receivedToken || isUserInfoLoading) {
 		return <Box>Loading ...</Box>;
-	} else if (isAuthenticated) {
-		navigate('/operations');
-		// if (hasRole(user, ROLE.ADMIN)) {
-		// 	navigate('/account-ui');
-		// } else if (hasRole(user, ROLE.MANAGER)) {
-		// 	navigate('/senior-manager-account');
-		// } else if (hasRole(user, ROLE.FINANCE)) {
-		// 	navigate('/finance');
-		// } else if (hasRole(user, ROLE.OPERATIONS)) {
-		// 	navigate('/operations');
-		// } else {
-		// 	// logout({ returnTo: `${window.location.origin}/login` });
-		// 	return <Box>User does not have the required role to access the app</Box>;
-		// }
+	} else if (isAuthenticated && !isUserInfoLoading && me != null) {
+		const role = me[0]?.access_level;
+
+		if (role === ROLE.ADMIN) {
+			navigate('/account-ui');
+		} else if (role === ROLE.MANAGER) {
+			navigate('/senior-manager-account');
+		} else if (role === ROLE.FINANCE) {
+			navigate('/finance');
+		} else if (role === ROLE.OPERATIONS) {
+			navigate('/operations');
+		} else {
+			logout({ returnTo: `${window.location.origin}/login` });
+			console.log('User does not have the required role to access the app');
+			return <Box>User does not have the required role to access the app</Box>;
+		}
 	} else {
-		// logout({ returnTo: `${window.location.origin}/login` });
+		logout({ returnTo: `${window.location.origin}/login` });
+		console.log('User is not authenticated');
 		return <Box>User is not authenticated</Box>;
 	}
 

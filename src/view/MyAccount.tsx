@@ -3,8 +3,9 @@ import { Box, Card, CardMedia, TextField } from '@mui/material';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { useAuth0 } from '@auth0/auth0-react';
-import { getUserRoles } from '../utils/auth';
+import { useGetMe } from '../api/me';
+import { getUserName } from '../api/accountUI/users';
+import { Spinner } from '../components/Spinner';
 
 const styles = {
 	container: {
@@ -58,8 +59,15 @@ const styles = {
 
 export const MyAccount = () => {
 	const navigate = useNavigate();
-	const { user } = useAuth0();
-	console.log('user: ', user);
+	const { data: me, isLoading, isError } = useGetMe();
+	console.log('me: ', me);
+	const currentUser = me ? me[0] : null;
+
+	if (currentUser == null || isLoading) {
+		return <Spinner />;
+	} else if (isError) {
+		return <Box>Error fetching data...</Box>;
+	}
 
 	return (
 		<Box sx={styles.container}>
@@ -74,7 +82,7 @@ export const MyAccount = () => {
 					<Box sx={styles.profileHeader}>
 						<CardMedia sx={styles.profilePicture} image="bear.png" />
 						<Box sx={styles.idAndRole}>
-							<Box>{`Roles: ${getUserRoles(user).join(',')}`}</Box>
+							<Box>{`Role: ${currentUser?.access_level}`}</Box>
 							{/*<Dropdown*/}
 							{/*	options={['Admin Officer', 'Senior Manager', 'Operation', 'Finance']}*/}
 							{/*	autoSelectFirst*/}
@@ -86,7 +94,7 @@ export const MyAccount = () => {
 						id="name"
 						type="text"
 						label="Name"
-						value={user?.name ?? ''}
+						value={getUserName(currentUser)}
 					/>
 					{/*<TextField sx={styles.textfield} id="last_name" type="text" label="Last Name" />*/}
 					<TextField
@@ -94,7 +102,7 @@ export const MyAccount = () => {
 						id="email"
 						type="text"
 						label="Email Address"
-						value={user?.email ?? ''}
+						value={currentUser?.email ?? ''}
 					/>
 					<TextField sx={styles.textfield} id="company" type="text" label="Company" />
 				</Box>

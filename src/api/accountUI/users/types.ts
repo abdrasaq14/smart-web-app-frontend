@@ -44,7 +44,7 @@ const UserSchema = CreateUserSchema.extend({
 	companies: z.array(GetCompanySchemaWithoutUsers),
 });
 
-const UpdateUserSchema = CreateUserSchema.extend({ id: z.number() });
+export const UpdateUserSchema = CreateUserSchema.extend({ id: z.number() });
 
 export const UserResponseSchema = z.object({
 	count: z.number(),
