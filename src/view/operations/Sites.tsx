@@ -4,6 +4,7 @@ import { SitesTable } from '../../components/Tables/SitesTable';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import { SitesHeader } from '../../layouts/SitesHeader';
+import { useGetMe } from '../../api/me';
 
 const styles = {
 	screenContent: {
@@ -15,7 +16,15 @@ const styles = {
 };
 
 export const Sites = () => {
-	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
+	const { data: me } = useGetMe();
+	const myCompanies = me ? me[0]?.companies : null;
+	const myCompaniesDefaultFilters = myCompanies
+		? {
+				...DEFAULT_DASHBOARD_FILTERS,
+				companies: myCompanies,
+		  }
+		: DEFAULT_DASHBOARD_FILTERS;
+	const [filters, setFilters] = useState<SitesDashboardFilters>(myCompaniesDefaultFilters);
 
 	return (
 		<Box sx={styles.screenContent}>

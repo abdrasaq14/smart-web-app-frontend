@@ -13,4 +13,5 @@ const getMe = getDashboardData<UpdateUserApi[]>({
 	mockResponse,
 });
 
-export const useGetMe = (options?: any) => useQuery([apiRoute], () => getMe(), options);
+export const useGetMe = (options?: any) =>
+	useQuery([apiRoute], () => getMe(), { staleTime: Infinity, ...options });

@@ -11,6 +11,7 @@ import { KeyInsightsCard } from '../../components/Charts/KeyInsightChart';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
+import { useGetMe } from '../../api/me';
 
 const styles = {
 	screenContent: {
@@ -29,7 +30,15 @@ const styles = {
 };
 
 export const Dashboard = () => {
-	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
+	const { data: me } = useGetMe();
+	const myCompanies = me ? me[0]?.companies : null;
+	const myCompaniesDefaultFilters = myCompanies
+		? {
+				...DEFAULT_DASHBOARD_FILTERS,
+				companies: myCompanies,
+		  }
+		: DEFAULT_DASHBOARD_FILTERS;
+	const [filters, setFilters] = useState<SitesDashboardFilters>(myCompaniesDefaultFilters);
 	const {
 		data: cardsData,
 		isLoading: isCardsDataLoading,

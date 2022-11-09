@@ -13,6 +13,7 @@ import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import ControlledDatePicker from '../../components/ControlledDatePicker';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { a11yProps, TabPanel } from '../../components/TabPanel';
+import { useGetMe } from '../../api/me';
 
 const styles = {
 	screenContent: {
@@ -30,7 +31,15 @@ const styles = {
 export const ActivityLog = () => {
 	const navigate = useNavigate();
 	const [tabValue, setTabValue] = React.useState(0);
-	const [filters, setFilters] = useState<SitesDashboardFilters>(DEFAULT_DASHBOARD_FILTERS);
+	const { data: me } = useGetMe();
+	const myCompanies = me ? me[0]?.companies : null;
+	const myCompaniesDefaultFilters = myCompanies
+		? {
+				...DEFAULT_DASHBOARD_FILTERS,
+				companies: myCompanies,
+		  }
+		: DEFAULT_DASHBOARD_FILTERS;
+	const [filters, setFilters] = useState<SitesDashboardFilters>(myCompaniesDefaultFilters);
 
 	const handleTabValueChange = (event: React.SyntheticEvent, newValue: number) => {
 		setTabValue(newValue);
