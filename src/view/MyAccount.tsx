@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardMedia, TextField } from '@mui/material';
+import { Box, Button, Card, CardMedia, TextField } from '@mui/material';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -60,7 +60,6 @@ const styles = {
 export const MyAccount = () => {
 	const navigate = useNavigate();
 	const { data: me, isLoading, isError } = useGetMe();
-	console.log('me: ', me);
 	const currentUser = me ? me[0] : null;
 
 	if (currentUser == null || isLoading) {
@@ -106,6 +105,13 @@ export const MyAccount = () => {
 					/>
 					<TextField sx={styles.textfield} id="company" type="text" label="Company" />
 				</Box>
+				<Button
+					onClick={() => {
+						navigate(-1);
+					}}
+				>
+					Back
+				</Button>
 			</Card>
 		</Box>
 	);
