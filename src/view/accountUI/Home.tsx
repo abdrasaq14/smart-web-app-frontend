@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { ValueCard } from '../../components/ValueCard';
 import { GraphCard } from '../../components/GraphCard';
 import { formatToUSlocale } from '../../utils/formatters';
@@ -12,20 +12,16 @@ import TopRevenue from '../../components/Charts/TopRevenue';
 
 const styles = {
 	screenContent: {
-		width: '100%',
-		padding: '42px 65px 65px 32px',
+		width: '90%',
+		// padding: '16px',
+		margin: '16px',
+		paddingRight: '8px',
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'auto',
 	},
 
-	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	mapCardsAndChartsRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	mapAndCardsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
-	mapRow: { width: '775px', height: '500px' },
-	mapImage: {},
-	cardsBottomRow: { display: 'flex', justifyContent: 'space-between' },
-	chartsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
+	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
 };
 
 export const Home = () => {
@@ -41,67 +37,84 @@ export const Home = () => {
 		<Box sx={styles.screenContent}>
 			<DateFiltersHeader filters={filters} setFilters={setFilters} />
 
-			<Box>
-				<Box sx={styles.cardRow}>
+			<Grid container spacing={1}>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_energy_expanses)}
 						label="Total Energy Expanses (N)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_consumption)}
 						label="Total Consumtion (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.current_load)}
 						label="Current Load (kW)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.co2_savings)}
 						label="CO2 savings (MMT)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
-				</Box>
-				<Box sx={styles.mapCardsAndChartsRow}>
-					<Box sx={styles.mapAndCardsColumn}>
-						<Box sx={styles.mapRow}>
+				</Grid>
+
+				<Grid item lg={8} md={6} sm={12} sx={styles.displayCenter}>
+					<Grid container spacing={1}>
+						<Grid item lg={12} md={12} sm={12} sx={styles.displayCenter}>
 							<GraphCard title="Map">
-								<img src="map.png" alt="Smarterise" style={styles.mapImage} />
+								<img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} />
 							</GraphCard>
-						</Box>
-						<Box sx={styles.cardsBottomRow}>
+						</Grid>
+						<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 							<ValueCard
 								value={formatToUSlocale(cardsData?.number_of_companies)}
 								label="Number of companies"
 								isLoading={isCardsDataLoading}
 								isError={isCardsDataError}
 							/>
+						</Grid>
+						<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 							<ValueCard
 								value={formatToUSlocale(cardsData?.number_of_sites)}
 								label="Number of sites"
 								isLoading={isCardsDataLoading}
 								isError={isCardsDataError}
 							/>
+						</Grid>
+						<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 							<ValueCard
 								value={formatToUSlocale(cardsData?.number_of_users)}
 								label="Number of users"
 								isLoading={isCardsDataLoading}
 								isError={isCardsDataError}
 							/>
-						</Box>
-					</Box>
-					<Box sx={styles.chartsColumn}>
-						<TopSavings filters={filters} />
-						<TopRevenue filters={filters} />
-					</Box>
-				</Box>
-			</Box>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item lg={4} md={6} sm={12} sx={styles.displayCenter}>
+					<Grid container spacing={1}>
+						<Grid item lg={12} md={12} sm={12}>
+							<TopSavings filters={filters} />
+						</Grid>
+						<Grid item lg={12} md={12} sm={12}>
+							<TopRevenue filters={filters} />
+						</Grid>
+					</Grid>
+				</Grid>
+			</Grid>
 		</Box>
 	);
 };

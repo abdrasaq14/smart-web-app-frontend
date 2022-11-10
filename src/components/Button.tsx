@@ -9,7 +9,7 @@ interface RegularButtonProps {
 const styles = {
 	button: {
 		display: 'flex',
-		width: '150px',
+		width: '180px',
 		height: '40px',
 		color: '#ffffff',
 		marginTop: '8px',

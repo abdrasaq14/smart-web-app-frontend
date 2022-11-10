@@ -38,11 +38,7 @@ const EnergyChart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		color: ['#ffbe00'],
 	};
 
-	return (
-		<ChartCard title="ENERGY" width="480px">
-			{renderBody()}
-		</ChartCard>
-	);
+	return <ChartCard title="ENERGY">{renderBody()}</ChartCard>;
 };
 
 export default EnergyChart;

@@ -40,11 +40,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		],
 	};
 
-	return (
-		<ChartCard title="Load Profile (KW)" width="480px">
-			{renderBody()}
-		</ChartCard>
-	);
+	return <ChartCard title="Load Profile (KW)">{renderBody()}</ChartCard>;
 };
 
 export default Chart;

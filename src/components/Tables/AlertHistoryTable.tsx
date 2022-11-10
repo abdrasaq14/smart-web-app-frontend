@@ -70,32 +70,49 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 	return (
 		<Box>
 			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="simple table">
+				<Table
+					sx={{
+						minWidth: 650,
+					}}
+					aria-label="simple table"
+				>
 					<TableHead>
 						<TableRow>
 							<TableCell>Date/Time</TableCell>
-							<TableCell align="right">Alert ID</TableCell>
-							<TableCell align="right">Site</TableCell>
-							<TableCell align="right">Zone</TableCell>
-							<TableCell align="right">District</TableCell>
-							<TableCell align="right">Activity</TableCell>
-							<TableCell align="right">Status</TableCell>
-							<TableCell align="right"></TableCell>
+							<TableCell align="center">Alert ID</TableCell>
+							<TableCell align="center">Site</TableCell>
+							<TableCell align="center">Zone</TableCell>
+							<TableCell align="center">District</TableCell>
+							<TableCell align="center">Activity</TableCell>
+							<TableCell align="center">Status</TableCell>
+							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell component="th" scope="row">
+								<TableCell component="th" scope="row" sx={{ padding: 0 }} align="center">
 									{formatDateForDisplay(row.time)}
 								</TableCell>
-								<TableCell align="right">{row.alert_id}</TableCell>
-								<TableCell align="right">{row.site}</TableCell>
-								<TableCell align="right">{row.zone}</TableCell>
-								<TableCell align="right">{row.district}</TableCell>
-								<TableCell align="right">{row.activity}</TableCell>
-								<TableCell align="right">{row.status}</TableCell>
-								<TableCell align="right">
+								<TableCell align="center" sx={{ paddingLeft: 0, paddingRight: 0 }}>
+									{row.alert_id}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{row.site}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{row.zone}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{row.district}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{row.activity}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{row.status}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
 									{row.status === 'pending' ? (
 										<TableMenu
 											menuActions={[

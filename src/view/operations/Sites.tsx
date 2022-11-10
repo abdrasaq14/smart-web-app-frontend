@@ -29,7 +29,7 @@ export const Sites = () => {
 	return (
 		<Box sx={styles.screenContent}>
 			<SitesHeader filters={filters} setFilters={setFilters} />
-			<Box>
+			<Box sx={{ height: '100%', overflowY: 'auto' }}>
 				<SitesTable filters={filters} />
 			</Box>
 		</Box>

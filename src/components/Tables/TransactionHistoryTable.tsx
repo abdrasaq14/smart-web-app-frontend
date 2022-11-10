@@ -92,15 +92,23 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 					<TableBody>
 						{dataToDisplay?.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell align="center" component="th" scope="row">
+								<TableCell align="center" component="th" scope="row" sx={{ padding: 0 }}>
 									{row.site_name}
 								</TableCell>
-								<TableCell align="center">{row.subscription}</TableCell>
-								<TableCell align="center">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="center">{formatToUSlocale(row.amount_billed)}</TableCell>
-								<TableCell align="center">{formatToUSlocale(row.amount_bought)}</TableCell>
-								<TableCell align="center">{`${row.days} days`}</TableCell>
-								<TableCell align="right">
+								<TableCell align="center" sx={{ paddingLeft: 0, paddingRight: 0 }}>
+									{row.subscription}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{formatDateForDisplay(row.time)}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{formatToUSlocale(row.amount_billed)}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>
+									{formatToUSlocale(row.amount_bought)}
+								</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>{`${row.days} days`}</TableCell>
+								<TableCell align="right" sx={{ padding: 0 }}>
 									<TableMenu
 										menuActions={[
 											{

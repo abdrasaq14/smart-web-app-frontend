@@ -24,7 +24,7 @@ type Props = {
 
 export const SitesTable = ({ filters }: Props) => {
 	const navigate = useNavigate();
-	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	const [rowsPerPage, setRowsPerPage] = React.useState(7);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
 

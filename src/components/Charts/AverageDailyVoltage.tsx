@@ -78,7 +78,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 	};
 
 	return (
-		<ChartCard title={chartTypeMap[chartType]} width="480px">
+		<ChartCard title={chartTypeMap[chartType]}>
 			<Select
 				labelId="demo-simple-select-label"
 				id="demo-simple-select"

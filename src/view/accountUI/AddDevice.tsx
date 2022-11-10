@@ -35,7 +35,7 @@ export const AddDevice = () => {
 				searchPlaceholder="Search for alert, deals and more..."
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
-				<Box>
+				<Box sx={{ width: '80%', marginRight: '16px' }}>
 					<DevicesTable filters={filters} />
 				</Box>
 				<Box sx={{ width: '320px' }}>

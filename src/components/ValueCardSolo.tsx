@@ -6,15 +6,17 @@ import { SitesDashboardFilters } from '../types';
 
 const styles = {
 	container: {
-		width: '220px',
+		width: '90%',
+		maxWidth: '400px',
 		height: '140px',
 		borderRadius: '16px',
-		padding: '16px',
+		padding: '8px',
+		// margin: '16px',
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
 	},
-	value: { paddingTop: '8px', fontWeight: 'bold', fontSize: '32px', lineHeight: '48px' },
+	value: { paddingTop: '8px', fontWeight: 'bold', fontSize: '26px', lineHeight: '48px' },
 	label: { paddingTop: '20px', fontSize: '14px', color: '#6E7883', lineHeight: '48px' },
 };
 

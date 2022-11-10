@@ -1,6 +1,6 @@
 import React from 'react';
 import { SitesDashboardFilters } from '../types';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { formatToUSlocale } from '../utils/formatters';
 import CustomerBreakdownChart from './Charts/CustomerBreakdownChart';
 import FinancialPerformance from './Charts/FinancialPerformance';
@@ -11,31 +11,14 @@ import { CARD_HANDLER } from '../api/cardsHandlers';
 import ValueCardSolo from './ValueCardSolo';
 
 const styles = {
-	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
-	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
-	headerIcons: { display: 'flex', alignItems: 'center' },
-	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
-	chartsRow: { display: 'flex', justifyContent: 'space-between' },
-	lastRow: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		width: '100%',
-		marginTop: '32px',
-		height: '380px',
-	},
-	table: { width: '784px', height: '100%' },
-	lastRowCards: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		height: '100%',
-	},
+	table: { width: '100%' },
+	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
 };
 
 export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
 	return (
-		<Box>
-			<Box sx={styles.cardRow}>
+		<Grid container spacing={1}>
+			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="atc_losses"
 					field="total_revenue"
@@ -44,6 +27,8 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
+			</Grid>
+			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="atc_losses"
 					field="atc_losses"
@@ -52,6 +37,8 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
+			</Grid>
+			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="downtime_losses"
 					field="downtime_losses"
@@ -60,6 +47,8 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
+			</Grid>
+			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="tarrif_losses"
 					field="tarrif_losses"
@@ -68,37 +57,49 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
-			</Box>
-			<Box sx={styles.chartsRow}>
+			</Grid>
+
+			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<CustomerBreakdownChart filters={filters} />
+			</Grid>
+			<Grid item lg={6} md={12} sm={12} sx={styles.displayCenter}>
 				<FinancialPerformance filters={filters} />
+			</Grid>
+			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<RevenueChart filters={filters} />
-			</Box>
-			<Box sx={styles.lastRow}>
+			</Grid>
+
+			<Grid item lg={9} md={12} sm={12}>
 				<Box sx={styles.table}>
 					<GraphCard title="Transaction History">
 						<TransactionHistoryTable filters={filters} />
 					</GraphCard>
 				</Box>
-				<Box sx={styles.lastRowCards}>
-					<ValueCardSolo
-						cardType="highest_losses"
-						field="highest_losses"
-						label="Highest losses"
-						handler={CARD_HANDLER.FINANCE}
-						filters={filters}
-						formatter={(value) => formatToUSlocale(value)}
-					/>
-					<ValueCardSolo
-						cardType="highest_revenue"
-						field="highest_revenue"
-						label="Highest revenue"
-						handler={CARD_HANDLER.FINANCE}
-						filters={filters}
-						formatter={(value) => formatToUSlocale(value)}
-					/>
-				</Box>
-			</Box>
-		</Box>
+			</Grid>
+			<Grid item lg={3} md={12} sm={12}>
+				<Grid container spacing={1}>
+					<Grid item lg={12} md={6} sm={6}>
+						<ValueCardSolo
+							cardType="highest_losses"
+							field="highest_losses"
+							label="Highest losses"
+							handler={CARD_HANDLER.FINANCE}
+							filters={filters}
+							formatter={(value) => formatToUSlocale(value)}
+						/>
+					</Grid>
+					<Grid item lg={12} md={6} sm={6}>
+						<ValueCardSolo
+							cardType="highest_revenue"
+							field="highest_revenue"
+							label="Highest revenue"
+							handler={CARD_HANDLER.FINANCE}
+							filters={filters}
+							formatter={(value) => formatToUSlocale(value)}
+						/>
+					</Grid>
+				</Grid>
+			</Grid>
+		</Grid>
 	);
 };

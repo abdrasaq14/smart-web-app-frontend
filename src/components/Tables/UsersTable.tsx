@@ -31,7 +31,7 @@ export const UsersTable = ({ filters }: Props) => {
 	const [openUpdateDialog, setOpenUpdateDialog] = React.useState(false);
 	const [selectedEntityId, setSelectedEntityId] = React.useState<null | number>(null);
 
-	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	const [rowsPerPage, setRowsPerPage] = React.useState(10);
 	const [page, setPage] = React.useState(0);
 	const [internalFilters, setInternalFilters] = useState(filters);
 

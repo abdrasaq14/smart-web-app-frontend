@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import EnergyChart from '../../components/Charts/EnergyChart';
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
@@ -15,18 +15,20 @@ import ValueCardSolo from '../../components/ValueCardSolo';
 
 const styles = {
 	screenContent: {
-		width: '100%',
-		padding: '42px 65px 65px 32px',
+		width: '90%',
+		margin: '16px',
+		// padding: '42px 65px 65px 32px',
+		paddingRight: '8px',
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'auto',
 	},
-	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
 	filters: { display: 'flex', width: '730px', justifyContent: 'space-between' },
 	headerIcons: { display: 'flex', alignItems: 'center' },
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
 	chartsRow: { display: 'flex', justifyContent: 'space-between' },
 	backButtonContainer: { display: 'flex', marginTop: '10px' },
+	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
 };
 
 export const Dashboard = () => {
@@ -44,74 +46,87 @@ export const Dashboard = () => {
 		<Box sx={styles.screenContent}>
 			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
 
-			<Box sx={styles.cardRow}>
-				<ValueCardSolo
-					cardType="availability"
-					field="gridHours"
-					label="Uptime"
-					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
-					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
-				/>
-				<ValueCardSolo
-					cardType="tariffPlan"
-					field="tariffPlan"
-					label="Energy Consumption"
-					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
-					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
-				/>
-				<ValueCardSolo
-					cardType="availability"
-					field="noOfOutages"
-					label="No. of Outages"
-					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
-					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
-				/>
-				<ValueCardSolo
-					cardType="downtime"
-					field="downtime"
-					label="Current Load"
-					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
-					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
-				/>
-			</Box>
-			<Box sx={styles.chartsRow}>
-				<RevenueLossBreakdown filters={filters} />
-				<EnergyChart filters={filters} />
-				<DTstatusChart filters={filters} />
-			</Box>
-			<Box sx={{ ...styles.chartsRow, height: '380px' }}>
-				<Box
-					sx={{
-						marginTop: '10px',
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'space-between',
-					}}
-				>
+			<Grid container spacing={1}>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCardSolo
-						cardType="revenuePerHour"
-						field="revenuePerHour"
-						label="Revenue/Hour"
+						cardType="availability"
+						field="gridHours"
+						label="Uptime"
 						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
 						filters={filters}
-						formatter={(value) => `N${formatToUSlocale(value)}`}
+						formatter={(value) => formatToUSlocale(value)}
 					/>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCardSolo
-						cardType="untappedRevenue"
-						field="untappedRevenue"
-						label="Untapped Revenue"
+						cardType="tariffPlan"
+						field="tariffPlan"
+						label="Energy Consumption"
 						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
 						filters={filters}
-						formatter={(value) => `N${formatToUSlocale(value)}`}
+						formatter={(value) => formatToUSlocale(value)}
 					/>
-				</Box>
-				<AverageDailyVoltage filters={filters} />
-				<KeyInsightsCard filters={filters} />
-			</Box>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
+					<ValueCardSolo
+						cardType="availability"
+						field="noOfOutages"
+						label="No. of Outages"
+						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+						filters={filters}
+						formatter={(value) => formatToUSlocale(value)}
+					/>
+				</Grid>
+				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
+					<ValueCardSolo
+						cardType="downtime"
+						field="downtime"
+						label="Current Load"
+						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+						filters={filters}
+						formatter={(value) => formatToUSlocale(value)}
+					/>
+				</Grid>
+				<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+					<RevenueLossBreakdown filters={filters} />
+				</Grid>
+				<Grid item lg={6} md={12} sm={12} sx={styles.displayCenter}>
+					<EnergyChart filters={filters} />
+				</Grid>
+				<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+					<DTstatusChart filters={filters} />
+				</Grid>
+				<Grid item lg={3} md={12} sm={12}>
+					<Grid container spacing={1}>
+						<Grid item lg={12} md={6} sm={6}>
+							<ValueCardSolo
+								cardType="revenuePerHour"
+								field="revenuePerHour"
+								label="Revenue/Hour"
+								handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+								filters={filters}
+								formatter={(value) => `N${formatToUSlocale(value)}`}
+							/>
+						</Grid>
+						<Grid item lg={12} md={6} sm={6}>
+							<ValueCardSolo
+								cardType="untappedRevenue"
+								field="untappedRevenue"
+								label="Untapped Revenue"
+								handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+								filters={filters}
+								formatter={(value) => `N${formatToUSlocale(value)}`}
+							/>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item lg={6} md={12} sm={12} sx={styles.displayCenter}>
+					<AverageDailyVoltage filters={filters} />
+				</Grid>
+				<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+					<KeyInsightsCard filters={filters} />
+				</Grid>
+			</Grid>
 		</Box>
 	);
 };

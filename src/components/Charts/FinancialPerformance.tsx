@@ -46,11 +46,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		],
 	};
 
-	return (
-		<ChartCard title="Financial Performance" width="480px">
-			{renderBody()}
-		</ChartCard>
-	);
+	return <ChartCard title="Financial Performance">{renderBody()}</ChartCard>;
 };
 
 export default Chart;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Grid, Tab, Tabs } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
@@ -15,8 +15,10 @@ import { RegularButton } from '../../components/Button';
 
 export const styles = {
 	screenContent: {
-		width: '100%',
-		padding: '42px 65px 65px 32px',
+		width: '90%',
+		// padding: '16px',
+		margin: '16px',
+		paddingRight: '8px',
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'auto',
@@ -53,35 +55,43 @@ export const Company = () => {
 			) : (
 				<Box>
 					<Box sx={styles.companyBreadcrumb}>Company {company?.name ?? ''}</Box>
-					<Box
-						sx={{
-							borderBottom: 1,
-							borderColor: 'divider',
-							display: 'flex',
-							justifyContent: 'space-between',
-						}}
-					>
-						<Tabs value={tabValue} onChange={handleTabValueChange} aria-label="basic tabs example">
-							<Tab label="Overview" {...a11yProps(0)} />
-							<Tab label="Operation" {...a11yProps(1)} />
-							<Tab label="Finance" {...a11yProps(2)} />
-							<Tab label="Log Book" {...a11yProps(3)} />
-						</Tabs>
-						<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-							<RegularButton
-								label="Add device"
-								onClick={() => {
-									navigate(`/account-ui/companies/${companyId}/add-device`);
-								}}
-							/>
-							<RegularButton
-								label="Add employee"
-								onClick={() => {
-									navigate(`/account-ui/companies/${companyId}/add-employee`);
-								}}
-							/>
-						</Box>
-					</Box>
+					<Grid container spacing={1} sx={{ marginBottom: '16px' }}>
+						<Grid item lg={7} md={12} sm={12} order={{ lg: 1, md: 2, sm: 2, xs: 2 }}>
+							<Tabs
+								value={tabValue}
+								onChange={handleTabValueChange}
+								aria-label="basic tabs example"
+							>
+								<Tab label="Overview" {...a11yProps(0)} />
+								<Tab label="Operation" {...a11yProps(1)} />
+								<Tab label="Finance" {...a11yProps(2)} />
+								<Tab label="Log Book" {...a11yProps(3)} />
+							</Tabs>
+						</Grid>
+						<Grid
+							item
+							lg={5}
+							md={12}
+							sm={12}
+							order={{ lg: 2, md: 1, sm: 1, xs: 1 }}
+							sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}
+						>
+							<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '370px' }}>
+								<RegularButton
+									label="Add device"
+									onClick={() => {
+										navigate(`/account-ui/companies/${companyId}/add-device`);
+									}}
+								/>
+								<RegularButton
+									label="Add employee"
+									onClick={() => {
+										navigate(`/account-ui/companies/${companyId}/add-employee`);
+									}}
+								/>
+							</Box>
+						</Grid>
+					</Grid>
 					<Box>
 						<TabPanel value={tabValue} index={0}>
 							<ManagerOverview filters={filters} />

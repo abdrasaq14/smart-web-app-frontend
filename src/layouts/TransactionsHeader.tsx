@@ -50,7 +50,7 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '800' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '800px' }}>
 					<RegularButton
 						label="Add transaction"
 						onClick={() => {
