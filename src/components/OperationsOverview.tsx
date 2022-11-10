@@ -1,14 +1,14 @@
 import React from 'react';
 import { SitesDashboardFilters } from '../types';
-import { useGetOperationsHomeCardsData } from '../api/operations/operationsHome/cardsData';
 import { Box } from '@mui/material';
-import { ValueCard } from './ValueCard';
 import { formatToUSlocale } from '../utils/formatters';
 import SitesMonitored from './Charts/SitesMonitoredChart';
 import LoadProfileChart from './Charts/LoadProfileChart';
 import PowerConsumptionChart from './Charts/PowerConsumptionChart';
 import { GraphCard } from './GraphCard';
 import { AlertHistoryTable } from './Tables/AlertHistoryTable';
+import ValueCardSolo from './ValueCardSolo';
+import { CARD_HANDLER } from '../api/cardsHandlers';
 
 const styles = {
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '36px' },
@@ -30,38 +30,39 @@ const styles = {
 };
 
 export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
-	const {
-		data: cardsData,
-		isLoading: isCardsDataLoading,
-		isError: isCardsDataError,
-	} = useGetOperationsHomeCardsData({ filters });
-
 	return (
 		<Box>
 			<Box sx={styles.cardRow}>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.total_consumption)}
+				<ValueCardSolo
+					cardType="total_consumption"
+					field="total_consumption"
 					label="Total Consumtion (kWh)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.current_load)}
+				<ValueCardSolo
+					cardType="current_load"
+					field="current_load"
 					label="Current Load (kW)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={`${cardsData?.avg_availability} hrs`}
+				<ValueCardSolo
+					cardType="availability"
+					field="avg_availability"
 					label="Avg. Availability"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS}
+					filters={filters}
+					formatter={(value) => `${value} hrs`}
 				/>
-				<ValueCard
-					value={cardsData?.power_cuts}
+				<ValueCardSolo
+					cardType="availability"
+					field="power_cuts"
 					label="Power Cut"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS}
+					filters={filters}
 				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
@@ -76,17 +77,19 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 					</GraphCard>
 				</Box>
 				<Box sx={styles.lastRowCards}>
-					<ValueCard
-						value={cardsData?.overloaded_dts}
+					<ValueCardSolo
+						cardType="overloaded_dts"
+						field="overloaded_dts"
 						label="Overloaded DTs"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.OPERATIONS}
+						filters={filters}
 					/>
-					<ValueCard
-						value={cardsData?.sites_under_maintenance}
+					<ValueCardSolo
+						cardType="sites"
+						field="sites_under_maintenance"
 						label="Sites under maintenance"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.OPERATIONS}
+						filters={filters}
 					/>
 				</Box>
 			</Box>

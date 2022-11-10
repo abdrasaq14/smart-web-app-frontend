@@ -158,7 +158,12 @@ export function getPaginationQueryParams(options?: DashboardQueryProps) {
 }
 
 export function getQueryParams(options?: DashboardQueryProps) {
-	return { ...getPaginationQueryParams(options), ...getFiltersQueryParams(options) };
+	const params = {
+		...getPaginationQueryParams(options),
+		...getFiltersQueryParams(options),
+		...(options?.card_type ? { card_type: options?.card_type } : {}),
+	};
+	return params;
 }
 
 type GetDashboardDataProps = {
