@@ -102,9 +102,12 @@ export const App = () => {
 							<Route path="/account" element={<ProtectedRoute component={MyAccount} />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/logout" element={<Logout />} />
-							<Route path="/post-login" element={<PostLogin />} />
-							<Route path="/" element={<UserTypeSwitcher />} />
-							<Route path="*" element={<Navigate to="/login" replace />} />
+							<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
+							<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
+							<Route
+								path="*"
+								element={<ProtectedRoute component={<Navigate to="/login" replace />} />}
+							/>
 						</Routes>
 					</Auth0ProviderWithRedirectCallback>
 				</BrowserRouter>
