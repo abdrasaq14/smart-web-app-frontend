@@ -9,6 +9,7 @@ interface Props<T> extends UseControllerProps<T> {
 	type?: HTMLInputTypeAttribute;
 	multiline?: boolean;
 	rows?: number;
+	disabled?: boolean;
 }
 
 export const ControlTextField = <T extends FieldValues>({
@@ -20,6 +21,7 @@ export const ControlTextField = <T extends FieldValues>({
 	type,
 	multiline,
 	rows,
+	disabled = false,
 }: Props<T>) => {
 	return (
 		<Controller
@@ -34,6 +36,7 @@ export const ControlTextField = <T extends FieldValues>({
 						type={type ?? 'text'}
 						multiline={multiline}
 						rows={rows}
+						disabled={disabled}
 					/>
 					<ErrorMessage
 						errors={errors}

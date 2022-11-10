@@ -82,6 +82,7 @@ export default function UpdateDeviceForm({
 							errors={errors}
 							control={control}
 							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
+							disabled
 						/>
 					</Box>
 
