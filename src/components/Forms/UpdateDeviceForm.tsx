@@ -2,7 +2,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Box, Button } from '@mui/material';
 import { useMutation, useQueryClient } from 'react-query';
-import { patch } from '../../api/apiUtils';
+import { patchWithId } from '../../api/apiUtils';
 import { ApiCreateDevice, GetApiDevice } from '../../api/accountUI/devices/types';
 import { useGetSites } from '../../api/operations/operationsSites';
 import { useGetDeviceTariffs } from '../../api/accountUI/device_tariffs';
@@ -43,7 +43,7 @@ export default function UpdateDeviceForm({
 
 	const mutation = useMutation(
 		(newDevice: ApiCreateDevice): Promise<any> => {
-			return patch('devices', { ...newDevice });
+			return patchWithId('devices', currentDeviceForUpdate.id, { ...newDevice });
 		},
 		{
 			onSuccess: () => {
