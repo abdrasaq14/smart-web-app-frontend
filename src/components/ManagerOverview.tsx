@@ -1,12 +1,12 @@
 import { SitesDashboardFilters } from '../types';
-import { useGetManagerHomeCardsData } from '../api/seniorManager/Home/cardsData';
 import { Box } from '@mui/material';
-import { ValueCard } from './ValueCard';
 import { formatToUSlocale } from '../utils/formatters';
 import { GraphCard } from './GraphCard';
 import PowerConsumptionChart from './Charts/PowerConsumptionChart';
 import RevenueChart from './Charts/RevenueChart';
 import React from 'react';
+import { CARD_HANDLER } from '../api/cardsHandlers';
+import ValueCardSolo from './ValueCardSolo';
 
 export const styles = {
 	cardRow: { display: 'flex', justifyContent: 'space-between', paddingTop: '18px' },
@@ -18,37 +18,40 @@ export const styles = {
 	chartsColumn: { display: 'flex', flexDirection: 'column', justifyContent: 'space-between' },
 };
 export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
-	const {
-		data: cardsData,
-		isLoading: isCardsDataLoading,
-		isError: isCardsDataError,
-	} = useGetManagerHomeCardsData({ filters });
 	return (
 		<Box>
 			<Box sx={styles.cardRow}>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.total_revenue)}
+				<ValueCardSolo
+					cardType="revenue_losses"
+					field="total_revenue"
 					label="Total Revenue (N)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.MANAGER}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.atc_losses)}
+				<ValueCardSolo
+					cardType="revenue_losses"
+					field="atc_losses"
 					label="AT&C Losses (%)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.MANAGER}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.total_consumption)}
+				<ValueCardSolo
+					cardType="total_consumption"
+					field="total_consumption"
 					label="Total consumption (kWh)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.MANAGER}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.current_load)}
+				<ValueCardSolo
+					cardType="current_load"
+					field="current_load"
 					label="Current Load (kW)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.MANAGER}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Box>
 			<Box sx={styles.mapCardsAndChartsRow}>
@@ -59,23 +62,29 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 						</GraphCard>
 					</Box>
 					<Box sx={styles.cardsBottomRow}>
-						<ValueCard
-							value={cardsData?.number_of_sites}
+						<ValueCardSolo
+							cardType="current_load"
+							field="number_of_sites"
 							label="Number of sites"
-							isLoading={isCardsDataLoading}
-							isError={isCardsDataError}
+							handler={CARD_HANDLER.MANAGER}
+							filters={filters}
+							formatter={(value) => formatToUSlocale(value)}
 						/>
-						<ValueCard
-							value={cardsData?.number_of_users}
+						<ValueCardSolo
+							cardType="current_load"
+							field="number_of_users"
 							label="Number of users"
-							isLoading={isCardsDataLoading}
-							isError={isCardsDataError}
+							handler={CARD_HANDLER.MANAGER}
+							filters={filters}
+							formatter={(value) => formatToUSlocale(value)}
 						/>
-						<ValueCard
-							value={cardsData?.pending_alerts}
+						<ValueCardSolo
+							cardType="current_load"
+							field="pending_alerts"
 							label="Pending alerts"
-							isLoading={isCardsDataLoading}
-							isError={isCardsDataError}
+							handler={CARD_HANDLER.MANAGER}
+							filters={filters}
+							formatter={(value) => formatToUSlocale(value)}
 						/>
 					</Box>
 				</Box>

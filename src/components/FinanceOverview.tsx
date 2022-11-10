@@ -1,14 +1,14 @@
 import React from 'react';
 import { SitesDashboardFilters } from '../types';
-import { useGetFinanceHomeCardsData } from '../api/finance/Home/cardsData';
 import { Box } from '@mui/material';
-import { ValueCard } from './ValueCard';
 import { formatToUSlocale } from '../utils/formatters';
 import CustomerBreakdownChart from './Charts/CustomerBreakdownChart';
 import FinancialPerformance from './Charts/FinancialPerformance';
 import RevenueChart from './Charts/RevenueChart';
 import { GraphCard } from './GraphCard';
 import { TransactionHistoryTable } from './Tables/TransactionHistoryTable';
+import { CARD_HANDLER } from '../api/cardsHandlers';
+import ValueCardSolo from './ValueCardSolo';
 
 const styles = {
 	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
@@ -33,38 +33,40 @@ const styles = {
 };
 
 export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
-	const {
-		data: cardsData,
-		isLoading: isCardsDataLoading,
-		isError: isCardsDataError,
-	} = useGetFinanceHomeCardsData({ filters });
-
 	return (
 		<Box>
 			<Box sx={styles.cardRow}>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.total_revenue)}
+				<ValueCardSolo
+					cardType="atc_losses"
+					field="total_revenue"
 					label="Total Revenue (N)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.FINANCE}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.atc_losses)}
+				<ValueCardSolo
+					cardType="atc_losses"
+					field="atc_losses"
 					label="ATC&C Losses (%)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.FINANCE}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.downtime_losses)}
+				<ValueCardSolo
+					cardType="downtime_losses"
+					field="downtime_losses"
 					label="Downtime Losses (N)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.FINANCE}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.tarrif_losses)}
+				<ValueCardSolo
+					cardType="tarrif_losses"
+					field="tarrif_losses"
 					label="Tarrif Losses (N)"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.FINANCE}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
@@ -79,17 +81,21 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					</GraphCard>
 				</Box>
 				<Box sx={styles.lastRowCards}>
-					<ValueCard
-						value={formatToUSlocale(cardsData?.highest_losses)}
+					<ValueCardSolo
+						cardType="highest_losses"
+						field="highest_losses"
 						label="Highest losses"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.FINANCE}
+						filters={filters}
+						formatter={(value) => formatToUSlocale(value)}
 					/>
-					<ValueCard
-						value={formatToUSlocale(cardsData?.highest_revenue)}
+					<ValueCardSolo
+						cardType="highest_revenue"
+						field="highest_revenue"
 						label="Highest revenue"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.FINANCE}
+						filters={filters}
+						formatter={(value) => formatToUSlocale(value)}
 					/>
 				</Box>
 			</Box>

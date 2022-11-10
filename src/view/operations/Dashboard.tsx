@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Box } from '@mui/material';
-import { ValueCard } from '../../components/ValueCard';
 import EnergyChart from '../../components/Charts/EnergyChart';
-import { useGetOperationsDashboardCardsData } from '../../api/operations/operationsDashboard/cardsData';
 import RevenueLossBreakdown from '../../components/Charts/RevenueLossBreakdown';
 import { formatToUSlocale } from '../../utils/formatters';
 import DTstatusChart from '../../components/Charts/DTstatusChart';
@@ -12,6 +10,8 @@ import { SitesDashboardFilters } from '../../types';
 import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import SitesDashboardHeader from '../../layouts/SitesDashboardHeader';
 import { useGetMe } from '../../api/me';
+import { CARD_HANDLER } from '../../api/cardsHandlers';
+import ValueCardSolo from '../../components/ValueCardSolo';
 
 const styles = {
 	screenContent: {
@@ -39,40 +39,43 @@ export const Dashboard = () => {
 		  }
 		: DEFAULT_DASHBOARD_FILTERS;
 	const [filters, setFilters] = useState<SitesDashboardFilters>(myCompaniesDefaultFilters);
-	const {
-		data: cardsData,
-		isLoading: isCardsDataLoading,
-		isError: isCardsDataError,
-	} = useGetOperationsDashboardCardsData({ filters });
 
 	return (
 		<Box sx={styles.screenContent}>
 			<SitesDashboardHeader filters={filters} setFilters={setFilters} />
 
 			<Box sx={styles.cardRow}>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.gridHours)}
+				<ValueCardSolo
+					cardType="availability"
+					field="gridHours"
 					label="Uptime"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={cardsData?.tariffPlan}
+				<ValueCardSolo
+					cardType="tariffPlan"
+					field="tariffPlan"
 					label="Energy Consumption"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.noOfOutages)}
+				<ValueCardSolo
+					cardType="availability"
+					field="noOfOutages"
 					label="No. of Outages"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
-				<ValueCard
-					value={formatToUSlocale(cardsData?.downtime)}
+				<ValueCardSolo
+					cardType="downtime"
+					field="downtime"
 					label="Current Load"
-					isLoading={isCardsDataLoading}
-					isError={isCardsDataError}
+					handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+					filters={filters}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Box>
 			<Box sx={styles.chartsRow}>
@@ -89,17 +92,21 @@ export const Dashboard = () => {
 						justifyContent: 'space-between',
 					}}
 				>
-					<ValueCard
-						value={`N${formatToUSlocale(cardsData?.revenuePerHour)}`}
+					<ValueCardSolo
+						cardType="revenuePerHour"
+						field="revenuePerHour"
 						label="Revenue/Hour"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+						filters={filters}
+						formatter={(value) => `N${formatToUSlocale(value)}`}
 					/>
-					<ValueCard
-						value={`N${formatToUSlocale(cardsData?.untappedRevenue)}`}
+					<ValueCardSolo
+						cardType="untappedRevenue"
+						field="untappedRevenue"
 						label="Untapped Revenue"
-						isLoading={isCardsDataLoading}
-						isError={isCardsDataError}
+						handler={CARD_HANDLER.OPERATIONS_DASHBOARD}
+						filters={filters}
+						formatter={(value) => `N${formatToUSlocale(value)}`}
 					/>
 				</Box>
 				<AverageDailyVoltage filters={filters} />
