@@ -35,7 +35,7 @@ const ValueCard = ({
 	filters: SitesDashboardFilters;
 	formatter?: (value?: number) => string;
 }) => {
-	const { data, isLoading, isError } = handler({ ...filters, card_type: cardType });
+	const { data, isLoading, isError } = handler({ filters, card_type: cardType });
 
 	const renderValue = () => {
 		if (isError) {
