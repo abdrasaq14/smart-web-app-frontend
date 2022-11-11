@@ -4,8 +4,10 @@ import { AppMenuButton } from '../types';
 import { Box } from '@mui/material';
 import { ROLE } from '../utils/auth';
 import { useGetMe } from '../api/me';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Switcher = () => {
+	const { logout } = useAuth0();
 	const { data: me, isLoading: isUserInfoLoading } = useGetMe();
 
 	const buttonDefinitions: Array<AppMenuButton> = [];
@@ -43,6 +45,8 @@ const Switcher = () => {
 			});
 		}
 	} else {
+		logout({ returnTo: `${window.location.origin}/login` });
+		console.log('User is not authenticated or no proper role');
 		return <Box>User is not authenticated</Box>;
 	}
 
