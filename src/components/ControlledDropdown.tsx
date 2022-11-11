@@ -23,7 +23,7 @@ export const ControlledDropdown = ({
 	multiselect,
 }: DropdownProps) => {
 	return (
-		<Box sx={{ minWidth: 120 }}>
+		<Box sx={{ minWidth: 120, width: '100%' }}>
 			<FormControl fullWidth>
 				{label ? <InputLabel id="Label">{label}</InputLabel> : undefined}
 				<Select

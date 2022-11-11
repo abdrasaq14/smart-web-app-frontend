@@ -21,7 +21,7 @@ const SitesDashboardHeader = ({ filters, setFilters }: Props) => {
 
 	return (
 		<Header>
-			<Grid container spacing={1} sx={{ width: '650px' }}>
+			<Grid container spacing={1} sx={{ maxWidth: '650px' }}>
 				<Grid item lg={3} md={3} sm={12} xs={12}>
 					<ControlledDropdown
 						multiselect={true}
