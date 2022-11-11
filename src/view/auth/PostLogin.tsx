@@ -4,6 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import { ROLE } from '../../utils/auth';
 import { useGetMe } from '../../api/me';
+import { Spinner } from '../../components/Spinner';
 
 const PostLogin = () => {
 	const { isAuthenticated, isLoading, getAccessTokenSilently, logout } = useAuth0();
@@ -35,7 +36,7 @@ const PostLogin = () => {
 	}, [receivedToken, isAuthenticated]);
 
 	if (isLoading || !receivedToken || isUserInfoLoading) {
-		return <Box>Loading ...</Box>;
+		return <Spinner />;
 	} else if (isAuthenticated && !isUserInfoLoading && me != null) {
 		const role = me?.access_level;
 
