@@ -5,7 +5,6 @@ import { Box, TextField } from '@mui/material';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import ControlledDatePicker from '../components/ControlledDatePicker';
-import { RegularButton } from '../components/Button';
 
 const styles = {
 	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
@@ -47,7 +46,7 @@ export const SitesHeader = ({ filters, setFilters }: SiteHeaderProps) => {
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '650px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px' }}>
 					<ControlledDatePicker
 						label="Start Date"
 						value={filters.start_date ?? null}
@@ -58,7 +57,7 @@ export const SitesHeader = ({ filters, setFilters }: SiteHeaderProps) => {
 						value={filters.end_date ?? null}
 						setValue={updateFilters('end_date')}
 					/>
-					<RegularButton label="Download" onClick={() => {}} />
+					{/*<RegularButton label="Download" onClick={() => {}} />*/}
 				</Box>
 			</Box>
 		</Box>

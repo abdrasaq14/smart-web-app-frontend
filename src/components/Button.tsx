@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 interface RegularButtonProps {
 	label: string;
 	onClick: () => void;
+	disabled?: boolean;
 }
 
 const styles = {
@@ -23,8 +24,8 @@ const styles = {
 	},
 };
 
-export const RegularButton = ({ label, onClick }: RegularButtonProps) => (
-	<Button variant="contained" sx={styles.button} onClick={onClick}>
+export const RegularButton = ({ label, onClick, disabled }: RegularButtonProps) => (
+	<Button variant="contained" sx={styles.button} onClick={onClick} disabled={!!disabled}>
 		{label}
 	</Button>
 );

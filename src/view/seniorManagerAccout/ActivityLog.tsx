@@ -112,7 +112,7 @@ export const ActivityLog = () => {
 						<Tab label="Raw data" {...a11yProps(3)} />
 					</Tabs>
 				</Box>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '600px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px' }}>
 					<ControlledDatePicker
 						label="Start Date"
 						value={filters.start_date ?? null}
@@ -123,7 +123,7 @@ export const ActivityLog = () => {
 						value={filters.end_date ?? null}
 						setValue={updateFilters('end_date')}
 					/>
-					<RegularButton label="Download" onClick={() => {}} />
+					{/*<RegularButton label="Download" onClick={() => {}} />*/}
 				</Box>
 			</Box>
 			<Box>
@@ -234,7 +234,7 @@ export const ActivityLog = () => {
 						<Box sx={{ display: 'flex', justifyContent: 'center' }}>
 							<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '250px' }}>
 								<RegularButton label="Cancel" onClick={() => {}} />
-								<RegularButton label="Download" onClick={() => {}} />
+								<RegularButton disabled label="Download" onClick={() => {}} />
 							</Box>
 						</Box>
 					</GraphCard>

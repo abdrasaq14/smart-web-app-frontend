@@ -50,7 +50,7 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '800px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '580px' }}>
 					<RegularButton
 						label="Add transaction"
 						onClick={() => {
@@ -67,7 +67,7 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 						value={filters.end_date ?? null}
 						setValue={updateFilters('end_date')}
 					/>
-					<RegularButton label="Download" onClick={() => {}} />
+					{/*<RegularButton label="Download" onClick={() => {}} />*/}
 				</Box>
 			</Box>
 			<FormDialog open={openAddDialog} setOpen={setOpenAddDialog} title="Add transaction">

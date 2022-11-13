@@ -5,7 +5,6 @@ import { Box, TextField } from '@mui/material';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import ControlledDatePicker from '../components/ControlledDatePicker';
-import { RegularButton } from '../components/Button';
 import { ControlledDropdown } from '../components/ControlledDropdown';
 
 const styles = {
@@ -57,7 +56,7 @@ export const UsersHeader = ({ filters, setFilters }: UsersHeaderProps) => {
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '600px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '700px' }}>
 					<ControlledDropdown
 						multiselect={true}
 						label="Companies"
@@ -78,7 +77,7 @@ export const UsersHeader = ({ filters, setFilters }: UsersHeaderProps) => {
 						value={filters.end_date ?? null}
 						setValue={updateFilters('end_date')}
 					/>
-					<RegularButton label="Download" onClick={() => {}} />
+					{/*<RegularButton label="Download" onClick={() => {}} />*/}
 				</Box>
 			</Box>
 		</Box>
