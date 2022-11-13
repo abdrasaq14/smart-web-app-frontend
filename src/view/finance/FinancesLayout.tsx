@@ -19,7 +19,7 @@ const buttonDefinitions: Array<AppMenuButton> = [
 		path: '/finance/transaction',
 	},
 	{
-		id: 4,
+		id: 3,
 		label: 'My Account',
 		icon: <PersonOutlined />,
 		path: '/account',

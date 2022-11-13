@@ -1,6 +1,6 @@
 import { Button, Drawer } from '@mui/material';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AppMenuButton } from '../types';
 
 const SIDEBAR_WIDTH = '250px';
@@ -47,7 +47,7 @@ const styles = {
 
 export const Sidebar = ({ buttonDefinitions }: { buttonDefinitions: Array<AppMenuButton> }) => {
 	const navigate = useNavigate();
-	const [selectedItem, setSelectedItem] = useState<number>(-1);
+	const location = useLocation();
 
 	return (
 		<Drawer sx={styles.drawerContainer} variant="permanent" anchor="left">
@@ -63,10 +63,12 @@ export const Sidebar = ({ buttonDefinitions }: { buttonDefinitions: Array<AppMen
 				<Button
 					key={buttonDefinition.id}
 					variant="text"
-					sx={[styles.button.base, buttonDefinition.id === selectedItem && styles.button.selected]}
+					sx={[
+						styles.button.base,
+						buttonDefinition.path === location.pathname && styles.button.selected,
+					]}
 					startIcon={buttonDefinition.icon}
 					onClick={() => {
-						setSelectedItem(buttonDefinition.id);
 						navigate(buttonDefinition.path);
 					}}
 				>
