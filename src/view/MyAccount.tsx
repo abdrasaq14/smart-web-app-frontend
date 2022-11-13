@@ -75,7 +75,7 @@ export const MyAccount = () => {
 				<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
 			</Box>
 			<Card sx={styles.loginCard} variant="outlined">
-				<Box sx={styles.editProfile}>Edit Profile</Box>
+				{/*<Box sx={styles.editProfile}>Edit Profile</Box>*/}
 				<Box sx={styles.content}>
 					<Box sx={styles.profileHeader}>
 						<CardMedia sx={styles.profilePicture} image="bear.png" />
