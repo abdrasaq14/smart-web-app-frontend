@@ -42,10 +42,10 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 				<ValueCardSolo
 					cardType="availability"
 					field="avg_availability"
-					label="Avg. Availability"
+					label="Avg. Availability (hrs)"
 					handler={CARD_HANDLER.OPERATIONS}
 					filters={filters}
-					formatter={(value) => `${value} hrs`}
+					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
