@@ -24,6 +24,12 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		dataset: {
 			source: data?.dataset,
 		},
+		grid: {
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true,
+		},
 		xAxis: {},
 		yAxis: {
 			type: 'category',
@@ -34,6 +40,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		series: [
 			{
 				type: 'bar',
+				barWidth: '20%',
 				encode: {
 					x: 'revenue',
 					y: 'district',

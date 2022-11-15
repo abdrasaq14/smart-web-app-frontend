@@ -29,6 +29,7 @@ const EnergyChart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		series: [
 			{
 				type: 'bar',
+				barWidth: '20%',
 				encode: {
 					x: 'month',
 					y: 'energy',

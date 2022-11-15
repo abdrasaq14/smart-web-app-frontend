@@ -34,6 +34,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		series: [
 			{
 				type: 'bar',
+				barWidth: '20%',
 				encode: {
 					x: 'consumption',
 					y: 'district',
