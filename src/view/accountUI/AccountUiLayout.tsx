@@ -9,6 +9,8 @@ import {
 	MemoryOutlined,
 } from '@mui/icons-material';
 import { AppMenuButton } from '../../types';
+import { useGetMe } from '../../api/me';
+import { Spinner } from '../../components/Spinner';
 
 const buttonDefinitions: Array<AppMenuButton> = [
 	{
@@ -37,9 +39,15 @@ const buttonDefinitions: Array<AppMenuButton> = [
 	},
 ];
 
-export const AccountUiLayout = () => (
-	<Box sx={{ display: 'flex' }}>
-		<Sidebar buttonDefinitions={buttonDefinitions} />
-		<Outlet />
-	</Box>
-);
+export const AccountUiLayout = () => {
+	const { isLoading: isUserInfoLoading } = useGetMe();
+	if (isUserInfoLoading) {
+		return <Spinner />;
+	}
+	return (
+		<Box sx={{ display: 'flex' }}>
+			<Sidebar buttonDefinitions={buttonDefinitions} />
+			<Outlet />
+		</Box>
+	);
+};

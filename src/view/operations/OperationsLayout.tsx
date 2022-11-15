@@ -4,6 +4,8 @@ import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { PersonOutlined, SaveOutlined, SettingsOutlined, TopicOutlined } from '@mui/icons-material';
 import { AppMenuButton } from '../../types';
+import { useGetMe } from '../../api/me';
+import { Spinner } from '../../components/Spinner';
 
 const buttonDefinitions: Array<AppMenuButton> = [
 	{
@@ -32,9 +34,15 @@ const buttonDefinitions: Array<AppMenuButton> = [
 	},
 ];
 
-export const OperationsLayout = () => (
-	<Box sx={{ display: 'flex' }}>
-		<Sidebar buttonDefinitions={buttonDefinitions} />
-		<Outlet />
-	</Box>
-);
+export const OperationsLayout = () => {
+	const { isLoading: isUserInfoLoading } = useGetMe();
+	if (isUserInfoLoading) {
+		return <Spinner />;
+	}
+	return (
+		<Box sx={{ display: 'flex' }}>
+			<Sidebar buttonDefinitions={buttonDefinitions} />
+			<Outlet />
+		</Box>
+	);
+};
