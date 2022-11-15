@@ -107,7 +107,7 @@ export const TransactionHistoryTable = ({ filters }: Props) => {
 								<TableCell align="center" sx={{ padding: 0 }}>
 									{formatToUSlocale(row.amount_bought)}
 								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>{`${row.days} days`}</TableCell>
+								<TableCell align="center" sx={{ padding: 0 }}>{`${row.days}`}</TableCell>
 								<TableCell align="right" sx={{ padding: 0 }}>
 									<TableMenu
 										menuActions={[

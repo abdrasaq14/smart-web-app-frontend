@@ -23,12 +23,14 @@ export function PieChartContainer({
 	isError,
 }: PieChartContainerProps) {
 	const dataset =
-		data?.dataset.map((apiDataRow) => {
-			return {
-				name: keyLabelMapping[apiDataRow.key](apiDataRow.value, data?.total),
-				value: apiDataRow.value,
-			};
-		}) ?? [];
+		data?.dataset
+			.filter((apiDataRow) => keyLabelMapping[apiDataRow.key] != null)
+			.map((apiDataRow) => {
+				return {
+					name: keyLabelMapping[apiDataRow.key](apiDataRow.value, data?.total),
+					value: apiDataRow.value,
+				};
+			}) ?? [];
 
 	const renderBody = () => {
 		if (isLoading) {

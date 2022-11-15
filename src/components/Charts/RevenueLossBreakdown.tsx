@@ -5,9 +5,9 @@ import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
 const keyLabelMapping: KeyValueMapping = {
-	billing: (value) => `Billing ${formatCompact(value)} (KWh)`,
-	collection: (value) => `Collection ${formatCompact(value)} (KWh)`,
-	downtime: (value) => `Downtime ${formatCompact(value)} (KWh)`,
+	// billing: (value) => `Billing ${formatCompact(value)} (KWh)`,
+	collection: (value) => `Actual consumption ${formatCompact(value)} (KWh)`,
+	downtime: (value) => `Downtime losses ${formatCompact(value)} (KWh)`,
 };
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
