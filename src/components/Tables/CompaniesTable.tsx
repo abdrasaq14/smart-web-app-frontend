@@ -30,8 +30,6 @@ export const CompaniesTable = ({ filters }: Props) => {
 	});
 	const dataToDisplay = data?.results ?? [];
 
-	console.log('dataToDisplay: ', dataToDisplay);
-
 	const handleChangePage = (event: unknown, newPage: number) => {
 		setPage(newPage);
 	};
