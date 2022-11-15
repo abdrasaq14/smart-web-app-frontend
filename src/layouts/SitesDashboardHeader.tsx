@@ -12,7 +12,7 @@ type Props = {
 };
 
 const SitesDashboardHeader = ({ filters, setFilters }: Props) => {
-	const { data: sitesData } = useGetSites();
+	const { data: sitesData } = useGetSites({ filters: { companies: filters.companies } });
 
 	const updateFilters = (key: keyof SitesDashboardFilters) => (value: any) => {
 		setFilters((prevFilters) => ({ ...prevFilters, [key]: value }));
