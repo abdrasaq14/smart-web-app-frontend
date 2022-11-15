@@ -57,6 +57,7 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 		{
 			onSuccess: () => {
 				queryClient.invalidateQueries('alerts');
+				queryClient.invalidateQueries('operations/cards-data');
 			},
 		}
 	);
