@@ -9,3 +9,4 @@ export const DEFAULT_DASHBOARD_FILTERS: SitesDashboardFilters = {
 	end_date: null,
 };
 export const DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE = 'This field is required';
+export const SIDEBAR_WIDTH = '250px';

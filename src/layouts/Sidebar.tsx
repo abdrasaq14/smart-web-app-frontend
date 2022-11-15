@@ -2,8 +2,7 @@ import { Button, Drawer } from '@mui/material';
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AppMenuButton } from '../types';
-
-const SIDEBAR_WIDTH = '250px';
+import { SIDEBAR_WIDTH } from '../utils/constants';
 
 const styles = {
 	drawerContainer: {
