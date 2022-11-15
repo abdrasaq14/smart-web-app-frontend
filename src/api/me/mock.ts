@@ -19,6 +19,6 @@ export const mockResponse: User = {
 	],
 	employee_id: 'SM11098',
 	email: 'drakefinn@smarterise.com',
-	access_level: 'operation',
+	access_level: 'admin',
 	time: 'Sun · 14 April, 04:25 AM',
 };

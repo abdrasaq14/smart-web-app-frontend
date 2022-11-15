@@ -82,7 +82,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 						<ValueCardSolo
 							cardType="highest_losses"
 							field="highest_losses"
-							label="Highest losses"
+							label="Revenue/hour (NGN)"
 							handler={CARD_HANDLER.FINANCE}
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
@@ -92,7 +92,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 						<ValueCardSolo
 							cardType="highest_revenue"
 							field="highest_revenue"
-							label="Highest revenue"
+							label="Revenue/DT (NGN)"
 							handler={CARD_HANDLER.FINANCE}
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
