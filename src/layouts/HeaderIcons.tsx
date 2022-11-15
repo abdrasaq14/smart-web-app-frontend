@@ -6,17 +6,21 @@ import React from 'react';
 
 const HeaderIcons = () => {
 	const location = useLocation();
+	console.log('location: ', location.pathname);
+	console.log('after split location: ', location.pathname.split('/'));
+	const urlParts = location.pathname.split('/');
+	const mainCategory = urlParts.length > 1 ? urlParts[1] : '';
 	const navigate = useNavigate();
 	const { logout } = useAuth0();
 
 	return (
 		<>
-			{location.pathname.includes('operations') ? (
+			{mainCategory !== 'finance' ? (
 				<IconButton
 					light
 					Icon={NotificationsOutlined}
 					onClick={() => {
-						navigate('/operations/activityLog');
+						navigate(`/operations/activityLog`);
 					}}
 				/>
 			) : null}
