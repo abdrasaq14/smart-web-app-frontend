@@ -16,7 +16,7 @@ import { formatDateForDisplay } from '../../utils/formatters';
 import { SitesDashboardFilters } from '../../types';
 import TableMenu from '../TableMenu';
 import { useMutation, useQueryClient } from 'react-query';
-import { patch } from '../../api/apiUtils';
+import { patchWithId } from '../../api/apiUtils';
 import { ApiAlertHistoryRow } from '../../api/operations/operationsHome/alertHistory/types';
 
 type Props = { filters: SitesDashboardFilters };
@@ -52,7 +52,7 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 	const queryClient = useQueryClient();
 	const mutation = useMutation(
 		(newDevice: ApiAlertHistoryRow): Promise<any> => {
-			return patch('alerts', { ...newDevice, status: 'completed' });
+			return patchWithId('alerts', newDevice.id, { status: 'completed' });
 		},
 		{
 			onSuccess: () => {

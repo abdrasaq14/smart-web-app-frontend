@@ -92,7 +92,7 @@ export function patch(relativeUrl: string, data: any, options?: any) {
 	return fetch(url, requestOptions).then(handleResponse);
 }
 
-export function patchWithId(relativeUrl: string, id: string, data: any, options?: any) {
+export function patchWithId(relativeUrl: string, id: string | number, data: any, options?: any) {
 	const requestOptions = {
 		method: 'PATCH',
 		headers: {
@@ -101,7 +101,7 @@ export function patchWithId(relativeUrl: string, id: string, data: any, options?
 		},
 		body: JSON.stringify(data),
 	};
-	const url = new URL(`${BASE_URL}${relativeUrl}/${id}`);
+	const url = new URL(`${BASE_URL}${relativeUrl}/${id.toString()}`);
 	if (options?.queryParams) {
 		url.search = new URLSearchParams(options?.queryParams).toString();
 	}
