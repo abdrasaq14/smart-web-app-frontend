@@ -1,11 +1,10 @@
 import React from 'react';
 import { Box, Button, Card, CardMedia, TextField } from '@mui/material';
-import { IconButton } from '../components/IconButton';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useGetMe } from '../api/me';
 import { getUserName } from '../api/accountUI/users';
 import { Spinner } from '../components/Spinner';
+import HeaderIcons from '../layouts/HeaderIcons';
 
 const styles = {
 	container: {
@@ -70,9 +69,7 @@ export const MyAccount = () => {
 	return (
 		<Box sx={styles.container}>
 			<Box sx={styles.headerIcons}>
-				<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-				<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
-				<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+				<HeaderIcons />
 			</Box>
 			<Card sx={styles.loginCard} variant="outlined">
 				{/*<Box sx={styles.editProfile}>Edit Profile</Box>*/}

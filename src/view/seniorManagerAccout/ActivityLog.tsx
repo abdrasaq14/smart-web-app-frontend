@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import { Box, Checkbox, FormControlLabel, Tab, Tabs, TextField, Typography } from '@mui/material';
 import { DatePickerDropdown } from '../../components/DatePickerDropdown';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { RegularButton } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
-import { useNavigate } from 'react-router-dom';
 import { EventLogsTable } from '../../components/Tables/EventLogsTable';
 import { UserLogsTable } from '../../components/Tables/UserLogsTable';
 import { GraphCard } from '../../components/GraphCard';
@@ -13,6 +10,7 @@ import { DEFAULT_DASHBOARD_FILTERS } from '../../utils/constants';
 import ControlledDatePicker from '../../components/ControlledDatePicker';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { useGetMe } from '../../api/me';
+import HeaderIcons from '../../layouts/HeaderIcons';
 
 const styles = {
 	screenContent: {
@@ -28,7 +26,7 @@ const styles = {
 };
 
 interface TabPanelProps {
-	children?: React.ReactNode;
+	children?: ReactNode;
 	index: number;
 	value: number;
 }
@@ -61,8 +59,7 @@ function a11yProps(index: number) {
 }
 
 export const ActivityLog = () => {
-	const navigate = useNavigate();
-	const [tabValue, setTabValue] = React.useState(0);
+	const [tabValue, setTabValue] = useState(0);
 	const { data: me } = useGetMe();
 	const myCompanies = me ? me?.companies.map((company) => company.id) : null;
 	const myCompaniesDefaultFilters = myCompanies
@@ -98,9 +95,7 @@ export const ActivityLog = () => {
 					onChange={handleChangeInSearch}
 				/>
 				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+					<HeaderIcons />
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>

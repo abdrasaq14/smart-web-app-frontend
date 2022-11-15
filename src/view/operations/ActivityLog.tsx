@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Checkbox, FormControlLabel, Tab, Tabs, TextField, Typography } from '@mui/material';
 import { DatePickerDropdown } from '../../components/DatePickerDropdown';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import { RegularButton } from '../../components/Button';
-import { IconButton } from '../../components/IconButton';
-import { useNavigate } from 'react-router-dom';
 import { EventLogsTable } from '../../components/Tables/EventLogsTable';
 import { UserLogsTable } from '../../components/Tables/UserLogsTable';
 import { GraphCard } from '../../components/GraphCard';
@@ -14,6 +11,7 @@ import ControlledDatePicker from '../../components/ControlledDatePicker';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { a11yProps, TabPanel } from '../../components/TabPanel';
 import { useGetMe } from '../../api/me';
+import HeaderIcons from '../../layouts/HeaderIcons';
 
 const styles = {
 	screenContent: {
@@ -29,7 +27,6 @@ const styles = {
 };
 
 export const ActivityLog = () => {
-	const navigate = useNavigate();
 	const [tabValue, setTabValue] = React.useState(0);
 	const { data: me } = useGetMe();
 	const myCompanies = me ? me?.companies.map((company) => company.id) : null;
@@ -66,9 +63,7 @@ export const ActivityLog = () => {
 					onChange={handleChangeInSearch}
 				/>
 				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+					<HeaderIcons />
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>

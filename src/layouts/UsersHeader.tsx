@@ -1,11 +1,9 @@
 import { SitesDashboardFilters } from '../types';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Box, TextField } from '@mui/material';
-import { IconButton } from '../components/IconButton';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import ControlledDatePicker from '../components/ControlledDatePicker';
 import { ControlledDropdown } from '../components/ControlledDropdown';
+import HeaderIcons from './HeaderIcons';
 
 const styles = {
 	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
@@ -19,8 +17,6 @@ type UsersHeaderProps = {
 };
 
 export const UsersHeader = ({ filters, setFilters }: UsersHeaderProps) => {
-	const navigate = useNavigate();
-
 	const companies = {
 		results: [
 			{ id: 1, name: 'Stell & Bronze Ltd' },
@@ -50,9 +46,7 @@ export const UsersHeader = ({ filters, setFilters }: UsersHeaderProps) => {
 					onChange={handleChangeInSearch}
 				/>
 				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+					<HeaderIcons />
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>

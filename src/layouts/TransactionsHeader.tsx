@@ -1,13 +1,11 @@
 import { SitesDashboardFilters } from '../types';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Box, TextField } from '@mui/material';
-import { IconButton } from '../components/IconButton';
-import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import ControlledDatePicker from '../components/ControlledDatePicker';
 import { RegularButton } from '../components/Button';
 import AddTransactionForm from '../components/Forms/AddTransactionForm';
 import FormDialog from '../components/Forms/FormDialog';
+import HeaderIcons from './HeaderIcons';
 
 const styles = {
 	header: { display: 'flex', justifyContent: 'space-between', width: '100%', height: '56px' },
@@ -20,7 +18,6 @@ type SiteHeaderProps = {
 	setFilters: React.Dispatch<React.SetStateAction<SitesDashboardFilters>>;
 };
 export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) => {
-	const navigate = useNavigate();
 	const [openAddDialog, setOpenAddDialog] = React.useState(false);
 
 	const updateFilters = (key: keyof SitesDashboardFilters) => (value: any) => {
@@ -44,9 +41,7 @@ export const TransactionsHeaders = ({ filters, setFilters }: SiteHeaderProps) =>
 					onChange={handleChangeInSearch}
 				/>
 				<Box sx={styles.headerIcons}>
-					<IconButton light Icon={NotificationsOutlined} onClick={() => {}} />
-					<IconButton round Icon={PersonOutlined} onClick={() => navigate('/account')} />
-					<IconButton round Icon={Logout} onClick={() => navigate('/login')} />
+					<HeaderIcons />
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
