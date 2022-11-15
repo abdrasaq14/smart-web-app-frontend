@@ -65,7 +65,7 @@ export const SitesTable = ({ filters }: Props) => {
 							<TableCell align="center">Site</TableCell>
 							<TableCell align="center">Asset Type</TableCell>
 							<TableCell align="center">Asset co-ordinate</TableCell>
-							<TableCell align="center">Asset capacity (kW)</TableCell>
+							<TableCell align="center">Asset capacity (kVA)</TableCell>
 							<TableCell align="center">Time/Date</TableCell>
 							<TableCell align="center"></TableCell>
 						</TableRow>
