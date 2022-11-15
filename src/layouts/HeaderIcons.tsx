@@ -6,8 +6,6 @@ import React from 'react';
 
 const HeaderIcons = () => {
 	const location = useLocation();
-	console.log('location: ', location.pathname);
-	console.log('after split location: ', location.pathname.split('/'));
 	const urlParts = location.pathname.split('/');
 	const mainCategory = urlParts.length > 1 ? urlParts[1] : '';
 	const navigate = useNavigate();

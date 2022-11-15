@@ -6,7 +6,7 @@ const AssetSchema = z.object({
 	name: z.string(),
 	asset_type: z.string(),
 	asset_co_ordinate: z.string(),
-	asset_capacity: z.string(),
+	asset_capacity: z.number(),
 	time: z.string(),
 });
 export const AssetsResponseSchema = z.object({

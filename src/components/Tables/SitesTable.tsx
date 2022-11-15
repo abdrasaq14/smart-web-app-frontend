@@ -62,26 +62,26 @@ export const SitesTable = ({ filters }: Props) => {
 					<TableHead>
 						<TableRow>
 							<TableCell>Asset name</TableCell>
-							<TableCell align="right">Site</TableCell>
-							<TableCell align="right">Asset Type</TableCell>
-							<TableCell align="right">Asset co-ordinate</TableCell>
-							<TableCell align="right">Asset capacity</TableCell>
-							<TableCell align="right">Time/Date</TableCell>
-							<TableCell align="right"></TableCell>
+							<TableCell align="center">Site</TableCell>
+							<TableCell align="center">Asset Type</TableCell>
+							<TableCell align="center">Asset co-ordinate</TableCell>
+							<TableCell align="center">Asset capacity</TableCell>
+							<TableCell align="center">Time/Date</TableCell>
+							<TableCell align="center"></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{dataToDisplay.map((row) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell align="right" component="th" scope="row">
+								<TableCell align="center" component="th" scope="row">
 									{row.asset_name}
 								</TableCell>
-								<TableCell align="right">{row.name}</TableCell>
-								<TableCell align="right">{row.asset_type}</TableCell>
-								<TableCell align="right">{row.asset_co_ordinate}</TableCell>
-								<TableCell align="right">{row.asset_capacity}</TableCell>
-								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="right">
+								<TableCell align="center">{row.name}</TableCell>
+								<TableCell align="center">{row.asset_type}</TableCell>
+								<TableCell align="center">{row.asset_co_ordinate}</TableCell>
+								<TableCell align="center">{row.asset_capacity}</TableCell>
+								<TableCell align="center">{formatDateForDisplay(row.time)}</TableCell>
+								<TableCell align="center">
 									<IconButton
 										round
 										Icon={Dashboard}

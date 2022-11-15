@@ -11,7 +11,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Smarterise',
 			asset_type: 'Transformer',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -20,7 +20,7 @@ export const mockResponse: ApiAssets = {
 			name: 'EKGB',
 			asset_type: 'Generator',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -29,7 +29,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Vercase',
 			asset_type: 'Solar PV',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -38,7 +38,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -47,7 +47,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd1',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -56,7 +56,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd2',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -65,7 +65,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd3',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -74,7 +74,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd4',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -83,7 +83,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd5',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -92,7 +92,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd6',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -101,7 +101,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd7',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -110,7 +110,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd8',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -119,7 +119,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd9',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -128,7 +128,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd10',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -137,7 +137,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd12',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -146,7 +146,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd13',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -155,7 +155,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd14',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 		{
@@ -164,7 +164,7 @@ export const mockResponse: ApiAssets = {
 			name: 'Jim Ltd15',
 			asset_type: 'Battery',
 			asset_co_ordinate: 'N12.45 E7.80',
-			asset_capacity: '300kVA',
+			asset_capacity: 300,
 			time: 'Sun · 14 April, 04:25 AM',
 		},
 	],
