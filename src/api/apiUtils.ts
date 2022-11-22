@@ -157,6 +157,12 @@ export function getFiltersQueryParams(options?: DashboardQueryProps) {
 				end_date: formatDateForFilter(filters.end_date),
 			};
 		}
+		if (filters.status != null) {
+			queryParams = {
+				...queryParams,
+				status: filters.status,
+			};
+		}
 	}
 	return queryParams;
 }

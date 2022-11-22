@@ -9,6 +9,7 @@ import { GraphCard } from './GraphCard';
 import { AlertHistoryTable } from './Tables/AlertHistoryTable';
 import ValueCardSolo from './ValueCardSolo';
 import { CARD_HANDLER } from '../api/cardsHandlers';
+import PendingAlertsValueCard from './PendingAlertsValueCard';
 
 const styles = {
 	table: { width: '100%' },
@@ -87,12 +88,12 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 						/>
 					</Grid>
 					<Grid item lg={12} md={6} sm={6}>
-						<ValueCardSolo
-							cardType="sites"
-							field="sites_under_maintenance"
+						<PendingAlertsValueCard
+							// cardType="sites"
+							field="count"
 							label="Sites under maintenance"
-							handler={CARD_HANDLER.OPERATIONS}
-							filters={filters}
+							handler={CARD_HANDLER.PENDING_ALERTS}
+							filters={{ ...filters, status: 'pending' }}
 						/>
 					</Grid>
 				</Grid>

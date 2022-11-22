@@ -4,6 +4,7 @@ export type SitesDashboardFilters = {
 	companies?: number[] | string[];
 	start_date?: Date | null;
 	end_date?: Date | null;
+	status?: string | null;
 };
 
 export type DashboardPaginationProps = {
