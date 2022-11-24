@@ -51,8 +51,8 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="tarrif_losses"
-					field="tarrif_losses"
-					label="Tarrif Losses (N)"
+					field="tariff_losses"
+					label="Tariff Losses (N)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
