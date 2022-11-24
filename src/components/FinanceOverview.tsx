@@ -50,7 +50,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
-					cardType="tarrif_losses"
+					cardType="tariff_losses"
 					field="tariff_losses"
 					label="Tariff Losses (N)"
 					handler={CARD_HANDLER.FINANCE}
