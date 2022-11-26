@@ -35,7 +35,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="ATC&C Losses (%)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
-					formatter={(value) => formatToUSlocale((value ?? 0) * 100)}
+					formatter={(value) => formatToUSlocale((value ?? 0) * 100, 1)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>

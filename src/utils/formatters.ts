@@ -1,7 +1,12 @@
 import { format } from 'date-fns';
 
-export function formatToUSlocale(value = 0): string {
-	return value.toLocaleString('en-US');
+export function formatToUSlocale(value = 0, digits?: number): string {
+	return digits != null
+		? value.toLocaleString('en-US', {
+				minimumFractionDigits: digits,
+				maximumFractionDigits: digits,
+		  })
+		: value.toLocaleString('en-US');
 }
 
 const formatter = Intl.NumberFormat('en', { notation: 'compact' });
