@@ -58,8 +58,8 @@ export const App = () => {
 			<SnackbarProvider maxSnack={3}>
 				<BrowserRouter>
 					<Auth0ProviderWithRedirectCallback
-						domain="dev-u0pz-ez1.eu.auth0.com"
-						clientId="ZAxyOWdqXvBwJlBqWpIIvzjELgotbvjA"
+						domain="dev-mgw72jpas4obd84e.us.auth0.com"
+						clientId="RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH"
 						redirectUri={`${window.location.origin}/post-login`}
 						// audience="https://dev-u0pz-ez1.eu.auth0.com/api/v2/"
 						audience="test api for perms"
