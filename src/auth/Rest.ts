@@ -2,14 +2,14 @@ import axios from 'axios';
 
 const options = {
     method: 'POST',
-    url: 'https://dev-u0pz-ez1.eu.auth0.com/oauth/token',
+    url: 'https://dev-mgw72jpas4obd84e.us.auth0.com/oauth/token',
     headers: {
         'content-type': 'application/x-www-form-urlencoded',
     },
     data: new URLSearchParams({
-        client_id: '4CZMJ4Ho3BYuF6qx1gvRTFdNK4aqhVda',
-        client_secret: '6pciXO9xgdCTNLOKMRKMRUksjTxrVGJXMl2LcrDJhDnZ6jkxkwdryM1xknncOvGs',
-        audience: 'https://dev-u0pz-ez1.eu.auth0.com/api/v2/',
+        client_id: 'RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH',
+        client_secret: 'fmJkyRyv5VLEixz_sDJVpMxv0P34sJVWFO0wkyRd8tRYjXVe9OBIQjVw5wyf6heg',
+        audience: 'https://dev-mgw72jpas4obd84e.us.auth0.com/api/v2/',
         grant_type: 'client_credentials'
     })
 };
