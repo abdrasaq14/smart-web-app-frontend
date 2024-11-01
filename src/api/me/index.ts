@@ -14,6 +14,9 @@
 
 // export const useGetMe = (options?: any) =>
 // 	useQuery([apiRoute], () => getMe(), { staleTime: Infinity, ...options });
+
+
+
 import { mockResponse } from './mock';
 import { useQuery } from 'react-query';
 import { User, UserSchema } from '../accountUI/users/types';
@@ -31,6 +34,9 @@ const getMe = getDashboardData<User>({
 	mockResponse,
 });
 
+// Log the configuration of the getMe function
+console.log("getMe configuration:", getMe);
+
 // Define a function to log the response
 const logResponse = (response) => {
 	if (response.error) {
@@ -41,9 +47,15 @@ const logResponse = (response) => {
 };
 
 export const useGetMe = (options?: any) =>
-	useQuery([apiRoute], async () => {
-		const response = await getMe();
-		logResponse(response); // Log the response after the API call
-		return response;
-	}, { staleTime: Infinity, ...options });
+	useQuery(
+		[apiRoute], 
+		async () => {
+			console.log("Preparing to hit route");
+			const response = await getMe();
+			logResponse(response); // Log the response after the API call
 
+			console.log("finished to hit route");
+			return response;
+		}, 
+		{ staleTime: Infinity, ...options }
+	);
