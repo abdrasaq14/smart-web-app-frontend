@@ -27,7 +27,7 @@ const config = {
 				'img-src www.google-analytics.com https://*.hotjar.com https://run.pstmn.io/button.svg https://img.shields.io https://raster.shields.io localhost:* data: blob:; ' +
 				"style-src fonts.googleapis.com *.cloudfront.net localhost:* 'unsafe-inline'; " +
 				'child-src https://vars.hotjar.com; ' +
-				'frame-src https://vars.hotjar.com https://dev-u0pz-ez1.eu.auth0.com/',
+				'frame-src https://vars.hotjar.com dev-mgw72jpas4obd84e.us.auth0.com/',
 		},
 		proxy: [
 			{
