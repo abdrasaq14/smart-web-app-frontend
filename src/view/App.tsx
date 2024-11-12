@@ -63,7 +63,7 @@ export const App = () => {
 						redirectUri={`${window.location.origin}/post-login`}
 						// audience="https://dev-u0pz-ez1.eu.auth0.com/api/v2/"
 						//audience="test api for perms"
-						audience="test api for perms/api"
+						audience="test api for perms"
 						scope="read:current_user update:current_user_metadata"
 					>
 						<Routes>
