@@ -69,9 +69,9 @@ const PostLogin = () => {
   } else {
     logout({ returnTo: `${window.location.origin}/login` });
     console.log('User is not authenticated');
-    return <Box>User is not authenticated</Box>;
+    return <Box>I don't know this user</Box>;
   }
-console.log("checkingauthtoken", isAuthenticated, isUserInfoLoading, me)
+console.log("I don't know this user", isAuthenticated, isUserInfoLoading, me)
   return <Box>Checking user...</Box>;
 };
 
