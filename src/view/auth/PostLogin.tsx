@@ -44,33 +44,33 @@ const PostLogin = () => {
     return <Box>Error fetching user data. Redirecting to login...</Box>;
   }
 
-  // // Handle the navigation logic based on the user's role
-  // if (isAuthenticated && !isUserInfoLoading && me != null) {
-  //   const role = me?.access_level;
+  // Handle the navigation logic based on the user's role
+  if (isAuthenticated && !isUserInfoLoading && me != null) {
+    const role = me?.access_level;
 
-  //   switch (role) {
-  //     case ROLE.ADMIN:
-  //       navigate('/account-ui');
-  //       break;
-  //     case ROLE.MANAGER:
-  //       navigate('/senior-manager-account');
-  //       break;
-  //     case ROLE.FINANCE:
-  //       navigate('/finance');
-  //       break;
-  //     case ROLE.OPERATIONS:
-  //       navigate('/operations');
-  //       break;
-  //     default:
-  //       logout({ returnTo: `${window.location.origin}/login` });
-  //       console.log('User does not have the required role to access the app');
-  //       return <Box>User does not have the required role to access the app</Box>;
-  //   }
-  // } else {
-  //   logout({ returnTo: `${window.location.origin}/login` });
-  //   console.log('User is not authenticated');
-  //   return <Box>User is not authenticated</Box>;
-  // }
+    switch (role) {
+      case ROLE.ADMIN:
+        navigate('/account-ui');
+        break;
+      case ROLE.MANAGER:
+        navigate('/senior-manager-account');
+        break;
+      case ROLE.FINANCE:
+        navigate('/finance');
+        break;
+      case ROLE.OPERATIONS:
+        navigate('/operations');
+        break;
+      default:
+        logout({ returnTo: `${window.location.origin}/login` });
+        console.log('User does not have the required role to access the app');
+        return <Box>User does not have the required role to access the app</Box>;
+    }
+  } else {
+    logout({ returnTo: `${window.location.origin}/login` });
+    console.log('User is not authenticated');
+    return <Box>User is not authenticated</Box>;
+  }
 console.log("checkingauthtoken", isAuthenticated, isUserInfoLoading, me)
   return <Box>Checking user...</Box>;
 };

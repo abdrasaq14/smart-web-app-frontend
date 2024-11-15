@@ -23,7 +23,7 @@ const providerConfig = {
     onRedirectCallback,
     redirectUri: `${window.location.origin}/post-login`, 
     audience: "http://127.0.0.1:8000/", 
-     scope: 'read:messages write:data',
+     scope: 'read:messages write:data openid profile email',
 };
 
 const container = document.getElementById('app');
