@@ -19,10 +19,10 @@ const onRedirectCallback = (appState: any) => {
 // Define Auth0Provider configuration
 const providerConfig = {
     domain: "dev-mgw72jpas4obd84e.us.auth0.com",
-    clientId: "Gbl8EEPzTnT3dbhZEBDb91PiWna8Hs2D",
+    clientId: "RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH",
     onRedirectCallback,
     redirectUri: `${window.location.origin}/post-login`, 
-    audience: "http://127.0.0.1:8000/", 
+    audience: "https://api.demo.powersmarter.net/", 
      scope: 'read:messages write:data openid profile email',
 };
 
