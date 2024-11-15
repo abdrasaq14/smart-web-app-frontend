@@ -50,12 +50,17 @@ export const useGetMe = (options?: any) =>
 	useQuery(
 		[apiRoute], 
 		async () => {
-			console.log("Preparing to hit route");
+			try {
+				console.log("Preparing to hit route");
 			const response = await getMe();
 			logResponse(response); // Log the response after the API call
 
-			console.log("finished to hit route");
+			console.log("finished to hit route", response);
 			return response;
+		} catch (error) {
+				console.log("finished to hit route with Error", error);
+				
+			}
 		}, 
 		{ staleTime: Infinity, ...options }
 	);
