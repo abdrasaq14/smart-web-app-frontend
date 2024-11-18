@@ -67,6 +67,7 @@ const PostLogin = () => {
         return <Box>User does not have the required role to access the app</Box>;
     }
   } else {
+    console.log("I don't know this user", isAuthenticated, isUserInfoLoading, me)
     logout({ returnTo: `${window.location.origin}/login` });
     console.log("I don't know this user", isAuthenticated, isUserInfoLoading, me)
     // console.log('User is not authenticated');
