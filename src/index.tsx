@@ -1,35 +1,19 @@
-// polyfills
-import 'whatwg-fetch';
-import 'url-polyfill';
-import 'abortcontroller-polyfill/dist/polyfill-patch-fetch';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
-import '../reset.css';
-import { App } from './view/App';
-import { Auth0Provider } from '@auth0/auth0-react';
-import { createBrowserHistory } from "history";
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-// Initialize a single history instance
-const history = createBrowserHistory();
-
-const onRedirectCallback = (appState: any) => {
-    history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
-};
-
-// Define Auth0Provider configuration
-const providerConfig = {
-    domain: "dev-mgw72jpas4obd84e.us.auth0.com",
-    clientId: "RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH",
-    onRedirectCallback,
-    redirectUri: `${window.location.origin}/post-login`, 
-    audience: "https://api.demo.powersmarter.net/", 
-     scope: 'read:messages write:data openid profile email',
-};
-
-const container = document.getElementById('app');
-const root = createRoot(container!);
-root.render(
-    <Auth0Provider {...providerConfig}>
-        <App />
-    </Auth0Provider>
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
 );
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
