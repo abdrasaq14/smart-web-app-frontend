@@ -1,3 +1,3 @@
 import smarteriseLogo from './smarteriselogo.png'
-
-export { smarteriseLogo }
+import smarteriseLogoNoText from './smarterise_logo.jpg'
+export { smarteriseLogo, smarteriseLogoNoText }

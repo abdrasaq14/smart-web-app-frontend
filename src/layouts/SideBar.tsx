@@ -1,9 +1,8 @@
-"use client";
 import { Link } from "react-router-dom";
 import {
-  MdKeyboardDoubleArrowLeft,
-  MdKeyboardDoubleArrowRight,
   MdArrowDownward,
+  MdOutlineKeyboardArrowLeft,
+  MdOutlineKeyboardArrowRight,
 } from "react-icons/md";
 import {
   SideNavItem,
@@ -11,57 +10,67 @@ import {
 } from "../interfaces/ComponentInterfaces";
 import { smarteriseLogo } from "../assets/logo";
 import { useState } from "react";
+import { smarteriseLogoNoText } from "../assets/logo";
 
 const DashboardSidenav = ({ items }: { items: SideNavItem[] }) => {
   const [isOpen, setIsOpen] = useState(true);
-  const [activeLabel, setActiveLabel] = useState<string | null>(null);
+  const [activeLabel, setActiveLabel] = useState<string>("Home");
   const toggleNav = () => {
     setIsOpen(!isOpen);
   };
 
   return (
     <div
-      className={` ${
-        isOpen ? "w-80" : "w-20"
-      } overflow-auto border-e-[0.4px] border-r-purple-main px-5 bg-white text-accent-dark3 font-satoshiRegular text-sm h-full fixed transition-width duration-300`}
+      className={`bg-[#F7F7F7] ${
+        isOpen ? "w-60" : "w-20"
+      }  border-e-[0.4px] px-5 text-sm h-full fixed transition-width duration-300`}
     >
       <div className="flex justify-between items-center w-full mt-5">
-        <img
-          src={smarteriseLogo}
-          alt="Landmark logo"
-          width={164}
-          height={64}
-        />
-        <button onClick={toggleNav}>
-          {isOpen ? (
-            <MdKeyboardDoubleArrowLeft className="text-2xl font-satoshiRegular" />
-          ) : (
-            <MdKeyboardDoubleArrowRight className="text-2xl font-satoshiRegular" />
-          )}
-        </button>
+        {isOpen ? (
+          <img
+            src={smarteriseLogo}
+            alt="Smarterise logo"
+            className="max-w-[180px]"
+          />
+        ) : (
+          <img
+            src={smarteriseLogoNoText}
+            alt="smarterise logo"
+            className="max-h-20"
+          />
+        )}
       </div>
-
-      <ul className="mt-10 space-y-5">
+      <button
+        className="absolute top-[4%] right-[-10px] rounded-full h-5 w-5 flex items-center justify-center bg-primary-yellowMain text-primary-blackMain p-1 font-semibold"
+        onClick={toggleNav}
+      >
+        {isOpen ? (
+          <MdOutlineKeyboardArrowLeft />
+        ) : (
+          <MdOutlineKeyboardArrowRight />
+        )}
+      </button>
+      <ul className="mt-10 space-y-5 text-primary-blackMain">
         {items.map((item) => (
           <li key={item.label}>
             {" "}
             {/* Add key here for each item */}
-            <Link to={item.href}>
+            <Link to={item.link}>
               <div
                 className={`${
                   activeLabel === item.label
-                    ? "bg-purple-main text-white"
-                    : "hover:bg-purple-main hover:text-white"
-                } flex items-center justify-between p-2 space-x-2 rounded-md group hover:cursor-pointer mt-3`}
+                    ? "bg-primary-yellowMain text-primary-blackMain"
+                    : "hover:bg-primary-yellowMain hover:text-white"
+                } flex items-center justify-between p-2 space-x-2 rounded-md hover:cursor-pointer mt-3`}
                 onClick={() => setActiveLabel(item.label)}
               >
                 <div className="flex items-center space-x-2 text-white">
                   <item.icon className="text-lg icon transition-all" />
                   {isOpen && (
                     <span
-                      className={`text-accent-dark3 ${
+                      className={`text-primary-blackMain ${
                         activeLabel === item.label
-                          ? "text-white"
+                          ? "text-primary-blackMain"
                           : "group-hover:text-white"
                       }`}
                     >

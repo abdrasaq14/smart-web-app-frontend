@@ -1,18 +1,19 @@
-import DashboardLayout from "../layouts/dashboardLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
 import DashboardPage from "../pages/dashboard/Dashboard";
-import AuthGuard from "./AuthGuard";
+// import AuthGuard from "./AuthGuard";
 
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    element: (
-      <AuthGuard>
-        <DashboardLayout />
-      </AuthGuard>
-    ),
+    element: <DashboardLayout />,
+    // element: (
+    //   <AuthGuard>
+    //     <DashboardLayout />
+    //   </AuthGuard>
+    // ),
     children: [
       {
-        path: "author",
+        path: "home",
         element: <DashboardPage />,
       },
     ],

@@ -1,25 +1,27 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { AppInputProps } from "../../interfaces/ComponentInterfaces";
 
-const AppInput = ({
+interface AppDateInputProps extends AppInputProps {
+  minDate?: string; // Optional min date
+  maxDate?: string; // Optional max date
+}
+
+const AppDateInput = ({
   leftIcon: LeftIcon = null,
   rightIcon: RightIcon = null,
   placeholder = "",
   topLabel: TopLabel = null,
   bottomLabel: BottomLabel = null,
-  type,
   disabled = false,
   name,
   value,
   onChange,
   onBlur,
-    error,
+  error,
   style,
-}: AppInputProps): ReactElement => {
-  const [localType, setLocalType] = useState<string>(type);
-
-  const handlePasswordView = (type: string) => setLocalType(type);
-
+  minDate,
+  maxDate,
+}: AppDateInputProps): ReactElement => {
   return (
     <>
       {TopLabel && typeof TopLabel === "string" ? (
@@ -30,47 +32,33 @@ const AppInput = ({
       <div
         className={`input-wrapper ${
           error ? "border-red-500" : "border-primary-border"
-        }  ${style}`}
+        } ${style}`}
       >
         {LeftIcon && <LeftIcon size={20} className="text-accent-light3" />}
         <input
           className="input-style"
+          type="date"
           name={name}
           value={value}
           onChange={onChange}
           onBlur={onBlur}
           disabled={disabled}
           placeholder={placeholder}
-          type={type === "password" ? localType : type}
+          min={minDate}
+          max={maxDate}
         />
-        {(type === "password" &&
-          (localType === "password" ? (
-            <span
-              onClick={() => handlePasswordView("text")}
-              className="cursor-pointer text-xs text-primary-placeholder"
-            >
-              Show
-            </span>
-          ) : (
-            <span
-              onClick={() => handlePasswordView("password")}
-              className="cursor-pointer text-xs text-primary-placeholder"
-            >
-              Hide
-            </span>
-          ))) ||
-          (RightIcon && (
-            <RightIcon size={20} className="text-primary-blackLight" />
-          ))}
+        {RightIcon && (
+          <RightIcon size={20} className="text-primary-blackLight" />
+        )}
       </div>
       {BottomLabel && typeof BottomLabel === "string" ? (
         <span className="text-sm text-primary-blackLight">{BottomLabel}</span>
       ) : (
         BottomLabel
       )}
-      {error && <span className={`text-red-500 text-sm ${error ? 'mb-5' : ''}`}>{error}</span>}
+      {error && <span className="text-red-500 text-sm">{error}</span>}
     </>
   );
 };
 
-export default AppInput;
+export default AppDateInput;

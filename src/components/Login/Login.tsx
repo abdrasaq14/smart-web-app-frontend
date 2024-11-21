@@ -10,7 +10,6 @@ import AppInput from "../Inputs/AppInput";
 import AppHeading from "../texts/Headings";
 
 function Login() {
-  // Define formik instance
   const formik = useFormik({
     initialValues: {
       email: "",

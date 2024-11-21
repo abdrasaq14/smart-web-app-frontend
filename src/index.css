@@ -24,10 +24,12 @@ body {
     @apply text-white transition ease-in-out delay-150 bg-primary-yellowMain hover:-translate-y-1 hover:scale-110 duration-300
 }
 
-/* .btn-secondary {
-    @apply bg-none text-purple-main border border-purple-main hover:bg-purple-lighter transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300
-} */
-
+.input-wrapper{
+    @apply text-primary-blackLight w-full h-12 bg-none border rounded-lg py-2.5 px-2 flex justify-between items-center text-sm 
+}
+.input-style{
+    @apply w-full bg-inherit border-none outline-none mx-2 text-sm placeholder:text-primary-placeholder 
+}
 .btn-disabled {
     @apply text-white bg-primary-yellowLight hover:cursor-not-allowed
 }
