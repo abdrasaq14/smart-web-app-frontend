@@ -1,31 +1,58 @@
-import pkg from 'eslint';
-const { defineConfig } = pkg;
 import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginReact from 'eslint-plugin-react';
-import tseslint from '@typescript-eslint/eslint-plugin';
+import js from '@eslint/js';
+import react from 'eslint-plugin-react';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
+import tsParser from '@typescript-eslint/parser';
 
-/** @type {import('eslint').Linter.Config} */
-export default defineConfig([
+export default [
+  // Base JavaScript configuration
   {
-    files: ['**/*.{js,mjs,cjs,ts,tsx,jsx}'],
-    languageOptions: {
-      parser: '@typescript-eslint/parser', 
-      ecmaVersion: 2020, 
-      sourceType: 'module', 
-      globals: globals.browser, 
-    },
+    files: ['**/*.js', '**/*.jsx'],
     plugins: {
-      react: pluginReact,
-      '@typescript-eslint': tseslint,
+      js: js,
     },
-    extends: [
-      pluginJs.configs.recommended,
-      pluginReact.configs.recommended,
-      tseslint.configs.recommended,
-    ],
+    rules: js.configs.recommended.rules,
+  },
+
+  // TypeScript configuration
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
+    languageOptions: {
+      parser: tsParser,
+      ecmaVersion: 2020,
+      sourceType: 'module',
+      globals: globals.browser,
+    },
+    rules: tsPlugin.configs.recommended.rules,
+  },
+
+  // React-specific configuration (for React 17+)
+  {
+    files: ['**/*.jsx', '**/*.tsx'],
+    plugins: {
+      react: react,
+    },
+    settings: {
+      react: {
+        version: 'detect', // Automatically detect the version of React
+      },
+    },
     rules: {
-      'no-unused-vars': 'warn', // Example rule
+      'react/react-in-jsx-scope': 'off', // Disable the rule for React 17+
+      ...react.configs.recommended.rules,
     },
   },
-]);
+
+  // Custom rules
+  {
+    files: ['src/**/*.{js,jsx,ts,tsx}'],
+    rules: {
+      'no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': 'warn',
+       'react/react-in-jsx-scope': 'off',
+    },
+  },
+];

@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import { smarteriseLogo } from "../assets/logo";
 
-function AuthLayout() {
+function DashboardLayout() {
   return (
     <div className="auth-layout-bg min-h-[100vh] overflow-hidden">
-      <div className="bg-white bg-opacity-80 min-h-[100vh] p-6 flex flex-col">
+      <div className="bg-white bg-opacity-80 min-h-[100vh] p-6">
         <div className="flex justify-between items-center text h-[5rem]">
           {/* logo section */}
           <div className="max-w-[200px]">
@@ -17,12 +17,12 @@ function AuthLayout() {
           <IoIosArrowDown />
         </div> */}
         </div>
-        <div className="flex-1 flex flex-col items-center justify-center">
-          <Outlet/>
+        <div className="flex flex-col items-center justify-center">
+          <Outlet />
         </div>
       </div>
     </div>
   );
 }
 
-export default AuthLayout;
+export default DashboardLayout;
