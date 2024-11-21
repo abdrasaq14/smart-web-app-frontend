@@ -35,7 +35,7 @@ function Login() {
       style={{
         boxShadow: "0px 0px 21px 0px rgba(0, 0, 0, 0.08)",
       }}
-      className="h-[40%] max-h-[420px] w-[50%] max-w-[400px] p-10 rounded-3xl bg-white flex flex-col items-center justify-center"
+      className="md:h-[40%] max-h-[420px] md:w-[50%] max-w-[400px] p-10 rounded-3xl bg-white flex flex-col items-center justify-center"
     >
       <AppHeading
         text="Login to continue"

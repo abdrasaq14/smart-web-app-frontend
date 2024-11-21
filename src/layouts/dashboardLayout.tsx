@@ -3,7 +3,7 @@ import { smarteriseLogo } from "../assets/logo";
 
 function DashboardLayout() {
   return (
-    <div className="auth-layout-bg min-h-[100vh] overflow-hidden">
+    <div className="min-h-[100vh]">
       <div className="bg-white bg-opacity-80 min-h-[100vh] p-6">
         <div className="flex justify-between items-center text h-[5rem]">
           {/* logo section */}

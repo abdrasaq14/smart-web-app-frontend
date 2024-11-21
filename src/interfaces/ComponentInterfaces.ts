@@ -1,7 +1,8 @@
 import { IconType } from "react-icons";
 import { ButtonType, TextInputType } from "../enums/componentEnums";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import { FormikHandlers } from "formik";
+import { JsxElement } from "typescript";
 
 interface LoaderProps {
   loading?: boolean;
@@ -37,4 +38,16 @@ export interface AppInputProps {
   onBlur: FormikHandlers["handleBlur"];
     error?: string | null;
     style?: string | null;
+}
+
+export interface SideNavItemChild {
+  label: string;
+  href: string;
+}
+export interface SideNavItem {
+  children?: SideNavItemChild[] | undefined;
+  label: string;
+  href: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  icon: any;
 }
