@@ -4,6 +4,8 @@ import HomeIcon from "../icons/Home";
 import SiteIcon from "../icons/Site";
 import ActivityLogIcon from "../icons/ActivityLog";
 import MyAccountIcon from "../icons/MyAccount";
+import NavBar from "./NavBar";
+import { useState } from "react";
 
 const sideBarItems = [
   {
@@ -27,20 +29,22 @@ const sideBarItems = [
     icon: MyAccountIcon,
   }
 ]
-function DashboardLayout() {
+function DashboardLayout()
+{
+   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
+   const toggleNav = () => setIsSidebarOpen(!isSidebarOpen);
   return (
     <div className="">
-      <DashboardSidenav items={sideBarItems}/>
-      <div className="flex justify-between items-center text h-[5rem]">
-       
-        {/* choose language  */}
-        {/* <div className="rounded-md border w-[3rem] h-[20px]">
-          <BsGlobe2 />
-          <span className="text-xs">Choose language</span>
-          <IoIosArrowDown />
-        </div> */}
-      </div>
-      <div className="flex flex-col items-center justify-center">
+      <DashboardSidenav
+        items={sideBarItems}
+        isOpen={isSidebarOpen}
+        toggleNav={toggleNav}
+      />
+      <div
+        className={`${isSidebarOpen ? 'ml-60': 'ml-20'} flex flex-col items-center justify-center bg-white min-h-full`}
+      >
+        <NavBar />
         <Outlet />
       </div>
     </div>

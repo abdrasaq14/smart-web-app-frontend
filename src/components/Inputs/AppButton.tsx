@@ -20,7 +20,7 @@ const AppButton = ({
       onClick={() =>
         type !== ButtonType.DISABLED && !loader?.loading && handleClick()
       }
-      className={`flex focus:outline-none gap-2 justify-center rounded-lg items-center text-center my-auto h-12 btn ${type} font-latoRegular ${style}`}
+      className={`flex focus:outline-none gap-2 justify-center rounded-lg items-center text-center my-auto h-10 ${type} ${style}`}
     >
       {Icon ? (
         <>

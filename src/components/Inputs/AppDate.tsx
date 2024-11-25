@@ -23,7 +23,7 @@ const AppDateInput = ({
   maxDate,
 }: AppDateInputProps): ReactElement => {
   return (
-    <>
+    <div className="w-full">
       {TopLabel && typeof TopLabel === "string" ? (
         <span className="text-sm text-primary-blackMain">{TopLabel}</span>
       ) : (
@@ -34,7 +34,7 @@ const AppDateInput = ({
           error ? "border-red-500" : "border-primary-border"
         } ${style}`}
       >
-        {LeftIcon && <LeftIcon size={20} className="text-accent-light3" />}
+        {LeftIcon && <LeftIcon size={20} className="text-primary-blackLight" />}
         <input
           className="input-style"
           type="date"
@@ -57,7 +57,7 @@ const AppDateInput = ({
         BottomLabel
       )}
       {error && <span className="text-red-500 text-sm">{error}</span>}
-    </>
+    </div>
   );
 };
 

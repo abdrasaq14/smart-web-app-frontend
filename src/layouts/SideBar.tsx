@@ -12,20 +12,28 @@ import { smarteriseLogo } from "../assets/logo";
 import { useState } from "react";
 import { smarteriseLogoNoText } from "../assets/logo";
 
-const DashboardSidenav = ({ items }: { items: SideNavItem[] }) => {
-  const [isOpen, setIsOpen] = useState(true);
+const DashboardSidenav = ({
+  items,
+  isOpen,
+  toggleNav,
+}: {
+  items: SideNavItem[];
+  isOpen: boolean;
+  toggleNav: () => void;
+}) => {
+  // const [isOpen, setIsOpen] = useState(true);
   const [activeLabel, setActiveLabel] = useState<string>("Home");
-  const toggleNav = () => {
-    setIsOpen(!isOpen);
-  };
+  // const toggleNav = () => {
+  //   setIsOpen(!isOpen);
+  // };
 
   return (
     <div
       className={`bg-[#F7F7F7] ${
         isOpen ? "w-60" : "w-20"
-      }  border-e-[0.4px] px-5 text-sm h-full fixed transition-width duration-300`}
+      }  border-e-[0.4px] p-5 text-sm h-full fixed transition-width duration-300`}
     >
-      <div className="flex justify-between items-center w-full mt-5">
+      <div className="flex justify-between items-center w-full">
         {isOpen ? (
           <img
             src={smarteriseLogo}
