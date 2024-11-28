@@ -8,6 +8,7 @@ import '../reset.css';
 import { App } from './view/App';
 import { Auth0Provider } from '@auth0/auth0-react';
 import { createBrowserHistory } from "history";
+import { Config } from './utils/config';
 
 // Initialize a single history instance
 const history = createBrowserHistory();
@@ -18,11 +19,11 @@ const onRedirectCallback = (appState: any) => {
 
 // Define Auth0Provider configuration
 const providerConfig = {
-    domain: "dev-mgw72jpas4obd84e.us.auth0.com",
-    clientId: "RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH",
+    domain: Config.AUTH0_DOMAIN || '',
+    clientId: Config.AUTH0_CLIENT_ID || '',
     onRedirectCallback,
     redirectUri: `${window.location.origin}/post-login`, 
-    audience: "https://api.demo.powersmarter.net/", 
+    audience: Config.AUTH0_AUDIENCE, 
      scope: 'read:messages write:data openid profile email',
 };
 
