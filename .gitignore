@@ -47,5 +47,5 @@ tests/e2e/videos/
 tests/e2e/results/
 artifacts
 
-./git-push.sh
 git-push.sh
+./git-push.sh
