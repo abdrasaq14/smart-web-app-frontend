@@ -25,6 +25,7 @@ export const AddEmployee = () => {
 				companies: [companyId],
 		  }
 		: DEFAULT_DASHBOARD_FILTERS;
+	console.log("dahboard filters", companyDefaultFilters);
 	const [filters, setFilters] = useState<SitesDashboardFilters>(companyDefaultFilters);
 
 	return (
@@ -35,9 +36,9 @@ export const AddEmployee = () => {
 				searchPlaceholder="Search for alert, deals and more..."
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
-				<Box sx={{ width: '80%', marginRight: '16px' }}>
+				{/* <Box sx={{ width: '80%', marginRight: '16px' }}>
 					<UsersTable filters={filters} />
-				</Box>
+				</Box> */}
 				<Box sx={{ width: '320px' }}>
 					<AddEmployeeForm />
 				</Box>

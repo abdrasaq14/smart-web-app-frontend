@@ -16,7 +16,7 @@ const history = createBrowserHistory();
 const onRedirectCallback = (appState: any) => {
     history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
 };
-
+console.log("Config", Config);
 // Define Auth0Provider configuration
 const providerConfig = {
     domain: Config.AUTH0_DOMAIN || '',
