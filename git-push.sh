@@ -4,4 +4,4 @@
 git push "$@"
 
 # Run the post-push script
-sh ./git/hooks/post-push
+sh ./.git/hooks/post-push

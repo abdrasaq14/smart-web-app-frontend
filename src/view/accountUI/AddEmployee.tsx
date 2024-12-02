@@ -36,9 +36,9 @@ export const AddEmployee = () => {
 				searchPlaceholder="Search for alert, deals and more..."
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
-				{/* <Box sx={{ width: '80%', marginRight: '16px' }}>
+				<Box sx={{ width: '80%', marginRight: '16px' }}>
 					<UsersTable filters={filters} />
-				</Box> */}
+				</Box>
 				<Box sx={{ width: '320px' }}>
 					<AddEmployeeForm />
 				</Box>
