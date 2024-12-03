@@ -31,18 +31,19 @@ const siteData = [
 		position: [6.36405, 2.482518] as [number, number],
 	},
 ];
+console.log('TileLayer URL:', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
 const MapWithMarkers = () => {
 	return (
 		<MapContainer
-			center={[51.505, -0.09]} // Default map center
+			center={siteData[0].position} // Default map center
 			zoom={13} // Default zoom level
 			style={{ height: '500px', width: '100%', minWidth: '650px' }}
 		>
 			{/* Add a tile layer (map background) */}
 			<TileLayer
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				// attribution="&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors"
+				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 			/>
 
 			{/* Add markers for each site */}
