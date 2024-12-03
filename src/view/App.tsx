@@ -32,6 +32,7 @@ import { AccountUiLayout } from './accountUI/AccountUiLayout';
 import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
 import Logout from './Logout';
+import 'leaflet/dist/leaflet.css';
 // import { createBrowserHistory } from "history";
 
 // const Auth0ProviderWithRedirectCallback = ({ children, ...props }:any) => {

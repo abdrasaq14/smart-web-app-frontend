@@ -22,7 +22,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 				<ValueCardSolo
 					cardType="atc_losses"
 					field="total_revenue"
-					label="Total Revenue (N)"
+					label="Total Revenue (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
@@ -48,7 +48,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Grid>
-			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
+			{/* <Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="tariff_losses"
 					field="tariff_losses"
@@ -57,7 +57,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
-			</Grid>
+			</Grid> */}
 
 			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<CustomerBreakdownChart filters={filters} />

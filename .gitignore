@@ -48,4 +48,6 @@ tests/e2e/results/
 artifacts
 
 git-push.sh
-./git-push.sh
+.env
+env-config.js
+env

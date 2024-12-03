@@ -49,7 +49,7 @@ export const Home = () => {
 				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_consumption)}
-						label="Total Consumtion (kWh)"
+						label="Total Consumption (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>

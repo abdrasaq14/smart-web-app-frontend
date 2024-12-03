@@ -23,7 +23,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 				<ValueCardSolo
 					cardType="total_consumption"
 					field="total_consumption"
-					label="Total Consumtion (kWh)"
+					label="Total Consumption (kWh)"
 					handler={CARD_HANDLER.OPERATIONS}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
@@ -59,7 +59,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 				/>
 			</Grid>
 
-			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+			{/* <Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<SitesMonitored filters={filters} />
 			</Grid>
 			<Grid item lg={6} md={12} sm={12} sx={styles.displayCenter}>
@@ -67,16 +67,16 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 			</Grid>
 			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<PowerConsumptionChart filters={filters} />
-			</Grid>
+			</Grid> */}
 
-			<Grid item lg={9} md={12} sm={12}>
+			{/* <Grid item lg={9} md={12} sm={12}>
 				<Box sx={styles.table}>
 					<GraphCard title="Alert History">
 						<AlertHistoryTable filters={filters} />
 					</GraphCard>
 				</Box>
-			</Grid>
-			<Grid item lg={3} md={12} sm={12}>
+			</Grid> */}
+			{/* <Grid item lg={3} md={12} sm={12}>
 				<Grid container spacing={1}>
 					<Grid item lg={12} md={6} sm={6}>
 						<ValueCardSolo
@@ -97,7 +97,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 						/>
 					</Grid>
 				</Grid>
-			</Grid>
+			</Grid> */}
 		</Grid>
 	);
 };

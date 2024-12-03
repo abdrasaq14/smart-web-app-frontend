@@ -36,7 +36,6 @@ export const AddEmployee = () => {
 				searchPlaceholder="Search for alert, deals and more..."
 			/>
 			<Box sx={{ display: 'flex', justifyContent: 'space-between', paddingTop: '32px' }}>
-				{/* this is causing error */}
 				<Box sx={{ width: '80%', marginRight: '16px' }}>
 					<UsersTable filters={filters} />
 				</Box>
