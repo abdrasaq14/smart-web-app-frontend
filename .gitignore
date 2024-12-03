@@ -49,5 +49,4 @@ artifacts
 
 git-push.sh
 .env
-env-config.js
 env
