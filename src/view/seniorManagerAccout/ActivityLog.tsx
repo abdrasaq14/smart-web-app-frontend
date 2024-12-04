@@ -11,6 +11,7 @@ import ControlledDatePicker from '../../components/ControlledDatePicker';
 import { AlertHistoryTable } from '../../components/Tables/AlertHistoryTable';
 import { useGetMe } from '../../api/me';
 import HeaderIcons from '../../layouts/HeaderIcons';
+import React from 'react';
 
 const styles = {
 	screenContent: {
@@ -61,7 +62,7 @@ function a11yProps(index: number) {
 export const ActivityLog = () => {
 	const [tabValue, setTabValue] = useState(0);
 	const { data: me } = useGetMe();
-	const myCompanies = me ? me?.companies.map((company) => company.id) : null;
+	const myCompanies = me ? me?.companies.map((company:any) => company.id) : null;
 	const myCompaniesDefaultFilters = myCompanies
 		? {
 				...DEFAULT_DASHBOARD_FILTERS,

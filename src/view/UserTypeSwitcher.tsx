@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sidebar } from '../layouts/Sidebar';
+import Loader from '../components/Loader/Loader';
 import { AppMenuButton } from '../types';
 import { Box } from '@mui/material';
 import { ROLE } from '../utils/auth';
@@ -16,7 +16,7 @@ const Switcher = () => {
 	const buttonDefinitions: Array<AppMenuButton> = [];
 
 	if (isUserInfoLoading) {
-		return <Box>Loading ...</Box>;
+		return <Box style={{minHeight: '100vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><Loader/></Box>;
 	} else if (!isUserInfoLoading && me != null) {
 		const role = me?.access_level;
 		if (role === ROLE.OPERATIONS) {
