@@ -72,10 +72,19 @@ export const Home = () => {
 					/>
 				</Grid>
 
-				<Grid item lg={8} md={6} sm={12} sx={styles.displayCenter}>
-					<Grid container spacing={1}>
-						<Grid item md={11} sm={12} sx={{ ...styles.displayCenter, backgroundColor: 'red' }}>
-							<GraphCard title="Map" extraStyling={{ width: '100%' }}>
+				<Grid item lg={8} md={6} sm={12} sx={{ ...styles.displayCenter, padding: '16px' }}>
+					<Grid container spacing={1} sx={{  }}>
+						<Grid
+							item
+							md={12}
+							sm={12}
+							sx={{
+								...styles.displayCenter,
+								width: '100%',
+								padding: '16px',
+							}}
+						>
+							<GraphCard title="Site Map" extraStyling={{ width: '100%' }}>
 								<MapWithMarkers />
 								{/* <img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} /> */}
 							</GraphCard>

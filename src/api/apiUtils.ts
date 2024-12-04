@@ -34,7 +34,8 @@ function handleResponse(response: any) {
 		const data = text && JSON.parse(text);
 
 		if (!response.ok) {
-			const error = (data && data.message) || response.statusText;
+			console.log('validatedResponseErrorObject', response, data);
+			const error = (data && data.message) || (data && data.detail) || response.statusText;
 			return Promise.reject(error);
 		}
 
@@ -204,7 +205,7 @@ export function getDashboardData<DataType>({
 	mockResponse,
 	transformFunction,
 }: GetDashboardDataProps) {
-	return async function (options?: DashboardQueryProps): Promise<DataType> {
+	return async function (options?: DashboardQueryProps) {
 		const filtersQueryParams = getQueryParams(options);
 
 		const useRealData = localUseRealData && globalUseRealData();
@@ -215,7 +216,9 @@ export function getDashboardData<DataType>({
 		if (apiRoute === 'users') {
 			response.results = response.results.filter((user: any) => user.employee_id != null);
 		}
-		console.log("validatedResponse", response)
+		if (apiRoute.includes('manager/cards-data')) {
+			console.log('validatedResponse', response);
+		}
 		const validatedResponse = schema.parse(response);
 		if (!useRealData) {
 			await sleep(MOCK_RESPONSE_SLEEP_TIME);

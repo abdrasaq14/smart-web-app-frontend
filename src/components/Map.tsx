@@ -38,7 +38,7 @@ const MapWithMarkers = () => {
 		<MapContainer
 			center={siteData[0].position} // Default map center
 			zoom={13} // Default zoom level
-			style={{ height: '500px', width: '100%', minWidth: '650px' }}
+			style={{ height: '500px', width: '100%', minWidth: '350px' }}
 		>
 			{/* Add a tile layer (map background) */}
 			<TileLayer

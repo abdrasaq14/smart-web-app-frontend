@@ -22,7 +22,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 
 	const options = {
 		dataset: {
-			source: data?.dataset,
+			source: data && data?.dataset ? data?.dataset : [],
 		},
 		grid: {
 			left: '3%',

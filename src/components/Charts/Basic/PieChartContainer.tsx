@@ -23,8 +23,7 @@ export function PieChartContainer({
 	isError,
 }: PieChartContainerProps) {
 	const dataset =
-		data?.dataset
-			.filter((apiDataRow) => keyLabelMapping[apiDataRow.key] != null)
+		data?.dataset?.filter((apiDataRow) => keyLabelMapping[apiDataRow.key] != null)
 			.map((apiDataRow) => {
 				return {
 					name: keyLabelMapping[apiDataRow.key](apiDataRow.value, data?.total),
