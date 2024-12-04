@@ -1,7 +1,8 @@
 import React, { CSSProperties } from 'react';
 import { FaUserTie, FaHardHat, FaChartLine } from 'react-icons/fa';
-
-const UserType = () => {
+import { Link } from 'react-router-dom';
+import { RiAdminFill } from 'react-icons/ri';
+const UserType = ({ name }: { name: string }) => {
 	return (
 		<div style={styles.container}>
 			{/* Header */}
@@ -13,7 +14,7 @@ const UserType = () => {
 						style={styles.logo}
 					/>
 				</div>
-				<div style={styles.iconContainer}>
+				{/* <div style={styles.iconContainer}>
 					<button style={styles.iconButton}>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -42,40 +43,56 @@ const UserType = () => {
 							/>
 						</svg>
 					</button>
-				</div>
+				</div> */}
 			</header>
 
 			{/* Welcome Message */}
 			<div style={styles.welcomeMessage}>
-				<h2 style={styles.greeting}>Welcome Victory,</h2>
+				<h2 style={styles.greeting}>Welcome {name},</h2>
 
 				{/* Permission Options */}
 				<div style={styles.cardContainer}>
-					<PermissionCard title="Senior Manager" icon={<FaUserTie size={40} />} bgColor="#FFD966" />
-					<PermissionCard title="Operation" icon={<FaHardHat size={40} />} bgColor="#FFD966" />
+					<PermissionCard
+						title="Senior Manager"
+						icon={<FaUserTie size={40} />}
+						bgColor="#FFC107"
+						to="/senior-manager-account/home"
+					/>
+					<PermissionCard
+						title="Operations"
+						icon={<FaHardHat size={40} />}
+						bgColor="#FFC107"
+						to="/operations/home"
+					/>
 					<PermissionCard
 						title="Finance"
 						icon={<FaChartLine size={40} />}
 						bgColor="#FFC107"
-						notification="10"
+						to="/finance/home"
+					/>
+					<PermissionCard
+						title="Admin"
+						icon={<RiAdminFill size={40} />}
+						bgColor="#FFC107"
+						to="/account-ui/home"
 					/>
 				</div>
 				<p style={styles.instruction}>
 					To change your Permission type,{' '}
-					<a href="/" style={styles.link}>
+					<Link to="/" style={styles.link}>
 						Contact Super Admin
-					</a>
+					</Link>
 				</p>
 			</div>
 		</div>
 	);
 };
 
-const PermissionCard = ({ title, icon, bgColor }: any) => (
-    <div style={{ ...styles.card, backgroundColor: bgColor }}>
-        {icon}
+const PermissionCard = ({ title, icon, bgColor, to }: {title: string, icon:any, bgColor: string, to: string}) => (
+	<Link to={to} style={{ ...styles.card, backgroundColor: bgColor }}>
+		{icon}
 		<h3 style={styles.cardTitle}>{title}</h3>
-	</div>
+	</Link>
 );
 
 const styles: { [key: string]: CSSProperties } = {
@@ -84,8 +101,8 @@ const styles: { [key: string]: CSSProperties } = {
 		backgroundColor: '#FFFFFF',
 		display: 'flex',
 		flexDirection: 'column',
-        alignItems: 'center',
-        padding: '16px',
+		alignItems: 'center',
+		padding: '16px',
 		// justifyContent: 'center',
 	},
 	header: {
@@ -127,18 +144,18 @@ const styles: { [key: string]: CSSProperties } = {
 		color: '#757575',
 	},
 	welcomeMessage: {
-        textAlign: 'center',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'start',
-        justifyContent: 'center',
+		textAlign: 'center',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'start',
+		justifyContent: 'center',
 		marginTop: '40px',
-        backgroundColor: '#FDFDFD',
-        gap: '16px',
-        padding: '32px',
-        borderRadius: '12px',
-        border: '1px solid #E0E0E0',
-        minHeight: '250px',
+		backgroundColor: '#FDFDFD',
+		gap: '16px',
+		padding: '32px',
+		borderRadius: '12px',
+		border: '1px solid #E0E0E0',
+		minHeight: '250px',
 	},
 	greeting: {
 		fontSize: '24px',
@@ -146,13 +163,14 @@ const styles: { [key: string]: CSSProperties } = {
 		color: '#424242',
 	},
 	instruction: {
-		fontSize: '14px',
+		fontSize: '12px',
 		color: '#757575',
-        marginTop: '8px',
-        alignSelf: 'end'
+		marginTop: '8px',
+		alignSelf: 'end',
 	},
 	link: {
 		color: '#1E88E5',
+		fontSize: '12px',
 		textDecoration: 'underline',
 	},
 	cardContainer: {
@@ -172,6 +190,7 @@ const styles: { [key: string]: CSSProperties } = {
 		alignItems: 'center',
 		justifyContent: 'center',
 		position: 'relative',
+		color: '#424242',
 	},
 	cardTitle: {
 		marginTop: '16px',

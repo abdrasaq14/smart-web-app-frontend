@@ -86,7 +86,7 @@ export const App = () => {
 							<Route path="/logout" element={<Logout />} />
 							<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
 							<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
-							<Route path="/userType" element={<UserType/>} />
+							{/* <Route path="/userType" element={<UserType/>} /> */}
 							<Route
 								path="*"
 								element={<ProtectedRoute component={<Navigate to="/login" replace />} />}
