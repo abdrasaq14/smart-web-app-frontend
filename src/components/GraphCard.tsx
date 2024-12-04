@@ -11,12 +11,16 @@ const styles = {
 	},
 	content: { paddingTop: '8px', fontWeight: 'bold', fontSize: '14px', lineHeight: '17px' },
 };
-
-export const GraphCard = (props: React.PropsWithChildren<{ title: string }>) => {
+interface GraphCardProps {
+	title: string;
+	extraStyling?: object; // Optional prop for additional styling
+	children: React.ReactNode;
+}
+export const GraphCard: React.FC<GraphCardProps> = ({ title, extraStyling, children }) => {
 	return (
-		<Card sx={styles.container} variant="outlined">
-			<Box sx={styles.content}>{props.title}</Box>
-			{props.children}
+		<Card sx={{ ...styles.container, ...extraStyling }} variant="outlined">
+			<Box sx={styles.content}>{title}</Box>
+			{children}
 		</Card>
 	);
 };

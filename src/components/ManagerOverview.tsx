@@ -56,10 +56,10 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 				/>
 			</Grid>
 
-			<Grid item lg={8} md={6} sm={12} sx={styles.displayCenter}>
-				<Grid container spacing={1}>
-					<Grid item lg={12} md={12} sm={12} sx={styles.displayCenter}>
-						<GraphCard title="Map">
+			<Grid item sm={12} sx={styles.displayCenter}>
+				<Grid container spacing={1} sm={12} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}>
+					<Grid item md={11} sm={12} sx={{...styles.displayCenter}}>
+						<GraphCard title="Map" extraStyling={{width: "100%"}}>
 							<MapWithMarkers/>
 							{/* <img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} /> */}
 						</GraphCard>
