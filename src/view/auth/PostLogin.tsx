@@ -50,7 +50,7 @@ const PostLogin = () => {
 
     switch (role) {
       case ROLE.ADMIN:
-        navigate('/account-ui');
+        navigate('/');
         break;
       case ROLE.MANAGER:
         navigate('/senior-manager-account');
