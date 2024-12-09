@@ -11,6 +11,7 @@ export function formatToUSlocale(value = 0, digits?: number): string {
 
 const formatter = Intl.NumberFormat('en', { notation: 'compact' });
 export function formatCompact(value = 0): string {
+	console.log("formatterApirow", value, formatter.format(value))
 	return formatter.format(value);
 }
 
