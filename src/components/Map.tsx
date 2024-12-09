@@ -2,6 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { siteData } from '@src/utils/utils';
 
 // Fix for Leaflet marker icons
 L.Icon.Default.mergeOptions({
@@ -10,28 +11,6 @@ L.Icon.Default.mergeOptions({
 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
 
-// Sample site data
-const siteData = [
-	{
-		id: 1,
-		name: 'C407',
-		description: 'MINISTERE DE LA SANTE',
-		position: [6.365137, 2.462924] as [number, number], // [latitude, longitude]
-	},
-	{
-		id: 2,
-		name: 'C147',
-		description: 'SOBETEX',
-		position: [6.367326, 2.481597] as [number, number],
-	},
-	{
-		id: 3,
-		name: 'C306',
-		description: 'LOT 67',
-		position: [6.36405, 2.482518] as [number, number],
-	},
-];
-console.log('TileLayer URL:', 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 
 const MapWithMarkers = () => {
 	return (
