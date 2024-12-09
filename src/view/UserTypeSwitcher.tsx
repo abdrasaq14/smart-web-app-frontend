@@ -1,48 +1,35 @@
 import React from 'react';
-import { Sidebar } from '../layouts/Sidebar';
+import Loader from '../components/Loader/Loader';
 import { AppMenuButton } from '../types';
 import { Box } from '@mui/material';
 import { ROLE } from '../utils/auth';
 import { useGetMe } from '../api/me';
 import { useAuth0 } from '@auth0/auth0-react';
-
+import UserType from './auth/UserType';
+import { Home as OperationsHome } from './operations/Home';
+import { Home as FinanceHome } from './finance/Home';
+import { Home as SeniorManagerAccountHome } from './seniorManagerAccout/Home';
 const Switcher = () => {
 	const { logout } = useAuth0();
 	const { data: me, isLoading: isUserInfoLoading } = useGetMe();
-
+	console.log("meAccessLevel", me)
 	const buttonDefinitions: Array<AppMenuButton> = [];
 
 	if (isUserInfoLoading) {
-		return <Box>Loading ...</Box>;
+		return <Box style={{minHeight: '100vh', width: '100vw', display: 'flex', justifyContent: 'center', alignItems: 'center'}}><Loader/></Box>;
 	} else if (!isUserInfoLoading && me != null) {
 		const role = me?.access_level;
-		if (role === ROLE.ADMIN || role === ROLE.OPERATIONS) {
-			buttonDefinitions.push({
-				id: 1,
-				label: 'Operations',
-				path: '/operations/home',
-			});
+		if (role === ROLE.OPERATIONS) {
+			return <OperationsHome />;
 		}
-		if (role === ROLE.ADMIN || role === ROLE.FINANCE) {
-			buttonDefinitions.push({
-				id: 2,
-				label: 'Finance',
-				path: '/finance/home',
-			});
+		if (role === ROLE.FINANCE) {
+			return <FinanceHome />;
 		}
-		if (role === ROLE.ADMIN || role === ROLE.MANAGER) {
-			buttonDefinitions.push({
-				id: 3,
-				label: 'Senior Manager',
-				path: '/senior-manager-account/home',
-			});
+		if (role === ROLE.MANAGER) {
+			return <SeniorManagerAccountHome />;
 		}
 		if (role === ROLE.ADMIN) {
-			buttonDefinitions.push({
-				id: 4,
-				label: 'Smarterise Account UI',
-				path: '/account-ui/home',
-			});
+			return <UserType name={me?.first_name} />;
 		}
 	} else {
 		logout({ returnTo: `${window.location.origin}/login` });
@@ -50,7 +37,6 @@ const Switcher = () => {
 		return <Box>User is not authenticated</Box>;
 	}
 
-	return <Sidebar buttonDefinitions={buttonDefinitions} />;
 };
 
 export default Switcher;

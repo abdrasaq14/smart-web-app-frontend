@@ -25,6 +25,7 @@ export const AddEmployee = () => {
 				companies: [companyId],
 		  }
 		: DEFAULT_DASHBOARD_FILTERS;
+	console.log("dahboard filters", companyDefaultFilters);
 	const [filters, setFilters] = useState<SitesDashboardFilters>(companyDefaultFilters);
 
 	return (

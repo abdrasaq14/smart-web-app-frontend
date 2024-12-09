@@ -12,6 +12,7 @@ import { OperationsOverview } from '../../components/OperationsOverview';
 import { FinanceOverview } from '../../components/FinanceOverview';
 import { UserLogsTable } from '../../components/Tables/UserLogsTable';
 import { RegularButton } from '../../components/Button';
+import { handleEmailClick } from '../../utils/utils';
 
 export const styles = {
 	screenContent: {
@@ -80,13 +81,15 @@ export const Company = () => {
 								<RegularButton
 									label="Add device"
 									onClick={() => {
-										navigate(`/account-ui/companies/${companyId}/add-device`);
+										// navigate(`/account-ui/companies/${companyId}/add-device`);
+										handleEmailClick("device")
 									}}
 								/>
 								<RegularButton
 									label="Add employee"
 									onClick={() => {
-										navigate(`/account-ui/companies/${companyId}/add-employee`);
+										// navigate(`/account-ui/companies/${companyId}/add-employee`);
+										handleEmailClick("employee")
 									}}
 								/>
 							</Box>

@@ -7,6 +7,7 @@ import RevenueChart from './Charts/RevenueChart';
 import React from 'react';
 import { CARD_HANDLER } from '../api/cardsHandlers';
 import ValueCardSolo from './ValueCardSolo';
+import MapWithMarkers from './Map';
 
 export const styles = {
 	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
@@ -18,7 +19,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 				<ValueCardSolo
 					cardType="revenue_losses"
 					field="total_revenue"
-					label="Total Revenue (N)"
+					label="Total Revenue (CFA)"
 					handler={CARD_HANDLER.MANAGER}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
@@ -55,14 +56,15 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 				/>
 			</Grid>
 
-			<Grid item lg={8} md={6} sm={12} sx={styles.displayCenter}>
-				<Grid container spacing={1}>
-					<Grid item lg={12} md={12} sm={12} sx={styles.displayCenter}>
-						<GraphCard title="Map">
-							<img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} />
+			<Grid item sm={12} sx={styles.displayCenter}>
+				<Grid container spacing={1} sm={12} sx={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2rem'}}>
+					<Grid item md={11} sm={12} sx={{...styles.displayCenter}}>
+						<GraphCard title="Site Map" extraStyling={{width: "100%"}}>
+							<MapWithMarkers/>
+							{/* <img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} /> */}
 						</GraphCard>
 					</Grid>
-					<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
+					{/* <Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 						<ValueCardSolo
 							cardType="current_load"
 							field="number_of_sites"
@@ -71,8 +73,8 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
 						/>
-					</Grid>
-					<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
+					</Grid> */}
+					{/* <Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 						<ValueCardSolo
 							cardType="current_load"
 							field="number_of_users"
@@ -81,8 +83,8 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
 						/>
-					</Grid>
-					<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
+					</Grid> */}
+					{/* <Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
 						<ValueCardSolo
 							cardType="current_load"
 							field="pending_alerts"
@@ -91,10 +93,10 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
 						/>
-					</Grid>
+					</Grid> */}
 				</Grid>
 			</Grid>
-			<Grid item lg={4} md={6} sm={12} sx={styles.displayCenter}>
+			{/* <Grid item lg={4} md={6} sm={12} sx={styles.displayCenter}>
 				<Grid container spacing={1}>
 					<Grid item lg={12} md={12} sm={12}>
 						<PowerConsumptionChart filters={filters} />
@@ -103,7 +105,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 						<RevenueChart filters={filters} />
 					</Grid>
 				</Grid>
-			</Grid>
+			</Grid> */}
 		</Grid>
 	);
 };

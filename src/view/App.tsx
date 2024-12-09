@@ -24,7 +24,7 @@ import { AddEmployee as AccountUiAddEmployee } from './accountUI/AddEmployee';
 import { Users as AccountUiUsers } from './accountUI/Users';
 import { Devices as AccountUiDevices } from './accountUI/Devices';
 
-import { Auth0Provider, withAuthenticationRequired } from '@auth0/auth0-react';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import UserTypeSwitcher from './UserTypeSwitcher';
 import { SeniorManagerAccountLayout } from './seniorManagerAccout/SeniorManagerAccountLayout';
@@ -32,33 +32,8 @@ import { AccountUiLayout } from './accountUI/AccountUiLayout';
 import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
 import Logout from './Logout';
-// import { createBrowserHistory } from "history";
-
-// const Auth0ProviderWithRedirectCallback = ({ children, ...props }:any) => {
-//   const history = createBrowserHistory()
-// 	const onRedirectCallback = (appState:any) =>
-// 	{
-//   history.push(
-//     appState && appState.returnTo ? appState.returnTo : window.location.pathname
-//   );
-// 	};
-// 	const providerConfig = {
-// 		domain:"dev-mgw72jpas4obd84e.us.auth0.com",
-// 		clientId:"ymRc8UQkScJZM76PsbknMpZRjZWiZIo1",
-// 		onRedirectCallback,
-// 		authorizationParams: {
-//     redirectUri:`${window.location.origin}/post-login`
-//   },
-
-// 	}
-// 	return (
-//     <Auth0Provider
-// 		 {...providerConfig}
-//     >
-//       {children}
-//     </Auth0Provider>
-//   );
-// };
+import 'leaflet/dist/leaflet.css';
+import UserType from './auth/UserType';
 
 
 const ProtectedRoute = ({ component, ...args }:any) => {
@@ -72,15 +47,6 @@ export const App = () => {
 		<QueryClientProvider client={queryClient}>
 			<SnackbarProvider maxSnack={3}>
 				<BrowserRouter>
-					{/* <Auth0ProviderWithRedirectCallback
-						// domain="dev-mgw72jpas4obd84e.us.auth0.com"
-						// clientId="RLHdjXQH7M3j8Tj1ygx7t8YZ0jgZsnxH"
-						// redirectUri={`${window.location.origin}/post-login`}
-						// audience="https://dev-u0pz-ez1.eu.auth0.com/api/v2/"
-						//audience="test api for perms"
-						// audience="test api for perms"
-						// scope="read:current_user update:current_user_metadata"
-					> */}
 						<Routes>
 							<Route path="/operations" element={<ProtectedRoute component={OperationsLayout} />}>
 								<Route index element={<OperationsHome />} />
@@ -120,6 +86,7 @@ export const App = () => {
 							<Route path="/logout" element={<Logout />} />
 							<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
 							<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
+							{/* <Route path="/userType" element={<UserType/>} /> */}
 							<Route
 								path="*"
 								element={<ProtectedRoute component={<Navigate to="/login" replace />} />}

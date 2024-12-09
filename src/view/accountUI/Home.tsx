@@ -9,6 +9,7 @@ import DateFiltersHeader from '../../layouts/DateFiltersHeader';
 import { useGetAccountUiHomeCardsData } from '../../api/accountUI/Home/cardsData';
 import TopSavings from '../../components/Charts/TopSavings';
 import TopRevenue from '../../components/Charts/TopRevenue';
+import MapWithMarkers from '../../components/Map';
 
 const styles = {
 	screenContent: {
@@ -49,7 +50,7 @@ export const Home = () => {
 				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_consumption)}
-						label="Total Consumtion (kWh)"
+						label="Total Consumption (kWh)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
@@ -71,11 +72,21 @@ export const Home = () => {
 					/>
 				</Grid>
 
-				<Grid item lg={8} md={6} sm={12} sx={styles.displayCenter}>
-					<Grid container spacing={1}>
-						<Grid item lg={12} md={12} sm={12} sx={styles.displayCenter}>
-							<GraphCard title="Map">
-								<img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} />
+				<Grid item lg={8} md={6} sm={12} sx={{ ...styles.displayCenter, padding: '16px' }}>
+					<Grid container spacing={1} sx={{  }}>
+						<Grid
+							item
+							md={12}
+							sm={12}
+							sx={{
+								...styles.displayCenter,
+								width: '100%',
+								padding: '16px',
+							}}
+						>
+							<GraphCard title="Site Map" extraStyling={{ width: '100%' }}>
+								<MapWithMarkers />
+								{/* <img src="map.png" alt="Smarterise" style={{ width: '100%', height: '460px' }} /> */}
 							</GraphCard>
 						</Grid>
 						<Grid item lg={4} md={12} sm={12} sx={styles.displayCenter}>
