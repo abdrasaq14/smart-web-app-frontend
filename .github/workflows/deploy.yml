@@ -45,8 +45,6 @@ jobs:
           REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
           REACT_APP_AUTH0_API_AUDIENCE: ${{ secrets.REACT_APP_AUTH0_API_AUDIENCE }}
         run: yarn build
-      - name: Inspect Build Output
-        run: grep -r REACT_APP_BASE_URL build/
 
       - name: Deploy to S3
         run: cd dist && aws s3 sync . s3://smarterise-web-app-dev
