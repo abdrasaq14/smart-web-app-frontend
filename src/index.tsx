@@ -17,7 +17,7 @@ const onRedirectCallback = (appState: any) => {
     history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
 };
 console.log("Config", Config);
-// Define Auth0Provider configuration
+
 const providerConfig = {
     domain: Config.AUTH0_DOMAIN || '',
     clientId: Config.AUTH0_CLIENT_ID || '',
