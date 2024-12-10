@@ -49,5 +49,6 @@ artifacts
 
 git-push.sh
 .env
-env
 .env
+.env
+
