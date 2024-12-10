@@ -5,9 +5,8 @@ import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
 const keyLabelMapping: KeyValueMapping = {
-	paying: (value, total = 1) => { console.log("NeverHitValue", value, total, (Number((value * 100) / total)? Number((value * 100) / total): 0)); return `Good Performance ${((value * 100) / total).toFixed(2)}%`},
-	defaulting: (value, total = 1) => `Bad Performance ${formatCompact((value * 100) / total)}%`,
-};
+	paying: (value, total = 1) => `Good Performance ${Number(value * 100) ? formatCompact((value * 100) / total) : 0}%`,
+	defaulting: (value, total = 1) => `Bad Performance ${Number(value * 100) ? formatCompact((value * 100) / total) : 0}%`}
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 	const { data, isLoading, isError } = useGetCustomerBreakdownChartData({ filters });
