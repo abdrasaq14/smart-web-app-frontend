@@ -33,6 +33,8 @@ const config = {
 				},
 			],
 		}),
+		// Ensure dotenv-webpack is included here to load .env variables
+		new dotenvWebpack(),
 	],
 	optimization: {
 		runtimeChunk: false,
