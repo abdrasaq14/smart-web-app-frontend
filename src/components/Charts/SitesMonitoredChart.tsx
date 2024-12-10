@@ -5,8 +5,10 @@ import { KeyValueMapping, SitesDashboardFilters } from '../../types';
 import { PieChartContainer } from './Basic/PieChartContainer';
 
 const keyLabelMapping: KeyValueMapping = {
-	active: (value, total = 1) => `Active ${formatCompact((value * 100) / total)}%`,
-	offline: (value, total = 1) => `Offline ${formatCompact((value * 100) / total)}%`,
+	active: (value, total = 1) =>
+		`Active ${Number(value * 100) ? formatCompact((value * 100) / total) : 0}%`,
+	offline: (value, total = 1) =>
+		`Offline ${Number(value * 100) ? formatCompact((value * 100) / total) : 0}%`,
 };
 
 const Page = ({ filters }: { filters: SitesDashboardFilters }) => {

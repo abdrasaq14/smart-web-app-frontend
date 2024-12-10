@@ -9,7 +9,16 @@ import { SitesDashboardFilters } from '../../types';
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 	const { data, isLoading, isError } = useGetLoadProfileChartData({ filters });
-
+	const newDAta = [
+		[0, 0],
+		[1, 20],
+		[2, 35],
+		[3, 40],
+		[4, 50],
+		[5, 60],
+		[6, 70],
+	]
+	console.log('dtaLoadPRofile', data);
 	const renderBody = () => {
 		if (isLoading) {
 			return <Spinner />;
@@ -20,7 +29,7 @@ const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
 		}
 	};
 
-	const dataset = [['time', 'profile'], ...(data?.dataset ?? [])];
+	const dataset = [['time', 'profile'], ...newDAta];
 
 	const options = {
 		dataset: {
