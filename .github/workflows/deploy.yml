@@ -46,6 +46,7 @@ jobs:
           REACT_APP_AUTH0_API_AUDIENCE: ${{ secrets.REACT_APP_AUTH0_API_AUDIENCE }}
         run: yarn build
 
+      - name: Deploy to S3
         run: cd dist && aws s3 sync . s3://smarterise-web-app-dev
 
       - name: Invalidate CloudFront Cache
