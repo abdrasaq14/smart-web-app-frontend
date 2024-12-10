@@ -2,6 +2,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const commonPaths = require('./common');
+const dotenvWebpack = require('dotenv-webpack');
 
 const config = {
 	// Set webpack build mode
