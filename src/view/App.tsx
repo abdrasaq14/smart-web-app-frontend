@@ -33,7 +33,7 @@ import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
 import Logout from './Logout';
 import 'leaflet/dist/leaflet.css';
-import UserType from './auth/UserType';
+
 
 
 const ProtectedRoute = ({ component, ...args }:any) => {
