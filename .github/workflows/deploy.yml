@@ -22,14 +22,15 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2,
-          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }},
-          REACT_APP_AUTH0_CLIENT_ID: ${{ secrets.REACT_APP_AUTH0_CLIENT_ID }},
-          REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }},
-          REACT_APP_AUTH0_API_AUDIENCE: ${{ secrets.REACT_APP_AUTH0_API_AUDIENCE }},
+          aws-region: eu-west-2
       - name: Yarn install
         run: yarn install
       - name: Yarn build
+        env:
+          REACT_APP_BASE_URL: ${{ secrets.REACT_APP_BASE_URL }}
+          REACT_APP_AUTH0_CLIENT_ID: ${{ secrets.REACT_APP_AUTH0_CLIENT_ID }}
+          REACT_APP_AUTH0_DOMAIN: ${{ secrets.REACT_APP_AUTH0_DOMAIN }}
+          REACT_APP_AUTH0_API_AUDIENCE: ${{ secrets.REACT_APP_AUTH0_API_AUDIENCE }}
         run: yarn build
       - name: Deploy to s3
         run: cd dist && aws s3 sync . s3://smarterise-web-app-dev
