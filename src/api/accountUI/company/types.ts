@@ -1,14 +1,25 @@
 import { z } from 'zod';
 import { accessLevelsValues } from '../users/types';
 
-export const companyTypeValues = ['car_energy'] as const;
-export const companyTypeOptions = [{ key: 'car_energy', value: 'car_energy', label: 'Car energy' }];
+export const companyTypeValues = ['car_energy', 'utility'] as const;
+export const companyTypeOptions = [
+	{ key: 'car_energy', value: 'car_energy', label: 'Car energy' },
+	{ key: 'utility', value: 'utility', label: 'Utility' },
+];
 export const companyTypeEnum = z.enum(companyTypeValues);
 export type CompanyTypeEnum = z.infer<typeof companyTypeEnum>;
 
-export const companyServiceTypeValues = ['energy_monitoring'] as const;
+export const companyServiceTypeValues = [
+	'energy_monitoring',
+	'distribution_electrique',
+] as const;
 export const companyServiceTypeOptions = [
 	{ key: 'energy_monitoring', value: 'energy_monitoring', label: 'Energy monitoring' },
+	{
+		key: 'distribution_electrique',
+		value: 'distribution_electrique',
+		label: 'Distribution electrique',
+	},
 ];
 export const companyServiceTypeEnum = z.enum(companyServiceTypeValues);
 export type CompanyServiceTypeEnum = z.infer<typeof companyServiceTypeEnum>;
