@@ -161,7 +161,7 @@ export default function AddDeviceForm({ filters }: { filters: SitesDashboardFilt
 							control={control}
 							rules={{ required: DEFAULT_REQUIRED_FIELD_ERROR_MESSAGE }}
 							options={
-								deviceTariffs?.map((deviceTariff) => ({
+								deviceTariffs?.map((deviceTariff:any) => ({
 									key: deviceTariff.id,
 									value: deviceTariff.id,
 									label: deviceTariff.name,

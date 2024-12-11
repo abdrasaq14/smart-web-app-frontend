@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react';
 import { FaUserTie, FaHardHat, FaChartLine } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { RiAdminFill } from 'react-icons/ri';
+import GoogleTranslate from '../../components/GoogleTranslate';
 const UserType = ({ name }: { name: string }) => {
 	return (
 		<div style={styles.container}>
@@ -13,6 +14,9 @@ const UserType = ({ name }: { name: string }) => {
 						alt="Smarterise Logo"
 						style={styles.logo}
 					/>
+				</div>
+				<div className="">
+					<GoogleTranslate />
 				</div>
 				{/* <div style={styles.iconContainer}>
 					<button style={styles.iconButton}>

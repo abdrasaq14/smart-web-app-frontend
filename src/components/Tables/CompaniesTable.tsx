@@ -71,7 +71,7 @@ export const CompaniesTable = ({ filters }: Props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{dataToDisplay.map((company) => (
+						{dataToDisplay.map((company:any) => (
 							<TableRow key={company.id}>
 								<TableCell align="center">
 									<Link to={company.id.toString()}>{company.name}</Link>

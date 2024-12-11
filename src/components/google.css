@@ -1,0 +1,16 @@
+#google_translate_element {
+  margin-top: 10px;
+}
+
+.goog-te-banner-frame {
+  display: none !important; /* Hides the top Google Translate banner */
+}
+
+.goog-te-menu-value {
+  color: black !important; /* Adjust text color */
+}
+
+.goog-te-gadget-simple {
+  border: none !important;
+  background-color: transparent !important;
+}
