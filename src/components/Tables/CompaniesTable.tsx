@@ -14,6 +14,7 @@ import { SitesDashboardFilters } from '../../types';
 import { Spinner } from '../Spinner';
 import { useGetCompanies } from '../../api/accountUI/companies';
 import { Link } from 'react-router-dom';
+import { is } from 'date-fns/locale';
 
 type Props = {
 	filters: SitesDashboardFilters;
@@ -25,6 +26,10 @@ export const CompaniesTable = ({ filters }: Props) => {
 	const [internalFilters, setInternalFilters] = useState(filters);
 
 	const { data, isLoading, isError } = useGetCompanies({
+		pagination: { page, page_size: rowsPerPage },
+		filters: internalFilters,
+	});
+	const test = useGetCompanies({
 		pagination: { page, page_size: rowsPerPage },
 		filters: internalFilters,
 	});
@@ -48,6 +53,7 @@ export const CompaniesTable = ({ filters }: Props) => {
 	if (isLoading) {
 		return <Spinner />;
 	} else if (isError) {
+		console.log("Error fetching data...", test);
 		return <Box>Error fetching data...</Box>;
 	}
 
@@ -65,7 +71,7 @@ export const CompaniesTable = ({ filters }: Props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{dataToDisplay.map((company) => (
+						{dataToDisplay.map((company:any) => (
 							<TableRow key={company.id}>
 								<TableCell align="center">
 									<Link to={company.id.toString()}>{company.name}</Link>

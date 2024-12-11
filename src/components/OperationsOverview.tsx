@@ -59,13 +59,13 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 				/>
 			</Grid>
 
-			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+			<Grid item lg={3} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
 				<SitesMonitored filters={filters} />
 			</Grid>
-			<Grid item lg={6} md={12} sm={12} sx={styles.displayCenter}>
+			<Grid item lg={6} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
 				<LoadProfileChart filters={filters} />
 			</Grid>
-			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
+			<Grid item lg={3} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
 				<PowerConsumptionChart filters={filters} />
 			</Grid>
 

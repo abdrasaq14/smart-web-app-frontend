@@ -81,15 +81,15 @@ export const Company = () => {
 								<RegularButton
 									label="Add device"
 									onClick={() => {
-										// navigate(`/account-ui/companies/${companyId}/add-device`);
-										handleEmailClick("device")
+										navigate(`/account-ui/companies/${companyId}/add-device`);
+										// handleEmailClick("device")
 									}}
 								/>
 								<RegularButton
 									label="Add employee"
 									onClick={() => {
-										// navigate(`/account-ui/companies/${companyId}/add-employee`);
-										handleEmailClick("employee")
+										navigate(`/account-ui/companies/${companyId}/add-employee`);
+										// handleEmailClick("employee")
 									}}
 								/>
 							</Box>

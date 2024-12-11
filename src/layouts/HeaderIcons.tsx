@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { IconButton } from '../components/IconButton';
 import { Logout, NotificationsOutlined, PersonOutlined } from '@mui/icons-material';
 import React from 'react';
+import GoogleTranslate from '../components/GoogleTranslate';
 
 const HeaderIcons = () => {
 	const location = useLocation();
@@ -28,6 +29,7 @@ const HeaderIcons = () => {
 				Icon={Logout}
 				onClick={() => logout({ returnTo: `${window.location.origin}/login` })}
 			/>
+			{/* <GoogleTranslate /> */}
 		</>
 	);
 };
