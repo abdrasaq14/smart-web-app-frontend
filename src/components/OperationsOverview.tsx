@@ -10,6 +10,7 @@ import { AlertHistoryTable } from './Tables/AlertHistoryTable';
 import ValueCardSolo from './ValueCardSolo';
 import { CARD_HANDLER } from '../api/cardsHandlers';
 import PendingAlertsValueCard from './PendingAlertsValueCard';
+import { values } from '../utils/utils';
 
 const styles = {
 	table: { width: '100%' },
@@ -26,7 +27,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 					label="Total Consumption (kWh)"
 					handler={CARD_HANDLER.OPERATIONS}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.total_consumption)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -36,7 +37,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 					label="Current Load (kW)"
 					handler={CARD_HANDLER.OPERATIONS}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.current_load)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -46,7 +47,7 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 					label="Avg. Availability (hrs)"
 					handler={CARD_HANDLER.OPERATIONS}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.avg_availability)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>

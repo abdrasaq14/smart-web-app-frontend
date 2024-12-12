@@ -9,8 +9,20 @@ const keyLabelMapping: KeyValueMapping = {
 	defaulting: (value, total = 1) => `Bad Performance ${Number(value * 100) ? formatCompact((value * 100) / total) : 0}%`}
 
 const Chart = ({ filters }: { filters: SitesDashboardFilters }) => {
-	const { data, isLoading, isError } = useGetCustomerBreakdownChartData({ filters });
-
+	const { isLoading, isError } = useGetCustomerBreakdownChartData({ filters });
+	const data = {
+		total: 25000,
+		dataset: [
+			{
+				key: 'paying',
+				value: 23400,
+			},
+			{
+				key: 'defaulting',
+				value: 1600,
+			},
+		],
+	};
 	return (
 		<PieChartContainer
 			data={data}

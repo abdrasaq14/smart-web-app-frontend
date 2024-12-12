@@ -8,11 +8,12 @@ import React from 'react';
 import { CARD_HANDLER } from '../api/cardsHandlers';
 import ValueCardSolo from './ValueCardSolo';
 import MapWithMarkers from './Map';
-
+import { values } from '../utils/utils';
 export const styles = {
 	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
 };
 export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
+
 	return (
 		<Grid container spacing={1}>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -22,7 +23,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Total Revenue (CFA)"
 					handler={CARD_HANDLER.MANAGER}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={() => formatToUSlocale(values.total_revenue as any)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -32,7 +33,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="AT&C Losses (%)"
 					handler={CARD_HANDLER.MANAGER}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.atc_losses as any)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -42,7 +43,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Total consumption (kWh)"
 					handler={CARD_HANDLER.MANAGER}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.total_consumption as any)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -52,7 +53,7 @@ export const ManagerOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Current Load (kW)"
 					handler={CARD_HANDLER.MANAGER}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.current_load as any)}
 				/>
 			</Grid>
 
