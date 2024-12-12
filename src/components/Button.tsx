@@ -5,6 +5,7 @@ interface RegularButtonProps {
 	label: string;
 	onClick: () => void;
 	disabled?: boolean;
+	extraStyles?: any;
 }
 
 const styles = {
@@ -24,8 +25,8 @@ const styles = {
 	},
 };
 
-export const RegularButton = ({ label, onClick, disabled }: RegularButtonProps) => (
-	<Button variant="contained" sx={styles.button} onClick={onClick} disabled={!!disabled}>
+export const RegularButton = ({ label, onClick, disabled, extraStyles }: RegularButtonProps) => (
+	<Button variant="contained" sx={{...styles.button, ...extraStyles}} onClick={onClick} disabled={!!disabled}>
 		{label}
 	</Button>
 );
