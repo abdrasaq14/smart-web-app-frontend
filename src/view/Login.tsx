@@ -10,18 +10,21 @@ const styles = {
 		display: 'flex',
 		justifyContent: 'center',
 		alignItems: 'center',
+		// backgroundColor: 'red',
 	},
 	loginCard: {
 		display: 'flex',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		maxWidth: 343,
+		maxWidth: '550px',
 		minWidth: 343,
-		height: 244,
-		padding: '44px 93px 44px 93px',
+		height: 150,
+		padding: '40px',
 		borderRadius: '16px',
+		marginTop: '-100px',
 		borderColor: '#E6E6E6',
+		backgroundColor: '#F7F7F7',
 	},
 	title: { fontSize: '24px', fontWeight: 500, marginBottom: '20px' },
 	helperRow: {
@@ -39,18 +42,32 @@ const styles = {
 const LoginButton = () => {
 	const { loginWithRedirect } = useAuth0();
 
-	return <RegularButton label="Login" onClick={() => loginWithRedirect()} />;
+	return (
+		<RegularButton
+			extraStyles={{
+				backgroundColor: '#FFC000',
+				color: '#000000',
+				'&:hover': {
+					backgroundColor: '#FFC000',
+					borderRadius: '8px',
+					color: '#000000',
+				},
+			}}
+			label="Login"
+			onClick={() => loginWithRedirect()}
+		/>
+	);
 };
 
 export const Login = () => {
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'column', padding: '40px' }}>
 			<Box sx={{ height: '133px' }}>
 				<img src="logo.png" alt="Smarterise" style={styles.logo} />
 			</Box>
 			<Box sx={styles.container}>
 				<Card sx={styles.loginCard} variant="outlined">
-					<Box sx={styles.title}>Login to continue</Box>
+					<Box sx={styles.title}>Click the button below to continue</Box>
 					{/*<TextField sx={{ width: '100%' }} id="user" type="text" placeholder='Email'/>*/}
 					{/*<TextField sx={{ width: '100%' }} id="password" type="password" placeholder='Password'/>*/}
 					{/*<Box sx={styles.helperRow}>*/}
