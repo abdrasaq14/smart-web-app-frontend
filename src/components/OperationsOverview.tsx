@@ -13,12 +13,12 @@ import PendingAlertsValueCard from './PendingAlertsValueCard';
 
 const styles = {
 	table: { width: '100%' },
-	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center' },
+	displayCenter: { display: 'flex', flexDirection: 'column', alignItems: 'center', },
 };
 
 export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
 	return (
-		<Grid container spacing={1} style={{ padding: '42px 65px 65px 32px' }}>
+		<Grid container spacing={1} style={{ padding: '12px 65px 65px 32px' }}>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="total_consumption"

@@ -40,7 +40,7 @@ export const Home = () => {
 				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_energy_expanses)}
-						label="Total Energy Expanses (N)"
+						label="Total Energy Expanses (CFA)"
 						isLoading={isCardsDataLoading}
 						isError={isCardsDataError}
 					/>
@@ -71,7 +71,7 @@ export const Home = () => {
 				</Grid>
 
 				<Grid item lg={8} md={6} sm={12} sx={{ ...styles.displayCenter}}>
-					<Grid container spacing={1} sx={{backgroundColor: 'red'}}>
+					<Grid container spacing={1}>
 						<Grid
 							item
 							md={12}
