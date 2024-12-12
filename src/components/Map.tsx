@@ -10,6 +10,16 @@ L.Icon.Default.mergeOptions({
 	iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
 	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
 });
+const redIcon = new L.Icon({
+	iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+	iconRetinaUrl: 'https://cdn-icons-png.flaticon.com/512/1160/1160306.png',
+	shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41],
+	className: 'red-marker-icon', // Add a custom class to allow CSS overrides
+});
 
 
 const MapWithMarkers = () => {
@@ -27,7 +37,7 @@ const MapWithMarkers = () => {
 
 			{/* Add markers for each site */}
 			{siteData.map((site) => (
-				<Marker key={site.id} position={site.position}>
+				<Marker key={site.id} position={site.position} icon={site.isRed ? redIcon : L.Icon.Default.prototype}>
 					<Popup>
 						<h4>{site.name}</h4>
 						<p>{site.description}</p>

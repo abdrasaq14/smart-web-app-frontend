@@ -26,7 +26,7 @@ module.exports = (env) => {
 			headers: {
 				'Access-Control-Allow-Origin': '*', // Allow all origins during development
 				'Content-Security-Policy':
-					"img-src 'self' https://*.tile.openstreetmap.org https://cdnjs.cloudflare.com https://fonts.gstatic.com https://www.gstatic.com data:;",
+					"img-src 'self' https://*.tile.openstreetmap.org https://cdnjs.cloudflare.com https://fonts.gstatic.com https://www.gstatic.com https://cdn-icons-png.flaticon.com data:;",
 			},
 			proxy: {
 				// Proxy API requests if necessary (example setup)
