@@ -105,10 +105,10 @@ export const ActivityLog = () => {
 						<Tab label="Event Logs" {...a11yProps(0)} />
 						<Tab label="Alerts" {...a11yProps(1)} />
 						<Tab label="User Logs" {...a11yProps(2)} />
-						<Tab label="Raw data" {...a11yProps(3)} />
+						{/* <Tab label="Raw data" {...a11yProps(3)} /> */}
 					</Tabs>
 				</Box>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px', gap: '14px' }}>
 					<ControlledDatePicker
 						label="Start Date"
 						value={filters.start_date ?? null}

@@ -4,7 +4,7 @@ import HeaderIcons from './HeaderIcons';
 
 export const Header = ({ children }: any) => {
 	return (
-		<Grid container spacing={1} sx={{ marginBottom: '16px' }}>
+		<Grid container spacing={1} sx={{ marginBottom: '46px' }}>
 			<Grid item lg={9} md={12} sm={12} order={{ lg: 1, md: 2, sm: 2, xs: 2 }}>
 				{children}
 			</Grid>

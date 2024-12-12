@@ -53,41 +53,47 @@ export const UserLogsTable = ({ filters }: Props) => {
 
 	return (
 		<Box>
-			<TableContainer component={Paper}>
-				<Table sx={{ minWidth: 650 }} aria-label="simple table">
-					<TableHead>
-						<TableRow>
-							<TableCell>Alert ID</TableCell>
-							<TableCell align="right">Time/Date</TableCell>
-							<TableCell align="right">Modified by</TableCell>
-							<TableCell align="right">Employee ID</TableCell>
-							<TableCell align="right">Email address</TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{dataToDisplay.map((row) => (
-							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell component="th" scope="row">
-									{row.alert_id}
-								</TableCell>
-								<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
-								<TableCell align="right">{row.modified_by}</TableCell>
-								<TableCell align="right">{row.employee_id}</TableCell>
-								<TableCell align="right">{row.email_address}</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-			<TablePagination
-				rowsPerPageOptions={[15]}
-				component="div"
-				count={data?.count ?? 0}
-				rowsPerPage={rowsPerPage}
-				page={page}
-				onPageChange={handleChangePage}
-				onRowsPerPageChange={handleChangeRowsPerPage}
-			/>
+			{dataToDisplay.length > 0 ? (
+				<>
+					<TableContainer component={Paper}>
+						<Table sx={{ minWidth: 650 }} aria-label="simple table">
+							<TableHead>
+								<TableRow>
+									<TableCell>Alert ID</TableCell>
+									<TableCell align="right">Time/Date</TableCell>
+									<TableCell align="right">Modified by</TableCell>
+									<TableCell align="right">Employee ID</TableCell>
+									<TableCell align="right">Email address</TableCell>
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{dataToDisplay.map((row) => (
+									<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+										<TableCell component="th" scope="row">
+											{row.alert_id}
+										</TableCell>
+										<TableCell align="right">{formatDateForDisplay(row.time)}</TableCell>
+										<TableCell align="right">{row.modified_by}</TableCell>
+										<TableCell align="right">{row.employee_id}</TableCell>
+										<TableCell align="right">{row.email_address}</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</TableContainer>
+					<TablePagination
+						rowsPerPageOptions={[15]}
+						component="div"
+						count={data?.count ?? 0}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						onPageChange={handleChangePage}
+						onRowsPerPageChange={handleChangeRowsPerPage}
+					/>
+				</>
+			) : (
+				<p style={{ fontSize: '16px' }}>No Log at the moment</p>
+			)}
 		</Box>
 	);
 };

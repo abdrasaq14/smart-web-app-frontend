@@ -53,6 +53,8 @@ export const EventLogsTable = ({ filters }: Props) => {
 
 	return (
 		<Box>
+			{dataToDisplay.length > 0 ? (
+			<>
 			<TableContainer component={Paper}>
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
@@ -92,6 +94,9 @@ export const EventLogsTable = ({ filters }: Props) => {
 				onPageChange={handleChangePage}
 				onRowsPerPageChange={handleChangeRowsPerPage}
 			/>
+				</>
+			) : 
+			<p style={{fontSize: '16px', }}>No Log at the moment</p> }
 		</Box>
 	);
 };
