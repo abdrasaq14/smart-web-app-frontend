@@ -29,6 +29,7 @@ export const siteData: {
 	description: string;
 	position: [number, number];
 	link: string;
+	isRed?: boolean;
 }[] = [
 	{
 		id: 4,
@@ -36,6 +37,7 @@ export const siteData: {
 		description: 'MINISTERE DE LA SANTE',
 		position: [6.365137, 2.462924],
 		link: '/operations/dashboard/4',
+		isRed: true,
 	},
 	{
 		id: 5,
@@ -57,6 +59,7 @@ export const siteData: {
 		description: 'LOT 67',
 		position: [6.36405, 2.482518],
 		link: '/operations/dashboard/7',
+		isRed: true,
 	},
 	{
 		id: 8,
@@ -64,6 +67,7 @@ export const siteData: {
 		description: 'KPOGBEMABOU',
 		position: [6.363438, 2.471388],
 		link: '/operations/dashboard/8',
+		isRed: true,
 	},
 	{
 		id: 9,
@@ -85,6 +89,7 @@ export const siteData: {
 		description: 'SIBIC',
 		position: [6.367756, 2.471697],
 		link: '/operations/dashboard/11',
+		isRed: true,
 	},
 	{
 		id: 17,
