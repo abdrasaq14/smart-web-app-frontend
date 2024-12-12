@@ -18,7 +18,7 @@ const styles = {
 
 export const Home = () => {
 	const { data: me } = useGetMe();
-	const myCompanies = me ? me?.companies.map((company) => company.id) : null;
+	const myCompanies = me ? me?.companies.map((company:any) => company.id) : null;
 	const myCompaniesDefaultFilters = myCompanies
 		? {
 				...DEFAULT_DASHBOARD_FILTERS,

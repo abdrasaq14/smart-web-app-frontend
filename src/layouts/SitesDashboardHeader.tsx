@@ -25,7 +25,7 @@ const SitesDashboardHeader = ({ filters, setFilters }: Props) => {
 					<ControlledDropdown
 						multiselect={true}
 						label="Sites(s)"
-						options={sitesData?.results.map((site) => ({ label: site.name, value: site.id })) ?? []}
+						options={sitesData?.results.map((site:any) => ({ label: site.name, value: site.id })) ?? []}
 						value={filters.sites}
 						setValue={updateFilters('sites')}
 					/>

@@ -69,7 +69,7 @@ export const EventLogsTable = ({ filters }: Props) => {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{dataToDisplay.map((row) => (
+						{dataToDisplay.map((row:any) => (
 							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 								<TableCell component="th" scope="row">
 									{formatDateForDisplay(row.time)}

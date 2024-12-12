@@ -92,7 +92,7 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{dataToDisplay.map((row) => (
+								{dataToDisplay.map((row:any) => (
 									<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 										<TableCell component="th" scope="row" sx={{ padding: 0 }} align="center">
 											{formatDateForDisplay(row.time)}
