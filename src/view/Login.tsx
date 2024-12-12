@@ -46,6 +46,7 @@ const LoginButton = () => {
 		<RegularButton
 			extraStyles={{
 				backgroundColor: '#FFC000',
+				color: '#000000',
 				'&:hover': {
 					backgroundColor: '#FFC000',
 					borderRadius: '8px',
