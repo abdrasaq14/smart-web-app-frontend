@@ -12,8 +12,10 @@ const keyLabelMapping: KeyValueMapping = {
 };
 
 const Page = ({ filters }: { filters: SitesDashboardFilters }) => {
-	const { data, isLoading, isError } = useGetSitesMonitoredChartData({ filters });
-
+	const { isLoading, isError } = useGetSitesMonitoredChartData({ filters });
+	const data = {
+		"total":5,"dataset":[{"key":"active","value":3},{"key":"offline","value":2}]
+	}
 	return (
 		<PieChartContainer
 			data={data}

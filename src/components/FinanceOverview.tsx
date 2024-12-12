@@ -9,6 +9,7 @@ import { GraphCard } from './GraphCard';
 import { TransactionHistoryTable } from './Tables/TransactionHistoryTable';
 import { CARD_HANDLER } from '../api/cardsHandlers';
 import ValueCardSolo from './ValueCardSolo';
+import { values } from '../utils/utils';
 
 const styles = {
 	table: { width: '100%' },
@@ -25,7 +26,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Total Revenue (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.total_revenue as any)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -35,7 +36,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="ATC&C Losses (%)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
-					formatter={(value) => formatToUSlocale((value ?? 0) * 100, 1)}
+					formatter={(value) => formatToUSlocale(values.atc_losses)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -45,7 +46,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Downtime Losses (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.downtime_losses)}
 				/>
 			</Grid>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
@@ -55,7 +56,7 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 					label="Revenue/hour (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
-					formatter={(value) => formatToUSlocale(value)}
+					formatter={(value) => formatToUSlocale(values.revenue_per_hour as any)}
 				/>
 			</Grid>
 
