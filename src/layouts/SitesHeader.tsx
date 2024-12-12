@@ -40,7 +40,7 @@ export const SitesHeader = ({ filters, setFilters }: SiteHeaderProps) => {
 				</Box>
 			</Box>
 			<Box sx={styles.filters}>
-				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px' }}>
+				<Box sx={{ display: 'flex', justifyContent: 'space-between', width: '400px', gap: '12px' }}>
 					<ControlledDatePicker
 						label="Start Date"
 						value={filters.start_date ?? null}

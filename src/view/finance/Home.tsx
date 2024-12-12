@@ -8,10 +8,8 @@ import { useGetMe } from '../../api/me';
 
 const styles = {
 	screenContent: {
-		width: '90%',
-		// padding: '16px',
-		margin: '16px',
-		paddingRight: '8px',
+		width: '100%',
+		padding: '42px 65px 65px 32px',
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'auto',

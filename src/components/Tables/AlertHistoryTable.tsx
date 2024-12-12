@@ -70,77 +70,83 @@ export const AlertHistoryTable = ({ filters }: Props) => {
 
 	return (
 		<Box>
-			<TableContainer component={Paper}>
-				<Table
-					sx={{
-						minWidth: 650,
-					}}
-					aria-label="simple table"
-				>
-					<TableHead>
-						<TableRow>
-							<TableCell>Date/Time</TableCell>
-							<TableCell align="center">Alert ID</TableCell>
-							<TableCell align="center">Site</TableCell>
-							<TableCell align="center">Zone</TableCell>
-							<TableCell align="center">District</TableCell>
-							<TableCell align="center">Activity</TableCell>
-							<TableCell align="center">Status</TableCell>
-							<TableCell align="center"></TableCell>
-						</TableRow>
-					</TableHead>
-					<TableBody>
-						{dataToDisplay.map((row) => (
-							<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-								<TableCell component="th" scope="row" sx={{ padding: 0 }} align="center">
-									{formatDateForDisplay(row.time)}
-								</TableCell>
-								<TableCell align="center" sx={{ paddingLeft: 0, paddingRight: 0 }}>
-									{row.alert_id}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.site}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.zone}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.district}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.activity}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.status}
-								</TableCell>
-								<TableCell align="center" sx={{ padding: 0 }}>
-									{row.status === 'pending' ? (
-										<TableMenu
-											menuActions={[
-												{
-													label: 'Resolved',
-													action: () => {
-														mutation.mutate(row);
-													},
-												},
-											]}
-										/>
-									) : null}
-								</TableCell>
-							</TableRow>
-						))}
-					</TableBody>
-				</Table>
-			</TableContainer>
-			<TablePagination
-				rowsPerPageOptions={[NUMBER_OF_ITEMS]}
-				component="div"
-				count={data?.count ?? 0}
-				rowsPerPage={rowsPerPage}
-				page={page}
-				onPageChange={handleChangePage}
-				onRowsPerPageChange={handleChangeRowsPerPage}
-			/>
+			{dataToDisplay.length > 0 ? (
+				<>
+					<TableContainer component={Paper}>
+						<Table
+							sx={{
+								minWidth: 650,
+							}}
+							aria-label="simple table"
+						>
+							<TableHead>
+								<TableRow>
+									<TableCell>Date/Time</TableCell>
+									<TableCell align="center">Alert ID</TableCell>
+									<TableCell align="center">Site</TableCell>
+									<TableCell align="center">Zone</TableCell>
+									<TableCell align="center">District</TableCell>
+									<TableCell align="center">Activity</TableCell>
+									<TableCell align="center">Status</TableCell>
+									<TableCell align="center"></TableCell>
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{dataToDisplay.map((row) => (
+									<TableRow key={row.id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+										<TableCell component="th" scope="row" sx={{ padding: 0 }} align="center">
+											{formatDateForDisplay(row.time)}
+										</TableCell>
+										<TableCell align="center" sx={{ paddingLeft: 0, paddingRight: 0 }}>
+											{row.alert_id}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.site}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.zone}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.district}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.activity}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.status}
+										</TableCell>
+										<TableCell align="center" sx={{ padding: 0 }}>
+											{row.status === 'pending' ? (
+												<TableMenu
+													menuActions={[
+														{
+															label: 'Resolved',
+															action: () => {
+																mutation.mutate(row);
+															},
+														},
+													]}
+												/>
+											) : null}
+										</TableCell>
+									</TableRow>
+								))}
+							</TableBody>
+						</Table>
+					</TableContainer>
+					<TablePagination
+						rowsPerPageOptions={[NUMBER_OF_ITEMS]}
+						component="div"
+						count={data?.count ?? 0}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						onPageChange={handleChangePage}
+						onRowsPerPageChange={handleChangeRowsPerPage}
+					/>
+				</>
+			) : (
+				<p style={{ fontSize: '16px' }}>No Alert at the moment</p>
+			)}
 		</Box>
 	);
 };

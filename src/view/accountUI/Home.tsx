@@ -13,10 +13,8 @@ import MapWithMarkers from '../../components/Map';
 
 const styles = {
 	screenContent: {
-		width: '90%',
-		// padding: '16px',
-		margin: '16px',
-		paddingRight: '8px',
+		width: '100%',
+		padding: '42px 65px 65px 32px',
 		display: 'flex',
 		flexDirection: 'column',
 		overflowY: 'auto',
@@ -38,7 +36,7 @@ export const Home = () => {
 		<Box sx={styles.screenContent}>
 			<DateFiltersHeader filters={filters} setFilters={setFilters} />
 
-			<Grid container spacing={1}>
+			<Grid container spacing={1} rowGap={3}>
 				<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 					<ValueCard
 						value={formatToUSlocale(cardsData?.total_energy_expanses)}
@@ -72,8 +70,8 @@ export const Home = () => {
 					/>
 				</Grid>
 
-				<Grid item lg={8} md={6} sm={12} sx={{ ...styles.displayCenter, padding: '16px' }}>
-					<Grid container spacing={1} sx={{  }}>
+				<Grid item lg={8} md={6} sm={12} sx={{ ...styles.displayCenter}}>
+					<Grid container spacing={1} sx={{backgroundColor: 'red'}}>
 						<Grid
 							item
 							md={12}

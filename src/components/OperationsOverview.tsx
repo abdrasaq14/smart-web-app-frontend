@@ -18,7 +18,7 @@ const styles = {
 
 export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
 	return (
-		<Grid container spacing={1}>
+		<Grid container spacing={1} style={{ padding: '42px 65px 65px 32px' }}>
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="total_consumption"
@@ -59,13 +59,13 @@ export const OperationsOverview = ({ filters }: { filters: SitesDashboardFilters
 				/>
 			</Grid>
 
-			<Grid item lg={3} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
+			<Grid item lg={3} md={12} sm={12} sx={{ ...styles.displayCenter, marginTop: '24px' }}>
 				<SitesMonitored filters={filters} />
 			</Grid>
-			<Grid item lg={6} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
+			<Grid item lg={6} md={12} sm={12} sx={{ ...styles.displayCenter, marginTop: '24px' }}>
 				<LoadProfileChart filters={filters} />
 			</Grid>
-			<Grid item lg={3} md={12} sm={12} sx={{...styles.displayCenter, marginTop: '24px'}}>
+			<Grid item lg={3} md={12} sm={12} sx={{ ...styles.displayCenter, marginTop: '24px' }}>
 				<PowerConsumptionChart filters={filters} />
 			</Grid>
 

@@ -17,7 +17,7 @@ const styles = {
 
 export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters }) => {
 	return (
-		<Grid container spacing={1}>
+		<Grid container spacing={1} rowGap={3} >
 			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
 					cardType="atc_losses"
@@ -42,22 +42,22 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 				<ValueCardSolo
 					cardType="downtime_losses"
 					field="downtime_losses"
-					label="Downtime Losses (N)"
+					label="Downtime Losses (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
 			</Grid>
-			{/* <Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
+			<Grid item lg={3} md={6} sm={12} sx={styles.displayCenter}>
 				<ValueCardSolo
-					cardType="tariff_losses"
-					field="tariff_losses"
-					label="Tariff Losses (N)"
+					cardType="highest_losses"
+					field="highest_losses"
+					label="Revenue/hour (CFA)"
 					handler={CARD_HANDLER.FINANCE}
 					filters={filters}
 					formatter={(value) => formatToUSlocale(value)}
 				/>
-			</Grid> */}
+			</Grid>
 
 			<Grid item lg={3} md={12} sm={12} sx={styles.displayCenter}>
 				<CustomerBreakdownChart filters={filters} />
@@ -78,16 +78,16 @@ export const FinanceOverview = ({ filters }: { filters: SitesDashboardFilters })
 			</Grid>
 			<Grid item lg={3} md={12} sm={12}>
 				<Grid container spacing={1}>
-					<Grid item lg={12} md={6} sm={6}>
+					{/* <Grid item lg={12} md={6} sm={6}>
 						<ValueCardSolo
 							cardType="highest_losses"
 							field="highest_losses"
-							label="Revenue/hour (NGN)"
+							label="Revenue/hour (CFA)"
 							handler={CARD_HANDLER.FINANCE}
 							filters={filters}
 							formatter={(value) => formatToUSlocale(value)}
 						/>
-					</Grid>
+					</Grid> */}
 					<Grid item lg={12} md={6} sm={6}>
 						<ValueCardSolo
 							cardType="highest_revenue"
