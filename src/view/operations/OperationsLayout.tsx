@@ -6,6 +6,7 @@ import { PersonOutlined, SaveOutlined, SettingsOutlined, TopicOutlined } from '@
 import { AppMenuButton } from '../../types';
 import { useGetMe } from '../../api/me';
 import { Spinner } from '../../components/Spinner';
+import { SIDEBAR_WIDTH } from '../../utils/constants';
 
 const buttonDefinitions: Array<AppMenuButton> = [
 	{
@@ -42,7 +43,8 @@ export const OperationsLayout = () => {
 	return (
 		<Box sx={{ display: 'flex' }}>
 			<Sidebar buttonDefinitions={buttonDefinitions} />
-			<Outlet />
+				<Outlet />
+
 		</Box>
 	);
 };

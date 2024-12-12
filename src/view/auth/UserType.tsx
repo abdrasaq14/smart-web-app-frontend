@@ -3,6 +3,7 @@ import { FaUserTie, FaHardHat, FaChartLine } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { RiAdminFill } from 'react-icons/ri';
 import GoogleTranslate from '../../components/GoogleTranslate';
+import { SIDEBAR_WIDTH } from '../../utils/constants';
 const UserType = ({ name }: { name: string }) => {
 	return (
 		<div style={styles.container}>
@@ -10,7 +11,7 @@ const UserType = ({ name }: { name: string }) => {
 			<header style={styles.header}>
 				<div style={styles.logoContainer}>
 					<img
-						src="/logo.png" // Replace with your logo URL
+						src="/logo.png" 
 						alt="Smarterise Logo"
 						style={styles.logo}
 					/>
@@ -121,7 +122,7 @@ const styles: { [key: string]: CSSProperties } = {
 	},
 	logo: {
 		// width: '50px',
-		maxHeight: '80px',
+		maxWidth: SIDEBAR_WIDTH,
 		marginRight: '16px',
 	},
 	logoText: {

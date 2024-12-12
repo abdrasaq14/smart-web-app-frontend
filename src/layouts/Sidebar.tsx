@@ -7,26 +7,33 @@ import { SIDEBAR_WIDTH } from '../utils/constants';
 const styles = {
 	drawerContainer: {
 		width: SIDEBAR_WIDTH,
+		border: 'none',
 		flexShrink: 0,
+		marginRight: '30px',
 		'& .MuiDrawer-paper': {
 			// width: SIDEBAR_WIDTH,
 			boxSizing: 'border-box',
 			display: 'flex',
 			alignItems: 'center',
+			backgroundColor: '#F7F7F7',
+			border: 'none',
+			padding: '20px',
+			// marginRight: '250px',
 		},
 		overflowX: 'none',
 	},
-	logo: { cursor: 'pointer', width: SIDEBAR_WIDTH },
+	logo: { cursor: 'pointer', width: SIDEBAR_WIDTH, marginBottom: '40px' },
 	button: {
 		base: {
+			display: 'flex',
 			width: SIDEBAR_WIDTH,
 			justifyContent: 'flex-start',
-			paddingLeft: '25px',
+			paddingLeft: '15px',
 			marginTop: '15px',
 			marginBottom: '15px',
 			borderRadius: '32px',
 			'&:hover': {
-				backgroundColor: '#b6b6b6',
+				backgroundColor: '#FFC000',
 				borderRadius: '32px',
 			},
 			// fontFamily: 'Inter',
@@ -38,8 +45,9 @@ const styles = {
 			color: '#6E7883',
 		},
 		selected: {
-			backgroundColor: '#929292',
+			backgroundColor: '#FFC000',
 			borderRadius: '32px',
+			color: '#000000',
 		},
 	},
 };
@@ -49,7 +57,11 @@ export const Sidebar = ({ buttonDefinitions }: { buttonDefinitions: Array<AppMen
 	const location = useLocation();
 
 	return (
-		<Drawer sx={styles.drawerContainer} variant="permanent" anchor="left">
+		<Drawer
+			sx={styles.drawerContainer}
+			variant="permanent"
+			anchor="left"
+		>
 			<img
 				src="logo.png"
 				alt="Smarterise"

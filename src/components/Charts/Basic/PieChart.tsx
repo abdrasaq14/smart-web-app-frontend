@@ -25,7 +25,12 @@ const Page = ({ pieTitle, data }: Props) => {
 				name: item.name,
 				icon: 'rect', // Shape of the icon
 				itemStyle: {
-					color: item.name.includes('Good') || item.name.includes('Active') ? '#3D70D9' : '#ff8d21', // Dynamically set the box color
+					color:
+						item.name.includes('Good') ||
+						item.name.includes('Active') ||
+						item.name.includes('Actual')
+							? '#FFC000'
+							: '#7C878E', // Dynamically set the box color
 				},
 			})),
 		},
@@ -36,7 +41,11 @@ const Page = ({ pieTitle, data }: Props) => {
 					...item,
 					itemStyle: {
 						color:
-							item.name.includes('Good') || item.name.includes('Active') ? '#3D70D9' : '#ff8d21', // Pie chart segment color
+							item.name.includes('Good') ||
+							item.name.includes('Active') ||
+							item.name.includes('Actual')
+								? '#FFC000'
+								: '#7C878E', // Pie chart segment color
 					},
 				})),
 				radius: ['40%', '70%'],
