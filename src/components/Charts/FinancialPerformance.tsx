@@ -42,6 +42,10 @@ const options = {
 	dataset: {
 		source: data.dataset,
 	},
+	legend: {
+		bottom: 0, // Position the legend at the bottom of the chart
+		orient: 'horizontal', // Display items in a row
+	},
 	xAxis: {
 		type: 'category', // Use category axis for month strings
 		// name: 'Month',
@@ -55,6 +59,7 @@ const options = {
 	},
 	series: [
 		{
+			name: 'Collection', // Name to appear in the legend
 			type: 'line',
 			encode: {
 				x: 'month', // Map the "month" field to the x-axis
@@ -69,6 +74,7 @@ const options = {
 			smooth: true, // Make the line curved
 		},
 		{
+			name: 'Billed Energy', // Name to appear in the legend
 			type: 'line',
 			encode: {
 				x: 'month', // Map the "month" field to the x-axis
