@@ -164,14 +164,14 @@ export const siteData: {
 	];
 
 	export const values = {
-		total_revenue: '76.93T',
-		atc_losses: 15,
-		total_consumption: 354178,
-		current_load: 242.31,
-		number_of_sites: 5,
+		total_revenue: '0',
+		atc_losses: 0,
+		total_consumption: 102,
+		current_load: 117.65,
+		number_of_sites: 1,
 		number_of_users: 2,
 		pending_alerts: 0,
-		avg_availability: 3000,
-		downtime_losses: 100000,
-		revenue_per_hour: '1M'
+		avg_availability: 7,
+		downtime_losses: 0,
+		revenue_per_hour: '0'
 	};
