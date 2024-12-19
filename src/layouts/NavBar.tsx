@@ -5,7 +5,7 @@ import { PAGE_PADDING } from "../utils/constants";
 function NavBar({showDownload}: {showDownload: boolean}) {
   return (
     <nav
-      className="mb-5 w-full bg-inherit flex justify-between min-h-[5rem]"
+      className="mb-10 w-full bg-inherit flex justify-between min-h-[5rem]"
     >
       {showDownload && (
         <div className="max-w-[70%] flex-1">

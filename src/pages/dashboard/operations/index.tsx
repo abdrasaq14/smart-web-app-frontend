@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import Operations from "../../../components/Dashboards/operations";
 
 function OperationsPage() {
-  return (
-    <div>indext</div>
-  )
+  return <Operations />;
 }
 
 export default OperationsPage;

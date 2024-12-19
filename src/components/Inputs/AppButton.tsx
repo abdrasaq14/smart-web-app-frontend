@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { ButtonProps } from "../../interfaces/ComponentInterfaces";
 import { ButtonType } from "../../enums/componentEnums";
-import Spinner from "../feedBacks/Spinner";
+import Spinner from "../feedBacks/loader";
 
 const AppButton = ({
   type,
