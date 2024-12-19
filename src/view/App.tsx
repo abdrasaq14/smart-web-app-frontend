@@ -33,6 +33,7 @@ import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
 import Logout from './Logout';
 import 'leaflet/dist/leaflet.css';
+import { SBEE } from './sbee';
 
 
 
@@ -83,6 +84,7 @@ export const App = () => {
 							</Route>
 							<Route path="/account" element={<ProtectedRoute component={MyAccount} />} />
 							<Route path="/login" element={<Login />} />
+							<Route path="/sbee" element={<SBEE />} />
 							<Route path="/logout" element={<Logout />} />
 							<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
 							<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
