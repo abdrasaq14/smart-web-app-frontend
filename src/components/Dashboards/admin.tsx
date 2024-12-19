@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { FaUserTie, FaHardHat, FaChartLine } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
-function AdminIndexPage({name}: {name: string}) {
+function AdminIndex({name}: {name: string}) {
   return (
-    <div className="flex flex-col items-start justify-center mt-10 bg-white gap-4 p-8 rounded-lg border border-gray-300 min-h-[250px]">
+    <div className="flex flex-col items-start justify-center mt-10  bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733] min-h-[250px]">
       <h2 className="text-2xl font-semibold text-gray-700">Welcome {name},</h2>
 
       {/* Permission Options */}
@@ -12,25 +12,25 @@ function AdminIndexPage({name}: {name: string}) {
         <PermissionCard
           title="Senior Manager"
           icon={<FaUserTie size={40} />}
-          bgColor="bg-yellow-400"
+          bgColor="bg-primary-yellowMain"
           to="/senior-manager-account/home"
         />
         <PermissionCard
           title="Operations"
           icon={<FaHardHat size={40} />}
-          bgColor="bg-yellow-400"
+          bgColor="bg-primary-yellowMain"
           to="/operations/home"
         />
         <PermissionCard
           title="Finance"
           icon={<FaChartLine size={40} />}
-          bgColor="bg-yellow-400"
+          bgColor="bg-primary-yellowMain"
           to="/finance/home"
         />
         <PermissionCard
           title="Admin"
           icon={<RiAdminFill size={40} />}
-          bgColor="bg-yellow-400"
+          bgColor="bg-primary-yellowMain"
           to="/account-ui/home"
         />
       </div>
@@ -45,7 +45,7 @@ function AdminIndexPage({name}: {name: string}) {
   );
 }
 
-export default AdminIndexPage;
+export default AdminIndex;
 
 const PermissionCard = ({
   title,

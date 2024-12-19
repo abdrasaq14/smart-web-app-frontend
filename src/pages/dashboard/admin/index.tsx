@@ -1,9 +1,9 @@
-import React from 'react'
+import AdminIndex from "../../../components/Dashboards/admin"
 
-function index() {
+function AdminIndexPage() {
   return (
-    <div>index</div>
+    <AdminIndex name=""/>
   )
 }
 
-export default index
+export default AdminIndexPage;
