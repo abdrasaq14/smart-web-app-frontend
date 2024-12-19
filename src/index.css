@@ -25,7 +25,7 @@ body {
 }
 
 .input-wrapper{
-    @apply text-primary-blackLight w-full h-10 bg-none border rounded-lg py-2.5 px-2 flex justify-between items-center text-sm 
+    @apply text-primary-blackLighter w-full h-10 bg-none border rounded-lg py-2.5 px-2 flex justify-between items-center text-sm 
 }
 .input-style{
     @apply w-full bg-inherit border-none outline-none mx-2 text-sm placeholder:text-primary-placeholder 

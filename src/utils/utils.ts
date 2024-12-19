@@ -27,3 +27,28 @@ export const sideBarItems = [
 ];
 
 export const routesToHidNavBar = ["/dashboard/my-account"];
+export const generateAccountInfo = (
+  firstName: string,
+  lastName: string,
+  email: string,
+  company: string
+) => {
+  return [
+    {
+      tag: "First Name",
+      value: firstName,
+    },
+    {
+      tag: "Last Name",
+      value: lastName,
+    },
+    {
+      tag: "Email",
+      value: email,
+    },
+    {
+      tag: "Company",
+      value: company,
+    },
+  ];
+};

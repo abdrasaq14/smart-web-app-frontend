@@ -1,9 +1,12 @@
 import DownloadComponent from "../components/Download/Download";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
+import { PAGE_PADDING } from "../utils/constants";
 function NavBar({showDownload}: {showDownload: boolean}) {
   return (
-    <nav className="p-5 mb-5 w-full bg-inherit flex justify-between min-h-[5rem]">
+    <nav
+      className="mb-5 w-full bg-inherit flex justify-between min-h-[5rem]"
+    >
       {showDownload && (
         <div className="max-w-[70%] flex-1">
           <DownloadComponent />
@@ -17,11 +20,11 @@ function NavBar({showDownload}: {showDownload: boolean}) {
         <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center">
           <IoIosNotificationsOutline
             size={22}
-            className="text-primary-blackLight"
+            className="text-primary-blackLighter"
           />
         </span>
         <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center">
-          <CiUser size={22} className="text-primary-blackLight" />
+          <CiUser size={22} className="text-primary-blackLighter" />
         </span>
       </div>
     </nav>

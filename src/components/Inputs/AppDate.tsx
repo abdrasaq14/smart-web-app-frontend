@@ -34,7 +34,7 @@ const AppDateInput = ({
           error ? "border-red-500" : "border-primary-border"
         } ${style}`}
       >
-        {LeftIcon && <LeftIcon size={20} className="text-primary-blackLight" />}
+        {LeftIcon && <LeftIcon size={20} className="text-primary-blackLighter" />}
         <input
           className="input-style"
           type="date"
@@ -48,11 +48,11 @@ const AppDateInput = ({
           max={maxDate}
         />
         {RightIcon && (
-          <RightIcon size={20} className="text-primary-blackLight" />
+          <RightIcon size={20} className="text-primary-blackLighter" />
         )}
       </div>
       {BottomLabel && typeof BottomLabel === "string" ? (
-        <span className="text-sm text-primary-blackLight">{BottomLabel}</span>
+        <span className="text-sm text-primary-blackLighter">{BottomLabel}</span>
       ) : (
         BottomLabel
       )}

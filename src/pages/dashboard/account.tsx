@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { RiPencilFill } from "react-icons/ri";
 import Account from "../../components/Dashboards/account";
+import { FaUserTie } from "react-icons/fa";
 
 function AccountPage() {
   return (
-    <Account userId="JB005" />
+    <Account userId="JB005" role={{type: 'Admin', icon: <FaUserTie />}} firstName="Victory" lastName="Onah" email="owoga@tesla.com" company="Tesla Enterpise" />
   );
 }
 

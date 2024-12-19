@@ -6,6 +6,7 @@ import { useState } from "react";
 import { sideBarItems } from "../utils/utils";
 import { useLocation } from "react-router-dom";
 import { routesToHidNavBar } from "../utils/utils";
+import { PAGE_PADDING } from "../utils/constants";
 
 
 function DashboardLayout()
@@ -16,16 +17,19 @@ function DashboardLayout()
   const toggleNav = () => setIsSidebarOpen(!isSidebarOpen);
   console.log("location", location.pathname, isNavBarHidden);
   return (
-    <div className="">
+    <div className="min-h-[100vh]">
       <DashboardSidenav
         items={sideBarItems}
         isOpen={isSidebarOpen}
         toggleNav={toggleNav}
       />
       <div
-        className={`${isSidebarOpen ? 'ml-60': 'ml-20'} flex flex-col items-center justify-center bg-white min-h-full`}
+        className={`${
+          isSidebarOpen ? "ml-60" : "ml-20"
+        } flex flex-col items-center justify-center bg-white min-h-full`}
+        style={{ padding: PAGE_PADDING }}
       >
-        <NavBar showDownload={!isNavBarHidden } />
+        <NavBar showDownload={!isNavBarHidden} />
         <Outlet />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   MdArrowDownward,
   MdOutlineKeyboardArrowLeft,
@@ -9,8 +9,9 @@ import {
   SideNavItemChild,
 } from "../interfaces/ComponentInterfaces";
 import { smarteriseLogo } from "../assets/logo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { smarteriseLogoNoText } from "../assets/logo";
+import { PAGE_PADDING } from "../utils/constants";
 
 const DashboardSidenav = ({
   items,
@@ -21,8 +22,16 @@ const DashboardSidenav = ({
   isOpen: boolean;
   toggleNav: () => void;
 }) => {
-  // const [isOpen, setIsOpen] = useState(true);
-  const [activeLabel, setActiveLabel] = useState<string>("Home");
+  const location = useLocation(); // Get the current route
+  const [activeLabel, setActiveLabel] = useState<string>("");
+
+  // Update activeLabel based on the current route
+  useEffect(() => {
+    const activeItem = items.find((item) => item.link === location.pathname);
+    if (activeItem) {
+      setActiveLabel(activeItem.label);
+    }
+  }, [location.pathname, items]);
   // const toggleNav = () => {
   //   setIsOpen(!isOpen);
   // };
@@ -31,7 +40,8 @@ const DashboardSidenav = ({
     <div
       className={`bg-[#F7F7F7] ${
         isOpen ? "w-60" : "w-20"
-      }  border-e-[0.4px] p-5 text-sm h-full fixed transition-width duration-300`}
+      }  border-e-[0.4px] text-sm h-full fixed transition-width duration-300`}
+      style={{ padding: PAGE_PADDING }}
     >
       <div className="flex justify-between items-center w-full">
         {isOpen ? (
@@ -69,7 +79,9 @@ const DashboardSidenav = ({
                   activeLabel === item.label
                     ? "bg-primary-yellowMain text-primary-blackMain"
                     : "hover:bg-primary-yellowMain hover:text-white"
-                } flex items-center justify-between p-2 space-x-2 rounded-md hover:cursor-pointer mt-3`}
+                } flex items-center justify-between ${
+                  isOpen ? "p-3" : "flex items-center !justify-center px-5 py-2"
+                } space-x-2 rounded-2xl hover:cursor-pointer mt-3`}
                 onClick={() => setActiveLabel(item.label)}
               >
                 <div className="flex items-center space-x-2 text-white">

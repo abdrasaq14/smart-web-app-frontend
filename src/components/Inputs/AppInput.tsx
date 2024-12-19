@@ -60,11 +60,11 @@ const AppInput = ({
             </span>
           ))) ||
           (RightIcon && (
-            <RightIcon size={20} className="text-primary-blackLight" />
+            <RightIcon size={20} className="text-primary-blackLighter" />
           ))}
       </div>
       {BottomLabel && typeof BottomLabel === "string" ? (
-        <span className="text-sm text-primary-blackLight">{BottomLabel}</span>
+        <span className="text-sm text-primary-blackLighter">{BottomLabel}</span>
       ) : (
         BottomLabel
       )}
