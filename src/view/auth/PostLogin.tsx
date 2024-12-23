@@ -61,6 +61,9 @@ const PostLogin = () => {
       case ROLE.OPERATIONS:
         navigate('/operations');
         break;
+      case ROLE.OTHER:
+        navigate('/sbee');
+        break;
       default:
         logout({ returnTo: `${window.location.origin}/login` });
         console.log('User does not have the required role to access the app');

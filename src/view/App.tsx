@@ -33,7 +33,7 @@ import { SnackbarProvider } from 'notistack';
 import PostLogin from './auth/PostLogin';
 import Logout from './Logout';
 import 'leaflet/dist/leaflet.css';
-import { SBEE } from './sbee';
+import DashboardEmbed  from './sbee';
 
 
 
@@ -48,52 +48,52 @@ export const App = () => {
 		<QueryClientProvider client={queryClient}>
 			<SnackbarProvider maxSnack={3}>
 				<BrowserRouter>
-						<Routes>
-							<Route path="/operations" element={<ProtectedRoute component={OperationsLayout} />}>
-								<Route index element={<OperationsHome />} />
-								<Route path="home" element={<OperationsHome />} />
-								<Route path="site" element={<OperationSite />} />
-								<Route path="activityLog" element={<OperationsActivitylog />} />
-								<Route path="dashboard" element={<OperationsDashboard />} />
-							</Route>
-							<Route path="/finance" element={<ProtectedRoute component={FinancesLayout} />}>
-								<Route index element={<FinanceHome />} />
-								<Route path="home" element={<FinanceHome />} />
-								<Route path="transaction" element={<FinanceTransaction />} />
-								<Route path="activityLog" element={<OperationsActivitylog />} />
-							</Route>
-							<Route
-								path="/senior-manager-account"
-								element={<ProtectedRoute component={SeniorManagerAccountLayout} />}
-							>
-								<Route index element={<SeniorManagerAccountHome />} />
-								<Route path="home" element={<SeniorManagerAccountHome />} />
-								<Route path="operations" element={<SeniorManagerAccountOperations />} />
-								<Route path="finance" element={<SeniorManagerAccountFinance />} />
-								<Route path="activity-log" element={<SeniorManagerAccountActivityLog />} />
-							</Route>
-							<Route path="/account-ui" element={<ProtectedRoute component={AccountUiLayout} />}>
-								<Route index element={<AccountUiHome />} />
-								<Route path="home" element={<AccountUiHome />} />
-								<Route path="companies" element={<AccountUiCompanies />} />
-								<Route path="companies/:id" element={<AccountUiCompany />} />
-								<Route path="companies/:id/add-device" element={<AccountUiAddDevice />} />
-								<Route path="companies/:id/add-employee" element={<AccountUiAddEmployee />} />
-								<Route path="users" element={<AccountUiUsers />} />
-								<Route path="devices" element={<AccountUiDevices />} />
-							</Route>
-							<Route path="/account" element={<ProtectedRoute component={MyAccount} />} />
-							<Route path="/login" element={<Login />} />
-							<Route path="/sbee" element={<SBEE />} />
-							<Route path="/logout" element={<Logout />} />
-							<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
-							<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
-							{/* <Route path="/userType" element={<UserType/>} /> */}
-							<Route
-								path="*"
-								element={<ProtectedRoute component={<Navigate to="/login" replace />} />}
-							/>
-						</Routes>
+					<Routes>
+						<Route path="/operations" element={<ProtectedRoute component={OperationsLayout} />}>
+							<Route index element={<OperationsHome />} />
+							<Route path="home" element={<OperationsHome />} />
+							<Route path="site" element={<OperationSite />} />
+							<Route path="activityLog" element={<OperationsActivitylog />} />
+							<Route path="dashboard" element={<OperationsDashboard />} />
+						</Route>
+						<Route path="/finance" element={<ProtectedRoute component={FinancesLayout} />}>
+							<Route index element={<FinanceHome />} />
+							<Route path="home" element={<FinanceHome />} />
+							<Route path="transaction" element={<FinanceTransaction />} />
+							<Route path="activityLog" element={<OperationsActivitylog />} />
+						</Route>
+						<Route
+							path="/senior-manager-account"
+							element={<ProtectedRoute component={SeniorManagerAccountLayout} />}
+						>
+							<Route index element={<SeniorManagerAccountHome />} />
+							<Route path="home" element={<SeniorManagerAccountHome />} />
+							<Route path="operations" element={<SeniorManagerAccountOperations />} />
+							<Route path="finance" element={<SeniorManagerAccountFinance />} />
+							<Route path="activity-log" element={<SeniorManagerAccountActivityLog />} />
+						</Route>
+						<Route path="/account-ui" element={<ProtectedRoute component={AccountUiLayout} />}>
+							<Route index element={<AccountUiHome />} />
+							<Route path="home" element={<AccountUiHome />} />
+							<Route path="companies" element={<AccountUiCompanies />} />
+							<Route path="companies/:id" element={<AccountUiCompany />} />
+							<Route path="companies/:id/add-device" element={<AccountUiAddDevice />} />
+							<Route path="companies/:id/add-employee" element={<AccountUiAddEmployee />} />
+							<Route path="users" element={<AccountUiUsers />} />
+							<Route path="devices" element={<AccountUiDevices />} />
+						</Route>
+						<Route path="/account" element={<ProtectedRoute component={MyAccount} />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/sbee" element={<DashboardEmbed />} />
+						<Route path="/logout" element={<Logout />} />
+						<Route path="/post-login" element={<ProtectedRoute component={PostLogin} />} />
+						<Route path="/" element={<ProtectedRoute component={UserTypeSwitcher} />} />
+						{/* <Route path="/userType" element={<UserType/>} /> */}
+						<Route
+							path="*"
+							element={<ProtectedRoute component={<Navigate to="/login" replace />} />}
+						/>
+					</Routes>
 					{/* </Auth0ProviderWithRedirectCallback> */}
 				</BrowserRouter>
 			</SnackbarProvider>

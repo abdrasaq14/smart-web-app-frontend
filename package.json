@@ -90,6 +90,7 @@
 		"@mui/x-date-pickers": "^5.0.0-beta.3",
 		"@react-leaflet/core": "^2.1.0",
 		"abortcontroller-polyfill": "1.7.3",
+		"amazon-quicksight-embedding-sdk": "^2.8.0",
 		"axios": "0.27.2",
 		"core-js": "3.22.8",
 		"css-loader": "6.7.1",
