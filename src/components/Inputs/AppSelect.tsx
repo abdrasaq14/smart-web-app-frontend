@@ -32,7 +32,7 @@ const AppSelect: React.FC<AppSelectProps> = ({
       )}
       <div
         className={`input-wrapper ${
-          error ? "border-red-500" : "border-primary-border"
+          error ? "border-red-500" : "border-primary-yellowMain"
         }  ${style}`}
       >
         <select

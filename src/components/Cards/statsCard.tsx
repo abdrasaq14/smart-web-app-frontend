@@ -1,4 +1,4 @@
-import Loader from "../../feedBacks/loader";
+import Loader from "../feedBacks/loader";
 
 function StatsCard({
   title,

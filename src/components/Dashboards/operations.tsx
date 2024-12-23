@@ -1,5 +1,5 @@
 import React from "react";
-import StatsCard from "./Cards/statsCard";
+import StatsCard from "../Cards/statsCard";
 const GAP = "20px";
 
 const dummyData = [
@@ -34,7 +34,7 @@ function Operations() {
       className="flex flex-col items-start justify-center w-full"
       style={{ gap: GAP }}
     >
-      {/* starts wrapper */}
+      {/* stats wrapper */}
       <div className="w-full grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))]" style={{ gap: GAP }}>
         {dummyData.map((data, index) => (
           <StatsCard
@@ -45,6 +45,7 @@ function Operations() {
           />
         ))}
       </div>
+
     </div>
   );
 }

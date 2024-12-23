@@ -31,10 +31,12 @@ const AppDateInput = ({
       )}
       <div
         className={`input-wrapper ${
-          error ? "border-red-500" : "border-primary-border"
+          error ? "border-red-500" : "border-primary-yellowMain"
         } ${style}`}
       >
-        {LeftIcon && <LeftIcon size={20} className="text-primary-blackLighter" />}
+        {LeftIcon && (
+          <LeftIcon size={20} className="text-primary-blackLighter" />
+        )}
         <input
           className="input-style"
           type="date"
