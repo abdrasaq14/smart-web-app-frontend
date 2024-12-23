@@ -91,7 +91,7 @@ const DashboardEmbed = () => {
 	}, []);
 
 	return (
-		<Box sx={{ display: 'flex', flexDirection: 'column', padding: '40px', gap: '100px' }}>
+		<Box sx={{ display: 'flex', flexDirection: 'column', padding: '40px', gap: '70px' }}>
 			<Box sx={{ height: '120px' }}>
 				<img src="logo.png" alt="Smarterise" style={styles.logo} />
 			</Box>

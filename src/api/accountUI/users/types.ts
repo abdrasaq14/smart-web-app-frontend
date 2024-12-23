@@ -6,6 +6,7 @@ export const accessLevelsOptions = [
 	{ key: 'finance', value: 'finance', label: 'Finance' },
 	{ key: 'manager', value: 'manager', label: 'Manager' },
 	{ key: 'admin', value: 'admin', label: 'Admin' },
+	{ key: 'other', value: 'other', label: 'Other' },
 ];
 const accessLevelsEnum = z.enum(accessLevelsValues);
 export type AccessLevelsEnum = z.infer<typeof accessLevelsEnum>;

@@ -5,6 +5,7 @@ export enum ROLE {
 	MANAGER = 'manager',
 	OPERATIONS = 'operation',
 	FINANCE = 'finance',
+	OTHER = 'other',
 }
 
 // export const getUserRoles = (user?: User) => {
