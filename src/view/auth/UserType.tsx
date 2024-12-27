@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { FaUserTie, FaHardHat, FaChartLine } from 'react-icons/fa';
+import { RiShieldUserFill } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import { RiAdminFill } from 'react-icons/ri';
 import GoogleTranslate from '../../components/GoogleTranslate';
@@ -80,6 +81,12 @@ const UserType = ({ name }: { name: string }) => {
 						icon={<RiAdminFill size={40} />}
 						bgColor="#FFC107"
 						to="/account-ui/home"
+					/>
+					<PermissionCard
+						title="SBE"
+						icon={<RiShieldUserFill size={40} />}
+						bgColor="#FFC107"
+						to="/sbee"
 					/>
 				</div>
 				<p style={styles.instruction}>
