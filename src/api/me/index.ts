@@ -38,7 +38,7 @@ const getMe = getDashboardData<User>({
 console.log("getMe configuration:", getMe);
 
 // Define a function to log the response
-const logResponse = (response) => {
+const logResponse = (response:any) => {
 	if (response.error) {
 		console.error('Error fetching user data:', response.error);
 	} else {
