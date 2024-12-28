@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const accessLevelsValues = ['operation', 'finance', 'manager', 'admin'] as const;
+export const accessLevelsValues = ['operation', 'finance', 'manager', 'admin', 'other'] as const;
 export const accessLevelsOptions = [
 	{ key: 'operation', value: 'operation', label: 'Operation' },
 	{ key: 'finance', value: 'finance', label: 'Finance' },
@@ -11,10 +11,10 @@ export const accessLevelsOptions = [
 const accessLevelsEnum = z.enum(accessLevelsValues);
 export type AccessLevelsEnum = z.infer<typeof accessLevelsEnum>;
 
-export const companyTypeOptions = ['car_energy'] as const;
+export const companyTypeOptions = ['car_energy', 'utility'] as const;
 export const companyTypeEnum = z.enum(companyTypeOptions);
 
-export const companyServiceTypeOptions = ['energy_monitoring'] as const;
+export const companyServiceTypeOptions = ['energy_monitoring', 'distribution_electrique'] as const;
 export const companyServiceTypeEnum = z.enum(companyServiceTypeOptions);
 
 export const CreateUserSchema = z.object({

@@ -30,7 +30,7 @@ const PostLogin = () => {
     if (isAuthenticated && !receivedToken) {
       getToken();
     }
-  }, [receivedToken, isAuthenticated, getAccessTokenSilently, logout]);
+  }, [receivedToken, isAuthenticated, getAccessTokenSilently]);
 
   if (isLoading || !receivedToken || isUserInfoLoading) {
     return <Spinner />;

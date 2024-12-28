@@ -4,6 +4,10 @@ import { createEmbeddingContext } from 'amazon-quicksight-embedding-sdk';
 import './sbee.css';
 import { post } from '../api/apiUtils';
 import Loader from '../components/Loader/Loader';
+import { Link } from 'react-router-dom';
+import { useGetMe } from '../api/me';
+import { IoIosLogOut } from 'react-icons/io';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const styles = {
 	container: {
@@ -30,10 +34,14 @@ const styles = {
 };
 
 const DashboardEmbed = () => {
+	const { data: me } = useGetMe();
+	const role = me?.access_level;
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [embedUrl, setEmbedUrl] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+	const { logout } = useAuth0();
+  
 	// Fetch the embed URL from the backend
 	const fetchEmbedUrl = async () => {
 		try {
@@ -51,7 +59,7 @@ const DashboardEmbed = () => {
 			if (response.EmbedUrl) {
 				setEmbedUrl(response.EmbedUrl);
 				setIsLoading(false);
-				return
+				return;
 			}
 			setError('Error while fetching your dashboard. Please try again later.');
 			setIsLoading(false);
@@ -62,6 +70,11 @@ const DashboardEmbed = () => {
 		}
 	};
 
+	const handleLogout = () => { 
+		localStorage.removeItem('auth0Token');
+		 logout({ returnTo: `${window.location.origin}/login` });
+		// window.location.href = '/login';
+	}
 	// Embed the QuickSight dashboard
 	useEffect(() => {
 		if (!embedUrl) return;
@@ -92,8 +105,13 @@ const DashboardEmbed = () => {
 
 	return (
 		<Box sx={{ display: 'flex', flexDirection: 'column', padding: '40px', gap: '70px' }}>
-			<Box sx={{ height: '120px' }}>
-				<img src="logo.png" alt="Smarterise" style={styles.logo} />
+			<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+				<Link to={role == 'admin' ? '/' : '/sbee'} style={{ height: '120px' }}>
+					<img src="logo.png" alt="Smarterise" style={styles.logo} />
+				</Link>
+				<span style={{cursor: 'pointer'}} onClick={handleLogout}>
+					<IoIosLogOut size={25} />
+				</span>
 			</Box>
 			<Box sx={styles.container}>
 				{isLoading ? (
