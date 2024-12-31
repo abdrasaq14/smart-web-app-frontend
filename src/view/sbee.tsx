@@ -47,10 +47,10 @@ const DashboardEmbed = () => {
 		try {
 			const response = await post('generate-embed-url', {
 				accountId: '368563411071',
-				dashboardId: '1e7e705c-7dd4-4226-bb44-1b4da8108716',
+				dashboardId: '66492307-dbe0-4b76-bfce-170caca91512',
 				namespace: 'default',
 				authorizedResourceArns: [
-					`arn:aws:quicksight:eu-west-2:368563411071:dashboard/1e7e705c-7dd4-4226-bb44-1b4da8108716`,
+					`arn:aws:quicksight:eu-west-2:368563411071:dashboard/66492307-dbe0-4b76-bfce-170caca91512`,
 				],
 				// authorizedResourceArns: ['arn:aws:quicksight:region:account-id:dashboard/dashboard-id'],
 				allowedDomains: ['http://localhost:3000', 'https://demo.powersmarter.net'],
