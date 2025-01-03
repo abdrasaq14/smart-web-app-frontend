@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { useGetMe } from '../api/me';
 import { IoIosLogOut } from 'react-icons/io';
 import { useAuth0 } from '@auth0/auth0-react';
+import { z } from 'zod';
 
 const styles = {
 	container: {
@@ -17,8 +18,9 @@ const styles = {
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	loginCard: {
+	embedCard: {
 		display: 'flex',
+		position: 'relative',
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignItems: 'center',
@@ -28,9 +30,18 @@ const styles = {
 		padding: '40px',
 		borderRadius: '16px',
 		borderColor: '#E6E6E6',
-		backgroundColor: '#F7F7F7',
+		backgroundColor: '#F7F7F7'
 	},
 	logo: { cursor: 'pointer', maxWidth: '170px' },
+	hide: {
+		position: 'absolute',
+		zIndex: '1000',
+		bottom: '20px',
+		right: '0',
+		backgroundColor: '#F7F7F7',
+		height: '50px',
+		width: '200px'
+	}
 };
 
 const DashboardEmbed = () => {
@@ -119,8 +130,10 @@ const DashboardEmbed = () => {
 				) : error?.trim() ? (
 					<p style={{ fontSize: '28px', color: 'red' }}>{error}</p>
 				) : (
-					<Card sx={styles.loginCard}>
-						<Box ref={containerRef} style={{ width: '100%', height: '700px' }} />
+					<Card sx={styles.embedCard}>
+								<Box ref={containerRef} style={{ width: '100%', height: '700px' }} >
+									<div style={styles.hide}></div>
+						</Box>
 					</Card>
 				)}
 			</Box>
