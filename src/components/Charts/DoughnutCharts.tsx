@@ -1,27 +1,31 @@
 import React from "react";
 import ReactECharts from "echarts-for-react";
+import CardLayout from "../Cards/CardLayout";
 
 type DataRow = {
   value: number;
   key: string;
 };
 
-type Props = {
-  pieTitle: string;
-  data: DataRow[];
+const data = {
+  total: 12,
+  dataset: [
+    { key: "active", value: 10 },
+    { key: "offline", value: 2 },
+  ],
 };
 
-const PieChart = ({ pieTitle, data }: Props) => {
-  console.log("pieChartData", data);
+const DoughNutChart = () => {
+  console.log("DoughNutChartData", data);
 
   // Calculate the total value for percentage calculation
-  const totalValue = data.reduce((sum, item) => sum + item.value, 0);
+  const totalValue = data.dataset.reduce((sum, item) => sum + item.value, 0);
 
   const options = {
     legend: {
       top: "80%",
       left: "center",
-      data: data.map(
+      data: data.dataset.map(
         (item) =>
           `${item.key} (${((item.value / totalValue) * 100).toFixed(1)}%)`
       ), // Append percentage to legend name
@@ -29,7 +33,7 @@ const PieChart = ({ pieTitle, data }: Props) => {
     series: [
       {
         type: "pie",
-        data: data.map((item) => ({
+        data: data.dataset.map((item) => ({
           ...item,
           name: `${item.key} (${((item.value / totalValue) * 100).toFixed(
             1
@@ -62,7 +66,13 @@ const PieChart = ({ pieTitle, data }: Props) => {
     ],
   };
 
-  return <ReactECharts option={options} />;
+  return (
+    <CardLayout title="Site Monitored" style="max-w-[300px]">
+      <div className="flex flex-col h-full w-full">
+        <ReactECharts option={options} />
+      </div>
+    </CardLayout>
+  );
 };
 
-export default PieChart;
+export default DoughNutChart;
