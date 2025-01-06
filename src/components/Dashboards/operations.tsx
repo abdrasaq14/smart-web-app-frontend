@@ -37,7 +37,7 @@ function Operations() {
     >
       {/* stats wrapper */}
       <div
-        className="w-full grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))]"
+        className="w-full grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]"
         style={{ gap: CARD_GAP }}
       >
         {dummyData.map((data, index) => (

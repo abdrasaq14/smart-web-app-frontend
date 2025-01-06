@@ -100,9 +100,10 @@ const LoadProfileChart = () => {
     <CardLayout title="Load Profile (KW)" style="max-w-[650px]">
       <div className="flex flex-col h-full w-full relative">
         <select
+          defaultValue={30}
           value={selectedValue}
           onChange={handleChange}
-          className="absolute flex items-center justify-center top-[-20px] right-0 h-[20px] w-[100px] p-4 rounded-full bg-[#E5E5E5] text-primary-blackMain"
+          className="cursor-pointer absolute flex items-center justify-center top-[-20px] right-0  w-[100px] py-3 px-2 rounded-full bg-[#E5E5E5] text-primary-blackMain"
         >
           {filter.map((item) => (
             <option
