@@ -34,12 +34,13 @@ const styles = {
 	},
 	logo: { cursor: 'pointer', maxWidth: '170px' },
 	hide: {
-		position: 'absolute',
+		position: 'absolute' as 'absolute',
 		zIndex: '1000',
 		bottom: '20px',
 		right: '0',
+		// backgroundColor: 'red',
 		backgroundColor: '#F7F7F7',
-		height: '50px',
+		height: '150px',
 		width: '200px'
 	}
 };
