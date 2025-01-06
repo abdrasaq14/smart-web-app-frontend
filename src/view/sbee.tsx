@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { useGetMe } from '../api/me';
 import { IoIosLogOut } from 'react-icons/io';
 import { useAuth0 } from '@auth0/auth0-react';
-import { z } from 'zod';
 
 const styles = {
 	container: {
@@ -40,7 +39,7 @@ const styles = {
 		right: '0',
 		// backgroundColor: 'red',
 		backgroundColor: '#F7F7F7',
-		height: '150px',
+		height: '50px',
 		width: '200px'
 	}
 };
