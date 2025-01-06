@@ -1,7 +1,6 @@
 import DownloadComponent from "../components/Download/Download";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
-import { PAGE_PADDING } from "../utils/constants";
 function NavBar({showDownload}: {showDownload: boolean}) {
   return (
     <nav

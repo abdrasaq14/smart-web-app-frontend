@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import { RiPencilFill } from "react-icons/ri";
 import Account from "../../components/Dashboards/account";
 import { FaUserTie } from "react-icons/fa";
 
