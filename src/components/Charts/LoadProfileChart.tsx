@@ -109,7 +109,7 @@ const LoadProfileChart = () => {
             <option
               key={item.key}
               value={item.value}
-              className="text-primary-blackMain"
+              className="text-primary"
               selected={item.value === 30}
             >
               {item.key}
