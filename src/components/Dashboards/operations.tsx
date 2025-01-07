@@ -2,6 +2,7 @@ import StatsCard from "../Cards/statsCard";
 import { CARD_GAP } from "../../utils/constants";
 import DoughNutChart from "../Charts/DoughnutCharts";
 import LoadProfileChart from "../Charts/LoadProfileChart";
+import PowerConsumptionChart from "../Charts/PowerConsumption";
 const dummyData = [
   {
     title: "Total Consumption (KWh)",
@@ -36,24 +37,27 @@ function Operations() {
       style={{ gap: CARD_GAP }}
     >
       {/* stats wrapper */}
-      <div
-        className="w-full grid grid-cols-[repeat(auto-fill,_minmax(250px,_1fr))]"
-        style={{ gap: CARD_GAP }}
-      >
+      <div className="w-full flex flex-wrap gap-4">
         {dummyData.map((data, index) => (
-          <StatsCard
-            title={data.title}
-            value={data.value}
-            isError={data.isError}
-            isLoading={data.isLoading}
-          />
+          <div
+            key={index}
+            className="flex-1 min-w-[300px] max-w-[calc(100%-16px)]"
+          >
+            <StatsCard
+              title={data.title}
+              value={data.value}
+              isError={data.isError}
+              isLoading={data.isLoading}
+            />
+          </div>
         ))}
       </div>
 
       {/* chats wrapper */}
       <div className="flex flex-wrap w-full" style={{ gap: CARD_GAP }}>
         <DoughNutChart />
-        <LoadProfileChart/>
+        <LoadProfileChart />
+        <PowerConsumptionChart />
       </div>
     </div>
   );

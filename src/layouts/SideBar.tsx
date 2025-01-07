@@ -70,7 +70,7 @@ const DashboardSidenav = ({
       </button>
       <ul className="mt-10 space-y-5 text-primary-blackMain">
         {items.map((item) => (
-          <li key={item.label}>
+          <li key={item.label} className="text-lg">
             {" "}
             {/* Add key here for each item */}
             <Link to={item.link}>

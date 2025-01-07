@@ -67,7 +67,10 @@ const DoughNutChart = () => {
   };
 
   return (
-    <CardLayout title="Site Monitored" style="max-w-[300px]">
+    <CardLayout
+      title="Site Monitored"
+      style="min-w-[350px] xl:max-w-[350px] flex-1"
+    >
       <div className="flex flex-col h-full w-full">
         <ReactECharts option={options} />
       </div>
