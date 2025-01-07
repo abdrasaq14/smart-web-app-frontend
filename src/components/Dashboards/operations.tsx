@@ -43,7 +43,10 @@ function Operations() {
         style={{ gap: CARD_GAP }}
       >
         {dummyData.map((data, index) => (
-          <div key={index} className="flex-1 min-w-[250px] max-w-[450px]">
+          <div
+            key={index}
+            className="flex-1 min-w-[300px]  max-w-[250px] lg:max-w-[450px]"
+          >
             <StatsCard
               title={data.title}
               value={data.value}
@@ -69,6 +72,19 @@ function Operations() {
         style={{ gap: CARD_GAP }}
       >
         <AlertHistoryTable />
+        <div
+          className="grid p-6 min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
+          style={{ gap: CARD_GAP }}
+        >
+          {dummyData.slice(0, 2).map((data, index) => (
+            <StatsCard
+              title={data.title}
+              value={data.value}
+              isError={data.isError}
+              isLoading={data.isLoading}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
