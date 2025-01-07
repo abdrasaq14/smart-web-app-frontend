@@ -33,3 +33,4 @@ body {
 .btn-disabled {
     @apply text-white bg-primary-yellowLight hover:cursor-not-allowed
 }
+

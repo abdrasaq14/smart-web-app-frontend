@@ -3,6 +3,7 @@ import { CARD_GAP } from "../../utils/constants";
 import DoughNutChart from "../Charts/DoughnutCharts";
 import LoadProfileChart from "../Charts/LoadProfileChart";
 import PowerConsumptionChart from "../Charts/PowerConsumption";
+import AlertHistoryTable from "../Table/AlertHistoryTable";
 const dummyData = [
   {
     title: "Total Consumption (KWh)",
@@ -37,12 +38,12 @@ function Operations() {
       style={{ gap: CARD_GAP }}
     >
       {/* stats wrapper */}
-      <div className="w-full flex flex-wrap gap-4">
+      <div
+        className="w-full flex flex-wrap justify-center lg:justify-start"
+        style={{ gap: CARD_GAP }}
+      >
         {dummyData.map((data, index) => (
-          <div
-            key={index}
-            className="flex-1 min-w-[300px] max-w-[calc(100%-16px)]"
-          >
+          <div key={index} className="flex-1 min-w-[250px] max-w-[450px]">
             <StatsCard
               title={data.title}
               value={data.value}
@@ -54,10 +55,20 @@ function Operations() {
       </div>
 
       {/* chats wrapper */}
-      <div className="flex flex-wrap w-full" style={{ gap: CARD_GAP }}>
+      <div
+        className="flex flex-wrap justify-center w-full"
+        style={{ gap: CARD_GAP }}
+      >
         <DoughNutChart />
         <LoadProfileChart />
         <PowerConsumptionChart />
+      </div>
+
+      <div
+        className="flex flex-wrap justify-center w-full"
+        style={{ gap: CARD_GAP }}
+      >
+        <AlertHistoryTable />
       </div>
     </div>
   );

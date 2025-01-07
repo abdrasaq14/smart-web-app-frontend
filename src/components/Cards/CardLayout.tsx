@@ -1,4 +1,4 @@
-import Loader from "../feedBacks/loader";
+import { BORDER_RADIUS, CARD_TITLE } from "../../utils/constants";
 
 function CardLayout({
   title,
@@ -11,9 +11,9 @@ function CardLayout({
 }) {
   return (
     <div
-      className={`bg-white flex flex-col w-full h-[350px] min-h-fit min-w-[300px] rounded-2xl gap-2 p-6 items-center justify-between border border-primary-border text-primary-blackMain ${style}`}
+      className={`bg-white flex flex-col w-full h-[350px] min-h-fit min-w-[300px] ${BORDER_RADIUS} gap-2 p-6 items-center justify-between border border-primary-border text-primary-blackMain ${style}`}
     >
-      <h3 className="text-xl font-bold  self-start mb-5">{title}</h3>
+      <h3 className={`${CARD_TITLE}`}>{title}</h3>
       {children}
     </div>
   );
