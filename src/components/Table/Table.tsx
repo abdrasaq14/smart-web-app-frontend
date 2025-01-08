@@ -17,6 +17,8 @@ interface TableRowData {
 interface TableTemplateProps {
   data: TableRowData[];
   columns: string[];
+  columnToStyle?: number;
+  columnCustomStyle?:  React.CSSProperties;
   extraAction?: boolean;
   onActionClick?: (row: TableRowData) => void;
 }
@@ -24,69 +26,81 @@ interface TableTemplateProps {
 const TableTemplate: React.FC<TableTemplateProps> = ({
   data,
   columns,
+  columnToStyle,
+  columnCustomStyle,
   extraAction = false,
   onActionClick,
 }) => {
+    console.log('columnToStyle', columnToStyle, 'columnCustomStyle', columnCustomStyle)
   return (
-      <TableContainer component={Paper}>
-        <Table aria-label="dynamic table">
-          <TableHead>
-            <TableRow>
-              {columns.map((column, index) => (
-                <TableCell
-                  key={column}
-                  sx={{
-                    fontWeight: "bold",
-                    borderRadius:
-                      index === 0
-                        ? "8px 0 0 8px"
-                        : index === columns.length - 1 && !extraAction
-                        ? "0 8px 8px 0"
-                        : "0",
-                    backgroundColor: "#f5f5f5",
-                  }}
-                >
-                  {column}
-                </TableCell>
-              ))}
+    <TableContainer component={Paper}>
+      <Table aria-label="dynamic table">
+        <TableHead>
+          <TableRow>
+            {columns.map((column, index) => (
+              <TableCell
+                key={column}
+                sx={{
+                  fontWeight: "bold",
+                  borderRadius:
+                    index === 0
+                      ? "8px 0 0 8px"
+                      : index === columns.length - 1 && !extraAction
+                      ? "0 8px 8px 0"
+                      : "0",
+                  backgroundColor: "#f5f5f5",
+                }}
+              >
+                {column}
+              </TableCell>
+            ))}
+            {extraAction && (
+              <TableCell
+                align="right"
+                sx={{
+                  fontWeight: "bold",
+                  borderRadius: "0 8px 8px 0",
+                  backgroundColor: "#f5f5f5",
+                }}
+              ></TableCell>
+            )}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data.map((row, index) => (
+            <TableRow
+              key={index}
+              sx={{ "&:last-child td, &:last-child th": { border: "none" } }}
+            >
+                  {columns.map((column, colIndex) => {
+                      console.log('columnToStyleRRRR', columnToStyle, colIndex, columnToStyle === colIndex)
+                      return (
+                        <TableCell
+                          sx={
+                            columnToStyle === colIndex
+                              ? columnCustomStyle
+                              : undefined
+                          }
+                          key={column}
+                        >
+                          {row[column]}
+                        </TableCell>
+                      );
+              })}
               {extraAction && (
-                <TableCell
-                  align="right"
-                  sx={{
-                    fontWeight: "bold",
-                    borderRadius: "0 8px 8px 0",
-                    backgroundColor: "#f5f5f5",
-                  }}
-                >
-                  
+                <TableCell align="right">
+                  <IconButton
+                    onClick={() => onActionClick && onActionClick(row)}
+                  >
+                    <AiOutlineMore />
+                  </IconButton>
                 </TableCell>
               )}
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 'none' } }}
-              >
-                {columns.map((column) => (
-                  <TableCell key={column} >{row[column]}</TableCell>
-                ))}
-                {extraAction && (
-                  <TableCell align="right">
-                    <IconButton
-                      onClick={() => onActionClick && onActionClick(row)}
-                    >
-                      <AiOutlineMore />
-                    </IconButton>
-                  </TableCell>
-                )}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

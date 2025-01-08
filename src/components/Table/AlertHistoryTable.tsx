@@ -5,7 +5,7 @@ import CardLayout from "../Cards/CardLayout";
 const data = [
   {
     "Date/Time": "2021-09-01 12:00:00",
-    'Alert ID': "ABU-235LK",
+    "Alert ID": "ABU-235LK",
     Site: "Oshodi",
     Zone: "Oshodi",
     District: "District A",
@@ -14,7 +14,7 @@ const data = [
   },
   {
     "Date/Time": "2021-09-01 12:00:00",
-    'Alert ID': "ABU-235LK",
+    "Alert ID": "ABU-235LK",
     Site: "Oshodi",
     Zone: "Oshodi",
     District: "District A",
@@ -23,7 +23,7 @@ const data = [
   },
   {
     "Date/Time": "2021-09-01 12:00:00",
-    'Alert ID': "ABU-235LK",
+    "Alert ID": "ABU-235LK",
     Site: "Oshodi",
     Zone: "Oshodi",
     District: "District A",
@@ -32,7 +32,7 @@ const data = [
   },
   {
     "Date/Time": "2021-09-01 12:00:00",
-    'Alert ID': "ABU-235LK",
+    "Alert ID": "ABU-235LK",
     Site: "Oshodi",
     Zone: "Oshodi",
     District: "District A",
@@ -41,7 +41,15 @@ const data = [
   },
 ];
 
-const columns = ['Date/Time', 'Alert ID', 'Site', 'Zone', 'District', 'Activity', 'Status'];
+const columns = [
+  "Date/Time",
+  "Alert ID",
+  "Site",
+  "Zone",
+  "District",
+  "Activity",
+  "Status",
+];
 
 const AlertHistoryTable = () => {
   const handleActionClick = (row: { [key: string]: string | number }) => {
@@ -49,14 +57,13 @@ const AlertHistoryTable = () => {
   };
 
   return (
-    <CardLayout
-      title="Alert History"
-      style="min-w-[450px] flex-1"
-    >
+    <CardLayout title="Alert History" style="min-w-[450px] flex-1">
       <TableTemplate
         data={data}
         columns={columns}
         extraAction={true}
+        columnToStyle={1}
+        columnCustomStyle={{ color: "#EE4033" }}
         onActionClick={handleActionClick}
       />
     </CardLayout>

@@ -15,6 +15,7 @@ export const theme = {
         blackLighter: "#6E7883",
         blackLight: "#353D46",
         blackMain: "#161616",
+        redMain: "#EE4033",
         placeholder: "#757575",
         border: "#D4D4D4",
       },
