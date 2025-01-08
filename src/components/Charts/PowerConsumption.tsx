@@ -18,9 +18,9 @@ function PowerConsumptionChart() {
   return (
     <CardLayout
       title="Power Consumption by District"
-      style="min-w-[300px] lg:max-w-[550px] flex-1"
+      style="min-w-[300px] lg:max-w-[300px] flex-1"
     >
-      <div className="flex flex-col gap-6 h-full w-full">
+      <div className="flex flex-col gap-6 h-[90%] w-full">
         {districts.map((district) => (
           <Districts title={district.title} percentage={district.percentage} />
         ))}

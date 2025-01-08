@@ -5,14 +5,18 @@ function StatsCard({
   value,
   isError,
   isLoading,
+  style,
 }: {
   title: string;
   value: string;
   isError: boolean;
-  isLoading: boolean;
+    isLoading: boolean;
+  style?: string
 }) {
   return (
-    <div className="bg-white flex flex-col w-full h-[150px] rounded-2xl gap-8 items-center justify-center border border-primary-border text-primary-blackMain">
+    <div
+      className={`bg-white flex flex-col w-full h-[150px] rounded-2xl gap-8 items-center justify-center border border-primary-border text-primary-blackMain ${style}`}
+    >
       {isLoading ? (
         <Loader />
       ) : isError ? (

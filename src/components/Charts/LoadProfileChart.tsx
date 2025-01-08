@@ -97,7 +97,7 @@ const LoadProfileChart = () => {
   };
 
   return (
-    <CardLayout title="Load Profile (KW)" style="min-w-[470px] flex-1">
+    <CardLayout title="Load Profile (KW)" style="min-w-[400px] flex-1">
       <div className="flex flex-col h-full w-full relative">
         <select
           defaultValue={30}
