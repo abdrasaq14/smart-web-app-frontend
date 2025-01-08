@@ -74,7 +74,7 @@ function Operations() {
       >
         <AlertHistoryTable />
         <div
-          className="bg-[red] !gap-0 grid min-w-full lg:min-w-[350px] grid-cols-[repeat(auto-fit,minmax(350px,1fr))] !justify-start !items-start"
+          className="!gap-0 grid min-w-full lg:min-w-[300px] grid-cols-[repeat(auto-fit,minmax(300px,1fr))] !justify-start !items-start"
           // style={{ gap: CARD_GAP }}
         >
           {dummyData.slice(0, 2).map((data, index) => (
