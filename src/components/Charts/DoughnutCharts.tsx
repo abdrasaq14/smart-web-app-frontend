@@ -15,7 +15,13 @@ const data = {
   ],
 };
 
-const DoughNutChart = () => {
+const DoughNutChart = ({
+  total,
+  totalText,
+}: {
+  total?: string;
+  totalText?: string;
+}) => {
   console.log("DoughNutChartData", data);
 
   // Calculate the total value for percentage calculation
@@ -71,7 +77,11 @@ const DoughNutChart = () => {
       title="Site Monitored"
       style="min-w-[300px] lg:max-w-[300px] flex-1"
     >
-      <div className="flex flex-col h-full w-full">
+      <div className="flex flex-col h-full w-full relative">
+        <div className="absolute inset-0 top-[-15%] h-full flex  flex-col items-center justify-center">
+          <span className="text-3xl font-semibold">{data.total}</span>
+          <span className="text-md font-semibold">locations</span>
+        </div>
         <ReactECharts option={options} />
       </div>
     </CardLayout>

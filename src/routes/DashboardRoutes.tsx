@@ -2,6 +2,7 @@ import DashboardLayout from "../layouts/dashboardLayout";
 import AccountPage from "../pages/dashboard/account";
 import AdminIndexPage from "../pages/dashboard/admin";
 import OperationsPage from "../pages/dashboard/operations";
+import OperationsSitePage from "../pages/dashboard/operations/sites";
 // import AuthGuard from "./AuthGuard";
 
 const dashboardRoutes = [
@@ -18,8 +19,12 @@ const dashboardRoutes = [
         element: <AccountPage />,
       },
       {
-        path: "operations",
+        path: "operations/home",
         element: <OperationsPage />,
+      },
+      {
+        path: "operations/sites",
+        element: <OperationsSitePage />,
       },
     ],
   },

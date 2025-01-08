@@ -12,7 +12,7 @@ export const GetDashboardData = (route: string, query?: Record<string, any>) => 
         const response = await apiFetcher.get(route, {
           params: query,
         });
-        setData(response.data);
+        setData(response.data );
         setIsLoading(false);
       } catch (error: any) {
         setError(error.message || "An error occurred");

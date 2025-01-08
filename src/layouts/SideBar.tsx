@@ -40,7 +40,7 @@ const DashboardSidenav = ({
     <div
       className={`bg-[#F7F7F7] ${
         isOpen ? "w-60" : "w-20"
-      }  border-e-[0.4px] text-sm h-full fixed transition-width duration-300`}
+      }  border-e-[1px] border-primary-border text-sm h-full fixed transition-width duration-300`}
       style={{ padding: PAGE_PADDING }}
     >
       <div className="flex justify-between items-center w-full">
@@ -80,8 +80,10 @@ const DashboardSidenav = ({
                     ? "bg-primary-yellowMain text-primary-blackMain"
                     : "hover:bg-primary-yellowMain hover:text-white"
                 } flex items-center justify-between ${
-                  isOpen ? "p-3" : "flex items-center !justify-center px-5 py-2"
-                } space-x-2 rounded-2xl hover:cursor-pointer mt-3`}
+                  isOpen
+                    ? "px-3 py-1"
+                    : "flex items-center !justify-center px-5 py-2"
+                } space-x-2 rounded-3xl hover:cursor-pointer mt-3 text-[14px] font-semibold`}
                 onClick={() => setActiveLabel(item.label)}
               >
                 <div className="flex items-center space-x-2 text-white">

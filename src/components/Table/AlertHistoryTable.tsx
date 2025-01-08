@@ -2,7 +2,8 @@ import React from "react";
 import TableTemplate from "./Table";
 import CardLayout from "../Cards/CardLayout";
 
-const data = [
+const data = {
+    results: [
   {
     "Date/Time": "2021-09-01 12:00:00",
     "Alert ID": "ABU-235LK",
@@ -39,7 +40,8 @@ const data = [
     Activity: "Overloading",
     Status: "Resolved",
   },
-];
+]
+}
 
 const columns = [
   "Date/Time",
@@ -50,7 +52,17 @@ const columns = [
   "Activity",
   "Status",
 ];
-
+const tableData = data.results.map((item) => {
+    return {
+        "Date/Time": item["Date/Time"],
+        "Alert ID": item["Alert ID"],
+        Site: item.Site,
+        Zone: item.Zone,
+        District: item.District,
+        Activity: item.Activity,
+        Status: item.Status,
+    };
+ })
 const AlertHistoryTable = () => {
   const handleActionClick = (row: { [key: string]: string | number }) => {
     alert(`Action triggered for ${row.name}`);
@@ -59,7 +71,7 @@ const AlertHistoryTable = () => {
   return (
     <CardLayout title="Alert History" style="min-w-[450px] flex-1">
       <TableTemplate
-        data={data}
+        data={tableData}
         columns={columns}
         extraAction={true}
         columnToStyle={1}

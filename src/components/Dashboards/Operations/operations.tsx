@@ -1,9 +1,9 @@
-import StatsCard from "../Cards/statsCard";
-import { CARD_GAP } from "../../utils/constants";
-import DoughNutChart from "../Charts/DoughnutCharts";
-import LoadProfileChart from "../Charts/LoadProfileChart";
-import PowerConsumptionChart from "../Charts/PowerConsumption";
-import AlertHistoryTable from "../Table/AlertHistoryTable";
+import StatsCard from "../../Cards/statsCard";
+import { CARD_GAP } from "../../../utils/constants";
+import DoughNutChart from "../../Charts/DoughnutCharts";
+import LoadProfileChart from "../../Charts/LoadProfileChart";
+import PowerConsumptionChart from "../../Charts/PowerConsumption";
+import AlertHistoryTable from "../../Table/AlertHistoryTable";
 
 const dummyData = [
   {
