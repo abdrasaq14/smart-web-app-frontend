@@ -69,7 +69,7 @@ const AlertHistoryTable = () => {
   };
 
   return (
-    <CardLayout title="Alert History" style="min-w-[450px] flex-1">
+    <CardLayout title="Alert History" style="min-w-[550px] flex-1">
       <TableTemplate
         data={tableData}
         columns={columns}

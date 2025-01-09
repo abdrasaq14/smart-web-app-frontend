@@ -1,11 +1,11 @@
 import StatsCard from "../../Cards/statsCard";
 import { CARD_GAP } from "../../../utils/constants";
-import DoughNutChart from "../../Charts/DoughnutCharts";
+import DoughNutChart from "../../Charts/SiteMonitored";
 import LoadProfileChart from "../../Charts/LoadProfileChart";
 import PowerConsumptionChart from "../../Charts/PowerConsumption";
 import AlertHistoryTable from "../../Table/AlertHistoryTable";
 
-const dummyData = [
+export const dummyData = [
   {
     title: "Total Consumption (KWh)",
     value: "102",
@@ -40,14 +40,14 @@ function Operations() {
     >
       {/* stats wrapper */}
       <div
-        className="w-full flex flex-wrap justify-center lg:justify-start"
-        style={{ gap: CARD_GAP }}
+        className="grid w-full"
+        style={{
+          gap: CARD_GAP,
+          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+        }}
       >
         {dummyData.map((data, index) => (
-          <div
-            key={index}
-            className="flex-1 min-w-[300px]  max-w-[250px] lg:min-w-[250px] lg:max-w-[450px]"
-          >
+          <div key={index}>
             <StatsCard
               title={data.title}
               value={data.value}
@@ -74,7 +74,7 @@ function Operations() {
       >
         <AlertHistoryTable />
         <div
-          className="gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
+          className="w-full bg-[red] gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
           // style={{ gap: CARD_GAP }}
         >
           {dummyData.slice(0, 2).map((data, index) => (
