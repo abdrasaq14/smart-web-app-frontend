@@ -47,7 +47,7 @@ function OperationSite() {
         style={{ gap: CARD_GAP }}
       >
         <div
-          className="grid min-w-[200px]"
+          className="grid min-w-full lg:min-w-[200px] bg-[red]"
           style={{
             gap: CARD_GAP,
             gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",

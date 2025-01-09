@@ -120,7 +120,7 @@ const options = {
 
 
   return (
-    <CardLayout title="Average Daily Voltage" style="min-w-[650px] flex-1">
+    <CardLayout title="Average Daily Voltage" style="lg:min-w-[650px] flex-1">
       <div className="flex flex-col w-full relative">
         <ReactECharts option={options} />
       </div>
