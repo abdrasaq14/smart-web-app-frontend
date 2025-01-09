@@ -10,12 +10,12 @@ function KeyInsights() {
   return (
     <CardLayout
       title="Key Insights"
-      style="min-w-[200px] flex-1"
+      style="min-w-[250px] flex-1"
     >
       <div className="flex flex-col gap-6 h-full w-full">
         {keyInsights.map((insight) => (
           <div className="flex gap-4">
-            <MdElectricBolt />
+            <MdElectricBolt className="text-primary-yellowMain" />
             <span className="text-sm">{insight}</span>
           </div>
         ))}

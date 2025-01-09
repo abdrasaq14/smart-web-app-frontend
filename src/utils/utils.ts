@@ -34,7 +34,7 @@ export const operationsSideBarItems = [
   },
   {
     label: "Activity Log",
-    link: "/dashboard/activity-log",
+    link: "/dashboard/operations/activity-log",
     icon: ActivityLogIcon,
   },
   {
