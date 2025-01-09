@@ -4,4 +4,6 @@ export const CARD_TITLE = "text-lg font-bold  self-start mb-5";
 export const BORDER_RADIUS = "rounded-2xl";
 export const COLORS = {
   PRIMARY: "#FFC000",
+  RED: "#F05A28",
+  PURPLE: "#6C60FF",
 };

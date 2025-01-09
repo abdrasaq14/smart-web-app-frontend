@@ -54,9 +54,9 @@ const GaugeChart: React.FC = () => {
             },
           },
           axisLabel: {
-            distance: -20,
+            distance: -15,
             color: "#999",
-            fontSize: 20,
+            fontSize: 14,
           },
           anchor: {
             show: false,
@@ -159,7 +159,7 @@ const GaugeChart: React.FC = () => {
   return (
     <CardLayout
       title="Energy Loss Breakdown"
-      style="min-w-[450px] lg:max-w-[320px] flex-1"
+      style="min-w-[350px]  flex-1"
     >
       <div ref={chartRef} className="w-full h-[99%]" />
     </CardLayout>

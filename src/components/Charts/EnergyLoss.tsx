@@ -80,7 +80,7 @@ const EnergyLossChart = ({
   return (
     <CardLayout
       title="Energy Loss Breakdown"
-      style="min-w-[320px] lg:max-w-[320px] flex-1"
+      style="min-w-[320px] xl:max-w-[320px] flex-1"
     >
       <div className="flex flex-col h-full w-full relative">
         <div className="absolute inset-0 top-[-15%] h-full flex  flex-col items-center justify-center">

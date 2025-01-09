@@ -49,6 +49,13 @@ const LoadProfileChart = () => {
       },
     },
     yAxis: {
+      axisLine: {
+        show: true, // Enable the left line
+        lineStyle: {
+          color: "#000", // Set the line color
+          width: 0.8, //Set the line width
+        },
+      },
       type: "value",
       name: "Profile (KW)",
       nameLocation: "middle",
