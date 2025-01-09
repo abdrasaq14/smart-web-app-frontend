@@ -4,10 +4,12 @@ import BackButton from "../../feedBacks/BackButton";
 import { dummyData } from "./operations";
 import StatsCard from "../../Cards/statsCard";
 import EnergyLossChart from "../../Charts/EnergyLoss";
+import EnergyChart from "../../Charts/EnergyChat";
+import GaugeChart from "../../Charts/DTStatus";
 
 function OperationSite() {
   return (
-    <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
+    <div className="flex flex-col w-full h-full min-h-full " style={{ gap: CARD_GAP }}>
       <BackButton />
       <div
         className="grid w-full"
@@ -32,7 +34,8 @@ function OperationSite() {
         style={{ gap: CARD_GAP }}
       >
         <EnergyLossChart />
-        
+        <EnergyChart />
+        <GaugeChart />
       </div>
     </div>
   );

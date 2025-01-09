@@ -27,7 +27,7 @@ const DashboardSidenav = ({
 
   // Update activeLabel based on the current route
   useEffect(() => {
-    const activeItem = items.find((item) => item.link === location.pathname);
+    const activeItem = items.find((item) => location.pathname.includes(item.link));
     if (activeItem) {
       setActiveLabel(activeItem.label);
     }
