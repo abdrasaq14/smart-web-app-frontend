@@ -24,7 +24,7 @@ function Account({
     const accountInfo = generateAccountInfo(firstName, lastName, email, company);
   return (
     <div className="flex items-start pt-20 justify-center  h-[100vh] w-full">
-      <div className="flex flex-col items-start justify-center min-h-[60%] w-[70%]  bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733]">
+      <div className="flex flex-col items-start justify-center min-h-[60%] w-[70%] max-w-[550px] bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733]">
         <Link to={""} className="flex self-end text-[#EB5757] underline">
           Edit Profile
         </Link>
@@ -54,8 +54,8 @@ function Account({
             </div>
           </div>
           {/* User Details */}
-          {accountInfo.map((info) => (
-            <div className="relative rounded-2xl border border-primary-border bg-white w-full p-3 h-[3rem]">
+          {accountInfo.map((info, idx) => (
+            <div key={idx} className="relative rounded-2xl border border-primary-border bg-white w-full p-3 h-[3rem]">
               <span className=" absolute left-5 top-[-12px] px-2 bg-white text-primary-blackLighter">
                 {info.tag}
               </span>

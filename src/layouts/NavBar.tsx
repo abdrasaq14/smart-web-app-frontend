@@ -5,7 +5,7 @@ function NavBar({showDownload, showSearch}: {showDownload: boolean, showSearch?:
   console.log('showSearch', showSearch)
   return (
     <nav
-      className="mb-10 bg-[red] items-start md:items-center w-full bg-inherit flex flex-col sm:flex-row justify-between min-h-[5rem]"
+      className="mb-10 items-start lg:items-center w-full bg-inherit flex flex-col sm:flex-row justify-between min-h-[5rem]"
     >
       {showDownload && (
         <div className="max-w-[70%] flex-1">

@@ -13,8 +13,8 @@ function KeyInsights() {
       style="min-w-[250px] flex-1"
     >
       <div className="flex flex-col gap-6 h-full w-full">
-        {keyInsights.map((insight) => (
-          <div className="flex gap-4">
+        {keyInsights.map((insight, idx) => (
+          <div key={idx} className="flex gap-4">
             <MdElectricBolt className="text-primary-yellowMain" />
             <span className="text-sm">{insight}</span>
           </div>
