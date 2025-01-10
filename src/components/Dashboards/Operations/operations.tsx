@@ -74,11 +74,12 @@ function Operations() {
       >
         <AlertHistoryTable />
         <div
-          className="w-full bg-[red] gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
+          className="w-full gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
           // style={{ gap: CARD_GAP }}
         >
-          {dummyData.slice(0, 2).map((data, index) => (
+          {dummyData.slice(0, 2).map((data, idx) => (
             <StatsCard
+              key={idx}
               title={data.title}
               value={data.value}
               isError={data.isError}

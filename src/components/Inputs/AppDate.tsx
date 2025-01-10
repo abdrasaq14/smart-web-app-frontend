@@ -25,7 +25,7 @@ const AppDateInput = ({
   return (
     <div className="w-full">
       {TopLabel && typeof TopLabel === "string" ? (
-        <span className="text-sm text-primary-blackMain">{TopLabel}</span>
+        <span className="text-sm text-primary-blackMain font-semibold">{TopLabel}</span>
       ) : (
         TopLabel
       )}
