@@ -125,7 +125,7 @@ const FinancialPerformanceChart = () => {
             x2: 0,
             y2: 1,
             colorStops: [
-              { offset: 0, color: COLORS.PRIMARY }, // Yellow at the top
+              { offset: 0, color: "#fcef7a" }, // Yellow at the top
               { offset: 1, color: "#FFC00000" }, // Light yellow at the bottom
             ],
           },

@@ -14,9 +14,9 @@ function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
   const isNavBarHidden = routesToHidNavBar.includes(location.pathname);
-  const isSearchHidden = routesToShowSearch.includes(location.pathname);
+  const showSearch = routesToShowSearch.includes(location.pathname);
   const toggleNav = () => setIsSidebarOpen(!isSidebarOpen);
-  console.log("location", location.pathname, isNavBarHidden);
+  console.log("location", location.pathname, showSearch);
   return (
     <GeneralLayout>
       <div className="h-full">
@@ -31,7 +31,7 @@ function DashboardLayout() {
           } flex flex-col items-center justify-center bg-white min-h-full`}
           style={{ padding: PAGE_PADDING }}
         >
-          <NavBar showDownload={!isNavBarHidden} showSearch={isSearchHidden} />
+          <NavBar showDownload={!isNavBarHidden} showSearch={showSearch} />
           <div className="w-full h-full min-h-[100vh] ">
             <Outlet />
           </div>

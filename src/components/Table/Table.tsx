@@ -18,12 +18,13 @@ interface TableRowData {
 interface TableTemplateProps {
   data: TableRowData[];
   columns: string[];
-  columnToStyle?: number;
-  columnCustomStyle?: React.CSSProperties;
+  columnToStyle?: number; // Index of the column to style
+  columnCustomStyle?: React.CSSProperties; // Custom style for the whole column
   extraAction?: boolean;
   makeRowClickable?: boolean;
   onActionClick?: (row: TableRowData) => void;
   extraActionIcon?: React.ReactNode;
+  styleCell?: (value: string | number, column: string) => React.CSSProperties; // Custom style for individual cells
 }
 
 const TableTemplate: React.FC<TableTemplateProps> = ({
@@ -33,10 +34,12 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
   columnCustomStyle,
   makeRowClickable,
   extraAction = false,
-    onActionClick,
+  onActionClick,
   extraActionIcon = <AiOutlineMore />,
+  styleCell,
 }) => {
   const navigate = useNavigate();
+
   return (
     <>
       <TableContainer component={Paper}>
@@ -73,33 +76,32 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row, index) => (
+            {data.map((row, rowIndex) => (
               <TableRow
-                key={index}
+                key={rowIndex}
                 sx={{ "&:last-child td, &:last-child th": { border: "none" } }}
               >
                 {columns.map((column, colIndex) => {
-                  console.log(
-                    "columnToStyleRRRR",
-                    columnToStyle,
-                    colIndex,
-                    columnToStyle === colIndex
-                  );
+                  const cellStyle =
+                    columnToStyle === colIndex ? columnCustomStyle : undefined;
+
+                  const conditionalStyle = styleCell
+                    ? styleCell(row[column], column)
+                    : undefined;
+
                   return (
                     <TableCell
-                      sx={
-                        columnToStyle === colIndex
-                          ? columnCustomStyle
-                          : undefined
-                      }
                       key={column}
+                      sx={{
+                        ...cellStyle, // Apply whole-column styling if applicable
+                        ...conditionalStyle, // Apply conditional cell styling if applicable
+                      }}
                     >
                       {makeRowClickable ? (
                         <span
                           style={{ cursor: "pointer" }}
                           onClick={() =>
-                            makeRowClickable &&
-                            navigate(`${row.id}`)
+                            makeRowClickable && navigate(`${row.id}`)
                           }
                         >
                           {row[column]}

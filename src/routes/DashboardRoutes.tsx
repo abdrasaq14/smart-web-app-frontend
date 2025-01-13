@@ -2,6 +2,7 @@ import DashboardLayout from "../layouts/dashboardLayout";
 import AccountPage from "../pages/dashboard/account";
 import AdminIndexPage from "../pages/dashboard/admin";
 import FinancePage from "../pages/dashboard/finance";
+import TransactionsPage from "../pages/dashboard/finance/transactions";
 import OperationsPage from "../pages/dashboard/operations";
 import ActivityLogPage from "../pages/dashboard/operations/activityLog";
 import SitePage from "../pages/dashboard/operations/site";
@@ -43,6 +44,10 @@ const dashboardRoutes = [
       {
         path: "finance/home",
         element: <FinancePage/>
+      },
+      {
+        path: "finance/transactions",
+        element: <TransactionsPage/>
       }
     ],
   },

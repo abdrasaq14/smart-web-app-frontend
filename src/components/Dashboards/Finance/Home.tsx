@@ -1,10 +1,9 @@
 import StatsCard from "../../Cards/statsCard";
 import { CARD_GAP } from "../../../utils/constants";
 import CustomerBreakDownChart from "../../Charts/CustomerBreakdown";
-import LoadProfileChart from "../../Charts/LoadProfileChart";
 import PowerConsumptionChart from "../../Charts/PowerConsumption";
-import AlertHistoryTable from "../../Table/AlertHistoryTable";
 import FinancialPerformanceChart from "../../Charts/FinancialPerformance";
+import TransactionHistoryTable from "../../Table/TransactionHistoryTable";
 
 export const dummyData = [
   {
@@ -73,7 +72,7 @@ function FinanceHome() {
         className="flex flex-wrap justify-center w-full"
         style={{ gap: CARD_GAP }}
       >
-        <AlertHistoryTable />
+        <TransactionHistoryTable />
         <div
           className="w-full gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
           // style={{ gap: CARD_GAP }}

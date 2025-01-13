@@ -7,7 +7,7 @@ export const ROLE = "finance";
 const financeSideBarItems = [
   {
     label: "Home",
-    link: "/dashboard/home",
+    link: "/dashboard/finance/home",
     icon: HomeIcon,
   },
   {
@@ -79,7 +79,10 @@ export const getSideBarItems = (role: string) => {
   }
 }
 export const routesToHidNavBar = ["/dashboard/my-account"];
-export const routesToShowSearch = ["/dashboard/operations/sites"];
+export const routesToShowSearch = [
+  "/dashboard/operations/sites",
+  "/dashboard/finance/transactions",
+];
 export const generateAccountInfo = (
   firstName: string,
   lastName: string,
