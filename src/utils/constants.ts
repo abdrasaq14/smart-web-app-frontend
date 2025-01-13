@@ -6,4 +6,6 @@ export const COLORS = {
   PRIMARY: "#FFC000",
   RED: "#F05A28",
   PURPLE: "#6C60FF",
+  BLACK: "#161616",
+  BLACK_LIGHTER: "#7C878E",
 };

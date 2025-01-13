@@ -13,25 +13,25 @@ function AdminIndex({name}: {name: string}) {
           title="Senior Manager"
           icon={<FaUserTie size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/senior-manager-account/home"
+          to="/dashboard/senior-manager-account/home"
         />
         <PermissionCard
           title="Operations"
           icon={<FaHardHat size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/operations/home"
+          to="/dashboard/operations/home"
         />
         <PermissionCard
           title="Finance"
           icon={<FaChartLine size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/finance/home"
+          to="/dashboard/finance/home"
         />
         <PermissionCard
           title="Admin"
           icon={<RiAdminFill size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/account-ui/home"
+          to="/dashboard/account-ui/home"
         />
       </div>
 

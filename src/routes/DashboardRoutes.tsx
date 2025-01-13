@@ -1,6 +1,7 @@
 import DashboardLayout from "../layouts/dashboardLayout";
 import AccountPage from "../pages/dashboard/account";
 import AdminIndexPage from "../pages/dashboard/admin";
+import FinancePage from "../pages/dashboard/finance";
 import OperationsPage from "../pages/dashboard/operations";
 import ActivityLogPage from "../pages/dashboard/operations/activityLog";
 import SitePage from "../pages/dashboard/operations/site";
@@ -24,6 +25,7 @@ const dashboardRoutes = [
         path: "operations/home",
         element: <OperationsPage />,
       },
+      // operations
       {
         path: "operations/sites",
         element: <OperationsSitePage />,
@@ -36,6 +38,12 @@ const dashboardRoutes = [
         path: "operations/activity-log",
         element: <ActivityLogPage />,
       },
+
+      // finance
+      {
+        path: "finance/home",
+        element: <FinancePage/>
+      }
     ],
   },
 ];

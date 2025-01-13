@@ -3,7 +3,7 @@ import SiteIcon from "../icons/Site";
 import ActivityLogIcon from "../icons/ActivityLog";
 import MyAccountIcon from "../icons/MyAccount";
 import TransactionsIcon from "../icons/Transactions";
-export const ROLE = "operations";
+export const ROLE = "finance";
 const financeSideBarItems = [
   {
     label: "Home",

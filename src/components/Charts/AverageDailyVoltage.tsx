@@ -160,8 +160,8 @@ const AverageDailyVoltage = ({
             ))}
           </select>
           <div className="flex-1 flex gap-2 justify-end">
-            {legend.map((item) => (
-              <div className="flex items-center gap-1 rounded-full bg-primary-blackLighter2 px-3 py-2">
+            {legend.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-1 rounded-full bg-primary-blackLighter2 px-3 py-2">
                 <span
                   className="w-4 h-4 rounded-md"
                   style={{ backgroundColor: item.color }}
