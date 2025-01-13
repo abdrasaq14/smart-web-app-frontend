@@ -3,6 +3,7 @@ import AccountPage from "../pages/dashboard/account";
 import AdminIndexPage from "../pages/dashboard/admin";
 import FinancePage from "../pages/dashboard/finance";
 import TransactionsPage from "../pages/dashboard/finance/transactions";
+import ManagerHomePage from "../pages/dashboard/manager";
 import OperationsPage from "../pages/dashboard/operations";
 import ActivityLogPage from "../pages/dashboard/operations/activityLog";
 import SitePage from "../pages/dashboard/operations/site";
@@ -48,6 +49,12 @@ const dashboardRoutes = [
       {
         path: "finance/transactions",
         element: <TransactionsPage/>
+      },
+
+      // Senior Manager
+      {
+        path: "manager/home",
+        element: <ManagerHomePage />,
       }
     ],
   },
