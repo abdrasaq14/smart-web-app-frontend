@@ -43,7 +43,7 @@ const DashboardSidenav = ({
       }  border-e-[1px] border-primary-border text-sm h-full fixed transition-width duration-300`}
       style={{ padding: PAGE_PADDING }}
     >
-      <div className="flex justify-between items-center w-full">
+      <Link to='/dashboard/home' className="flex justify-between items-center w-full">
         {isOpen ? (
           <img
             src={smarteriseLogo}
@@ -57,7 +57,7 @@ const DashboardSidenav = ({
             className="max-h-20"
           />
         )}
-      </div>
+      </Link>
       <button
         className="absolute top-[4%] right-[-10px] rounded-full h-5 w-5 flex items-center justify-center bg-primary-yellowMain text-primary-blackMain p-1 font-semibold"
         onClick={toggleNav}

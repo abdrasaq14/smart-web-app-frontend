@@ -5,7 +5,7 @@ import { CARD_GAP } from "../../../utils/constants";
 import AddTransactionModal from "../../../components/Modals/AddTransaction";
 
 function TransactionsPage() {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
       <div className="w-full flex justify-between">
