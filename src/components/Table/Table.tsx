@@ -22,6 +22,7 @@ interface TableTemplateProps {
   columnCustomStyle?: React.CSSProperties; // Custom style for the whole column
   extraAction?: boolean;
   makeRowClickable?: boolean;
+  rowLink?: string | ((row: TableRowData) => void);
   onActionClick?: (row: TableRowData) => void;
   extraActionIcon?: React.ReactNode;
   styleCell?: (value: string | number, column: string) => React.CSSProperties; // Custom style for individual cells
@@ -33,6 +34,7 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
   columnToStyle,
   columnCustomStyle,
   makeRowClickable,
+  rowLink,
   extraAction = false,
   onActionClick,
   extraActionIcon = <AiOutlineMore />,
@@ -101,7 +103,9 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
                         <span
                           style={{ cursor: "pointer" }}
                           onClick={() =>
-                            makeRowClickable && navigate(`${row.id}`)
+                            makeRowClickable && typeof rowLink === "function"
+                              ? rowLink(row)
+                              : navigate(rowLink as string)
                           }
                         >
                           {row[column]}

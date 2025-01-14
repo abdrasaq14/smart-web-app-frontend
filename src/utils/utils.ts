@@ -5,7 +5,10 @@ import MyAccountIcon from "../icons/MyAccount";
 import TransactionsIcon from "../icons/Transactions";
 import OperationsIcon from "../icons/Operations";
 import FinanceIcon from "../icons/Finance";
-export const ROLE = "seniorManager";
+import CompaniesIcon from "../icons/Companies";
+import UsersIcon from "../icons/Users";
+import DevicesIcon from "../icons/Devices";
+export const ROLE = "admin";
 const financeSideBarItems = [
   {
     label: "Home",
@@ -49,7 +52,7 @@ export const operationsSideBarItems = [
 export const managerSideBarItems = [
   {
     label: "Home",
-    link: "/dashboard/manager/home",
+    link: "/dashboard/senior-manager/hom",
     icon: HomeIcon,
   },
   {
@@ -73,7 +76,7 @@ export const managerSideBarItems = [
     icon: MyAccountIcon,
   },
 ];
-export const admin = [
+export const adminSideBarItems = [
   {
     label: "Home",
     link: "/dashboard/admin/home",
@@ -82,19 +85,19 @@ export const admin = [
   {
     label: "Companies",
     link: "/dashboard/admin/companies",
-    icon: ActivityLogIcon,
+    icon: CompaniesIcon,
   },
   {
     label: "Users",
     link: "/dashboard/admin/users",
-    icon: ActivityLogIcon,
+    icon: UsersIcon,
   },
   {
     label: "Devices",
     link: "/dashboard/my-account",
-    icon: MyAccountIcon,
+    icon: DevicesIcon,
   },
-]
+];
 export const getSideBarItems = (role: string) => { 
   switch (role) {
     case "operations":
@@ -104,7 +107,7 @@ export const getSideBarItems = (role: string) => {
     case "seniorManager":
       return managerSideBarItems;
     case "admin":
-      return managerSideBarItems;
+      return adminSideBarItems;
     default:
       return [];
   }

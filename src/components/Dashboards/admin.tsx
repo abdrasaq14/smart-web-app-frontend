@@ -13,7 +13,7 @@ function AdminIndex({name}: {name: string}) {
           title="Senior Manager"
           icon={<FaUserTie size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/senior-manager-account/home"
+          to="/dashboard/senior-manager/home"
         />
         <PermissionCard
           title="Operations"
@@ -31,7 +31,7 @@ function AdminIndex({name}: {name: string}) {
           title="Admin"
           icon={<RiAdminFill size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/account-ui/home"
+          to="/dashboard/admin/home"
         />
       </div>
 

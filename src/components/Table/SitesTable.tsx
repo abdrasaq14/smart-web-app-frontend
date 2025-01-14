@@ -181,6 +181,7 @@ function SitesTable() {
         columnToStyle={0}
         columnCustomStyle={{ color: COLORS.PRIMARY }}
         makeRowClickable={true}
+        rowLink={(row) => `/operations/sites/${row.id}`}
         extraAction={true}
         onActionClick={(row) => navigate(`${row.id}`)}
         extraActionIcon={<MdOpenInNew />}

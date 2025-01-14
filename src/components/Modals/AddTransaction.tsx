@@ -5,6 +5,8 @@ import AppDateInput from "../Inputs/AppDate";
 import { ButtonType, TextInputType } from "../../enums/componentEnums";
 import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
+import AppSelect2 from "../Inputs/AppSelect2";
+import AppDate2 from "../Inputs/AppDate2";
 const GAP = "12px";
 const siteInformation = [
   {
@@ -68,29 +70,17 @@ function AddTransactionModal({
         <span className="text-md">Site information</span>
         <div className="w-full flex flex-col items-start gap-6">
           {siteInformation.map((info, index) => (
-            <Information
-              key={index}
-              label={info.label}
-              options={info.options}
-            />
+            <AppSelect2 key={index} label={info.label} options={info.options} />
           ))}
         </div>
         {/* Date */}
         <span className="text-md">Date</span>
-        <div className="relative  flex flex-col items-start justify-center border border-primary-border rounded-lg w-full h-[2.5rem] p-2">
-          <span className="absolute top-[-20px] left-2 bg-white px-2 py-1 text-sm text-primary-border">
-            Select Date
-          </span>
-          <input
-            type="date"
-            className="w-full h-full border-none outline-none placeholder:text-primary-blackLighter cursor-pointer"
-          />
-        </div>
+        <AppDate2 label="Select Date" />
 
         {/* tarrif information */}
         <span className="text-md">Tarrif information</span>
         {tarrifInformation.map((info, index) => (
-          <Information key={index} label={info.label} options={info.options} />
+          <AppSelect2 key={index} label={info.label} options={info.options} />
         ))}
         {/* Other info */}
         <AnimatedInput
@@ -133,28 +123,3 @@ function AddTransactionModal({
 }
 
 export default AddTransactionModal;
-const Information = ({
-  label,
-  options,
-}: {
-  label: string;
-  options: string[];
-}) => {
-  return (
-    <div className="relative  flex flex-col items-start justify-center border border-primary-border rounded-lg w-full h-[2.5rem] p-2">
-      <span className="absolute top-[-20px] left-2 bg-white px-2 py-1 text-sm text-primary-border">
-        {label}
-      </span>
-      <select
-        defaultValue={options[0]}
-        className="cursor-pointer flex items-center h-full w-full justify-center border-none outline-none rounded-md  text-primary-blackLighter"
-      >
-        {options.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-};
