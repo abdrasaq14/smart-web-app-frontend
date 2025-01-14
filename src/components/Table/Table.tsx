@@ -21,9 +21,11 @@ interface TableTemplateProps {
   columnToStyle?: number; // Index of the column to style
   columnCustomStyle?: React.CSSProperties; // Custom style for the whole column
   extraAction?: boolean;
+  onActionClick?: (row: TableRowData) => void;
+  actionType?: "openLink" | "showPopUp";
+  extraActionPopUpContent?: React.ReactNode;
   makeRowClickable?: boolean;
   rowLink?: string | ((row: TableRowData) => void);
-  onActionClick?: (row: TableRowData) => void;
   extraActionIcon?: React.ReactNode;
   styleCell?: (value: string | number, column: string) => React.CSSProperties; // Custom style for individual cells
 }
@@ -36,16 +38,39 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
   makeRowClickable,
   rowLink,
   extraAction = false,
+  extraActionPopUpContent,
   onActionClick,
+  actionType,
   extraActionIcon = <AiOutlineMore />,
   styleCell,
 }) => {
   const navigate = useNavigate();
+  const [visiblePopUpIndex, setVisiblePopUpIndex] = React.useState<
+    number | null
+  >(null);
+  const popUpRef = React.useRef<HTMLDivElement | null>(null);
 
+  // Close popup on outside click
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popUpRef.current &&
+        !popUpRef.current.contains(event.target as Node)
+      ) {
+        setVisiblePopUpIndex(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
   return (
     <>
-      <TableContainer component={Paper}>
-        <Table aria-label="dynamic table">
+      <TableContainer component={Paper} className="overflow-y-visible">
+        <Table aria-label="dynamic table" className="overflow-y-visible">
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
@@ -77,10 +102,11 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
               )}
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className="overflow-y-visible">
             {data.map((row, rowIndex) => (
               <TableRow
                 key={rowIndex}
+                className="overflow-y-visible"
                 sx={{ "&:last-child td, &:last-child th": { border: "none" } }}
               >
                 {columns.map((column, colIndex) => {
@@ -117,12 +143,26 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
                   );
                 })}
                 {extraAction && (
-                  <TableCell align="right">
+                  <TableCell align="right" className="relative">
                     <IconButton
-                      onClick={() => onActionClick && onActionClick(row)}
+                      onClick={() =>
+                        actionType === "showPopUp"
+                          ? setVisiblePopUpIndex(
+                              visiblePopUpIndex === rowIndex ? null : rowIndex
+                            )
+                          : onActionClick && onActionClick(row)
+                      }
                     >
                       {extraActionIcon}
                     </IconButton>
+                    {visiblePopUpIndex === rowIndex && (
+                      <div
+                        ref={popUpRef}
+                        className="absolute right-[5px] z-10 bottom-[-70px] flex text-sm items-center justify-center gap-4 p-2 flex-col min-w-[8rem] min-h-[5rem] bg-white rounded-lg shadow-md border border-primary-border"
+                      >
+                        {extraActionPopUpContent}
+                      </div>
+                    )}
                   </TableCell>
                 )}
               </TableRow>

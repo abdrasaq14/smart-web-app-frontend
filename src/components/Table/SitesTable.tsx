@@ -183,6 +183,7 @@ function SitesTable() {
         makeRowClickable={true}
         rowLink={(row) => `/operations/sites/${row.id}`}
         extraAction={true}
+        actionType="openLink"
         onActionClick={(row) => navigate(`${row.id}`)}
         extraActionIcon={<MdOpenInNew />}
       />

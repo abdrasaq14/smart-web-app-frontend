@@ -1,33 +1,55 @@
 import React from "react";
 import { CARD_GAP, COLORS } from "../../../utils/constants";
 import EventLogTable from "../../Table/EventLogs";
+import AdminCompanies from "./Home";
+import Manager from "../Manager/home";
+import OperationSites from "../Operations/sites";
+import Operations from "../Operations/operations";
+import FinanceHome from "../Finance/Home";
+import AppButton from "../../Inputs/AppButton";
+import { ButtonType } from "../../../enums/componentEnums";
+import UsersTable from "../../Table/UsersTable";
 // import RawData from "./RawData";
-
-const tabs = ["Overview", "Operations", "Finance", "Log Book", "Users", "Devices"];
+const COMPANY_NAME = "SBEE";
+const tabs = [
+  "Overview",
+  "Operations",
+  "Finance",
+  "Log Book",
+  "Users",
+  "Devices",
+];
 function Company() {
   const tabSwitcher = (tab: string) => {
     // switch tab
     switch (tab) {
-      case "Events Log":
-        return <EventLogTable />;
-      case "Alerts":
-        return <EventLogTable />;
-      case "User Logs":
-        return <EventLogTable />;
-      case "Raw data":
-        return <div>Hi</div>;
+      case "Overview":
+        return <Manager />;
+      case "Operations":
+        return <Operations />;
+      case "Finance":
+        return <FinanceHome />;
+      case "Users":
+        return <UsersTable/>;
       default:
-        return <EventLogTable />;
+        return <Manager />;
     }
   };
-  const [activeTab, setActiveTab] = React.useState("Events Log");
+  const [activeTab, setActiveTab] = React.useState(tabs[0]);
   const handleTabSwitch = (tab: string) => {
     setActiveTab(tab);
   };
   return (
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
-      <div className="w-full flex flex-col sm:flex-row justify-between border-b border-primary-border">
-        <div className="flex gap-4 items-end min-w-[70%]">
+      <div className="flex gap-2">
+        <span className="text-primary-blackMain text-xl font-bold">
+          {COMPANY_NAME}
+        </span>
+        <span className="text-primary-blackLighter ">{`>`} </span>
+        <span className="text-primary-blackLighter">{activeTab}</span>
+      </div>
+      <div className="w-full flex flex-col gap-4 lg:flex-row justify-between ">
+        <div className="flex gap-4 items-end min-w-[70%] lg:min-w-[45%] lg:max-w-[170px] border-b border-primary-border">
           {tabs.map((tab, index) => (
             <span
               key={index}
@@ -43,12 +65,19 @@ function Company() {
             </span>
           ))}
         </div>
-        {/* search input */}
-        <div className="max-w-[80%] sm:max-w-[45%] flex-1 flex items-center justify-center border border-primary-border bg-[#E6E6E6] p-2 mb-2 rounded-full h-[2.5rem]">
-          <input
-            type="search"
-            placeholder="Search for asset name, site and more"
-            className="w-full h-full p-2 outline-none border-none bg-inherit placeholder:text-primary-placeholder placeholder:text-sm"
+        {/* Button */}
+        <div className="md:max-w-[45%]  gap-4 flex  flex-col sm:flex-row items-center justify-start  mb-2">
+          <AppButton
+            text="Add Devices"
+            style="!bg-primary-blackMain !text-sm"
+            handleClick={() => {}}
+            type={ButtonType.PRIMARY}
+          />
+          <AppButton
+            text="Add Employee"
+            style="!text-sm"
+            handleClick={() => {}}
+            type={ButtonType.PRIMARY}
           />
         </div>
       </div>
