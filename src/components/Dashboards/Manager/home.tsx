@@ -60,32 +60,36 @@ function Manager() {
 
       {/* chats wrapper */}
       <div
-        className="flex flex-wrap justify-center w-full"
+        className="bg-[blue] flex flex-col xl:flex-row flex-wrap justify-between w-full"
         style={{ gap: CARD_GAP }}
       >
-        <SiteLocationMap />
-        <PowerConsumptionChart />
-      </div>
-
-      <div
-        className="flex flex-wrap justify-center w-full"
-        style={{ gap: CARD_GAP }}
-      >
-        <AlertHistoryTable />
         <div
-          className="w-full gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
-          // style={{ gap: CARD_GAP }}
+          className="bg-[yellow] flex flex-col flex-1 xl:max-w-[70%]"
+          style={{ gap: CARD_GAP }}
         >
-          {dummyData.slice(0, 2).map((data, idx) => (
-            <StatsCard
-              key={idx}
-              title={data.title}
-              value={data.value}
-              isError={data.isError}
-              isLoading={data.isLoading}
-              style="min-h-[200px]"
-            />
-          ))}
+          <SiteLocationMap />
+          <div
+            className="bg-[red] w-full grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
+            style={{ gap: CARD_GAP }}
+          >
+            {dummyData.slice(0, 3).map((data, idx) => (
+              <StatsCard
+                key={idx}
+                title={data.title}
+                value={data.value}
+                isError={data.isError}
+                isLoading={data.isLoading}
+                style="min-h-[200px]"
+              />
+            ))}
+          </div>
+        </div>
+        <div
+          className="w-full max-w-[550px] bg-[red] xl:max-w-[30%] flex flex-col sm:flex-row "
+          style={{ gap: CARD_GAP }}
+        >
+          <PowerConsumptionChart />
+          <PowerConsumptionChart />
         </div>
       </div>
     </div>

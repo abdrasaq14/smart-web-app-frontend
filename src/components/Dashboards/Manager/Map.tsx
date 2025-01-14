@@ -28,7 +28,7 @@ const redIcon = new L.Icon({
 
 const SiteLocationMap = () => {
   return (
-    <CardLayout title="Site Locations" style="w-full md:min-w-[650px]">
+    <CardLayout title="Site Locations" style="min-w-[350px]">
       <MapContainer
         center={siteData[0].position} // Default map center
         zoom={13} // Default zoom level

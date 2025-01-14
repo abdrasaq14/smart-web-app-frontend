@@ -21,8 +21,8 @@ function PowerConsumptionChart() {
       style="min-w-[300px] flex-1"
     >
       <div className="flex flex-col gap-6 h-[90%] w-full">
-        {districts.map((district) => (
-          <Districts title={district.title} percentage={district.percentage} />
+        {districts.map((district, idx) => (
+          <Districts key={idx} title={district.title} percentage={district.percentage} />
         ))}
       </div>
     </CardLayout>
