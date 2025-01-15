@@ -4,6 +4,7 @@ import AdminIndexPage from "../pages/dashboard/admin";
 import AdminCompaniesPage from "../pages/dashboard/admin/companies";
 import CompanyPage from "../pages/dashboard/admin/company";
 import AdminHomePage from "../pages/dashboard/admin/home";
+import UsersPage from "../pages/dashboard/admin/users";
 import FinancePage from "../pages/dashboard/finance";
 import TransactionsPage from "../pages/dashboard/finance/transactions";
 import ManagerHomePage from "../pages/dashboard/manager";
@@ -33,6 +34,10 @@ const dashboardRoutes = [
       {
         path: "admin/companies/:id",
         element: <CompanyPage />,
+      },
+      {
+        path: "admin/users",
+        element: <UsersPage />,
       },
       {
         path: "my-account",

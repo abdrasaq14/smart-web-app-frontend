@@ -3,6 +3,7 @@ import TableTemplate from "./Table";
 import CardLayout from "../Cards/CardLayout";
 import { formatDateForDisplay } from "../../utils/formatters";
 import { FiMoreVertical } from "react-icons/fi";
+import ModifyUserAccountModal from "../Modals/ModifyUserModal";
 
 const data = {
   count: 26,
@@ -115,7 +116,7 @@ const UsersTable = () => {
   const handleActionClick = (row: { [key: string]: string | number }) => {
     alert(`Action triggered for ${row.name}`);
   };
-
+  const [editUserModal, setEditUserModal] = React.useState(false);
   return (
     <CardLayout title="" style="min-w-[550px] flex-1">
       <TableTemplate
@@ -129,13 +130,17 @@ const UsersTable = () => {
             <span className="w-full flex items-center justify-center cursor-pointer hover:bg-primary-blackLighter2 hover:rounded-full hover:px-4 hover:py-1">
               Delete
             </span>
-            <span className="w-full flex items-center justify-center cursor-pointer hover:bg-primary-blackLighter2 hover:rounded-full hover:px-4 hover:py-1">
+            <span
+              onClick={() => setEditUserModal(true)}
+              className="w-full flex items-center justify-center cursor-pointer hover:bg-primary-blackLighter2 hover:rounded-full hover:px-4 hover:py-1"
+            >
               Modify
             </span>
           </>
         }
         // onActionClick={handleActionClick}
       />
+      <ModifyUserAccountModal isModalOpen={editUserModal} closeModal={() => setEditUserModal(false)} enableOutsideClick={false} />
     </CardLayout>
   );
 };
