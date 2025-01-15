@@ -3,8 +3,7 @@ import TableTemplate from "./Table";
 import CardLayout from "../Cards/CardLayout";
 import { formatDateForDisplay } from "../../utils/formatters";
 import { FiMoreVertical } from "react-icons/fi";
-import ModifyUserAccountModal from "../Modals/ModifyUserModal";
-
+import EditUserAccountModal from "../Modals/EditUserModal";
 const data = {
   count: 26,
   next: "http://api.demo.powersmarter.net/api/users?page=2&page_size=10",
@@ -140,7 +139,11 @@ const UsersTable = () => {
         }
         // onActionClick={handleActionClick}
       />
-      <ModifyUserAccountModal isModalOpen={editUserModal} closeModal={() => setEditUserModal(false)} enableOutsideClick={false} />
+      <EditUserAccountModal
+        isModalOpen={editUserModal}
+        closeModal={() => setEditUserModal(false)}
+        enableOutsideClick={false}
+      />
     </CardLayout>
   );
 };

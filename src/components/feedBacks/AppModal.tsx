@@ -17,11 +17,11 @@ const AppModal: React.FC<ModalProps> = ({
 
   return (
     <div
-      className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 backdrop-blur-sm z-50 h-auto min-h-auto"
+      className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 backdrop-blur-sm z-50 h-auto min-h-auto overflow-y-auto"
       onClick={() => closeOnOutsideClick && onClose()} // Conditionally close on outside click
     >
       <div
-        className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg relative"
+        className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg relative max-h-[550px] overflow-y-auto"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
       >
         <button

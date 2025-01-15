@@ -20,14 +20,23 @@ const employeeInformation = [
   },
 ];
 
-function ModifyUserAccountModal({
+function EditUserAccountModal({
   isModalOpen,
   closeModal,
   enableOutsideClick = true,
-}: {
+}: // data
+{
   isModalOpen: boolean;
   closeModal: () => void;
   enableOutsideClick?: boolean;
+  // data: {
+  //   name: string;
+  //   employee_id: string;
+  //   phone_no: string;
+  //   email: string;
+  //   department: string;
+  //   access_level: string;
+  // };
 }) {
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -48,30 +57,22 @@ function ModifyUserAccountModal({
         <AnimatedInput
           placeholder="Employee Name"
           value={userInfo.name}
-          onChange={(value) =>
-            setUserInfo({ ...userInfo, name: value })
-          }
+          onChange={(value) => setUserInfo({ ...userInfo, name: value })}
         />
         <AnimatedInput
           placeholder="Employee ID"
           value={userInfo.employee_id}
-          onChange={(value) =>
-            setUserInfo({ ...userInfo, employee_id: value })
-          }
+          onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
         />
         <AnimatedInput
           placeholder="Phone Number"
           value={userInfo.phone_no}
-          onChange={(value) =>
-            setUserInfo({ ...userInfo, phone_no: value })
-          }
+          onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
         />
         <AnimatedInput
           placeholder="Email"
           value={userInfo.email}
-          onChange={(value) =>
-            setUserInfo({ ...userInfo, email: value })
-          }
+          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
         />
         <div className="w-full flex flex-col items-start gap-10 mt-4">
           {employeeInformation.map((info, index) => (
@@ -81,7 +82,7 @@ function ModifyUserAccountModal({
 
         <AppButton
           style={"w-full mt-4"}
-          text="Add Transaction"
+          text="Submit"
           type={ButtonType.PRIMARY}
           handleClick={() => {}}
         />
@@ -90,4 +91,4 @@ function ModifyUserAccountModal({
   );
 }
 
-export default ModifyUserAccountModal;
+export default EditUserAccountModal;

@@ -3,6 +3,7 @@ import AccountPage from "../pages/dashboard/account";
 import AdminIndexPage from "../pages/dashboard/admin";
 import AdminCompaniesPage from "../pages/dashboard/admin/companies";
 import CompanyPage from "../pages/dashboard/admin/company";
+import DevicesPAge from "../pages/dashboard/admin/devices";
 import AdminHomePage from "../pages/dashboard/admin/home";
 import UsersPage from "../pages/dashboard/admin/users";
 import FinancePage from "../pages/dashboard/finance";
@@ -38,6 +39,10 @@ const dashboardRoutes = [
       {
         path: "admin/users",
         element: <UsersPage />,
+      },
+      {
+        path: "admin/devices",
+        element: <DevicesPAge/>,
       },
       {
         path: "my-account",

@@ -9,6 +9,7 @@ import FinanceHome from "../Finance/Home";
 import AppButton from "../../Inputs/AppButton";
 import { ButtonType } from "../../../enums/componentEnums";
 import UsersTable from "../../Table/UsersTable";
+import DevicesTable from "../../Table/DeviceTable";
 // import RawData from "./RawData";
 const COMPANY_NAME = "SBEE";
 const tabs = [
@@ -32,7 +33,7 @@ function Company() {
       case "Users":
         return <UsersTable/>;
       default:
-        return <Manager />;
+        return <DevicesTable />;
     }
   };
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
