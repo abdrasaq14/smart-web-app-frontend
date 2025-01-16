@@ -1,26 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useQuery, UseQueryOptions } from "@tanstack/react-query";
 import apiFetcher from "../utils/apiFetcher";
-import { useEffect, useState } from "react";
 
-export const GetDashboardData = (route: string, query?: Record<string, any>) => {
-  const [data, setData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await apiFetcher.get(route, {
-          params: query,
-        });
-        setData(response.data );
-        setIsLoading(false);
-      } catch (error: any) {
-        setError(error.message || "An error occurred");
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [route, query]);
-
-  return { data, isLoading, error };
+/**
+ * Fetch data using React Query
+ * @param {string} route - The API endpoint route.
+ * @param {object} queryParams - Query parameters for the API call.
+ * @param {UseQueryOptions} options - Optional React Query options.
+ * @returns {object} Query result containing `data`, `isLoading`, `error`, etc.
+ */
+export const useFetchData = (
+  route: string,
+  queryParams: Record<string, any> = {},
+  options?: UseQueryOptions<any, Error, any, [string, Record<string, any>]>
+) => {
+  return useQuery({
+    queryKey: [route, queryParams], // Unique query key
+    queryFn: () =>
+      apiFetcher.get(route, { params: queryParams }).then((res) => res.data),
+    staleTime: 300000, // 5 minutes
+    ...options, // Merge any additional options passed as arguments
+  });
 };

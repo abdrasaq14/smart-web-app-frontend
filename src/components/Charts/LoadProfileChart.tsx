@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 import CardLayout from "../Cards/CardLayout";
-import { GetDashboardData } from "../../customHooks/useGetDashboardData";
+import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../feedBacks/loader";
 
 const LoadProfileChart = () => {
-  const { data, isLoading, error } = GetDashboardData(
+  const { data, isLoading, error } = useFetchData(
     "/operations/profile-chart"
   );
     const [selectedValue, setSelectedValue] = useState(30); // Set default value as 30 (30 Days)

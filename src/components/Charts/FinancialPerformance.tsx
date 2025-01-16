@@ -1,12 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import ReactECharts from "echarts-for-react";
 import CardLayout from "../Cards/CardLayout";
-import { GetDashboardData } from "../../customHooks/useGetDashboardData";
+import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../feedBacks/loader";
 import { COLORS } from "../../utils/constants";
 
 const FinancialPerformanceChart = () => {
-  const { data, isLoading, error } = GetDashboardData(
+  const { data, isLoading, error } = useFetchData(
     "/operations/profile-chart"
   );
 

@@ -1,7 +1,7 @@
 import React from "react";
 import CardLayout from "../Cards/CardLayout";
 import TableTemplate from "./Table";
-import { GetDashboardData } from "../../customHooks/useGetDashboardData";
+import { useFetchData } from "../../customHooks/useGetDashboardData";
 import { formatDateForDisplay } from "../../utils/formatters";
 import { COLORS } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
