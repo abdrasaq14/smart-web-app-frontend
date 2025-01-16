@@ -9,18 +9,26 @@ import AppSelect2 from "../Inputs/AppSelect2";
 import AppDate2 from "../Inputs/AppDate2";
 const GAP = "12px";
 
-const employeeInformation = [
+const deviceInformation = [
   {
-    label: "Employer's Deoartment",
-    options: ["operations", "finance", "admin", "manager"],
+    label: "Company District",
+    options: ['District A', 'District B', 'District C', 'District D'],
   },
   {
-    label: "Employee's Access level",
-    options: ["Zone A", "Zone B", "Zone C", "Zone D"],
+    label: "Company Zone",
+    options: ['Oshodi', 'Agege', 'Iyan-Ipaja'],
+  },
+  {
+    label: "Select Asset type",
+    options: ['Transformer', 'Generator'],
+  },
+  {
+    label: "Asset Capacity (kVA)",
+    options: ['500', '600', '800'],
   },
 ];
 
-function EditUserAccountModal({
+function AddDeviceModal({
   isModalOpen,
   closeModal,
   enableOutsideClick = true,
@@ -38,10 +46,12 @@ function EditUserAccountModal({
   //   access_level: string;
   // };
 }) {
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    employee_id: "",
-    phone_no: "",
+  const [deviceInfo, setDeviceInfo] = useState({
+    device_name: "",
+    device_id: "",
+    location: "",
+    coordinate: "",
+    company: "",
     email: "",
     department: "",
     access_level: "",
@@ -52,37 +62,42 @@ function EditUserAccountModal({
       onClose={closeModal}
       closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
-      <h2 className={CARD_TITLE}>Edit Account</h2>
+      <h2 className={CARD_TITLE}>Edit Device</h2>
       <div className="gap-6 flex flex-col items-start">
         <AnimatedInput
-          placeholder="Employee Name"
-          value={userInfo.name}
-          onChange={(value) => setUserInfo({ ...userInfo, name: value })}
+          placeholder="Device ID"
+          value={deviceInfo.device_id}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_id: value })}
         />
         <AnimatedInput
-          placeholder="Employee ID"
-          value={userInfo.employee_id}
-          onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
+          placeholder="Device name"
+          value={deviceInfo.device_name}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_name: value })}
         />
         <AnimatedInput
-          placeholder="Phone Number"
-          value={userInfo.phone_no}
-          onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
+          placeholder="Device Location"
+          value={deviceInfo.location}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, location: value })}
         />
         <AnimatedInput
-          placeholder="Email"
-          value={userInfo.email}
-          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
+          placeholder="Device co-ordinate"
+          value={deviceInfo.coordinate}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
+        />
+        <AnimatedInput
+          placeholder="Company name"
+          value={deviceInfo.company}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
         />
         <div className="w-full flex flex-col items-start gap-10 mt-4">
-          {employeeInformation.map((info, index) => (
+          {deviceInformation.map((info, index) => (
             <AppSelect2 key={index} label={info.label} options={info.options} />
           ))}
         </div>
 
         <AppButton
           style={"w-full mt-4"}
-          text="Submit"
+          text="Add Device"
           type={ButtonType.PRIMARY}
           handleClick={() => {}}
         />
@@ -91,4 +106,4 @@ function EditUserAccountModal({
   );
 }
 
-export default EditUserAccountModal;
+export default AddDeviceModal;

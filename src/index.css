@@ -37,3 +37,17 @@ body {
     @apply text-white bg-primary-yellowLight hover:cursor-not-allowed
 }
 
+.hide-scrollbar{
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.custom-scrollbar{
+    scrollbar-width: thin;
+    /* border-radius: 20px; */
+    scrollbar-color: var(--primary-yellow) var(--background);
+}

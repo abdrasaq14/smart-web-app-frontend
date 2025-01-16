@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CARD_GAP, COLORS } from "../../../utils/constants";
 import EventLogTable from "../../Table/EventLogs";
 import AdminCompanies from "./Home";
@@ -10,6 +10,9 @@ import AppButton from "../../Inputs/AppButton";
 import { ButtonType } from "../../../enums/componentEnums";
 import UsersTable from "../../Table/UsersTable";
 import DevicesTable from "../../Table/DeviceTable";
+import AddEmployeeModal from "../../Modals/AddEmployee";
+import { set } from "date-fns";
+import AddDeviceModal from "../../Modals/AddDeviceModal";
 // import RawData from "./RawData";
 const COMPANY_NAME = "SBEE";
 const tabs = [
@@ -40,6 +43,8 @@ function Company() {
   const handleTabSwitch = (tab: string) => {
     setActiveTab(tab);
   };
+   const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
+   const [isDeviceModalOpen, setIsDeviceModalOpen] = useState(false);
   return (
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
       <div className="flex gap-2">
@@ -71,18 +76,28 @@ function Company() {
           <AppButton
             text="Add Devices"
             style="!bg-primary-blackMain !text-sm"
-            handleClick={() => {}}
+            handleClick={() => setIsDeviceModalOpen(true)}
             type={ButtonType.PRIMARY}
           />
           <AppButton
             text="Add Employee"
             style="!text-sm"
-            handleClick={() => {}}
+            handleClick={() => setIsEmployeeModalOpen(true)}
             type={ButtonType.PRIMARY}
           />
         </div>
       </div>
       <div className="w-full">{tabSwitcher(activeTab)}</div>
+      <AddDeviceModal
+        isModalOpen={isDeviceModalOpen}
+        closeModal={() => setIsDeviceModalOpen(false)}
+        enableOutsideClick={false}
+      />
+      <AddEmployeeModal
+        isModalOpen={isEmployeeModalOpen}
+        closeModal={() => setIsEmployeeModalOpen(false)}
+        enableOutsideClick={false}
+      />
     </div>
   );
 }

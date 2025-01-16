@@ -11,16 +11,17 @@ const GAP = "12px";
 
 const employeeInformation = [
   {
-    label: "Employer's Deoartment",
-    options: ["operations", "finance", "admin", "manager"],
+    label: "Employer's Department",
+    options: ['operations', 'finance', 'admin', 'manager'],
   },
   {
     label: "Employee's Access level",
-    options: ["Zone A", "Zone B", "Zone C", "Zone D"],
+    options: ['Operation Manager', 'Finance Manager', 'Admin Manager', 'Manager'],
   },
+  
 ];
 
-function EditUserAccountModal({
+function AddEmployeeModal({
   isModalOpen,
   closeModal,
   enableOutsideClick = true,
@@ -39,7 +40,7 @@ function EditUserAccountModal({
   // };
 }) {
   const [userInfo, setUserInfo] = useState({
-    name: "",
+    full_name: "",
     employee_id: "",
     phone_no: "",
     email: "",
@@ -52,28 +53,29 @@ function EditUserAccountModal({
       onClose={closeModal}
       closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
-      <h2 className={CARD_TITLE}>Edit Account</h2>
+      <h2 className={CARD_TITLE}>Add Employee</h2>
       <div className="gap-6 flex flex-col items-start">
         <AnimatedInput
-          placeholder="Employee Name"
-          value={userInfo.name}
-          onChange={(value) => setUserInfo({ ...userInfo, name: value })}
+          placeholder="Full name"
+          value={userInfo.full_name}
+          onChange={(value) => setUserInfo({ ...userInfo, full_name: value })}
         />
         <AnimatedInput
-          placeholder="Employee ID"
+          placeholder="Employee ID no."
           value={userInfo.employee_id}
           onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
         />
         <AnimatedInput
-          placeholder="Phone Number"
+          placeholder="Employee phone number"
           value={userInfo.phone_no}
           onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
         />
         <AnimatedInput
-          placeholder="Email"
+          placeholder="Employee email address"
           value={userInfo.email}
           onChange={(value) => setUserInfo({ ...userInfo, email: value })}
         />
+
         <div className="w-full flex flex-col items-start gap-10 mt-4">
           {employeeInformation.map((info, index) => (
             <AppSelect2 key={index} label={info.label} options={info.options} />
@@ -82,7 +84,7 @@ function EditUserAccountModal({
 
         <AppButton
           style={"w-full mt-4"}
-          text="Submit"
+          text="Add Employee"
           type={ButtonType.PRIMARY}
           handleClick={() => {}}
         />
@@ -91,4 +93,4 @@ function EditUserAccountModal({
   );
 }
 
-export default EditUserAccountModal;
+export default AddEmployeeModal;

@@ -62,7 +62,7 @@ function AddTransactionModal({
     <AppModal
       isOpen={isModalOpen}
       onClose={closeModal}
-      closeOnOutsideClick={true} // Enable/disable outside click close
+      closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
       <h2 className={CARD_TITLE}>Add Transaction</h2>
       <div className="gap-6 flex flex-col items-start">

@@ -8,7 +8,7 @@ import FinanceIcon from "../icons/Finance";
 import CompaniesIcon from "../icons/Companies";
 import UsersIcon from "../icons/Users";
 import DevicesIcon from "../icons/Devices";
-export const ROLE = "operations";
+export const ROLE = "admin";
 const financeSideBarItems = [
   {
     label: "Home",

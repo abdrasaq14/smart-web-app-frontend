@@ -21,7 +21,7 @@ const AppModal: React.FC<ModalProps> = ({
       onClick={() => closeOnOutsideClick && onClose()} // Conditionally close on outside click
     >
       <div
-        className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg relative max-h-[550px] overflow-y-auto"
+        className="w-full max-w-md p-8 bg-white rounded-lg shadow-lg relative max-h-[650px] overflow-y-auto custom-scrollbar"
         onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
       >
         <button

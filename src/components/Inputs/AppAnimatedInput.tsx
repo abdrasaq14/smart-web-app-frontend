@@ -26,7 +26,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         <label
           className={`absolute left-0 top-0 text-gray-400 text-sm transition-all duration-300 ease-in-out pointer-events-none ${
             isFocused || value
-              ? "text-xs top-[-15px] left-2 bg-white !text-primary-blackMain px-2 py-1 -translate-y-2"
+              ? " top-[-15px] left-2 bg-white !text-primary-blackMain px-2 py-1 -translate-y-2 font-semibold"
               : ""
           }`}
         >

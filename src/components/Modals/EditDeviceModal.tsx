@@ -46,10 +46,12 @@ function EditDeviceModal({
   //   access_level: string;
   // };
 }) {
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    employee_id: "",
-    phone_no: "",
+  const [deviceInfo, setDeviceInfo] = useState({
+    device_name: "",
+    device_id: "",
+    location: "",
+    coordinate: "",
+    company: "",
     email: "",
     department: "",
     access_level: "",
@@ -58,34 +60,34 @@ function EditDeviceModal({
     <AppModal
       isOpen={isModalOpen}
       onClose={closeModal}
-      closeOnOutsideClick={true} // Enable/disable outside click close
+      closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
       <h2 className={CARD_TITLE}>Edit Device</h2>
       <div className="gap-6 flex flex-col items-start">
         <AnimatedInput
           placeholder="Device ID"
-          value={userInfo.name}
-          onChange={(value) => setUserInfo({ ...userInfo, name: value })}
+          value={deviceInfo.device_id}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_id: value })}
         />
         <AnimatedInput
           placeholder="Device name"
-          value={userInfo.employee_id}
-          onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
+          value={deviceInfo.device_name}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_name: value })}
         />
         <AnimatedInput
           placeholder="Device Location"
-          value={userInfo.phone_no}
-          onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
+          value={deviceInfo.location}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, location: value })}
         />
         <AnimatedInput
           placeholder="Device co-ordinate"
-          value={userInfo.email}
-          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
+          value={deviceInfo.coordinate}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
         />
         <AnimatedInput
           placeholder="Company name"
-          value={userInfo.email}
-          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
+          value={deviceInfo.company}
+          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
         />
         <div className="w-full flex flex-col items-start gap-10 mt-4">
           {deviceInformation.map((info, index) => (
