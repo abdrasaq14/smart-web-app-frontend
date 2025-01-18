@@ -13,12 +13,16 @@ import OperationsPage from "../pages/dashboard/operations";
 import ActivityLogPage from "../pages/dashboard/operations/activityLog";
 import SitePage from "../pages/dashboard/operations/site";
 import OperationsSitePage from "../pages/dashboard/operations/sites";
-// import AuthGuard from "./AuthGuard";
+import AuthGuard from "./AuthGuard";
 
 const dashboardRoutes = [
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <AuthGuard>
+        <DashboardLayout />
+      </AuthGuard>
+    ),
     children: [
       {
         path: "home",
@@ -42,7 +46,7 @@ const dashboardRoutes = [
       },
       {
         path: "admin/devices",
-        element: <DevicesPAge/>,
+        element: <DevicesPAge />,
       },
       {
         path: "my-account",
@@ -69,18 +73,18 @@ const dashboardRoutes = [
       // finance
       {
         path: "finance/home",
-        element: <FinancePage/>
+        element: <FinancePage />,
       },
       {
         path: "finance/transactions",
-        element: <TransactionsPage/>
+        element: <TransactionsPage />,
       },
 
       // Senior Manager
       {
         path: "senior-manager/home",
         element: <ManagerHomePage />,
-      }
+      },
     ],
   },
 ];

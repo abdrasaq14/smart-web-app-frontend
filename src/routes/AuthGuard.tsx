@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../store/hooks";
-import { selectIsAuthenticated } from "../store/authSlice";
+import { selectAuthSlice } from "../store/authSlice";
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const isAuthenticated = useAppSelector(selectAuthSlice);
   if (!isAuthenticated.isAuthenticated) {
    return <Navigate to="/auth/login" replace />;
   }

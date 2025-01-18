@@ -1,10 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 
-const initialState = {
+interface IAuthState {
+  isAuthenticated: boolean;
+  user: {
+    id: string;
+    email: string;
+    role: string;
+    access_level: string;
+    first_name: string;
+    last_name: string;
+  } | null;
+}
+const initialState: IAuthState = {
   isAuthenticated: false,
   user: null,
 };
+
+const userDetail = createAsyncThunk("auth/userDetail", async () => {});
 
 const authSlice = createSlice({
   name: "auth",
@@ -22,6 +35,6 @@ const authSlice = createSlice({
 });
 
 // selectors
-export const selectIsAuthenticated = (state: RootState) => state.auth
+export const selectAuthSlice = (state: RootState) => state.auth;
 export const { login, logout } = authSlice.actions;
 export default authSlice.reducer;

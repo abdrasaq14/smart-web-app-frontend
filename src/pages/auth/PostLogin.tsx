@@ -5,11 +5,13 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import { ROLE } from "../../utils/constants";
 import { useFetchData } from "../../customHooks/useGetDashboardData";
-// import { useGetMe } from "../../api/me";
 import Loader from "../../components/feedBacks/loader";
-// import { Spinner } from "../../components/Spinner";
+import { useAppDispatch } from "../../store/hooks";
+import { login } from "../../store/authSlice";
+
 const API_ROUTE = "users/me";
 const PostLogin = () => {
+  const dispatch = useAppDispatch();
   const { isAuthenticated, isLoading, getAccessTokenSilently, logout } =
     useAuth0();
   const [receivedToken, setReceivedToken] = useState(false);
@@ -51,7 +53,7 @@ const PostLogin = () => {
   if (isLoading || !receivedToken || isUserInfoLoading) {
     return <Loader />;
   }
-    if (isSuccess) {
+  if (isSuccess) {
     console.log("User data fetched successfully2:", me);
   }
   // Handle errors in fetching user data
@@ -68,7 +70,9 @@ const PostLogin = () => {
 
   // Handle the navigation logic based on the user's role
   if (isAuthenticated && !isUserInfoLoading && me != null) {
+    dispatch(login(me));
     //@ts-ignore
+
     const role = me?.access_level;
 
     switch (role) {
