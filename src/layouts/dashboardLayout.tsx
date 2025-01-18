@@ -4,13 +4,15 @@ import DashboardSidenav from "./SideBar";
 import NavBar from "./NavBar";
 import { useState } from "react";
 import { getSideBarItems, routesToShowSearch } from "../utils/utils";
-import { ROLE } from "../utils/utils";
 import { useLocation } from "react-router-dom";
 import { routesToHidNavBar } from "../utils/utils";
-import { PAGE_PADDING } from "../utils/constants";
+import { PAGE_PADDING, ROLE } from "../utils/constants";
 import GeneralLayout from "./GeneralLayout";
+import { selectAuthSlice } from "../store/authSlice";
+import { useAppSelector } from "../store/hooks";
 
 function DashboardLayout() {
+  const { user} = useAppSelector(selectAuthSlice);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const location = useLocation();
   const isNavBarHidden = routesToHidNavBar.includes(location.pathname);
@@ -21,7 +23,7 @@ function DashboardLayout() {
     <GeneralLayout>
       <div className="h-full">
         <DashboardSidenav
-          items={getSideBarItems(ROLE)}
+          items={getSideBarItems(user?.access_level as ROLE, location.pathname)}
           isOpen={isSidebarOpen}
           toggleNav={toggleNav}
         />

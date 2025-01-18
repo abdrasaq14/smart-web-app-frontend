@@ -3,31 +3,29 @@ import * as Yup from "yup"; // For validation schema
 import {
   ButtonType,
   HeadingType,
-  TextInputType,
 } from "../../enums/componentEnums";
 import AppButton from "../Inputs/AppButton";
-import AppInput from "../Inputs/AppInput";
 import AppHeading from "../texts/Headings";
 import { useAuth0 } from "@auth0/auth0-react";
 function Login() {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: Yup.object({
-      email: Yup.string()
-        .email("Invalid email address")
-        .required("Email is required"),
-      password: Yup.string()
-        .min(6, "Password must be at least 6 characters")
-        .required("Password is required"),
-    }),
-    onSubmit: (values) => {
-      console.log("Form Submitted:", values);
-      // Handle form submission (e.g., send values to an API)
-    },
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: "",
+  //     password: "",
+  //   },
+  //   validationSchema: Yup.object({
+  //     email: Yup.string()
+  //       .email("Invalid email address")
+  //       .required("Email is required"),
+  //     password: Yup.string()
+  //       .min(6, "Password must be at least 6 characters")
+  //       .required("Password is required"),
+  //   }),
+  //   onSubmit: (values) => {
+  //     console.log("Form Submitted:", values);
+  //     // Handle form submission (e.g., send values to an API)
+  //   },
+  // });
 const { loginWithRedirect } = useAuth0();
   return (
     <div

@@ -8,7 +8,7 @@ import FinanceIcon from "../icons/Finance";
 import CompaniesIcon from "../icons/Companies";
 import UsersIcon from "../icons/Users";
 import DevicesIcon from "../icons/Devices";
-export const ROLE = "admin";
+
 const financeSideBarItems = [
   {
     label: "Home",
@@ -98,20 +98,24 @@ export const adminSideBarItems = [
     icon: DevicesIcon,
   },
 ];
-export const getSideBarItems = (role: string) => { 
-  switch (role) {
-    case "operations":
-      return operationsSideBarItems;
-    case "finance":
-      return financeSideBarItems;
-    case "seniorManager":
-      return managerSideBarItems;
-    case "admin":
-      return adminSideBarItems;
-    default:
-      return [];
+export const getSideBarItems = (role: string, path: string) => {
+  if (role === "admin") {
+    if (path.includes("finance")) return financeSideBarItems;
+    if (path.includes("operations")) return operationsSideBarItems;
+    if (path.includes("senior-manager")) return managerSideBarItems;
+    return adminSideBarItems;
   }
-}
+  if (role === "manager") {
+    return managerSideBarItems;
+  }
+  if (role === "finance") {
+    return financeSideBarItems;
+  }
+  if (role === "operations") {
+    return operationsSideBarItems;
+  }
+  return [];
+};
 export const routesToHidNavBar = ["/dashboard/my-account"];
 export const routesToShowSearch = [
   "/dashboard/operations/sites",
