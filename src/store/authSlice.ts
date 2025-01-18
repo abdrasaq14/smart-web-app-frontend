@@ -10,6 +10,7 @@ interface IAuthState {
     access_level: string;
     first_name: string;
     last_name: string;
+    company: string;
   } | null;
 }
 const initialState: IAuthState = {

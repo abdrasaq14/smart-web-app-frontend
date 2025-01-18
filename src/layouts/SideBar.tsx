@@ -43,7 +43,7 @@ const DashboardSidenav = ({
       }  border-e-[1px] border-primary-border text-sm h-full fixed transition-width duration-300`}
       style={{ padding: PAGE_PADDING }}
     >
-      <Link to='/dashboard/home' className="flex justify-between items-center w-full">
+      <Link to='/' className="flex justify-between items-center w-full">
         {isOpen ? (
           <img
             src={smarteriseLogo}

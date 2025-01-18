@@ -24,10 +24,10 @@ const dashboardRoutes = [
       </AuthGuard>
     ),
     children: [
-      {
-        path: "home",
-        element: <AdminIndexPage />,
-      },
+      // {
+      //   path: "home",
+      //   element: <AdminIndexPage />,
+      // },
       {
         path: "admin/home",
         element: <AdminHomePage />,
