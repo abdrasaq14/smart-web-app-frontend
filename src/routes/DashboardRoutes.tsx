@@ -86,3 +86,4 @@ const dashboardRoutes = [
 ];
 
 export default dashboardRoutes;
+// headers {'alg': 'RS256', 'typ': 'JWT', 'kid': 'GAXgzp9ZIH_E0hSprsL0v'}

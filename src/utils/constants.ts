@@ -9,3 +9,10 @@ export const COLORS = {
   BLACK: "#161616",
   BLACK_LIGHTER: "#7C878E",
 };
+export enum ROLE {
+	ADMIN = 'admin',
+	MANAGER = 'manager',
+	OPERATIONS = 'operation',
+	FINANCE = 'finance',
+	OTHER = 'other',
+}

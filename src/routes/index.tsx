@@ -1,9 +1,17 @@
 import authRoutes from "./AuthRoutes";
-import { useRoutes } from "react-router-dom";
+import { Navigate, useRoutes } from "react-router-dom";
 import dashboardRoutes from "./DashboardRoutes";
 import { IRoute } from "../interfaces/AppInterfaces";
 
-const routes = [...authRoutes, ...dashboardRoutes];
+const routes = [
+  ...authRoutes,
+  ...dashboardRoutes,
+  {
+    path: "*",
+    element: <Navigate to="/auth/login" replace />,
+    children: []
+  },
+];
 
 export default routes;
 

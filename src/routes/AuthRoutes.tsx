@@ -1,5 +1,7 @@
 import AuthLayout from "../layouts/authLayout";
 import LoginPage from "../pages/auth/Login";
+import Logout from "../pages/auth/Logout";
+import PostLogin from "../pages/auth/PostLogin";
 
 const authRoutes = [
   {
@@ -13,6 +15,14 @@ const authRoutes = [
       {
         path: "signup",
         element: <LoginPage />,
+      },
+      {
+        path: "post-login",
+        element: <PostLogin />,
+      },
+      {
+        path: "logout",
+        element: <Logout />,
       },
     ],
   },

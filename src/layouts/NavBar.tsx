@@ -1,12 +1,13 @@
 import DownloadComponent from "../components/Download/Download";
-import { IoIosNotificationsOutline } from "react-icons/io";
+import { IoIosLogOut, IoIosNotificationsOutline } from "react-icons/io";
 import { CiUser } from "react-icons/ci";
+import { useAuth0 } from "@auth0/auth0-react";
+
 function NavBar({showDownload, showSearch}: {showDownload: boolean, showSearch?: boolean}) {
   console.log('showSearch', showSearch)
+  	const { logout } = useAuth0();
   return (
-    <nav
-      className="mb-10 items-start lg:items-center w-full bg-inherit flex flex-col sm:flex-row justify-between min-h-[5rem]"
-    >
+    <nav className="mb-10 items-start lg:items-center w-full bg-inherit flex flex-col sm:flex-row justify-between min-h-[5rem]">
       {showDownload && (
         <div className="max-w-[70%] flex-1">
           <DownloadComponent />
@@ -23,14 +24,15 @@ function NavBar({showDownload, showSearch}: {showDownload: boolean, showSearch?:
           showDownload ? "justify-center" : "ml-auto"
         } cursor-pointer`}
       >
-        <span className="h-50 w-50 rounded-full border border-primary-blackLighter2 p-1 flex items-center justify-center">
-          <IoIosNotificationsOutline
-            size={22}
-            className="text-primary-blackLighter"
-          />
+        <span className="h-50 w-50 rounded-full border text-primary-blackLighter border-primary-blackLighter2 p-1 flex items-center justify-center hover:bg-primary-blackLighter2 hover:text-primary-blackMain">
+          <IoIosNotificationsOutline size={22} className="" />
         </span>
-        <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center">
-          <CiUser size={22} className="text-primary-blackLighter" />
+        <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center hover:bg-primary-blackLighter2 hover:text-primary-blackMain">
+          <CiUser size={22} className="" />
+        </span>
+        <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center text-primary-blackLighter hover:bg-primary-blackLighter2 hover:text-primary-blackMain">
+          <IoIosLogOut size={22} className="" onClick={() => logout({ returnTo: `${window.location.origin}/auth/login}` })} />
+          {/* <CiUser size={22} className="text-primary-blackLighter" /> */}
         </span>
       </div>
     </nav>

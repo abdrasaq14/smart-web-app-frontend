@@ -4,11 +4,13 @@ import { RiAdminFill } from "react-icons/ri";
 
 function AdminIndex({name}: {name: string}) {
   return (
-    <div className="flex flex-col items-start justify-center mt-10  bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733] min-h-[250px]">
-      <h2 className="text-2xl font-semibold text-gray-700">Welcome {name},</h2>
+    <div className="flex flex-col items-center justify-center mt-10  bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733] min-h-[250px] max-w-[850px] mx-auto">
+      <h2 className="lg:self-start text-2xl font-semibold text-gray-700">
+        Welcome {name},
+      </h2>
 
       {/* Permission Options */}
-      <div className="mt-8 flex gap-6 flex-wrap justify-center">
+      <div className="mt-8 flex gap-6 flex-wrap justify-center lg:justify-start w-full">
         <PermissionCard
           title="Senior Manager"
           icon={<FaUserTie size={40} />}
@@ -35,7 +37,7 @@ function AdminIndex({name}: {name: string}) {
         />
       </div>
 
-      <p className="text-sm text-gray-500 mt-2 self-end">
+      <p className="text-sm text-gray-500 mt-2 lg:self-end">
         To change your Permission type,{" "}
         <Link to="/" className="text-blue-500 underline">
           Contact Super Admin

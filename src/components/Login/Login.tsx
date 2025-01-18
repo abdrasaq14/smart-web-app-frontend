@@ -8,7 +8,7 @@ import {
 import AppButton from "../Inputs/AppButton";
 import AppInput from "../Inputs/AppInput";
 import AppHeading from "../texts/Headings";
-
+import { useAuth0 } from "@auth0/auth0-react";
 function Login() {
   const formik = useFormik({
     initialValues: {
@@ -28,7 +28,7 @@ function Login() {
       // Handle form submission (e.g., send values to an API)
     },
   });
-
+const { loginWithRedirect } = useAuth0();
   return (
     <div
       style={{
@@ -41,12 +41,12 @@ function Login() {
         type={HeadingType.MAIN}
         style="mb-5"
       />
-      <form
+      <div
         className="w-full flex flex-col"
-        onSubmit={formik.handleSubmit}
+        // onSubmit={formik.handleSubmit}
       >
         {/* Email Input */}
-        <AppInput
+        {/* <AppInput
           type={TextInputType.EMAIL}
           placeholder="Email"
           name="email"
@@ -59,10 +59,10 @@ function Login() {
               : null
           }
           style={formik.touched.email && formik.errors.email ? "" : "mb-5"}
-        />
+        /> */}
 
         {/* Password Input */}
-        <AppInput
+        {/* <AppInput
           type={TextInputType.PASSWORD}
           placeholder="Password"
           name="password"
@@ -74,16 +74,17 @@ function Login() {
               ? formik.errors.password
               : null
           }
-        />
+        /> */}
 
         {/* Submit Button */}
         <AppButton
-          type={formik.isValid ? ButtonType.PRIMARY : ButtonType.DISABLED}
+          type={ButtonType.PRIMARY}
+          // type={formik.isValid ? ButtonType.PRIMARY : ButtonType.DISABLED}
           text="Login"
-          handleClick={() => { }}
-          style={!formik.touched.password  ? "mt-5" : ""}
+          handleClick={() => loginWithRedirect()}
+          // style={!formik.touched.password  ? "mt-5" : ""}
         />
-      </form>
+      </div>
     </div>
   );
 }

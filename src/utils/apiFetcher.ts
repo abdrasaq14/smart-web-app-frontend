@@ -30,7 +30,7 @@ apiFetcher.interceptors.request.use(
 // Response Interceptor
 apiFetcher.interceptors.response.use(
   (response) => {
-    console.log("Response:", response); // For debugging (optional)
+    console.log("User data fetched successfully0:", response); // For debugging (optional)
     return response.data; // Return only the data from the response
   },
   (error) => {
