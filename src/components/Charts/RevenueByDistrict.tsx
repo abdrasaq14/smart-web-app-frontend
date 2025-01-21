@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import CardLayout from "../Cards/CardLayout";
 import { useFetchData } from "../../customHooks/useGetDashboardData";
-import { noDataImage } from "../../assets/layout";
+import { errorImage, noDataImage } from "../../assets/layout";
 import Loader from "../feedBacks/loader";
 import { ERRORMESSAGE, NODATAMESSAGE } from "../../utils/utils";
 
@@ -10,7 +10,7 @@ interface DistrictData {
   percentage: number;
 }
 
-function PowerConsumptionByDistrictChart() {
+function RevenueByDistrictChart() {
   const {
     data: powerConsumptionData,
     isLoading,
@@ -30,7 +30,7 @@ function PowerConsumptionByDistrictChart() {
   }, [powerConsumptionData]);
 
   return (
-    <CardLayout title="Power Consumption" style="min-w-[300px] flex-1">
+    <CardLayout title="Revenue" style="min-w-[300px] flex-1">
       <div className="flex flex-col gap-6 h-[90%] w-full">
         {isLoading ? (
           <div className="flex justify-center items-center h-full w-full">
@@ -38,7 +38,8 @@ function PowerConsumptionByDistrictChart() {
           </div>
         ) : error ? (
           <div className="flex flex-col  justify-center items-center h-full w-full">
-            {ERRORMESSAGE}
+            <img src={errorImage} alt="unable to fetch data" className="max-h-[150px]" />
+            <span className="font-semibold">{ERRORMESSAGE}</span>
           </div>
         ) : transformedData.length ? (
           transformedData.map((district, idx) => (
@@ -77,4 +78,4 @@ const DistrictBar = ({ title, percentage }: DistrictData) => {
   );
 };
 
-export default PowerConsumptionByDistrictChart;
+export default RevenueByDistrictChart;

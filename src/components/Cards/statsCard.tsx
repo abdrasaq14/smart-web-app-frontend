@@ -1,3 +1,5 @@
+import { errorImage } from "../../assets/layout";
+import { ERRORMESSAGE } from "../../utils/utils";
 import Loader from "../feedBacks/loader";
 
 function StatsCard({
@@ -20,7 +22,10 @@ function StatsCard({
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <p className="text-red-500">Error fetching data</p>
+        <div className="flex flex-col  justify-center items-center h-full w-full">
+          <img src={errorImage} alt="error Image" className="max-h-[150px]" />
+            <span className="font-semibold">{ERRORMESSAGE }</span>
+        </div>
       ) : (
         <>
           <h3 className="text-3xl font-bold tracking-widest">{value}</h3>

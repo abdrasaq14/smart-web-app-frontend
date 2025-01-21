@@ -97,12 +97,24 @@ export const adminSideBarItems = [
     link: "/dashboard/admin/devices",
     icon: DevicesIcon,
   },
+  {
+    label: "My Account",
+    link: "/dashboard/my-account",
+    icon: MyAccountIcon,
+  },
 ];
+
+const removeMyAccountForAdmin = (items: any[]) => {
+  return items.filter((item) => item.label !== "My Account");
+};
 export const getSideBarItems = (role: string, path: string) => {
   if (role === "admin") {
-    if (path.includes("finance")) return financeSideBarItems;
-    if (path.includes("operations")) return operationsSideBarItems;
-    if (path.includes("senior-manager")) return managerSideBarItems;
+    if (path.includes("finance"))
+      return removeMyAccountForAdmin(financeSideBarItems);
+    if (path.includes("operations"))
+      return removeMyAccountForAdmin(operationsSideBarItems);
+    if (path.includes("senior-manager"))
+      return removeMyAccountForAdmin(managerSideBarItems);
     return adminSideBarItems;
   }
   if (role === "manager") {
@@ -286,3 +298,36 @@ export const siteData: {
     link: "/operations/dashboard/41",
   },
 ];
+
+export const mapResponseToLabelValue = (data: any) => {
+  return Object.entries(data).map(([label, value]) => ({
+    label: getLabelFromValue(label, data.currency),
+    value,
+  }));
+};
+
+export const getLabelFromValue = (value: string, currency: string) => {
+  switch (value) {
+    case "number_of_sites":
+      return "Number of Sites";
+    case "number_of_users":
+      return "Number of Users";
+    case "pending_alerts":
+      return "Pending Alerts";
+    case "total_revenue":
+      return `Total Revenue (${currency})`;
+    case "atc_losses":
+      return "ATC&C Losses";
+    case "total_amount":
+      return `Total Amount (${currency})`;
+    case "current_load":
+      return "Current Load";
+    case "total_consumption":
+      return "Total Consumption";
+    default:
+      return "Unknown";
+  }
+};
+
+export const NODATAMESSAGE = "No data available";
+export const ERRORMESSAGE = "Error fetching data";

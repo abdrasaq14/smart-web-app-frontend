@@ -4,24 +4,22 @@ import ReactECharts from "echarts-for-react";
 import CardLayout from "../Cards/CardLayout";
 import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../feedBacks/loader";
+import { ERRORMESSAGE } from "../../utils/utils";
 
 const LoadProfileChart = () => {
-  const { data, isLoading, error } = useFetchData(
-    "/operations/profile-chart"
-  );
-    const [selectedValue, setSelectedValue] = useState(30); // Set default value as 30 (30 Days)
+  const { data, isLoading, error } = useFetchData("/operations/profile-chart");
+  const [selectedValue, setSelectedValue] = useState(30); // Set default value as 30 (30 Days)
+  const filter = [
+    { key: "30 Days", value: 30 },
+    { key: "60 Days", value: 60 },
+    { key: "90 Days", value: 90 },
+    { key: "180 Days", value: 180 },
+    { key: "1 Year", value: 365 },
+  ];
 
-    const filter = [
-      { key: "30 Days", value: 30 },
-      { key: "60 Days", value: 60 },
-      { key: "90 Days", value: 90 },
-      { key: "180 Days", value: 180 },
-      { key: "1 Year", value: 365 },
-    ];
-
-    const handleChange = (e:any) => {
-      setSelectedValue(parseInt(e.target.value)); // Update selected value
-    };
+  const handleChange = (e: any) => {
+    setSelectedValue(parseInt(e.target.value)); // Update selected value
+  };
   const newData = [
     [0, 120.3],
     [6, 110],
@@ -94,12 +92,18 @@ const LoadProfileChart = () => {
 
   const renderBody = () => {
     if (isLoading) {
-      return <Loader />;
-    }
-    // else if (error) {
-    //   return <div>Unable to fetch data</div>;
-    // }
-    else {
+      return (
+        <div className="flex justify-center items-center h-full w-full">
+          <Loader />
+        </div>
+      );
+    } else if (error) {
+      return (
+        <div className="flex flex-col  justify-center items-center h-full w-full">
+          {ERRORMESSAGE}
+        </div>
+      );
+    } else {
       return <ReactECharts option={options} style={{ height: 400 }} />;
     }
   };

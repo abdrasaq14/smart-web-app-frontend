@@ -37,7 +37,7 @@ const { loginWithRedirect } = useAuth0();
       <AppHeading
         text="Login to continue"
         type={HeadingType.MAIN}
-        style="mb-5"
+        style="mb-10"
       />
       <div
         className="w-full flex flex-col"
