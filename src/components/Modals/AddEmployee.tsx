@@ -58,22 +58,28 @@ function AddEmployeeModal({
         <AnimatedInput
           placeholder="Full name"
           value={userInfo.full_name}
-          onChange={(value) => setUserInfo({ ...userInfo, full_name: value })}
+          onChange={(value: any) =>
+            setUserInfo({ ...userInfo, full_name: value })
+          }
         />
         <AnimatedInput
           placeholder="Employee ID no."
           value={userInfo.employee_id}
-          onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
+          onChange={(value: any) =>
+            setUserInfo({ ...userInfo, employee_id: value })
+          }
         />
         <AnimatedInput
           placeholder="Employee phone number"
           value={userInfo.phone_no}
-          onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
+          onChange={(value: any) =>
+            setUserInfo({ ...userInfo, phone_no: value })
+          }
         />
         <AnimatedInput
           placeholder="Employee email address"
           value={userInfo.email}
-          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
+          onChange={(value: any) => setUserInfo({ ...userInfo, email: value })}
         />
 
         <div className="w-full flex flex-col items-start gap-10 mt-4">

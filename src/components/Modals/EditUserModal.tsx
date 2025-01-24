@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import AppModal from "../feedBacks/AppModal";
 import { CARD_TITLE } from "../../utils/constants";
@@ -57,22 +58,26 @@ function EditUserAccountModal({
         <AnimatedInput
           placeholder="Employee Name"
           value={userInfo.name}
-          onChange={(value) => setUserInfo({ ...userInfo, name: value })}
+          onChange={(value: any) => setUserInfo({ ...userInfo, name: value })}
         />
         <AnimatedInput
           placeholder="Employee ID"
           value={userInfo.employee_id}
-          onChange={(value) => setUserInfo({ ...userInfo, employee_id: value })}
+          onChange={(value: any) =>
+            setUserInfo({ ...userInfo, employee_id: value })
+          }
         />
         <AnimatedInput
           placeholder="Phone Number"
           value={userInfo.phone_no}
-          onChange={(value) => setUserInfo({ ...userInfo, phone_no: value })}
+          onChange={(value: any) =>
+            setUserInfo({ ...userInfo, phone_no: value })
+          }
         />
         <AnimatedInput
           placeholder="Email"
           value={userInfo.email}
-          onChange={(value) => setUserInfo({ ...userInfo, email: value })}
+          onChange={(value: any) => setUserInfo({ ...userInfo, email: value })}
         />
         <div className="w-full flex flex-col items-start gap-10 mt-4">
           {employeeInformation.map((info, index) => (

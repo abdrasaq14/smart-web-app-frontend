@@ -3,7 +3,7 @@ import axios from "axios";
 // Create an Axios instance
 const apiFetcher = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL || "http://127.0.0.1:8001/api/", // Base URL from environment or default
-  timeout: 10000, // Request timeout in milliseconds
+  // timeout: 10000, // Request timeout in milliseconds
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",

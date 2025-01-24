@@ -67,27 +67,37 @@ function EditDeviceModal({
         <AnimatedInput
           placeholder="Device ID"
           value={deviceInfo.device_id}
-          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_id: value })}
+          onChange={(value: any) =>
+            setDeviceInfo({ ...deviceInfo, device_id: value })
+          }
         />
         <AnimatedInput
           placeholder="Device name"
           value={deviceInfo.device_name}
-          onChange={(value) => setDeviceInfo({ ...deviceInfo, device_name: value })}
+          onChange={(value: any) =>
+            setDeviceInfo({ ...deviceInfo, device_name: value })
+          }
         />
         <AnimatedInput
           placeholder="Device Location"
           value={deviceInfo.location}
-          onChange={(value) => setDeviceInfo({ ...deviceInfo, location: value })}
+          onChange={(value: any) =>
+            setDeviceInfo({ ...deviceInfo, location: value })
+          }
         />
         <AnimatedInput
           placeholder="Device co-ordinate"
           value={deviceInfo.coordinate}
-          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
+          onChange={(value: any) =>
+            setDeviceInfo({ ...deviceInfo, email: value })
+          }
         />
         <AnimatedInput
           placeholder="Company name"
           value={deviceInfo.company}
-          onChange={(value) => setDeviceInfo({ ...deviceInfo, email: value })}
+          onChange={(value: any) =>
+            setDeviceInfo({ ...deviceInfo, email: value })
+          }
         />
         <div className="w-full flex flex-col items-start gap-10 mt-4">
           {deviceInformation.map((info, index) => (

@@ -86,28 +86,28 @@ function AddTransactionModal({
         <AnimatedInput
           placeholder="Energy Biled (kWh)"
           value={transactionInfo.energy_billed}
-          onChange={(value) =>
+          onChange={(value: any) =>
             setTransactionInfo({ ...transactionInfo, energy_billed: value })
           }
         />
         <AnimatedInput
           placeholder="Amount Biled incl. VAT (VGN)"
           value={transactionInfo.amount_billed}
-          onChange={(value) =>
+          onChange={(value: any) =>
             setTransactionInfo({ ...transactionInfo, amount_billed: value })
           }
         />
         <AnimatedInput
           placeholder="Amount Collected (NGN)"
           value={transactionInfo.amount_collected}
-          onChange={(value) =>
+          onChange={(value: any) =>
             setTransactionInfo({ ...transactionInfo, amount_collected: value })
           }
         />
         <AnimatedInput
           placeholder="Amount Reconciled (NGN)"
           value={transactionInfo.amount_reconciled}
-          onChange={(value) =>
+          onChange={(value: any) =>
             setTransactionInfo({ ...transactionInfo, amount_reconciled: value })
           }
         />
