@@ -60,7 +60,7 @@ function CompaniesTable() {
           columnToStyle={0}
           columnCustomStyle={{ color: COLORS.PRIMARY }}
           makeRowClickable={true}
-          rowLink={(row) => navigate(`/companies/${row.id}`)}
+          rowLink={(row) => navigate(`${row.id}`)}
         />
       )}
     </CardLayout>

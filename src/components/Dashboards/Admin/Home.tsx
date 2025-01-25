@@ -63,7 +63,10 @@ function AdminCompanies() {
      },
      onError: (err) => {
        console.error("Error adding company:", err);
-        enqueueSnackbar("Error adding company", { variant: "error" });
+       const errorMessages = Object.values(err.response?.data || {})
+         .flat() // Flatten arrays of errors
+         .join(" "); // Join all messages into a single string
+       enqueueSnackbar(errorMessages || "Error adding company", { variant: "error" });
      },
    }
  );
