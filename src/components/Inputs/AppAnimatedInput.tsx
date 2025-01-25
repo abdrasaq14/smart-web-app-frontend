@@ -31,7 +31,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
     if (!value) {
       setIsFocused(false);
     }
-    onBlur(e); // Trigger Formik's `handleBlur`
+    // onBlur(e); // Trigger Formik's `handleBlur`
   };
 console.log("AnimatedInput", isErrored, isTouched, errorMessage);
   return (

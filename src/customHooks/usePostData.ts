@@ -24,30 +24,26 @@ interface UsePostDataOptions {
 export const usePostData = (
   route: string,
   method: RequestMethod = "POST",
-  options?: UsePostDataOptions
+  options: UsePostDataOptions = {}
 ) => {
-  return useMutation<any>(
-      // Mutation function
-        //@ts-ignore
-      async (payload: any) => {
-          switch (method) {
-            case "POST":
-              return apiFetcher.post(route, payload);
-            case "PUT":
-              return apiFetcher.put(route, payload);
-            case "DELETE":
-              return apiFetcher.delete(route, { data: payload });
-            case "PATCH":
-              return apiFetcher.patch(route, payload);
-            default:
-              throw new Error(`Unsupported request method: ${method}`);
-          }
-          
+  return useMutation<any>({
+    mutationFn: async (payload: any) => {
+      switch (method) {
+        case "POST":
+          return apiFetcher.post(route, payload);
+        case "PUT":
+          return apiFetcher.put(route, payload);
+        case "DELETE":
+          return apiFetcher.delete(route, { data: payload });
+        case "PATCH":
+          return apiFetcher.patch(route, payload);
+        default:
+          throw new Error(`Unsupported request method: ${method}`);
+      }
     },
-    {
-      onSuccess: options?.onSuccess,
-      onError: options?.onError,
-      onSettled: options?.onSettled,
-    }
-  );
+
+    onSuccess: options?.onSuccess,
+    onError: options?.onError,
+    onSettled: options?.onSettled,
+  });
 };

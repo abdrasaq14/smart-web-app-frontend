@@ -79,11 +79,11 @@ function EditUserAccountModal({
           value={userInfo.email}
           onChange={(value: any) => setUserInfo({ ...userInfo, email: value })}
         />
-        <div className="w-full flex flex-col items-start gap-10 mt-4">
+        {/* <div className="w-full flex flex-col items-start gap-10 mt-4">
           {employeeInformation.map((info, index) => (
             <AppSelect2 key={index} label={info.label} options={info.options} />
           ))}
-        </div>
+        </div> */}
 
         <AppButton
           style={"w-full mt-4"}

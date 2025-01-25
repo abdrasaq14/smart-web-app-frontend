@@ -99,11 +99,11 @@ function EditDeviceModal({
             setDeviceInfo({ ...deviceInfo, email: value })
           }
         />
-        <div className="w-full flex flex-col items-start gap-10 mt-4">
+        {/* <div className="w-full flex flex-col items-start gap-10 mt-4">
           {deviceInformation.map((info, index) => (
             <AppSelect2 key={index} label={info.label} options={info.options} />
           ))}
-        </div>
+        </div> */}
 
         <AppButton
           style={"w-full mt-4"}

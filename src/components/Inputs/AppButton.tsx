@@ -17,9 +17,12 @@ const AppButton = ({
     <button
       type="submit"
       {...rest}
-      onClick={() =>
-        type !== ButtonType.DISABLED && !loader?.loading && handleClick()
-      }
+      onClick={(e) => {
+        e.preventDefault();
+        if (type !== ButtonType.DISABLED && !loader?.loading && handleClick) {
+          handleClick();
+        }
+      }}
       className={`flex focus:outline-none gap-2 justify-center rounded-lg items-center text-center my-auto h-10 ${type} ${style}`}
     >
       {Icon ? (
@@ -27,19 +30,13 @@ const AppButton = ({
           {iconPosition === "left" && <Icon size={14} />}
           {text}{" "}
           {loader?.loading && (
-            <Spinner
-              height={loader?.height}
-              width={loader?.width}
-            />
+            <Spinner height={loader?.height} width={loader?.width} />
           )}{" "}
           {iconPosition === "right" && <Icon size={14} />}
         </>
       ) : loader?.loading ? (
         `${text}  ${(
-          <Spinner
-            height={loader?.height}
-            width={loader?.width}
-          />
+          <Spinner height={loader?.height} width={loader?.width} />
         )}`
       ) : (
         text

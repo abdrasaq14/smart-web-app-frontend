@@ -68,20 +68,20 @@ function AddTransactionModal({
       <div className="gap-6 flex flex-col items-start">
         {/* site information */}
         <span className="text-md">Site information</span>
-        <div className="w-full flex flex-col items-start gap-6">
+        {/* <div className="w-full flex flex-col items-start gap-6">
           {siteInformation.map((info, index) => (
             <AppSelect2 key={index} label={info.label} options={info.options} />
           ))}
-        </div>
+        </div> */}
         {/* Date */}
         <span className="text-md">Date</span>
         <AppDate2 label="Select Date" />
 
         {/* tarrif information */}
-        <span className="text-md">Tarrif information</span>
+        {/* <span className="text-md">Tarrif information</span>
         {tarrifInformation.map((info, index) => (
           <AppSelect2 key={index} label={info.label} options={info.options} />
-        ))}
+        ))} */}
         {/* Other info */}
         <AnimatedInput
           placeholder="Energy Biled (kWh)"

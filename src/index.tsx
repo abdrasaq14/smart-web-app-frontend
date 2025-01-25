@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,6 +9,7 @@ import App from "./App";
 import store from "./store/store";
 import { Config } from "./utils/config";
 import './index.css'
+import { SnackbarProvider } from "notistack";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -31,6 +33,7 @@ const auth0Config = {
 
 root.render(
   <React.StrictMode>
+    <SnackbarProvider maxSnack={3}>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
@@ -39,6 +42,7 @@ root.render(
           </Auth0Provider>
         </BrowserRouter>
       </QueryClientProvider>
-    </Provider>
+      </Provider>
+      </SnackbarProvider>
   </React.StrictMode>
 );

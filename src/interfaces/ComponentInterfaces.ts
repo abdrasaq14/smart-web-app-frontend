@@ -16,7 +16,7 @@ export interface ButtonProps {
   text: string;
   loader?: LoaderProps | null;
   disabled?: boolean;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 
 export interface SpinnerProps {

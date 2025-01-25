@@ -331,3 +331,20 @@ export const getLabelFromValue = (value: string, currency: string) => {
 
 export const NODATAMESSAGE = "No data available";
 export const ERRORMESSAGE = "Error fetching data";
+
+export const companyServiceTypeOptions = [
+  {
+    key: "energy_monitoring",
+    value: "energy_monitoring",
+    label: "Energy monitoring",
+  },
+  {
+    key: "distribution_electrique",
+    value: "distribution_electrique",
+    label: "Distribution electrique",
+  },
+];
+export const companyTypeOptions = [
+  { key: "car_energy", value: "car_energy", label: "Car energy" },
+  { key: "utility", value: "utility", label: "Utility" },
+];
