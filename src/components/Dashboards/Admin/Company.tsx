@@ -13,8 +13,9 @@ import DevicesTable from "../../Table/DeviceTable";
 import AddEmployeeModal from "../../Modals/AddEmployee";
 import { set } from "date-fns";
 import AddDeviceModal from "../../Modals/AddDeviceModal";
+import { useAppSelector } from "../../../store/hooks";
 // import RawData from "./RawData";
-const COMPANY_NAME = "SBEE";
+// const COMPANY_NAME = "SBEE";
 const tabs = [
   "Overview",
   "Operations",
@@ -39,6 +40,7 @@ function Company() {
         return <DevicesTable />;
     }
   };
+  const activeUser = useAppSelector((state) => state.auth.user);
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
   const handleTabSwitch = (tab: string) => {
     setActiveTab(tab);
@@ -49,7 +51,7 @@ function Company() {
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
       <div className="flex gap-2">
         <span className="text-primary-blackMain text-xl font-bold">
-          {COMPANY_NAME}
+          {activeUser?.company?.name}
         </span>
         <span className="text-primary-blackLighter ">{`>`} </span>
         <span className="text-primary-blackLighter">{activeTab}</span>

@@ -1,17 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { IUser } from "../utils/interfaces";
 
 interface IAuthState {
   isAuthenticated: boolean;
-  user: {
-    id: string;
-    email: string;
-    role: string;
-    access_level: string;
-    first_name: string;
-    last_name: string;
-    company: string;
-  } | null;
+  user: IUser | null;
 }
 const initialState: IAuthState = {
   isAuthenticated: false,

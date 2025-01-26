@@ -4,6 +4,8 @@ import { useFetchData } from "../../customHooks/useGetDashboardData";
 import { noDataImage } from "../../assets/layout";
 import Loader from "../feedBacks/loader";
 import { ERRORMESSAGE, NODATAMESSAGE } from "../../utils/utils";
+import CardError from "../feedBacks/CardError";
+import NoContent from "../feedBacks/NoContent";
 
 interface DistrictData {
   title: string;
@@ -37,9 +39,7 @@ function PowerConsumptionByDistrictChart() {
             <Loader />
           </div>
         ) : error ? (
-          <div className="flex flex-col  justify-center items-center h-full w-full">
-            {ERRORMESSAGE}
-          </div>
+          <CardError message={ERRORMESSAGE} />
         ) : transformedData.length ? (
           transformedData.map((district, idx) => (
             <DistrictBar
@@ -49,10 +49,7 @@ function PowerConsumptionByDistrictChart() {
             />
           ))
         ) : (
-          <div className="flex flex-col  justify-center items-center h-full w-full">
-            <img src={noDataImage} alt="No data" className="max-h-[150px]" />
-            <span className="font-semibold">{NODATAMESSAGE}</span>
-          </div>
+          <NoContent message={NODATAMESSAGE} />
         )}
       </div>
     </CardLayout>

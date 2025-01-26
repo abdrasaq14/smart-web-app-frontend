@@ -56,7 +56,18 @@ function Manager() {
                 isLoading={true}
               />
             ))
-          : transformedData.map(
+          : error ? (
+           Array.from({ length: 4 }).map((_, index) => (
+              <StatsCard
+                key={index}
+                title=""
+                value=""
+                isError={true}
+               isLoading={false}
+               cardErrorStyle="!h-[50px]"
+              />
+            ))
+          ) : transformedData.map(
               (data, index) =>
                 !excludeCards.includes(data.label) && (
                   <div key={index}>

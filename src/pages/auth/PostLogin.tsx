@@ -8,14 +8,12 @@ import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../../components/feedBacks/loader";
 import { useAppDispatch } from "../../store/hooks";
 import { login } from "../../store/authSlice";
-
 const API_ROUTE = "users/me";
 const PostLogin = () => {
   const dispatch = useAppDispatch();
   const { isAuthenticated, isLoading, getAccessTokenSilently, logout } =
     useAuth0();
   const [receivedToken, setReceivedToken] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,7 +68,9 @@ const PostLogin = () => {
 
   // Handle the navigation logic based on the user's role
   if (isAuthenticated && !isUserInfoLoading && me != null) {
+    // console.log("I know this user", isAuthenticated, isUserInfoLoading, me);
     dispatch(login(me));
+    
     //@ts-ignore
 
     const role = me?.access_level;

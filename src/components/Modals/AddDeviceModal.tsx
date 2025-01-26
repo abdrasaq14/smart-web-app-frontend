@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import AppModal from "../feedBacks/AppModal";
 import { CARD_TITLE } from "../../utils/constants";
@@ -5,8 +6,12 @@ import AppDateInput from "../Inputs/AppDate";
 import { ButtonType, TextInputType } from "../../enums/componentEnums";
 import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
+import * as Yup from "yup";
 import AppSelect2 from "../Inputs/AppSelect2";
 import AppDate2 from "../Inputs/AppDate2";
+import useCustomFormik from "../../customHooks/useFormik";
+import { usePostData } from "../../customHooks/usePostData";
+import { enqueueSnackbar } from "notistack";
 const GAP = "12px";
 
 const deviceInformation = [
@@ -46,58 +51,86 @@ function AddDeviceModal({
   //   access_level: string;
   // };
 }) {
-  const [deviceInfo, setDeviceInfo] = useState({
-    device_name: "",
-    device_id: "",
-    location: "",
-    coordinate: "",
-    company: "",
-    email: "",
-    department: "",
-    access_level: "",
-  });
+const initialValues = {
+  device_name: "",
+  device_id: "",
+  location: "",
+  coordinate: "",
+  company: "",
+  email: "",
+  department: "",
+  access_level: "",
+  };
+  
+  const validationSchema = Yup.object({
+    device_name: Yup.string().required("Device name is required"),
+    device_id: Yup.string().required("Device ID is required"),
+    location: Yup.string().required("Location is required"),
+    coordinate: Yup.string().required("Coordinate is required"),
+    company: Yup.string().required("Company name is required"),
+    email: Yup.string().required("Email is required"),
+  })
+    const onSubmit = (values: any, actions: any) => {
+      console.log(values);
+      mutate({ ...values, users: [] });
+      actions.resetForm(); // Reset the form after submission
+    };
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    getFieldProps,
+    errors,
+    touched,
+    isSubmitting,
+  } = useCustomFormik({ initialValues, validationSchema, onSubmit });
+  console.log("FormErrors:", errors, values);
+  const { mutate } = usePostData(
+     "/companies",
+     "POST",
+     {
+       onSuccess: (data) => {
+         console.log("Company added successfully:", data);
+         enqueueSnackbar("Company has been added!", { variant: "success" });
+       },
+       onError: (err) => {
+         console.error("Error adding company:", err);
+         const errorMessages = Object.values(err.response?.data || {})
+           .flat() // Flatten arrays of errors
+           .join(" "); // Join all messages into a single string
+         enqueueSnackbar(errorMessages || "Error adding company", { variant: "error" });
+       },
+     }
+  );
+  
   return (
     <AppModal
       isOpen={isModalOpen}
       onClose={closeModal}
       closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
-      <h2 className={CARD_TITLE}>Edit Device</h2>
-      <div className="gap-6 flex flex-col items-start">
+      <h2 className={CARD_TITLE}>Add Device</h2>
+      <form onSubmit={handleSubmit} className="gap-6 flex flex-col items-start">
         <AnimatedInput
           placeholder="Device ID"
-          value={deviceInfo.device_id}
-          onChange={(value: any) =>
-            setDeviceInfo({ ...deviceInfo, device_id: value })
-          }
+         {...getFieldProps('device_id')}
         />
         <AnimatedInput
           placeholder="Device name"
-          value={deviceInfo.device_name}
-          onChange={(value: any) =>
-            setDeviceInfo({ ...deviceInfo, device_name: value })
-          }
+          {...getFieldProps('device_name')}
         />
         <AnimatedInput
           placeholder="Device Location"
-          value={deviceInfo.location}
-          onChange={(value: any) =>
-            setDeviceInfo({ ...deviceInfo, location: value })
-          }
+          {...getFieldProps('location')}  
         />
         <AnimatedInput
           placeholder="Device co-ordinate"
-          value={deviceInfo.coordinate}
-          onChange={(value: any) =>
-            setDeviceInfo({ ...deviceInfo, email: value })
-          }
+          {...getFieldProps('coordinate')}
         />
         <AnimatedInput
           placeholder="Company name"
-          value={deviceInfo.company}
-          onChange={(value: any) =>
-            setDeviceInfo({ ...deviceInfo, email: value })
-          }
+          {...getFieldProps('company')}
         />
         {/* <div className="w-full flex flex-col items-start gap-10 mt-4">
           {deviceInformation.map((info, index) => (
@@ -111,7 +144,7 @@ function AddDeviceModal({
           type={ButtonType.PRIMARY}
           handleClick={() => {}}
         />
-      </div>
+      </form>
     </AppModal>
   );
 }

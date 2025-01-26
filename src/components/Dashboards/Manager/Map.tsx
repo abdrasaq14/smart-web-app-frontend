@@ -32,7 +32,7 @@ const SiteLocationMap = () => {
       <MapContainer
         center={siteData[0].position} // Default map center
         zoom={13} // Default zoom level
-        style={{ height: "500px", width: "100%", minWidth: "350px" }}
+        style={{ height: "500px", width: "100%", minWidth: "350px", zIndex: 1 }}
       >
         {/* Add a tile layer (map background) */}
         <TileLayer

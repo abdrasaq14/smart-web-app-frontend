@@ -12,7 +12,7 @@ function AccountPage() {
       firstName={userInfo?.first_name || ""}
       lastName={userInfo?.last_name || ""}
       email={userInfo?.email || ""}
-      company={userInfo?.company || ""}
+      company={userInfo?.company.name || ""}
     />
   );
 }

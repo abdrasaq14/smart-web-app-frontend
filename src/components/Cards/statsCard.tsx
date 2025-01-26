@@ -1,5 +1,6 @@
 import { errorImage } from "../../assets/layout";
 import { ERRORMESSAGE } from "../../utils/utils";
+import CardError from "../feedBacks/CardError";
 import Loader from "../feedBacks/loader";
 
 function StatsCard({
@@ -8,12 +9,14 @@ function StatsCard({
   isError,
   isLoading,
   style,
+  cardErrorStyle,
 }: {
   title: string;
   value: string;
   isError: boolean;
     isLoading: boolean;
-  style?: string
+    style?: string
+    cardErrorStyle?: string
 }) {
   return (
     <div
@@ -22,10 +25,7 @@ function StatsCard({
       {isLoading ? (
         <Loader />
       ) : isError ? (
-        <div className="flex flex-col  justify-center items-center h-full w-full">
-          <img src={errorImage} alt="error Image" className="max-h-[150px]" />
-            <span className="font-semibold">{ERRORMESSAGE }</span>
-        </div>
+        <CardError message={ERRORMESSAGE} style={cardErrorStyle} />
       ) : (
         <>
           <h3 className="text-3xl font-bold tracking-widest">{value}</h3>
