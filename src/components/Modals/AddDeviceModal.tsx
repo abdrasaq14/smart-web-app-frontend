@@ -8,73 +8,60 @@ import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
 import * as Yup from "yup";
 import AppSelect2 from "../Inputs/AppSelect2";
-import AppDate2 from "../Inputs/AppDate2";
 import useCustomFormik from "../../customHooks/useFormik";
 import { usePostData } from "../../customHooks/usePostData";
 import { enqueueSnackbar } from "notistack";
-const GAP = "12px";
-
-const deviceInformation = [
-  {
-    label: "Company District",
-    options: ['District A', 'District B', 'District C', 'District D'],
-  },
-  {
-    label: "Company Zone",
-    options: ['Oshodi', 'Agege', 'Iyan-Ipaja'],
-  },
-  {
-    label: "Select Asset type",
-    options: ['Transformer', 'Generator'],
-  },
-  {
-    label: "Asset Capacity (kVA)",
-    options: ['500', '600', '800'],
-  },
-];
+import { assetTypeOptions } from "../../utils/utils";
+import AppInput from "../Inputs/AppInput";
+import Year from "react-datepicker/dist/year";
+import YearPicker from "../Inputs/DatePickerCustom";
 
 function AddDeviceModal({
   isModalOpen,
   closeModal,
   enableOutsideClick = true,
+  company_id,
 }: // data
 {
   isModalOpen: boolean;
   closeModal: () => void;
   enableOutsideClick?: boolean;
-  // data: {
-  //   name: string;
-  //   employee_id: string;
-  //   phone_no: string;
-  //   email: string;
-  //   department: string;
-  //   access_level: string;
-  // };
+  company_id: string;
 }) {
-const initialValues = {
-  device_name: "",
-  device_id: "",
-  location: "",
-  coordinate: "",
-  company: "",
-  email: "",
-  department: "",
-  access_level: "",
+  const initialValues = {
+    asset_name: "",
+    asset_type: assetTypeOptions[0].value,
+    asset_capacity: "",
+    gateway_serial: "",
+    tariff: "",
+    transformer_year_of_manufacture: "",
+    address_of_tfo: "",
+    type_of_position: "",
+    nature_of_position: "",
+    company_id,
+    co_ordinate: "",
   };
-  
+
   const validationSchema = Yup.object({
-    device_name: Yup.string().required("Device name is required"),
-    device_id: Yup.string().required("Device ID is required"),
-    location: Yup.string().required("Location is required"),
-    coordinate: Yup.string().required("Coordinate is required"),
-    company: Yup.string().required("Company name is required"),
-    email: Yup.string().required("Email is required"),
-  })
-    const onSubmit = (values: any, actions: any) => {
-      console.log(values);
-      mutate({ ...values, users: [] });
-      actions.resetForm(); // Reset the form after submission
-    };
+    asset_name: Yup.string().required("Device name is required"),
+    asset_type: Yup.string().required("Device ID is required"),
+    co_ordinate: Yup.string().required("co ordinate is required"),
+    address_of_tfo: Yup.string().required("Address of TFO is required"),
+    type_of_position: Yup.string().required("Type of position is required"),
+    nature_of_position: Yup.string().required("Nature of position is required"),
+    company_id: Yup.string().required("Company ID is required"),
+    gateway_serial: Yup.string().required("Gateway serial is required"),
+    tariff: Yup.number().required("Tariff is required"),
+    transformer_year_of_manufacture: Yup.string().required(
+      "Year of manufacture is required"
+    ),
+    asset_capacity: Yup.number().required("Asset capacity is required"),
+  });
+  const onSubmit = (values: any, actions: any) => {
+    console.log(values);
+    mutate(values);
+    actions.resetForm(); // Reset the form after submission
+  };
   const {
     handleSubmit,
     handleChange,
@@ -84,26 +71,27 @@ const initialValues = {
     errors,
     touched,
     isSubmitting,
+    setFieldValue,
   } = useCustomFormik({ initialValues, validationSchema, onSubmit });
   console.log("FormErrors:", errors, values);
-  const { mutate } = usePostData(
-     "/companies",
-     "POST",
-     {
-       onSuccess: (data) => {
-         console.log("Company added successfully:", data);
-         enqueueSnackbar("Company has been added!", { variant: "success" });
-       },
-       onError: (err) => {
-         console.error("Error adding company:", err);
-         const errorMessages = Object.values(err.response?.data || {})
-           .flat() // Flatten arrays of errors
-           .join(" "); // Join all messages into a single string
-         enqueueSnackbar(errorMessages || "Error adding company", { variant: "error" });
-       },
-     }
-  );
-  
+  const { mutate } = usePostData("/devices", "POST", {
+    onSuccess: (data) => {
+      console.log("Device added successfully:", data);
+      enqueueSnackbar("Device has been added!", { variant: "success" });
+    },
+    onError: (err) => {
+      console.error("Error adding Device:", err);
+      const errorMessages = Object.values(err.response?.data || {})
+        .flat() // Flatten arrays of errors
+        .join(" "); // Join all messages into a single string
+      enqueueSnackbar(errorMessages || "Error adding Device", {
+        variant: "error",
+      });
+    },
+  });
+  const transformDateToYear = (date: any) => { 
+    return date.getFullYear();
+  }
   return (
     <AppModal
       isOpen={isModalOpen}
@@ -111,39 +99,98 @@ const initialValues = {
       closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
       <h2 className={CARD_TITLE}>Add Device</h2>
-      <form onSubmit={handleSubmit} className="gap-6 flex flex-col items-start">
+      <form onSubmit={handleSubmit} className="gap-4 flex flex-col items-start">
         <AnimatedInput
-          placeholder="Device ID"
-         {...getFieldProps('device_id')}
+          placeholder="Device Name"
+          {...getFieldProps("asset_name")}
+          isErrored={!!errors.asset_name}
+          isTouched={!!touched.asset_name}
+          errorMessage={errors.asset_name}
         />
-        <AnimatedInput
-          placeholder="Device name"
-          {...getFieldProps('device_name')}
-        />
-        <AnimatedInput
-          placeholder="Device Location"
-          {...getFieldProps('location')}  
-        />
-        <AnimatedInput
-          placeholder="Device co-ordinate"
-          {...getFieldProps('coordinate')}
-        />
-        <AnimatedInput
-          placeholder="Company name"
-          {...getFieldProps('company')}
-        />
-        {/* <div className="w-full flex flex-col items-start gap-10 mt-4">
-          {deviceInformation.map((info, index) => (
-            <AppSelect2 key={index} label={info.label} options={info.options} />
-          ))}
-        </div> */}
 
-        <AppButton
+        <AppSelect2
+          {...getFieldProps("asset_type")}
+          name="asset_type"
+          value={values.asset_type}
+          isErrored={!!errors.asset_type}
+          isTouched={!!touched.asset_type}
+          errorMessage={errors.asset_type}
+          label="Asset Type"
+          options={assetTypeOptions}
+        />
+        <AnimatedInput
+          placeholder="Asset Capacity (kVA)"
+          {...getFieldProps("asset_capacity")}
+          isErrored={!!errors.asset_capacity}
+          isTouched={!!touched.asset_capacity}
+          errorMessage={errors.asset_capacity}
+          type={TextInputType.NUMBER}
+          
+        />
+        <AnimatedInput
+          placeholder="Gateway Serial"
+          {...getFieldProps("gateway_serial")}
+          isErrored={!!errors.gateway_serial}
+          isTouched={!!touched.gateway_serial}
+          errorMessage={errors.gateway_serial}
+        />
+        <AnimatedInput
+          placeholder="Tariff"
+          {...getFieldProps("tariff")}
+          isErrored={!!errors.tariff}
+          isTouched={!!touched.tariff}
+          errorMessage={errors.tariff}
+        />
+        <YearPicker
+          value={values.transformer_year_of_manufacture}
+          isErrored={!!errors.transformer_year_of_manufacture}
+          isTouched={!!touched.transformer_year_of_manufacture}
+          errorMessage={errors.transformer_year_of_manufacture}
+          label="Year of Manufacture"
+          setFieldValue={(date: any) =>
+            setFieldValue("transformer_year_of_manufacture", transformDateToYear(date))
+          }
+        />
+        <AnimatedInput
+          placeholder="Address of TFO"
+          {...getFieldProps("address_of_tfo")}
+          isErrored={!!errors.address_of_tfo}
+          isTouched={!!touched.address_of_tfo}
+          errorMessage={errors.address_of_tfo}
+        />
+        <AnimatedInput
+          placeholder="Type of Position"
+          {...getFieldProps("type_of_position")}
+          isErrored={!!errors.type_of_position}
+          isTouched={!!touched.type_of_position}
+          errorMessage={errors.type_of_position}
+        />
+        <AnimatedInput
+          placeholder="Nature of Position"
+          {...getFieldProps("nature_of_position")}
+          isErrored={!!errors.nature_of_position}
+          isTouched={!!touched.nature_of_position}
+          errorMessage={errors.nature_of_position}
+        />
+        <AnimatedInput
+          placeholder="Co-ordinate"
+          {...getFieldProps("co_ordinate")}
+          isErrored={!!errors.co_ordinate}
+          isTouched={!!touched.co_ordinate}
+          errorMessage={errors.co_ordinate}
+        />
+        <button
+          type="submit"
+          className="w-full mt-4 bg-primary-yellowMain text-white p-2 rounded-lg"
+        >
+          {isSubmitting ? "Submitting..." : "Add Device"}
+        </button>
+        {/* <AppButton
           style={"w-full mt-4"}
           text="Add Device"
           type={ButtonType.PRIMARY}
-          handleClick={() => {}}
-        />
+          handleClick={handleSubmit}
+        /> */}
       </form>
     </AppModal>
   );

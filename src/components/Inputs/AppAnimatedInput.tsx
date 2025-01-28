@@ -6,6 +6,7 @@ interface AnimatedInputProps {
   value: string;
   onChange?: any;
   onBlur?: any;
+  type?: string;
   // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   // onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   name?: string;
@@ -23,6 +24,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   isErrored,
   errorMessage,
   isTouched,
+  type='text'
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
@@ -54,7 +56,7 @@ console.log("AnimatedInput", isErrored, isTouched, errorMessage);
             {placeholder}
           </label>
           <input
-            type="text"
+            type={type}
             name={name}
             value={value}
             onChange={onChange}

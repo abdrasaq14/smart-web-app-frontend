@@ -6,7 +6,7 @@ import { ButtonType, TextInputType } from "../../enums/componentEnums";
 import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
 import AppSelect2 from "../Inputs/AppSelect2";
-import AppDate2 from "../Inputs/AppDate2";
+// import AppDate2 from "../Inputs/AppDate2";
 const GAP = "12px";
 const siteInformation = [
   {
@@ -75,7 +75,7 @@ function AddTransactionModal({
         </div> */}
         {/* Date */}
         <span className="text-md">Date</span>
-        <AppDate2 label="Select Date" />
+        {/* <AppDate2 label="Select Date" /> */}
 
         {/* tarrif information */}
         {/* <span className="text-md">Tarrif information</span>

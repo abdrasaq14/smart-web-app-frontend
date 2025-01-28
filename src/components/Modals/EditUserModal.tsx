@@ -6,9 +6,6 @@ import AppDateInput from "../Inputs/AppDate";
 import { ButtonType, TextInputType } from "../../enums/componentEnums";
 import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
-import AppSelect2 from "../Inputs/AppSelect2";
-import AppDate2 from "../Inputs/AppDate2";
-const GAP = "12px";
 
 const employeeInformation = [
   {

@@ -11,11 +11,10 @@ import { ButtonType } from "../../../enums/componentEnums";
 import UsersTable from "../../Table/UsersTable";
 import DevicesTable from "../../Table/DeviceTable";
 import AddEmployeeModal from "../../Modals/AddEmployee";
-import { set } from "date-fns";
 import AddDeviceModal from "../../Modals/AddDeviceModal";
 import { useAppSelector } from "../../../store/hooks";
-// import RawData from "./RawData";
-// const COMPANY_NAME = "SBEE";
+
+
 const tabs = [
   "Overview",
   "Operations",
@@ -24,7 +23,9 @@ const tabs = [
   "Users",
   "Devices",
 ];
-function Company() {
+function Company({ company_id }: { company_id: any }) {
+  
+  console.log('company_id', company_id)
   const tabSwitcher = (tab: string) => {
     // switch tab
     switch (tab) {
@@ -91,6 +92,7 @@ function Company() {
       </div>
       <div className="w-full">{tabSwitcher(activeTab)}</div>
       <AddDeviceModal
+        company_id={company_id}
         isModalOpen={isDeviceModalOpen}
         closeModal={() => setIsDeviceModalOpen(false)}
         enableOutsideClick={false}

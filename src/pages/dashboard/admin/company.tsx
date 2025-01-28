@@ -1,10 +1,9 @@
-import React from 'react'
-import Company from '../../../components/Dashboards/Admin/Company'
-
+import React from "react";
+import Company from "../../../components/Dashboards/Admin/Company";
+import { useParams } from "react-router-dom";
 function CompanyPage() {
-  return (
-    <Company />
-  )
+  const { id } = useParams();
+  return <Company company_id={id} />;
 }
 
-export default CompanyPage
+export default CompanyPage;

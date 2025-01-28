@@ -348,3 +348,7 @@ export const companyTypeOptions = [
   { key: "car_energy", value: "car_energy", label: "Car energy" },
   { key: "utility", value: "utility", label: "Utility" },
 ];
+export const assetTypeOptions = [
+  { key: "transformer", value: "transformer", label: "Tranformer" },
+  { key: "generator", value: "generator", label: "Generator" },
+];
