@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { CARD_GAP, COLORS } from "../../../utils/constants";
 import EventLogTable from "../../Table/EventLogs";
 import AdminCompanies from "./Home";
@@ -13,7 +13,9 @@ import DevicesTable from "../../Table/DeviceTable";
 import AddEmployeeModal from "../../Modals/AddEmployee";
 import AddDeviceModal from "../../Modals/AddDeviceModal";
 import { useAppSelector } from "../../../store/hooks";
-
+import { useFetchData } from "../../../customHooks/useGetDashboardData";
+import { ICompany } from "../../../utils/interfaces";
+import BackButton from "../../feedBacks/BackButton";
 
 const tabs = [
   "Overview",
@@ -23,9 +25,8 @@ const tabs = [
   "Users",
   "Devices",
 ];
-function Company({ company_id }: { company_id: any }) {
-  
-  console.log('company_id', company_id)
+function Company({ company_id }: { company_id: string }) {
+  console.log("company_id", company_id);
   const tabSwitcher = (tab: string) => {
     // switch tab
     switch (tab) {
@@ -36,23 +37,35 @@ function Company({ company_id }: { company_id: any }) {
       case "Finance":
         return <FinanceHome />;
       case "Users":
-        return <UsersTable/>;
+        return <UsersTable company_id={company_id} />;
       default:
         return <DevicesTable company_id={company_id} />;
     }
   };
-  const activeUser = useAppSelector((state) => state.auth.user);
+  const { data, isLoading, isError } = useFetchData(
+    `/company/${company_id}`,
+    {}
+  );
+  const companyDetails: ICompany | null = useMemo(() => {
+    if (data) {
+      return data as ICompany;
+    }
+    return null;
+  }, [company_id, data]);
+  console.log("companyDetails", companyDetails);
+  // const activeUser = useAppSelector((state) => state.auth.user);
   const [activeTab, setActiveTab] = React.useState(tabs[0]);
   const handleTabSwitch = (tab: string) => {
     setActiveTab(tab);
   };
-   const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
-   const [isDeviceModalOpen, setIsDeviceModalOpen] = useState(false);
+  const [isEmployeeModalOpen, setIsEmployeeModalOpen] = useState(false);
+  const [isDeviceModalOpen, setIsDeviceModalOpen] = useState(false);
   return (
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
-      <div className="flex gap-2">
-        <span className="text-primary-blackMain text-xl font-bold">
-          {activeUser?.company?.name}
+      <div className="flex gap-2 self-start justify-start items-center">
+        <BackButton link="/dashboard/admin/companies" showBackText={false} />
+        <span className="text-primary-blackMain text-xl font-bold ml-2">
+          {companyDetails && companyDetails.name}
         </span>
         <span className="text-primary-blackLighter ">{`>`} </span>
         <span className="text-primary-blackLighter">{activeTab}</span>

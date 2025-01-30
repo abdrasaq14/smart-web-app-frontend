@@ -160,7 +160,7 @@ const DevicesTable = ({ company_id }: { company_id?: string }) => {
       "Asset Capacity": item.asset_capacity,
       "Time/Date": formatDateForDisplay(item.created_at),
     }));
-  }, [data]);
+  }, [data, company_id]);
   const handleActionClick = (row: { [key: string]: string | number }) => {
     alert(`Action triggered for ${row.name}`);
   };
