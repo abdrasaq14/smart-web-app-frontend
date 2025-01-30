@@ -28,7 +28,7 @@ function AdminCompanies() {
     name: Yup.string().required("Company name is required"),
     company_type: Yup.string().required("Company type is required"),
     phone_number: Yup.string().required("Phone number is required"),
-    email: Yup.string().required("Email is required"),
+    email: Yup.string().lowercase().required("Email is required"),
     address: Yup.string().required("Company address is required"),
     renewal_date: Yup.string().required("Renewal date is required"),
     service_type: Yup.string().required("Service type is required"),

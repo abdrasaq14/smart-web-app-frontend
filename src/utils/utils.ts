@@ -352,3 +352,10 @@ export const assetTypeOptions = [
   { key: "transformer", value: "transformer", label: "Tranformer" },
   { key: "generator", value: "generator", label: "Generator" },
 ];
+export const accessLevelsOptions = [
+  { key: "operation", value: "operation", label: "Operation" },
+  { key: "finance", value: "finance", label: "Finance" },
+  { key: "manager", value: "manager", label: "Manager" },
+  { key: "admin", value: "admin", label: "Admin" },
+  { key: "other", value: "other", label: "Other" },
+];

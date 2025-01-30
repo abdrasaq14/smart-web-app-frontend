@@ -12,8 +12,6 @@ import useCustomFormik from "../../customHooks/useFormik";
 import { usePostData } from "../../customHooks/usePostData";
 import { enqueueSnackbar } from "notistack";
 import { assetTypeOptions } from "../../utils/utils";
-import AppInput from "../Inputs/AppInput";
-import Year from "react-datepicker/dist/year";
 import YearPicker from "../Inputs/DatePickerCustom";
 
 function AddDeviceModal({
@@ -57,27 +55,30 @@ function AddDeviceModal({
     ),
     asset_capacity: Yup.number().required("Asset capacity is required"),
   });
-  const onSubmit = (values: any, actions: any) => {
+  const onSubmit = (values: any) => {
     console.log(values);
     mutate(values);
-    actions.resetForm(); // Reset the form after submission
+    // actions.resetForm(); // Reset the form after submission
   };
   const {
     handleSubmit,
-    handleChange,
-    handleBlur,
     values,
     getFieldProps,
     errors,
     touched,
     isSubmitting,
     setFieldValue,
+    resetForm,
+    setSubmitting,
   } = useCustomFormik({ initialValues, validationSchema, onSubmit });
-  console.log("FormErrors:", errors, values);
+  console.log("FormErrors:", isSubmitting);
   const { mutate } = usePostData("/devices", "POST", {
     onSuccess: (data) => {
       console.log("Device added successfully:", data);
       enqueueSnackbar("Device has been added!", { variant: "success" });
+      resetForm();
+      setSubmitting(false);
+      closeModal();
     },
     onError: (err) => {
       console.error("Error adding Device:", err);
@@ -87,11 +88,12 @@ function AddDeviceModal({
       enqueueSnackbar(errorMessages || "Error adding Device", {
         variant: "error",
       });
+      setSubmitting(false);
     },
   });
-  const transformDateToYear = (date: any) => { 
+  const transformDateToYear = (date: any) => {
     return date.getFullYear();
-  }
+  };
   return (
     <AppModal
       isOpen={isModalOpen}
@@ -125,7 +127,6 @@ function AddDeviceModal({
           isTouched={!!touched.asset_capacity}
           errorMessage={errors.asset_capacity}
           type={TextInputType.NUMBER}
-          
         />
         <AnimatedInput
           placeholder="Gateway Serial"
@@ -140,6 +141,7 @@ function AddDeviceModal({
           isErrored={!!errors.tariff}
           isTouched={!!touched.tariff}
           errorMessage={errors.tariff}
+          type={TextInputType.NUMBER}
         />
         <YearPicker
           value={values.transformer_year_of_manufacture}
@@ -148,7 +150,10 @@ function AddDeviceModal({
           errorMessage={errors.transformer_year_of_manufacture}
           label="Year of Manufacture"
           setFieldValue={(date: any) =>
-            setFieldValue("transformer_year_of_manufacture", transformDateToYear(date))
+            setFieldValue(
+              "transformer_year_of_manufacture",
+              transformDateToYear(date)
+            )
           }
         />
         <AnimatedInput
@@ -179,18 +184,24 @@ function AddDeviceModal({
           isTouched={!!touched.co_ordinate}
           errorMessage={errors.co_ordinate}
         />
-        <button
+        {/* <button
           type="submit"
           className="w-full mt-4 bg-primary-yellowMain text-white p-2 rounded-lg"
         >
           {isSubmitting ? "Submitting..." : "Add Device"}
-        </button>
-        {/* <AppButton
+        </button> */}
+        <AppButton
           style={"w-full mt-4"}
-          text="Add Device"
+          text={isSubmitting ? "" : "Add Device"}
+          loader={{
+            loading: isSubmitting,
+            height: 4,
+            width: 4,
+          }}
           type={ButtonType.PRIMARY}
           handleClick={handleSubmit}
-        /> */}
+          disabled={isSubmitting}
+        />
       </form>
     </AppModal>
   );

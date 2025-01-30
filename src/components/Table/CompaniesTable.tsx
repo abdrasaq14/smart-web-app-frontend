@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useMemo } from "react";
 import CardLayout from "../Cards/CardLayout";
 import TableTemplate from "./Table";
@@ -7,19 +8,13 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../feedBacks/loader";
 import CardError from "../feedBacks/CardError";
 import NoContent from "../feedBacks/NoContent";
+import { ICompany } from "../../utils/interfaces";
 
 // Define columns
 const columns = ["Companies", "Date", "Users", "Phone Number", "Email address"];
 
 // TypeScript interface for company data
-interface Company {
-  id: string;
-  name: string;
-  renewal_date: string;
-  users: Array<{ id: string }>;
-  phone_number: string;
-  email: string;
-}
+
 
 function CompaniesTable() {
   const { data, isLoading, error } = useFetchData("/companies", {
@@ -32,7 +27,7 @@ function CompaniesTable() {
   // Transform data into table rows (memoized for performance)
   const tableData = useMemo(() => {
     // @ts-ignore
-    return data?.results.map((item: Company) => ({
+    return data?.results.map((item: ICompany) => ({
       id: item.id,
       Companies: item.name,
       Date: item.renewal_date,

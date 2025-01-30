@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { ButtonProps } from "../../interfaces/ComponentInterfaces";
 import { ButtonType } from "../../enums/componentEnums";
-import Spinner from "../feedBacks/loader";
+import Loader from "../feedBacks/loader";
 
 const AppButton = ({
   type,
@@ -30,14 +30,15 @@ const AppButton = ({
           {iconPosition === "left" && <Icon size={14} />}
           {text}{" "}
           {loader?.loading && (
-            <Spinner height={loader?.height} width={loader?.width} />
+            <Loader height={loader?.height} width={loader?.width} />
           )}{" "}
           {iconPosition === "right" && <Icon size={14} />}
         </>
       ) : loader?.loading ? (
-        `${text}  ${(
-          <Spinner height={loader?.height} width={loader?.width} />
-        )}`
+        <>
+          {text}
+          <Loader height={loader?.height} width={loader?.width} />
+        </>
       ) : (
         text
       )}

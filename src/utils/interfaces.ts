@@ -25,3 +25,12 @@ export interface IUser {
   company: ICompany;
   username: string;
 }
+export interface IDevice { 
+  id: string;
+  asset_name: string;
+  company_id: string;
+  company: ICompany;
+  asset_type: string;
+  asset_capacity: number;
+  created_at: string;
+}

@@ -21,7 +21,7 @@ body {
     background-position: center;
 }
 .btn-primary {
-    @apply text-white transition ease-in-out delay-150 bg-primary-yellowMain hover:-translate-y-1 hover:scale-110 duration-300 px-4 py-2 rounded-lg
+    @apply text-white transition ease-in-out delay-150 bg-primary-yellowMain hover:-translate-y-1 hover:scale-110 duration-300 px-4 py-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed
 }
 .btn-secondary {
     @apply text-primary-blackMain transition ease-in-out delay-150 bg-white hover:-translate-y-1 hover:scale-110 duration-300 border border-primary-yellowMain px-4 py-2 rounded-lg

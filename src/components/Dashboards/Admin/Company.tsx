@@ -38,7 +38,7 @@ function Company({ company_id }: { company_id: any }) {
       case "Users":
         return <UsersTable/>;
       default:
-        return <DevicesTable />;
+        return <DevicesTable company_id={company_id} />;
     }
   };
   const activeUser = useAppSelector((state) => state.auth.user);
@@ -98,6 +98,7 @@ function Company({ company_id }: { company_id: any }) {
         enableOutsideClick={false}
       />
       <AddEmployeeModal
+        company_id={company_id}
         isModalOpen={isEmployeeModalOpen}
         closeModal={() => setIsEmployeeModalOpen(false)}
         enableOutsideClick={false}
