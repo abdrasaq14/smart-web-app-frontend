@@ -32,7 +32,7 @@ export const dummyData = [
   },
 ];
 
-function FinanceHome() {
+function FinanceHome({ company_id }: { company_id: string }) {
   return (
     <div
       className="flex flex-col items-start justify-center w-full"
@@ -65,7 +65,7 @@ function FinanceHome() {
       >
         <CustomerBreakDownChart />
         <FinancialPerformanceChart />
-        <PowerConsumptionChart />
+        <PowerConsumptionChart company_id={ company_id} />
       </div>
 
       <div

@@ -71,7 +71,7 @@ function AddEmployeeModal({
   const { mutate } = usePostData("/users", "POST", {
     onSuccess: (data) => {
       console.log("Device added successfully:", data);
-      enqueueSnackbar("Device has been added!", { variant: "success" });
+      enqueueSnackbar("User has been added!", { variant: "success" });
       resetForm();
       setSubmitting(false);
       closeModal();
@@ -133,12 +133,12 @@ function AddEmployeeModal({
           errorMessage={errors.email}
         />
         <AppSelect2
-          {...getFieldProps("asset_type")}
-          name="asset_type"
-          value={values.asset_type}
-          isErrored={!!errors.asset_type}
-          isTouched={!!touched.asset_type}
-          errorMessage={errors.asset_type}
+          {...getFieldProps("access_level")}
+          name="access_level"
+          value={values.access_level}
+          isErrored={!!errors.access_level}
+          isTouched={!!touched.access_level}
+          errorMessage={errors.access_level}
           label="Asset Type"
           options={accessLevelsOptions}
         />

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import StatsCard from "../../Cards/statsCard";
 import { CARD_GAP } from "../../../utils/constants";
@@ -17,10 +18,19 @@ const excludeCards = [
   "Pending Alerts",
 ];
 
-function Manager() {
-  const { data, isLoading, error } = useFetchData("/manager/cards-data", {
-    card_type: "manager_home",
-  });
+function Manager({ company_id }: { company_id: string }) {
+  const { data, isLoading, error } = useFetchData(
+    "/manager/cards-data",
+    {
+      card_type: "manager_home",
+      company_id,
+    },
+    {
+      // @ts-ignore
+      refreshInterval: 100000,
+      refetchOnMount: true,
+    }
+  );
   const [transformedData, setTransformedData] = useState<any[]>([]);
   useEffect(() => {
     if (data) {
@@ -56,18 +66,18 @@ function Manager() {
                 isLoading={true}
               />
             ))
-          : error ? (
-           Array.from({ length: 4 }).map((_, index) => (
+          : error
+          ? Array.from({ length: 4 }).map((_, index) => (
               <StatsCard
                 key={index}
                 title=""
                 value=""
                 isError={true}
-               isLoading={false}
-               cardErrorStyle="!h-[50px]"
+                isLoading={false}
+                cardErrorStyle="!h-[50px]"
               />
             ))
-          ) : transformedData.map(
+          : transformedData.map(
               (data, index) =>
                 !excludeCards.includes(data.label) && (
                   <div key={index}>
@@ -127,8 +137,8 @@ function Manager() {
           className="w-full max-w-[550px] xl:max-w-[30%] flex flex-col sm:flex-row "
           style={{ gap: CARD_GAP }}
         >
-          <RevenueByDistrictChart />
-          <PowerConsumptionChart />
+          <RevenueByDistrictChart company_id={company_id} />
+          <PowerConsumptionChart company_id={company_id} />
         </div>
       </div>
     </div>

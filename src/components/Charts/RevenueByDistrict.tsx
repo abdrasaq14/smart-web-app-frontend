@@ -12,12 +12,14 @@ interface DistrictData {
   percentage: number;
 }
 
-function RevenueByDistrictChart() {
+function RevenueByDistrictChart({company_id}: {company_id: string}) {
   const {
     data: powerConsumptionData,
     isLoading,
     error,
-  } = useFetchData("/operations/power-consumption-chart", {});
+  } = useFetchData("/operations/power-consumption-chart", {
+    company_id,
+  });
 
   const transformedData: DistrictData[] = useMemo(() => {
     if (!powerConsumptionData) return [];
@@ -39,7 +41,7 @@ function RevenueByDistrictChart() {
             <Loader />
           </div>
         ) : error ? (
-          <CardError message={ERRORMESSAGE} />
+          <CardError message={ERRORMESSAGE} style="!h-[100px]" />
         ) : transformedData.length ? (
           transformedData.map((district, idx) => (
             <DistrictBar

@@ -111,7 +111,7 @@ export const getSideBarItems = (role: string, path: string) => {
   if (role === "admin") {
     if (path.includes("finance"))
       return removeMyAccountForAdmin(financeSideBarItems);
-    if (path.includes("operations"))
+    if (path.includes("operation"))
       return removeMyAccountForAdmin(operationsSideBarItems);
     if (path.includes("senior-manager"))
       return removeMyAccountForAdmin(managerSideBarItems);
@@ -123,7 +123,7 @@ export const getSideBarItems = (role: string, path: string) => {
   if (role === "finance") {
     return financeSideBarItems;
   }
-  if (role === "operations") {
+  if (role === "operation") {
     return operationsSideBarItems;
   }
   return [];

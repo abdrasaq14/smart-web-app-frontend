@@ -16,6 +16,8 @@ import { useAppSelector } from "../../../store/hooks";
 import { useFetchData } from "../../../customHooks/useGetDashboardData";
 import { ICompany } from "../../../utils/interfaces";
 import BackButton from "../../feedBacks/BackButton";
+import Loader from "../../feedBacks/loader";
+import Loader2 from "../../feedBacks/loader2";
 
 const tabs = [
   "Overview",
@@ -31,11 +33,11 @@ function Company({ company_id }: { company_id: string }) {
     // switch tab
     switch (tab) {
       case "Overview":
-        return <Manager />;
+        return <Manager company_id={company_id} />;
       case "Operations":
-        return <Operations />;
+        return <Operations company_id={company_id} />;
       case "Finance":
-        return <FinanceHome />;
+        return <FinanceHome company_id={company_id} />;
       case "Users":
         return <UsersTable company_id={company_id} />;
       default:
@@ -64,9 +66,18 @@ function Company({ company_id }: { company_id: string }) {
     <div className="flex flex-col w-full" style={{ gap: CARD_GAP }}>
       <div className="flex gap-2 self-start justify-start items-center">
         <BackButton link="/dashboard/admin/companies" showBackText={false} />
-        <span className="text-primary-blackMain text-xl font-bold ml-2">
-          {companyDetails && companyDetails.name}
-        </span>
+        {isLoading ? (
+          <div className="">
+            <Loader2 />
+          </div>
+        ) : isError ? (
+          <div className="text-red-500">Error fetching company details</div>
+        ) : (
+          <span className="text-primary-blackMain text-xl font-bold ml-2">
+            {companyDetails && companyDetails.name}
+          </span>
+        )}
+
         <span className="text-primary-blackLighter ">{`>`} </span>
         <span className="text-primary-blackLighter">{activeTab}</span>
       </div>
