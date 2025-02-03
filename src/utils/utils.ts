@@ -34,7 +34,7 @@ export const operationsSideBarItems = (company_id: string) => [
     icon: HomeIcon,
   },
   {
-    label: "Site",
+    label: "Sites",
     link: `/dashboard/operations/sites/${company_id}`,
     icon: SiteIcon,
   },
@@ -325,6 +325,14 @@ export const getLabelFromValue = (value: string, currency: string) => {
       return "Current Load";
     case "total_consumption":
       return "Total Consumption";
+    case "total_consumption":
+      return "Total Consumption";
+    case "avg_availability":
+      return "Avg. Availability";
+    case "power_cuts":
+      return "Power Cuts";
+    case "overloaded_dts":
+      return "Overloaded DTS";
     default:
       return "Unknown";
   }

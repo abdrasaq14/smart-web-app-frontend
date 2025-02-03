@@ -41,11 +41,11 @@ const dashboardRoutes = [
         element: <CompanyPage />,
       },
       {
-        path: "admin/users",
+        path: "admin/users/:id",
         element: <UsersPage />,
       },
       {
-        path: "admin/devices",
+        path: "admin/devices/:id",
         element: <DevicesPAge />,
       },
       {
@@ -58,12 +58,12 @@ const dashboardRoutes = [
       },
       // operations
       {
-        path: "operations/sites",
-        element: <OperationsSitePage />,
+        path: "operations/site/:id",
+        element: <SitePage />,
       },
       {
         path: "operations/sites/:id",
-        element: <SitePage />,
+        element: <OperationsSitePage />,
       },
       {
         path: "operations/activity-log/:id",

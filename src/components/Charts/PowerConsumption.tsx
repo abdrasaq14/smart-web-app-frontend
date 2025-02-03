@@ -34,8 +34,11 @@ function PowerConsumptionByDistrictChart({company_id}: {company_id: string}) {
   }, [powerConsumptionData]);
 
   return (
-    <CardLayout title="Power Consumption" style="min-w-[300px] flex-1">
-      <div className="flex flex-col gap-6 h-[90%] w-full">
+    <CardLayout
+      title="Power Consumption"
+      style="min-w-[300px] flex-1 lg:max-w-[400px]"
+    >
+      <div className="flex flex-col gap-6 h-full w-full">
         {isLoading ? (
           <div className="flex justify-center items-center h-full w-full">
             <Loader />

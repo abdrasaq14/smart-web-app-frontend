@@ -15,7 +15,9 @@ function OperationSite() {
       className="flex flex-col w-full h-full min-h-full "
       style={{ gap: CARD_GAP }}
     >
-      <BackButton />
+      <div className="flex w-full">
+        <BackButton />
+      </div>
       <div
         className="grid w-full"
         style={{

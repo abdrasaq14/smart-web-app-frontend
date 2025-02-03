@@ -181,10 +181,12 @@ function SitesTable() {
         columnToStyle={0}
         columnCustomStyle={{ color: COLORS.PRIMARY }}
         makeRowClickable={true}
-        rowLink={(row) => `/operations/sites/${row.id}`}
+        rowLink={(row) => navigate(`/dashboard/operations/site/${row.id}`)}
         extraAction={true}
         actionType="openLink"
-        onActionClick={(row) => navigate(`${row.id}`)}
+        onActionClick={(row) =>
+          navigate(`/dashboard/operations/site/${row.id}`)
+        }
         extraActionIcon={<MdOpenInNew />}
       />
     </CardLayout>

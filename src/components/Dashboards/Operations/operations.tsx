@@ -37,10 +37,7 @@ export const dummyData = [
   },
 ];
 const excludeCards = [
-  "Unknown",
-  "Number of Users",
-  "Number of Sites",
-  "Pending Alerts",
+  "Unknown"
 ];
 function Operations({ company_id }: { company_id: string }) {
     const { data, isLoading, error } = useFetchData(
@@ -98,8 +95,9 @@ function Operations({ company_id }: { company_id: string }) {
                 cardErrorStyle="!h-[50px]"
               />
             ))
-          : transformedData && transformedData.map(
-              (data:any, index:any) =>
+          : transformedData &&
+            transformedData.map(
+              (data: any, index: any) =>
                 !excludeCards.includes(data.label) && (
                   <div key={index}>
                     <StatsCard
@@ -132,16 +130,21 @@ function Operations({ company_id }: { company_id: string }) {
           className="w-full gap-6 grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
           // style={{ gap: CARD_GAP }}
         >
-          {dummyData.slice(0, 2).map((data, idx) => (
-            <StatsCard
-              key={idx}
-              title={data.title}
-              value={data.value}
-              isError={data.isError}
-              isLoading={data.isLoading}
-              style="min-h-[200px]"
-            />
-          ))}
+          {transformedData &&
+            transformedData
+              .slice(0, 3)
+              .map(
+                (data, idx) =>
+                  !excludeCards.includes(data.label) && (
+                    <StatsCard
+                      key={idx}
+                      title={data.label}
+                      value={data.value as string}
+                      isError={!!error && !isLoading && !data}
+                      isLoading={isLoading}
+                    />
+                  )
+              )}
         </div>
       </div>
     </div>
