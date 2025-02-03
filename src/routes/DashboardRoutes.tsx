@@ -29,7 +29,7 @@ const dashboardRoutes = [
       //   element: <AdminIndexPage />,
       // },
       {
-        path: "admin/home",
+        path: "admin/home/:id",
         element: <AdminHomePage />,
       },
       {
@@ -53,7 +53,7 @@ const dashboardRoutes = [
         element: <AccountPage />,
       },
       {
-        path: "operations/home",
+        path: "operations/home/:id",
         element: <OperationsPage />,
       },
       // operations
@@ -66,13 +66,13 @@ const dashboardRoutes = [
         element: <SitePage />,
       },
       {
-        path: "operations/activity-log",
+        path: "operations/activity-log/:id",
         element: <ActivityLogPage />,
       },
 
       // finance
       {
-        path: "finance/home",
+        path: "finance/home/:id",
         element: <FinancePage />,
       },
       {
@@ -82,7 +82,7 @@ const dashboardRoutes = [
 
       // Senior Manager
       {
-        path: "senior-manager/home",
+        path: "senior-manager/home/:id",
         element: <ManagerHomePage />,
       },
     ],

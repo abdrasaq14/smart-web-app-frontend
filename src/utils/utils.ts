@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import HomeIcon from "../icons/Home";
 import SiteIcon from "../icons/Site";
 import ActivityLogIcon from "../icons/ActivityLog";
@@ -9,15 +10,15 @@ import CompaniesIcon from "../icons/Companies";
 import UsersIcon from "../icons/Users";
 import DevicesIcon from "../icons/Devices";
 
-const financeSideBarItems = [
+const financeSideBarItems = (company_id: string) => [
   {
     label: "Home",
-    link: "/dashboard/finance/home",
+    link: `/dashboard/finance/home/${company_id}`,
     icon: HomeIcon,
   },
   {
     label: "Transactions",
-    link: "/dashboard/finance/transactions",
+    link: `/dashboard/finance/transactions/${company_id}`,
     icon: TransactionsIcon,
   },
   {
@@ -26,20 +27,20 @@ const financeSideBarItems = [
     icon: MyAccountIcon,
   },
 ];
-export const operationsSideBarItems = [
+export const operationsSideBarItems = (company_id: string) => [
   {
     label: "Home",
-    link: "/dashboard/operations/home",
+    link: `/dashboard/operations/home/${company_id}`,
     icon: HomeIcon,
   },
   {
     label: "Site",
-    link: "/dashboard/operations/sites",
+    link: `/dashboard/operations/sites/${company_id}`,
     icon: SiteIcon,
   },
   {
     label: "Activity Log",
-    link: "/dashboard/operations/activity-log",
+    link: `/dashboard/operations/activity-log/${company_id}`,
     icon: ActivityLogIcon,
   },
   {
@@ -49,52 +50,52 @@ export const operationsSideBarItems = [
   },
 ];
 
-export const managerSideBarItems = [
+export const managerSideBarItems = (company_id: string) => [
   {
     label: "Home",
-    link: "/dashboard/senior-manager/hom",
+    link: `/dashboard/senior-manager/home/${company_id}`,
     icon: HomeIcon,
   },
   {
     label: "Operations",
-    link: "/dashboard/operations/home",
+    link: `/dashboard/operations/home/${company_id}`,
     icon: OperationsIcon,
   },
   {
     label: "Finance",
-    link: "/dashboard/finance/home",
+    link: `/dashboard/finance/home/${company_id}`,
     icon: FinanceIcon,
   },
   {
     label: "Activity Log",
-    link: "/dashboard/operations/activity-log",
+    link: `/dashboard/operations/activity-log/${company_id}`,
     icon: ActivityLogIcon,
   },
   {
     label: "My Account",
-    link: "/dashboard/my-account",
+    link: `/dashboard/my-account`,
     icon: MyAccountIcon,
   },
 ];
-export const adminSideBarItems = [
+export const adminSideBarItems = (company_id: string) => [
   {
     label: "Home",
-    link: "/dashboard/admin/home",
+    link: `/dashboard/admin/home/${company_id}`,
     icon: HomeIcon,
   },
   {
     label: "Companies",
-    link: "/dashboard/admin/companies",
+    link: `/dashboard/admin/companies/${company_id}`,
     icon: CompaniesIcon,
   },
   {
     label: "Users",
-    link: "/dashboard/admin/users",
+    link: `/dashboard/admin/users/${company_id}`,
     icon: UsersIcon,
   },
   {
     label: "Devices",
-    link: "/dashboard/admin/devices",
+    link: `/dashboard/admin/devices/${company_id}`,
     icon: DevicesIcon,
   },
   {
@@ -107,24 +108,24 @@ export const adminSideBarItems = [
 const removeMyAccountForAdmin = (items: any[]) => {
   return items.filter((item) => item.label !== "My Account");
 };
-export const getSideBarItems = (role: string, path: string) => {
+export const getSideBarItems = (role: string, path: string, company_id: string) => {
   if (role === "admin") {
     if (path.includes("finance"))
-      return removeMyAccountForAdmin(financeSideBarItems);
+      return removeMyAccountForAdmin(financeSideBarItems(company_id));
     if (path.includes("operation"))
-      return removeMyAccountForAdmin(operationsSideBarItems);
+      return removeMyAccountForAdmin(operationsSideBarItems(company_id));
     if (path.includes("senior-manager"))
-      return removeMyAccountForAdmin(managerSideBarItems);
-    return adminSideBarItems;
+      return removeMyAccountForAdmin(managerSideBarItems(company_id));
+    return adminSideBarItems(company_id);
   }
   if (role === "manager") {
-    return managerSideBarItems;
+    return managerSideBarItems(company_id);
   }
   if (role === "finance") {
-    return financeSideBarItems;
+    return financeSideBarItems(company_id);
   }
   if (role === "operation") {
-    return operationsSideBarItems;
+    return operationsSideBarItems(company_id);
   }
   return [];
 };

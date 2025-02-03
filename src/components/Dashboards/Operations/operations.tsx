@@ -2,12 +2,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import StatsCard from "../../Cards/statsCard";
 import { CARD_GAP } from "../../../utils/constants";
-import DoughNutChart from "../../Charts/SiteMonitored";
+import SiteMonitoredChart from "../../Charts/SiteMonitored";
 import LoadProfileChart from "../../Charts/LoadProfileChart";
 import PowerConsumptionChart from "../../Charts/PowerConsumption";
 import AlertHistoryTable from "../../Table/AlertHistoryTable";
 import { useFetchData } from "../../../customHooks/useGetDashboardData";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { mapResponseToLabelValue } from "../../../utils/utils";
 
 export const dummyData = [
   {
@@ -54,9 +55,11 @@ function Operations({ company_id }: { company_id: string }) {
         refetchOnMount: true,
       }
   );
-    const transformedData:any = useMemo(() => {
+  const [transformedData, setTransformedData] = useState<any[]>([]);
+    
+    useMemo(() => {
       if (data) {
-        return data;
+        return setTransformedData(mapResponseToLabelValue(data));
       }
       return null;
     }, [company_id, data]);
@@ -115,8 +118,8 @@ function Operations({ company_id }: { company_id: string }) {
         className="flex flex-wrap justify-center w-full"
         style={{ gap: CARD_GAP }}
       >
-        <DoughNutChart />
-        <LoadProfileChart />
+        <SiteMonitoredChart company_id={company_id} />
+        <LoadProfileChart company_id={company_id} />
         <PowerConsumptionChart company_id={company_id} />
       </div>
 

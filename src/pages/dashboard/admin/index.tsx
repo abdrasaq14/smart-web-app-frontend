@@ -3,9 +3,9 @@ import { useAppSelector } from "../../../store/hooks";
 import { selectAuthSlice } from "../../../store/authSlice";
 
 function AdminIndexPage() {
-  const isAuthenticated = useAppSelector(selectAuthSlice);
+  const userInfo = useAppSelector(selectAuthSlice);
   return (
-    <AdminIndex name={ isAuthenticated.user?.last_name || 'John'} />
+    <AdminIndex name={userInfo.user?.last_name || 'John'} company_id={userInfo.user?.company.id as string } />
   )
 }
 

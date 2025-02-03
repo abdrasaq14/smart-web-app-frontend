@@ -23,7 +23,7 @@ function DashboardLayout() {
     <GeneralLayout>
       <div className="h-full">
         <DashboardSidenav
-          items={getSideBarItems(user?.access_level as ROLE, location.pathname)}
+          items={getSideBarItems(user?.access_level as ROLE, location.pathname, user?.company?.id as string)}
           isOpen={isSidebarOpen}
           toggleNav={toggleNav}
         />

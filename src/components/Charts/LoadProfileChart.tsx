@@ -1,13 +1,30 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import CardLayout from "../Cards/CardLayout";
 import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../feedBacks/loader";
-import { ERRORMESSAGE } from "../../utils/utils";
+import { ERRORMESSAGE, NODATAMESSAGE } from "../../utils/utils";
+import CardError from "../feedBacks/CardError";
+import NoContent from "../feedBacks/NoContent";
+interface ILoadProfileData {
+  dataset: [number, number][];
+}
+const LoadProfileChart = ({ company_id }: { company_id: string }) => {
+  const { data, isLoading, error } = useFetchData("/operations/profile-chart", {
+    company_id,
+  });
 
-const LoadProfileChart = () => {
-  const { data, isLoading, error } = useFetchData("/operations/profile-chart");
+  const [loadprofileData, setLoadProfileData] = useState<[number, number][]>(
+    []
+  );
+
+  useMemo(() => {
+    if (!(data as ILoadProfileData)?.dataset) return;
+    const dataset = (data as ILoadProfileData).dataset;
+    setLoadProfileData(dataset);
+  }, [data]);
+
   const [selectedValue, setSelectedValue] = useState(30); // Set default value as 30 (30 Days)
   const filter = [
     { key: "30 Days", value: 30 },
@@ -20,22 +37,10 @@ const LoadProfileChart = () => {
   const handleChange = (e: any) => {
     setSelectedValue(parseInt(e.target.value)); // Update selected value
   };
-  const newData = [
-    [0, 120.3],
-    [6, 110],
-    [12, 105],
-    [18, 130],
-    [24, 150],
-    [30, 175],
-    [36, 132],
-    [42, 180],
-    [48, 195],
-    [54, 104.3],
-  ];
 
   const options = {
     dataset: {
-      source: [["time", "profile"], ...newData],
+      source: [["time", "profile"], ...loadprofileData],
     },
     xAxis: {
       type: "category",
@@ -90,23 +95,6 @@ const LoadProfileChart = () => {
     ],
   };
 
-  const renderBody = () => {
-    if (isLoading) {
-      return (
-        <div className="flex justify-center items-center h-full w-full">
-          <Loader />
-        </div>
-      );
-    } else if (error) {
-      return (
-        <div className="flex flex-col  justify-center items-center h-full w-full">
-          {ERRORMESSAGE}
-        </div>
-      );
-    } else {
-      return <ReactECharts option={options} style={{ height: 400 }} />;
-    }
-  };
 
   return (
     <CardLayout title="Load Profile (KW)" style="min-w-[400px] flex-1">
@@ -128,7 +116,17 @@ const LoadProfileChart = () => {
             </option>
           ))}
         </select>
-        {renderBody()}
+        {isLoading ? (
+          <div className="flex justify-center items-center h-full w-full">
+            <Loader />
+          </div>
+        ) : error ? (
+          <CardError message={ERRORMESSAGE} style="!h-[100px]" />
+        ) : loadprofileData.length ? (
+          <ReactECharts option={options} />
+        ) : (
+          <NoContent message={NODATAMESSAGE} />
+        )}
       </div>
     </CardLayout>
   );

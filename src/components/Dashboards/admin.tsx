@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { FaUserTie, FaHardHat, FaChartLine } from "react-icons/fa";
 import { RiAdminFill } from "react-icons/ri";
 
-function AdminIndex({name}: {name: string}) {
+function AdminIndex({name, company_id}: {name: string, company_id: string}) {
   return (
     <div className="flex flex-col items-center justify-center mt-10  bg-[#FDFDFD] gap-4 p-8 rounded-[20px] border border-[#77777733] min-h-[250px] max-w-[850px] mx-auto">
       <h2 className="lg:self-start text-2xl font-semibold text-gray-700">
@@ -15,25 +15,25 @@ function AdminIndex({name}: {name: string}) {
           title="Senior Manager"
           icon={<FaUserTie size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/senior-manager/home"
+          to={`/dashboard/senior-manager/home/${company_id}`}
         />
         <PermissionCard
           title="Operations"
           icon={<FaHardHat size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/operations/home"
+          to={`/dashboard/operations/home/${company_id}`}
         />
         <PermissionCard
           title="Finance"
           icon={<FaChartLine size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/finance/home"
+          to={`/dashboard/finance/home/${company_id}`}
         />
         <PermissionCard
           title="Admin"
           icon={<RiAdminFill size={40} />}
           bgColor="bg-primary-yellowMain"
-          to="/dashboard/admin/home"
+          to={`/dashboard/admin/home/${company_id}`}
         />
       </div>
 
