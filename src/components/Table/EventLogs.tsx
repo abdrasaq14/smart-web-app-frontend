@@ -77,7 +77,11 @@ const EventLogTable = () => {
         columnToStyle={1}
         columnCustomStyle={{ color: "#EE4033" }}
         onActionClick={handleActionClick}
+           totalCount={20}
+        page={1}
+        onPageChange={(page) => console.log(page)}
       />
+
     </CardLayout>
   );
 };

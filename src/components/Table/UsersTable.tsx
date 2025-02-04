@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React from "react";
 import TableTemplate from "./Table";
@@ -20,12 +21,13 @@ const columns = [
   "Time/Date",
 ];
 
-const UsersTable = ({company_id}: {company_id?: string}) => {
-  const { data, isLoading, error } = useFetchData(
+const UsersTable = ({ company_id }: { company_id?: string }) => {
+  const ROWS_PER_PAGE = 7;
+  const { data, isLoading, error }: any = useFetchData(
     "/users",
     {
       page: 1,
-      page_size: 7,
+      page_size: ROWS_PER_PAGE,
       company_id,
     },
     // @ts-ignore
@@ -36,7 +38,7 @@ const UsersTable = ({company_id}: {company_id?: string}) => {
     }
   );
   console.log("CompanyData", data);
-  const tableData = React.useMemo(() => { 
+  const tableData = React.useMemo(() => {
     // @ts-ignore
     return data?.results.map((item: IUser) => ({
       id: item.id,
@@ -48,12 +50,13 @@ const UsersTable = ({company_id}: {company_id?: string}) => {
       "Time/Date": formatDateForDisplay(item.created_at),
     }));
   }, [data, company_id]);
-    
-   
-  const handleActionClick = (row: { [key: string]: string | number }) => {
-    alert(`Action triggered for ${row.name}`);
+
+  const [page, setPage] = React.useState(1);
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
   };
   const [editUserModal, setEditUserModal] = React.useState(false);
+  const [userDetails, setUserDetails] = React.useState<IUser | null>(null);
   return (
     <CardLayout title="" style="min-w-[550px] flex-1">
       {isLoading ? (
@@ -71,20 +74,26 @@ const UsersTable = ({company_id}: {company_id?: string}) => {
           extraAction={true}
           extraActionIcon={<FiMoreVertical />}
           actionType="showPopUp"
-          extraActionPopUpContent={
+          extraActionPopUpContent={(row:IUser) => (
             <>
               <span className="w-full flex items-center justify-center cursor-pointer hover:bg-primary-blackLighter2 hover:rounded-full hover:px-4 hover:py-1">
                 Delete
               </span>
               <span
-                onClick={() => setEditUserModal(true)}
+                onClick={() => {
+                  setEditUserModal(true);
+                  setUserDetails(row);
+                }}
                 className="w-full flex items-center justify-center cursor-pointer hover:bg-primary-blackLighter2 hover:rounded-full hover:px-4 hover:py-1"
               >
                 Modify
               </span>
             </>
-          }
-          // onActionClick={handleActionClick}
+          )}
+          totalCount={data?.total_pages}
+          page={page}
+          onPageChange={handlePageChange}
+          rowsPerPage={ROWS_PER_PAGE}
         />
       )}
 

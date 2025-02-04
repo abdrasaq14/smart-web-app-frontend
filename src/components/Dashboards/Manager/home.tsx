@@ -9,7 +9,7 @@ import AlertHistoryTable from "../../Table/AlertHistoryTable";
 import SiteLocationMap from "./Map";
 import { useFetchData } from "../../../customHooks/useGetDashboardData";
 import { mapResponseToLabelValue } from "../../../utils/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import RevenueByDistrictChart from "../../Charts/RevenueByDistrict";
 const excludeCards = [
   "Unknown",
@@ -32,17 +32,11 @@ function Manager({ company_id }: { company_id: string }) {
     }
   );
   const [transformedData, setTransformedData] = useState<any[]>([]);
-  useEffect(() => {
+  useMemo(() => {
     if (data) {
       setTransformedData(mapResponseToLabelValue(data));
     }
   }, [data]);
-  const {
-    data: PowerConsumptionData,
-    isLoading: PowerConsumptionIsLoading,
-    error: PowerConsumptionError,
-  } = useFetchData("/operations/power-consumption-chart", {});
-  // const { data: RevenueByDistrictData, isLoading: RevenueByDistrictIsLoading, error: RevenueByDistrictError } = useFetchData("/manager/revenue-by-district", {})
   return (
     <div
       className="flex flex-col items-start justify-center w-full"
@@ -103,7 +97,7 @@ function Manager({ company_id }: { company_id: string }) {
         >
           <SiteLocationMap />
           <div
-            className="w-full grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))] !justify-start !items-start"
+            className="w-full grid min-w-full lg:min-w-[250px] grid-cols-[repeat(auto-fit,minmax(150px,350px))] !justify-start !items-start"
             style={{ gap: CARD_GAP }}
           >
             {isLoading

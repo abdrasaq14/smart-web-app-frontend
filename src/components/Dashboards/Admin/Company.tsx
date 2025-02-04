@@ -120,6 +120,7 @@ function Company({ company_id }: { company_id: string }) {
         isModalOpen={isDeviceModalOpen}
         closeModal={() => setIsDeviceModalOpen(false)}
         enableOutsideClick={false}
+        type="add"
       />
       <AddEmployeeModal
         company_id={company_id}

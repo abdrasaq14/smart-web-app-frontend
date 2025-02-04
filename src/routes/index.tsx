@@ -8,11 +8,11 @@ const routes = [
   ...authRoutes,
   ...dashboardRoutes,
   ...adminRoutes,
-  // {
-  //   path: "*",
-  //   element: <Navigate to="/auth/login" replace />,
-  //   children: []
-  // },
+  {
+    path: "*",
+    element: <Navigate to="/auth/login" replace />,
+    children: []
+  },
 ];
 
 export default routes;

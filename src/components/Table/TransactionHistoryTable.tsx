@@ -70,7 +70,10 @@ const TransactionHistoryTable = () => {
       <TableTemplate
         data={tableData}
         columns={columns}
-        styleCell={styleCell} // Apply conditional cell styling based on value
+        styleCell={styleCell}
+        totalCount={20}
+        page={1}
+        onPageChange={(page) => console.log(page)}
       />
     </CardLayout>
   );

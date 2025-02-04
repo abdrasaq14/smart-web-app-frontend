@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -11,6 +12,7 @@ import { AiOutlineMore } from "react-icons/ai";
 import CardLayout from "../Cards/CardLayout";
 import { TablePagination } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { IDevice } from "../../utils/interfaces";
 interface TableRowData {
   [key: string]: string | number;
 }
@@ -23,11 +25,15 @@ interface TableTemplateProps {
   extraAction?: boolean;
   onActionClick?: (row: TableRowData) => void;
   actionType?: "openLink" | "showPopUp";
-  extraActionPopUpContent?: React.ReactNode;
+  extraActionPopUpContent?: (row: any) => React.ReactNode;
   makeRowClickable?: boolean;
   rowLink?: string | ((row: TableRowData) => void);
   extraActionIcon?: React.ReactNode;
   styleCell?: (value: string | number, column: string) => React.CSSProperties; // Custom style for individual cells
+  totalCount: number;
+  rowsPerPage?: number;
+  page?: number;
+  onPageChange?: (page: number) => void;
 }
 
 const TableTemplate: React.FC<TableTemplateProps> = ({
@@ -43,6 +49,10 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
   actionType,
   extraActionIcon = <AiOutlineMore />,
   styleCell,
+  rowsPerPage = 7,
+  page =1,
+  onPageChange,
+  totalCount,
 }) => {
   const navigate = useNavigate();
   const [visiblePopUpIndex, setVisiblePopUpIndex] = React.useState<
@@ -69,8 +79,16 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
   }, []);
   return (
     <>
-      <TableContainer component={Paper} className="overflow-y-visible">
-        <Table aria-label="dynamic table" className="overflow-y-visible">
+      <TableContainer
+        component={Paper}
+        className="!overflow-y-visible"
+        style={{ overflow: "visible" }}
+      >
+        <Table
+          aria-label="dynamic table"
+          className="!overflow-y-visible"
+          style={{ overflow: "visible" }}
+        >
           <TableHead>
             <TableRow>
               {columns.map((column, index) => (
@@ -102,11 +120,11 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
               )}
             </TableRow>
           </TableHead>
-          <TableBody className="overflow-y-visible">
+          <TableBody className="!overflow-y-visible">
             {data.map((row, rowIndex) => (
               <TableRow
                 key={rowIndex}
-                className="overflow-y-visible"
+                className="!overflow-y-visible"
                 sx={{ "&:last-child td, &:last-child th": { border: "none" } }}
               >
                 {columns.map((column, colIndex) => {
@@ -160,7 +178,7 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
                         ref={popUpRef}
                         className="absolute right-[5px] z-10 bottom-[-70px] flex text-sm items-center justify-center gap-4 p-2 flex-col min-w-[8rem] min-h-[5rem] bg-white rounded-lg shadow-md border border-primary-border"
                       >
-                        {extraActionPopUpContent}
+                        {extraActionPopUpContent && extraActionPopUpContent(row)}
                       </div>
                     )}
                   </TableCell>
@@ -171,13 +189,20 @@ const TableTemplate: React.FC<TableTemplateProps> = ({
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[15]}
+        rowsPerPageOptions={[rowsPerPage]}
         component="div"
-        count={data.length}
-        rowsPerPage={7}
-        page={1}
-        onPageChange={() => {}}
-        onRowsPerPageChange={() => {}}
+        count={totalCount}
+        rowsPerPage={rowsPerPage}
+        page={page - 1}
+        onPageChange={(event, newPage) => onPageChange?.(newPage + 1)} // Convert back to one-based
+        backIconButtonProps={{
+          // disabled: page <= 1,
+          onClick: () => onPageChange && onPageChange(page - 1),
+        }}
+        nextIconButtonProps={{
+          // disabled: page >= Math.ceil(totalCount / rowsPerPage),
+          onClick: () => onPageChange && onPageChange(page + 1),
+        }}
       />
     </>
   );

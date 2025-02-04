@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, { useMemo } from "react";
 import CardLayout from "../Cards/CardLayout";
@@ -15,11 +16,13 @@ const columns = ["Companies", "Date", "Users", "Phone Number", "Email address"];
 
 // TypeScript interface for company data
 
-
 function CompaniesTable() {
-  const { data, isLoading, error } = useFetchData("/companies", {
-    page: 1,
-    page_size: 7,
+  const [page, setPage] = React.useState(1);
+
+  const ROWS_PER_PAGE = 7;
+  const { data, isLoading, error }: any = useFetchData("/companies", {
+    page,
+    page_size: ROWS_PER_PAGE,
   });
 
   const navigate = useNavigate();
@@ -37,6 +40,9 @@ function CompaniesTable() {
     }));
   }, [data]);
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
   // Single return statement using ternary operators
   return (
     <CardLayout title={"Companies"} style="min-w-[450px] flex-1">
@@ -56,6 +62,10 @@ function CompaniesTable() {
           columnCustomStyle={{ color: COLORS.PRIMARY }}
           makeRowClickable={true}
           rowLink={(row) => navigate(`${row.id}`)}
+          totalCount={data?.total_pages}
+          page={page}
+          onPageChange={handlePageChange}
+          rowsPerPage={ROWS_PER_PAGE}
         />
       )}
     </CardLayout>

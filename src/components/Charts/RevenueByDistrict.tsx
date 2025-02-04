@@ -35,7 +35,7 @@ function RevenueByDistrictChart({company_id}: {company_id: string}) {
 
   return (
     <CardLayout title="Revenue" style="min-w-[300px] flex-1">
-      <div className="flex flex-col gap-6 h-[90%] w-full">
+      <div className="flex flex-col gap-6 h-full w-full">
         {isLoading ? (
           <div className="flex justify-center items-center h-full w-full">
             <Loader />

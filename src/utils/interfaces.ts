@@ -32,4 +32,11 @@ export interface IDevice {
   asset_type: string;
   asset_capacity: number;
   created_at: string;
+  gateway_serial: string;
+  tariff: string;
+  transformer_year_of_manufacture: string;
+  address_of_tfo: string;
+  type_of_position: string;
+  nature_of_position: string;
+  co_ordinate: string;
 }
