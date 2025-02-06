@@ -54,7 +54,7 @@ function Operations({ company_id }: { company_id: string }) {
       }
   );
   const [transformedData, setTransformedData] = useState<any[]>([]);
-    
+    console.log('operattttttttttttt', data)
     useMemo(() => {
       if (data) {
         return setTransformedData(mapResponseToLabelValue(data));
