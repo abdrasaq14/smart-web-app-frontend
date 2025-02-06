@@ -20,7 +20,9 @@ function CompaniesTable() {
   const [page, setPage] = React.useState(1);
 
   const ROWS_PER_PAGE = 7;
-  const { data, isLoading, error }: any = useFetchData("/companies", {
+  const { data, isLoading, error }: any = useFetchData(
+    ["/companies", "fetchAllCompanies"],
+    "/companies", {
     page,
     page_size: ROWS_PER_PAGE,
   });

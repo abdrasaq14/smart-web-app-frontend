@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useMemo, useState } from "react";
 import AppModal from "../feedBacks/AppModal";
 import { CARD_TITLE } from "../../utils/constants";
-import AppDateInput from "../Inputs/AppDate";
 import { ButtonType, TextInputType } from "../../enums/componentEnums";
 import AnimatedInput from "../Inputs/AppAnimatedInput";
 import AppButton from "../Inputs/AppButton";
@@ -14,6 +14,8 @@ import { enqueueSnackbar } from "notistack";
 import { assetTypeOptions } from "../../utils/utils";
 import YearPicker from "../Inputs/DatePickerCustom";
 import { IDevice } from "../../utils/interfaces";
+import { useQueryClient } from "@tanstack/react-query";
+
 
 function AddDeviceModal({
   isModalOpen,
@@ -30,32 +32,33 @@ function AddDeviceModal({
   company_id?: string;
   type: "add" | "edit";
   data?: IDevice;
-}) {
+  }) {
+  const queryClient = useQueryClient();
   console.log("DataFromData", data);
   const transformDateToYear = (date: any) =>
     date instanceof Date ? date.getFullYear() : date;
 
-const initialValues =
-  type === "edit" && data
-    ? {
-        ...data,
-        transformer_year_of_manufacture: transformDateToYear(
-          data.transformer_year_of_manufacture
-        ),
-      }
-    : {
-        asset_name: "",
-        asset_type: assetTypeOptions[0].value,
-        asset_capacity: "",
-        gateway_serial: "",
-        tariff: "",
-        transformer_year_of_manufacture: "",
-        address_of_tfo: "",
-        type_of_position: "",
-        nature_of_position: "",
-        company_id,
-        co_ordinate: "",
-      };
+  const initialValues =
+    type === "edit" && data
+      ? {
+          ...data,
+          transformer_year_of_manufacture: transformDateToYear(
+            data.transformer_year_of_manufacture
+          ),
+        }
+      : {
+          asset_name: "",
+          asset_type: assetTypeOptions[0].value,
+          asset_capacity: "",
+          gateway_serial: "",
+          tariff: "",
+          transformer_year_of_manufacture: "",
+          address_of_tfo: "",
+          type_of_position: "",
+          nature_of_position: "",
+          company_id,
+          co_ordinate: "",
+        };
 
   const validationSchema = Yup.object({
     asset_name: Yup.string().required("Device name is required"),
@@ -64,7 +67,10 @@ const initialValues =
     address_of_tfo: Yup.string().required("Address of TFO is required"),
     type_of_position: Yup.string().required("Type of position is required"),
     nature_of_position: Yup.string().required("Nature of position is required"),
-    company_id: type === "edit" ? Yup.string() : Yup.string().required("Company ID is required"),
+    company_id:
+      type === "edit"
+        ? Yup.string()
+        : Yup.string().required("Company ID is required"),
     gateway_serial: Yup.string().required("Gateway serial is required"),
     tariff: Yup.number().required("Tariff is required"),
     transformer_year_of_manufacture: Yup.string().required(
@@ -75,6 +81,7 @@ const initialValues =
   const onSubmit = (values: any) => {
     console.log(values);
     mutate(values);
+    // type === "edit" ? mutate({...values, company_id: data?.company.id}) : mutate(values);
     // actions.resetForm(); // Reset the form after submission
   };
   const {
@@ -87,36 +94,44 @@ const initialValues =
     setFieldValue,
     resetForm,
     setSubmitting,
-    setValues
+    setValues,
   } = useCustomFormik({ initialValues, validationSchema, onSubmit });
   console.log("DataFromData2", values);
   console.log("FormErrors:", isSubmitting, errors, values);
-  const { mutate } = usePostData("/devices", type === 'edit' ? 'PUT' : 'POST', {
-    onSuccess: (data) => {
-      console.log("Device added successfully:", data);
-      enqueueSnackbar(
-        type === "edit" ? "Device updated" : '"Device added!"',
-        { variant: "success" }
-      );
-      resetForm();
-      setSubmitting(false);
-      closeModal();
-    },
-    onError: (err) => {
-      console.error("Error adding Device:", err);
-      const errorMessages = Object.values(err.response?.data || {})
-        .flat() // Flatten arrays of errors
-        .join(" "); // Join all messages into a single string
-      enqueueSnackbar(errorMessages || "Error adding Device", {
-        variant: "error",
-      });
-      setSubmitting(false);
-    },
-  });
-  useEffect(() => { 
+  const { mutate } = usePostData(
+    type === "edit" ? `/devices/${data?.id}` : "/devices",
+    type === "edit" ? "PUT" : "POST",
+    {
+      onSuccess: (data) => {
+        console.log("Device added successfully:", data);
+        queryClient.invalidateQueries({
+          queryKey: ["/devices", 'fetchAllDevices'],
+        });
+        enqueueSnackbar(
+          type === "edit" ? "Device updated" : '"Device added!"',
+          { variant: "success" }
+        );
+        resetForm();
+        setSubmitting(false);
+        closeModal();
+      },
+      onError: (err) => {
+        console.error("Error adding Device:", err);
+        const errorMessages = Object.values(err.response?.data || {})
+          .flat() // Flatten arrays of errors
+          .join(" "); // Join all messages into a single string
+        enqueueSnackbar(errorMessages || "Error adding Device", {
+          variant: "error",
+        });
+        setSubmitting(false);
+      },
+    }
+  );
+  useEffect(() => {
     if (type === "edit" && data) {
       setValues({
         ...data,
+        company_id: data.company.id,
         transformer_year_of_manufacture: transformDateToYear(
           data.transformer_year_of_manufacture
         ),

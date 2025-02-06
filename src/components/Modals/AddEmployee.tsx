@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppModal from "../feedBacks/AppModal";
 import { CARD_TITLE } from "../../utils/constants";
 import AppDateInput from "../Inputs/AppDate";
@@ -12,27 +12,29 @@ import { enqueueSnackbar } from "notistack";
 import { usePostData } from "../../customHooks/usePostData";
 import AppSelect2 from "../Inputs/AppSelect2";
 import { accessLevelsOptions } from "../../utils/utils";
+import { IUser } from "../../utils/interfaces";
+import { useQueryClient } from "@tanstack/react-query";
 function AddEmployeeModal({
   isModalOpen,
   closeModal,
   enableOutsideClick = true,
   company_id,
-}: // data
+  type,
+  data,
+}:
 {
   isModalOpen: boolean;
   closeModal: () => void;
     enableOutsideClick?: boolean;
-  company_id: string;
-  // data: {
-  //   name: string;
-  //   employee_id: string;
-  //   phone_no: string;
-  //   email: string;
-  //   department: string;
-  //   access_level: string;
-  // };
-}) {
-  const initialValues = {
+  company_id?: string;
+    type: "add" | "edit";
+  data?: IUser;
+  }) {
+  console.log("USerFromData", data);
+  const queryClient = useQueryClient();
+  const initialValues = type === "edit" && data ? {
+    ...data,
+  } :{
     first_name: "",
     last_name: "",
     employee_id: "",
@@ -63,37 +65,55 @@ function AddEmployeeModal({
     errors,
     touched,
     isSubmitting,
-    setFieldValue,
+    setValues,
     resetForm,
     setSubmitting,
   } = useCustomFormik({ initialValues, validationSchema, onSubmit });
 
-  const { mutate } = usePostData("/users", "POST", {
-    onSuccess: (data) => {
-      console.log("Device added successfully:", data);
-      enqueueSnackbar("User has been added!", { variant: "success" });
-      resetForm();
-      setSubmitting(false);
-      closeModal();
-    },
-    onError: (err) => {
-      console.error("Error adding Device:", err);
-      const errorMessages = Object.values(err.response?.data || {})
-        .flat() // Flatten arrays of errors
-        .join(" "); // Join all messages into a single string
-      enqueueSnackbar(errorMessages || "Error adding Device", {
-        variant: "error",
+  const { mutate } = usePostData(
+    type === "edit" ? `/users/${data?.id}` : "/users",
+    type === "edit" ? "PUT" : "POST",
+    {
+      onSuccess: (data) => {
+        console.log("Device added successfully:", data);
+        queryClient.invalidateQueries({
+          queryKey: ["/users", 'fetchAllUsers'],
+        });
+        enqueueSnackbar("User has been added!", { variant: "success" });
+        resetForm();
+        setSubmitting(false);
+        closeModal();
+      },
+      onError: (err) => {
+        console.error("Error adding Device:", err);
+        const errorMessages = Object.values(err.response?.data || {})
+          .flat() // Flatten arrays of errors
+          .join(" "); // Join all messages into a single string
+        enqueueSnackbar(errorMessages || "Error adding Device", {
+          variant: "error",
+        });
+        setSubmitting(false);
+      },
+    }
+  );
+
+  useEffect(() => { 
+    if (type === "edit" && data) {
+      setValues({
+        ...data,
+        company_id: data.company.id,
       });
-      setSubmitting(false);
-    },
-  });
+    }
+  }, [data]);
   return (
     <AppModal
       isOpen={isModalOpen}
       onClose={closeModal}
       closeOnOutsideClick={enableOutsideClick} // Enable/disable outside click close
     >
-      <h2 className={CARD_TITLE}>Add Employee</h2>
+      <h2 className={CARD_TITLE}>
+        {type === "edit" ? "Edit user" : "Add Employee"}
+      </h2>
       <div className="gap-6 flex flex-col items-start">
         <AnimatedInput
           {...getFieldProps("first_name")}
@@ -128,6 +148,7 @@ function AddEmployeeModal({
         <AnimatedInput
           {...getFieldProps("email")}
           placeholder="Employee email address"
+          disabled={type === "edit"}
           isErrored={!!errors.email}
           isTouched={!!touched.email}
           errorMessage={errors.email}
@@ -144,7 +165,9 @@ function AddEmployeeModal({
         />
         <AppButton
           style={"w-full mt-4"}
-          text={isSubmitting ? "" : "Add Employee"}
+          text={
+            isSubmitting ? "" : type === "edit" ? "Save Changes" : "Add Employee"
+          }
           loader={{
             loading: isSubmitting,
             height: 4,

@@ -24,7 +24,7 @@ function SitesTable({ company_id }: { company_id: string }) {
   const [page, setPage] = React.useState(1);
   const ROWS_PER_PAGE = 7;
 
-  const { data, isLoading, error }: any = useFetchData("/devices", {
+  const { data, isLoading, error }: any = useFetchData(['/devices', 'fetchAllDevices'], "/devices", {
     page,
     page_size: ROWS_PER_PAGE,
     company_id,

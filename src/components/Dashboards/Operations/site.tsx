@@ -16,6 +16,7 @@ import { mapResponseToLabelValue } from "../../../utils/utils";
 const excludeCards = ["Unknown"];
 function OperationSite({ site_id }: { site_id: string }) {
   const { data, isLoading, error } = useFetchData(
+    ["/site", "fetchSite"],
     `/site/${site_id}`,
    {},
     {

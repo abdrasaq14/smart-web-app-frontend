@@ -23,6 +23,7 @@ const SiteMonitoredChart = ({
   company_id: string;
 }) => {
   const { data, isLoading, error } = useFetchData(
+    ["/operations", "fetchOperations"],
     "/operations/sites-monitored",
     {
       company_id,

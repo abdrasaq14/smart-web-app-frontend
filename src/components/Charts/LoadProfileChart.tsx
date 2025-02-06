@@ -11,7 +11,9 @@ interface ILoadProfileData {
   dataset: [number, number][];
 }
 const LoadProfileChart = ({ company_id }: { company_id: string }) => {
-  const { data, isLoading, error } = useFetchData("/operations/profile-chart", {
+  const { data, isLoading, error } = useFetchData(
+    ["/operations", "fetchLoadProfile"],
+    "/operations/profile-chart", {
     company_id,
   });
 

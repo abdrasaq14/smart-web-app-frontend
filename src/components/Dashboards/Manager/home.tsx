@@ -20,6 +20,7 @@ const excludeCards = [
 
 function Manager({ company_id }: { company_id: string }) {
   const { data, isLoading, error } = useFetchData(
+    ["/manager", "fetchManager"],
     "/manager/cards-data",
     {
       card_type: "manager_home",

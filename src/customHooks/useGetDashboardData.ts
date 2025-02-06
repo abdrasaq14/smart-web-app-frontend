@@ -12,12 +12,13 @@ import apiFetcher from "../utils/apiFetcher";
  * @returns {object} Query result containing `data`, `isLoading`, `error`, etc.
  */
 export const useFetchData = <TData = unknown, TError = unknown>(
+  queryKey: QueryKey,
   route: string,
   queryParams: Record<string, any> = {},
   options?: UseQueryOptions<TData, TError>
 ) => {
   return useQuery<TData, TError>({
-    queryKey: [route, queryParams] as QueryKey, // Unique query key
+    queryKey, // Unique query key
     queryFn: async () => {
       try {
         const response = await apiFetcher.get(route, { params: queryParams });

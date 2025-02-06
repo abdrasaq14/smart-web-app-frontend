@@ -8,6 +8,7 @@ import { COLORS } from "../../utils/constants";
 
 const FinancialPerformanceChart = () => {
   const { data, isLoading, error } = useFetchData(
+    ["/operations", "fetchLoadProfile"],
     "/operations/profile-chart"
   );
 

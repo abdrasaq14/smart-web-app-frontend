@@ -11,6 +11,7 @@ import CardError from "../feedBacks/CardError";
 import Loader from "../feedBacks/loader";
 import NoContent from "../feedBacks/NoContent";
 import { IUser } from "../../utils/interfaces";
+import AddEmployeeModal from "../Modals/AddEmployee";
 
 const columns = [
   "Users",
@@ -24,6 +25,7 @@ const columns = [
 const UsersTable = ({ company_id }: { company_id?: string }) => {
   const ROWS_PER_PAGE = 7;
   const { data, isLoading, error }: any = useFetchData(
+    ['/users', 'fetchAllUsers'],
     "/users",
     {
       page: 1,
@@ -41,13 +43,14 @@ const UsersTable = ({ company_id }: { company_id?: string }) => {
   const tableData = React.useMemo(() => {
     // @ts-ignore
     return data?.results.map((item: IUser) => ({
-      id: item.id,
+      'User ID': item.id,
       Users: `${item.first_name} ${item.last_name}`,
       Company: item.company.name,
       "Employee ID": item.employee_id,
       "Email address": item.email,
       Department: item.access_level,
       "Time/Date": formatDateForDisplay(item.created_at),
+      ...item
     }));
   }, [data, company_id]);
 
@@ -96,12 +99,14 @@ const UsersTable = ({ company_id }: { company_id?: string }) => {
           rowsPerPage={ROWS_PER_PAGE}
         />
       )}
-
-      <EditUserAccountModal
+      <AddEmployeeModal
         isModalOpen={editUserModal}
         closeModal={() => setEditUserModal(false)}
         enableOutsideClick={false}
+        type="edit"
+        data={userDetails as IUser}
       />
+
     </CardLayout>
   );
 };

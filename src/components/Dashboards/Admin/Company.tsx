@@ -45,6 +45,7 @@ function Company({ company_id }: { company_id: string }) {
     }
   };
   const { data, isLoading, isError } = useFetchData(
+    [`/company/`, "fetchCompany"],
     `/company/${company_id}`,
     {}
   );
@@ -127,6 +128,7 @@ function Company({ company_id }: { company_id: string }) {
         isModalOpen={isEmployeeModalOpen}
         closeModal={() => setIsEmployeeModalOpen(false)}
         enableOutsideClick={false}
+        type="add"
       />
     </div>
   );

@@ -5,14 +5,12 @@ import TableTemplate from "./Table";
 import CardLayout from "../Cards/CardLayout";
 import { formatDateForDisplay } from "../../utils/formatters";
 import { FiMoreVertical } from "react-icons/fi";
-import EditDeviceModal from "../Modals/EditDeviceModal";
 import { useFetchData } from "../../customHooks/useGetDashboardData";
 import { IDevice } from "../../utils/interfaces";
 import CardError from "../feedBacks/CardError";
 import Loader from "../feedBacks/loader";
 import NoContent from "../feedBacks/NoContent";
 import AddDeviceModal from "../Modals/AddDeviceModal";
-import { set } from "date-fns";
 
 const columns = [
   "Device ID",
@@ -31,6 +29,7 @@ const DevicesTable = ({ company_id }: { company_id?: string }) => {
   };
 
   const { data, isLoading, error }: any = useFetchData(
+    ["/devices", 'fetchAllDevices'],
     "/devices",
     {
       page,

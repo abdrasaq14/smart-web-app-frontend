@@ -41,6 +41,7 @@ const excludeCards = [
 ];
 function Operations({ company_id }: { company_id: string }) {
     const { data, isLoading, error } = useFetchData(
+      ["/operations", "fetchOperations"],
       "/operations/cards-data",
       {
         card_type: "operations_home",

@@ -13,6 +13,7 @@ interface AnimatedInputProps {
   isErrored?: boolean;
   errorMessage?: any;
   isTouched?: boolean;
+  disabled?: boolean;
 }
 
 const AnimatedInput: React.FC<AnimatedInputProps> = ({
@@ -24,10 +25,11 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
   isErrored,
   errorMessage,
   isTouched,
-  type='text'
+  type = 'text',
+  disabled
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-
+console.log('AnimatedDisabled', disabled);
   const handleFocus = () => setIsFocused(true);
   const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     if (!value) {
@@ -43,7 +45,7 @@ console.log("AnimatedInput", isErrored, isTouched, errorMessage);
       <div
         className={`flex flex-col items-center justify-center border ${
           isErrored && isTouched ? "border-red-500" : "border-primary-border"
-        } rounded-lg w-full h-[80%] max-h-[80%] p-2`}
+        } rounded-lg w-full h-[80%] max-h-[80%] p-2 ${disabled ? 'cursor-not-allowed' : ''} disabled:bg-slate-400`}
       >
         <div className="relative w-full h-full flex items-center justify-center">
           <label
@@ -62,7 +64,8 @@ console.log("AnimatedInput", isErrored, isTouched, errorMessage);
             onChange={onChange}
             onBlur={handleBlur}
             onFocus={handleFocus}
-            className="w-full border-none outline-none  placeholder:text-sm"
+            disabled={disabled}
+            className="w-full border-none outline-none  placeholder:text-sm disabled:cursor-not-allowed"
           />
         </div>
       </div>

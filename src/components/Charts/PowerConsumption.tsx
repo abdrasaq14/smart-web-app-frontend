@@ -17,7 +17,9 @@ function PowerConsumptionByDistrictChart({company_id}: {company_id: string}) {
     data: powerConsumptionData,
     isLoading,
     error,
-  } = useFetchData("/operations/power-consumption-chart", {
+  } = useFetchData(
+    ["/operations", "fetchPowerConsumption"],
+    "/operations/power-consumption-chart", {
     company_id,
   });
 

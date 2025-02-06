@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -41,6 +42,7 @@ const PostLogin = () => {
     error: userError,
     isSuccess,
   } = useFetchData(
+    [API_ROUTE],
     API_ROUTE,
     {}, // No query params
     {
