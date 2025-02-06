@@ -4,7 +4,6 @@ import { CiUser } from "react-icons/ci";
 import { useAuth0 } from "@auth0/auth0-react";
 
 function NavBar({showDownload, showSearch}: {showDownload: boolean, showSearch?: boolean}) {
-  console.log('showSearch', showSearch)
   	const { logout } = useAuth0();
   return (
     <nav className="mb-10 items-start lg:items-center w-full bg-inherit flex flex-col sm:flex-row justify-between min-h-[5rem]">
@@ -31,7 +30,7 @@ function NavBar({showDownload, showSearch}: {showDownload: boolean, showSearch?:
           <CiUser size={22} className="" />
         </span>
         <span className="h-50 w-50 rounded-full border border-primary-border p-1 flex items-center justify-center text-primary-blackLighter hover:bg-primary-blackLighter2 hover:text-primary-blackMain">
-          <IoIosLogOut size={22} className="" onClick={() => logout({ returnTo: `${window.location.origin}/auth/login}` })} />
+          <IoIosLogOut size={22} className="" onClick={() => logout({ returnTo: `${window.location.origin}/auth/login` })} />
           {/* <CiUser size={22} className="text-primary-blackLighter" /> */}
         </span>
       </div>

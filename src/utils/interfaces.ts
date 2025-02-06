@@ -21,6 +21,7 @@ export interface IUser {
   created_at: string; // ISO 8601 date-time string
   updated_at: string; // ISO 8601 date-time string
   phone_number: string;
+  company_id: string;
   company: ICompany;
   username: string;
 }

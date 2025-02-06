@@ -11,7 +11,9 @@ import {
 import { smarteriseLogo } from "../assets/logo";
 import { useEffect, useState } from "react";
 import { smarteriseLogoNoText } from "../assets/logo";
-import { PAGE_PADDING } from "../utils/constants";
+import { PAGE_PADDING, ROLE } from "../utils/constants";
+import { useAppSelector } from "../store/hooks";
+import { selectAuthSlice } from "../store/authSlice";
 
 const DashboardSidenav = ({
   items,
@@ -24,7 +26,7 @@ const DashboardSidenav = ({
 }) => {
   const location = useLocation(); // Get the current route
   const [activeLabel, setActiveLabel] = useState<string>("");
-
+    const access_level = useAppSelector(selectAuthSlice).user?.access_level as string;
   // Update activeLabel based on the current route
   useEffect(() => {
     const activeItem = items.find((item) => location.pathname.includes(item.link));
@@ -43,7 +45,7 @@ const DashboardSidenav = ({
       }  border-e-[1px] border-primary-border text-sm h-full fixed transition-width duration-300`}
       style={{ padding: PAGE_PADDING }}
     >
-      <Link to='/' className="flex justify-between items-center w-full">
+      <Link to={access_level === ROLE.ADMIN ? '/': '#'} className="flex justify-between items-center w-full">
         {isOpen ? (
           <img
             src={smarteriseLogo}

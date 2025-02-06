@@ -9,6 +9,7 @@ import { useFetchData } from "../../customHooks/useGetDashboardData";
 import Loader from "../../components/feedBacks/loader";
 import { useAppDispatch } from "../../store/hooks";
 import { login } from "../../store/authSlice";
+import { IUser } from "../../utils/interfaces";
 const API_ROUTE = "users/me";
 const PostLogin = () => {
   const dispatch = useAppDispatch();
@@ -75,20 +76,20 @@ const PostLogin = () => {
     
     //@ts-ignore
 
-    const role = me?.access_level;
-
+    const role = (me as IUser)?.access_level;
+    const company_id = (me as IUser)?.company_id
     switch (role) {
       case ROLE.ADMIN:
         navigate("/");
         break;
       case ROLE.MANAGER:
-        navigate("/dashboard/senior-manager/home");
+        navigate(`/dashboard/senior-manager/home/${company_id}`);
         break;
       case ROLE.FINANCE:
-        navigate("/dashboard/finance/home");
+        navigate(`/dashboard/finance/home/${company_id}`);
         break;
       case ROLE.OPERATIONS:
-        navigate("/dashboard/operations/home");
+        navigate(`/dashboard/operations/home/${company_id}`);
         break;
       case ROLE.OTHER:
         navigate("/sbee");
