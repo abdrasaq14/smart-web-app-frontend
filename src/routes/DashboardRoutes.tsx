@@ -76,7 +76,7 @@ const dashboardRoutes = [
         element: <FinancePage />,
       },
       {
-        path: "finance/transactions",
+        path: "finance/transactions/:id",
         element: <TransactionsPage />,
       },
 
